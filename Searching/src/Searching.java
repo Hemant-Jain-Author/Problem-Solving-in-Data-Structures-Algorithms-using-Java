@@ -79,7 +79,7 @@ public class Searching {
 		int mid;
 
 		while (low <= high) {
-			mid = low + (high - low) / 2; // To avoid the overflow
+			mid = (low + high) / 2;
 			if (arr[mid] == value) {
 				return true;
 			} else if (arr[mid] < value) {
@@ -96,7 +96,7 @@ public class Searching {
 		if (low > high) {
 			return false;
 		}
-		int mid = low + (high - low) / 2; // To avoid the overflow
+		int mid = (low + high) / 2;
 		if (arr[mid] == value) {
 			return true;
 		} else if (arr[mid] < value) {
