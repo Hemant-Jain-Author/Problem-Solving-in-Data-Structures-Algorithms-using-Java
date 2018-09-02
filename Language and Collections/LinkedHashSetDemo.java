@@ -8,13 +8,7 @@ public class LinkedHashSetDemo {
 		// Add elements to the hash set.
 		hs.add("India");
 		hs.add("USA");
-		hs.add("Brazile");
-		hs.add("Canada");
-		hs.add("UK");
-		hs.add("China");
-		hs.add("France");
-		hs.add("Spain");
-		hs.add("Italy");
+		hs.add("Brazil");
 		System.out.println("HashSet value:: " + hs);
 
 		// Create a linked hash set.
@@ -22,13 +16,7 @@ public class LinkedHashSetDemo {
 		// Add elements to the linked hash set.
 		lhs.add("India");
 		lhs.add("USA");
-		lhs.add("Brazile");
-		lhs.add("Canada");
-		lhs.add("UK");
-		lhs.add("China");
-		lhs.add("France");
-		lhs.add("Spain");
-		lhs.add("Italy");
-		System.out.println("LinkedHashSet value:: " + lhs);
+		lhs.add("Brazil");
+		System.out.println("LinkedHashSet value:: " + lhs);	
 	}
 }

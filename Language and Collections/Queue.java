@@ -1,6 +1,6 @@
 import java.util.ArrayDeque;
 
-public class DequeQueue<T> {
+public class Queue<T> {
 
 	private ArrayDeque<T> deque = new ArrayDeque<T>();
 
