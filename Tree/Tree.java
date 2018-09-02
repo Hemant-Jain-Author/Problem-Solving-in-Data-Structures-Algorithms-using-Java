@@ -893,13 +893,12 @@ public class Tree {
 		/*
 		 * t.PrintPostOrder(); System.out.println(); t.iterativePostOrder();
 		 */
-		// t.PrintBredthFirst();
-		// t.treeToListRec();
-		// t.printAllPath();
-		// System.out.println(t.LCA(10, 3));
-		// System.out.println(t.());
-		// t.iterativePreOrder();
-		// t.PrintPreOrder();
+		t.PrintBredthFirst();
+		 //t.treeToListRec();
+		 t.printAllPath();
+		 System.out.println(t.LCA(10, 3));
+		t.iterativePreOrder();
+		t.PrintPreOrder();
 		// t.CreateBinaryTree(arr);
 		// System.out.println(t.isBST2());
 

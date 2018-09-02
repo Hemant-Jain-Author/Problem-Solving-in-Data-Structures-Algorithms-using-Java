@@ -482,7 +482,7 @@ public class Graph {
 	/*
 	 * Kosaraju Algorithm
 	 * 
-	 * Kosaraju’s Algorithm to find strongly connected directed graph based on
+	 * Kosaraju's Algorithm to find strongly connected directed graph based on
 	 * DFS : 1) Create a visited array of size V, and Initialize all vertices in
 	 * visited array as false. 2) Choose any vertice and perform a DFS traversal
 	 * of graph. For all visited vertices mark them visited as true. 3) If DFS

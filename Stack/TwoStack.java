@@ -14,7 +14,7 @@ public class TwoStack {
 		TwoStack st = new TwoStack();
 		for (int i = 0; i < 10; i++) {
 			st.StackPush1(i);
-		}
+		} 
 		for (int j = 0; j < 10; j++) {
 			st.StackPush2(j + 10);
 		}

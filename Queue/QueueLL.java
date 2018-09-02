@@ -1,4 +1,4 @@
-public class Queue {
+public class QueueLL {
 
 	private static class Node {
 		private int value;
@@ -58,7 +58,7 @@ public class Queue {
 	}
 
 	public static void main(String[] args) {
-		Queue q = new Queue();
+		QueueLL q = new QueueLL();
 		for (int i = 1; i <= 100; i++) {
 			q.push(i);
 		}

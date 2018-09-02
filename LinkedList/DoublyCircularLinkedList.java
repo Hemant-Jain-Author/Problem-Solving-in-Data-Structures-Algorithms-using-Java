@@ -1,5 +1,3 @@
-import CircularLinkedList.Node;
-
 public class DoublyCircularLinkedList {
 
 	private static class Node {

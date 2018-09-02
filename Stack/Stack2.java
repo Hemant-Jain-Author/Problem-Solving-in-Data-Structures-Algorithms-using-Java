@@ -1,5 +1,5 @@
 
-public class Stack {
+public class Stack2 {
 
 	private static final int MIN_CAPACITY = 1000;
 	private int[] data;
@@ -7,12 +7,12 @@ public class Stack {
 	private int minCapacity;
 	private int maxCapacity;
 
-	public Stack() {
+	public Stack2() {
 		this(MIN_CAPACITY);
 		maxCapacity = minCapacity = MIN_CAPACITY;
 	}
 
-	public Stack(int capacity) {
+	public Stack2(int capacity) {
 		data = new int[capacity];
 		maxCapacity = minCapacity = capacity;
 	}
@@ -69,7 +69,7 @@ public class Stack {
 	}
 
 	public static void main(String[] args) {
-		Stack s = new Stack(10);
+		Stack2 s = new Stack2(10);
 		for (int i = 1; i <= 100; i++) {
 			s.push(i);
 		}

@@ -1,5 +1,5 @@
 
-public class HashTable {
+public class HashTableLP {
 
 	private static int EMPTY_NODE = -1;
 	private static int LAZY_DELETED = -2;
@@ -9,7 +9,7 @@ public class HashTable {
 	int[] Arr;
 	int[] Flag;
 
-	public HashTable(int tSize) {
+	public HashTableLP(int tSize) {
 		tableSize = tSize;
 		Arr = new int[tSize + 1];
 		Flag = new int[tSize + 1];
@@ -84,7 +84,7 @@ public class HashTable {
 	}
 
 	public static void main(String[] args) {
-		HashTable ht = new HashTable(1000);
+		HashTableLP ht = new HashTableLP(1000);
 		ht.InsertNode(89);
 		ht.InsertNode(18);
 		ht.InsertNode(49);
