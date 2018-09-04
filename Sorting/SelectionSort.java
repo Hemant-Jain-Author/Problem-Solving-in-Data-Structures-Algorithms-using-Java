@@ -5,15 +5,11 @@ public class SelectionSort {
         arr = array;
     }
 
-    private boolean less(int value1, int value2) {
-        return value1 < value2;
-    }
-
     private boolean more(int value1, int value2) {
         return value1 > value2;
     }
 
-    public void sort()// back array
+    public void sort()// sorted array created from back.
     {
         int size = arr.length;
         int i, j, max, temp;
@@ -30,22 +26,22 @@ public class SelectionSort {
         }
     }
 
-    void sort2()// front array
-    {
-        int size = arr.length;
-        int i, j, min, temp;
-        for (i = 0; i < size - 1; i++) {
-            min = i;
-            for (j = i + 1; j < size; j++) {
-                if (arr[j] < arr[min]) {
-                    min = j;
-                }
+void sort2() // sorted array created from front
+{
+    int size = arr.length;
+    int i, j, min, temp;
+    for (i = 0; i < size - 1; i++) {
+        min = i;
+        for (j = i + 1; j < size; j++) {
+            if (arr[j] < arr[min]) {
+                min = j;
             }
-            temp = arr[i];
-            arr[i] = arr[min];
-            arr[min] = temp;
         }
+        temp = arr[i];
+        arr[i] = arr[min];
+        arr[min] = temp;
     }
+}
 
     public static void main(String[] args) {
         int[] array = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };

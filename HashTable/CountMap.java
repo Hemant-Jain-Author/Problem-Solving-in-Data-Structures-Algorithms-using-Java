@@ -5,8 +5,7 @@ public class CountMap<T> {
 
 	public void add(T key) {
 		if (hm.containsKey(key)) {
-			int count = hm.get(key);
-			hm.put(key, count + 1);
+			hm.put(key, hm.get(key) + 1);
 		} else {
 			hm.put(key, 1);
 		}
@@ -17,8 +16,7 @@ public class CountMap<T> {
 			if (hm.get(key) == 1)
 				hm.remove(key);
 			else {
-				int count = hm.get(key);
-				hm.put(key, count - 1);
+				hm.put(key, hm.get(key) - 1);
 			}
 		}
 	}
@@ -41,8 +39,10 @@ public class CountMap<T> {
 		CountMap<Integer> cm = new CountMap<Integer>();
 		cm.add(2);
 		cm.add(2);
-		cm.remove(2);
-		System.out.println("count is : " + cm.get(2));
-		System.out.println("count is : " + cm.get(3));
+        System.out.println("count is : " + cm.get(2));
+        cm.remove(2);
+        System.out.println("count is : " + cm.get(2));
+        cm.remove(2);
+        System.out.println("count is : " + cm.get(2));
 	}
 }

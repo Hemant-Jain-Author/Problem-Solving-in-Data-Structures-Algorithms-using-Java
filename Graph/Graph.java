@@ -20,6 +20,18 @@ public class Graph {
         }
     }
 
+    static class EdgeComparator implements Comparator<Edge> {
+        public int compare(Edge x, Edge y) {
+            if (x.cost < y.cost) {
+                return -1;
+            }
+            if (x.cost > y.cost) {
+                return 1;
+            }
+            return 0;
+        }
+    }
+
     int count;
     private LinkedList<LinkedList<Edge>> Adj;
 
@@ -56,18 +68,6 @@ public class Graph {
             for (Edge adn : ad) {
                 System.out.print("(" + adn.dest + ", " + adn.cost + ") ");
             }
-        }
-    }
-
-    static class EdgeComparator implements Comparator<Edge> {
-        public int compare(Edge x, Edge y) {
-            if (x.cost < y.cost) {
-                return -1;
-            }
-            if (x.cost > y.cost) {
-                return 1;
-            }
-            return 0;
         }
     }
 

@@ -27,7 +27,7 @@ public class Introduction {
         return total;
     }
 
-    public static void main(String[] args) {
+    public static void main0(String[] args) {
         int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         System.out.println("Sum of values in array:" + SumArray(arr));
     }
@@ -520,17 +520,18 @@ public class Introduction {
         System.out.print("%c" + digit);
     }
 
-    public void printInt2(int number, final int base) {
+    public void printInt(int number) {
         String conversion = "0123456789ABCDEF";
+        int base = 16;
         char digit = (char) (number % base);
         number = number / base;
         if (number != 0) {
-            printInt2(number, base);
+            printInt(number);
         }
-        System.out.print(" " + conversion.charAt(digit));
+        System.out.print(conversion.charAt(digit));
     }
 
-    public void towerOfHanoi(int num, char src, char dst, char temp) {
+    public static void towerOfHanoi(int num, char src, char dst, char temp) {
         if (num < 1) {
             return;
         }
@@ -540,14 +541,13 @@ public class Introduction {
         towerOfHanoi(num - 1, temp, dst, src);
     }
 
-    public int main14() {
+    public static void main14(String[] args) {
         int num = 4;
         System.out.println("The sequence of moves involved in the Tower of Hanoi are :\n");
         towerOfHanoi(num, 'A', 'C', 'B');
-        return 0;
     }
 
-    public int GCD(int m, int n) {
+    public static int GCD(int m, int n) {
         if (m < n) {
             return (GCD(n, m));
         }
@@ -557,14 +557,14 @@ public class Introduction {
         return (GCD(n, m % n));
     }
 
-    public int fibonacci(int n) {
+    public static int fibonacci(int n) {
         if (n <= 1) {
             return n;
         }
         return fibonacci(n - 1) + fibonacci(n - 2);
     }
 
-    public void permutation(int[] arr, int i, int length) {
+    public static void permutation(int[] arr, int i, int length) {
         if (length == i) {
             printArray(arr, length);
             return;
@@ -578,7 +578,7 @@ public class Introduction {
         return;
     }
 
-    public void main15(String[] args) {
+    public static void main15(String[] args) {
         int[] arr = new int[5];
         for (int i = 0; i < 5; i++) {
             arr[i] = i;
@@ -586,16 +586,25 @@ public class Introduction {
         permutation(arr, 0, 5);
     }
 
-    // Binary Search Algorithm - Recursive
-    public int BinarySearchRecursive(int[] arr, int low, int high, int value) {
-        int mid = low + (high - low) / 2; // To avoid the overflow
-        if (arr[mid] == value) {
-            return mid;
-        } else if (arr[mid] < value) {
-            return BinarySearchRecursive(arr, mid + 1, high, value);
-        } else {
-            return BinarySearchRecursive(arr, low, mid - 1, value);
-        }
+// Binary Search Algorithm - Recursive
+public static int BinarySearchRecursive(int[] arr, int low, int high, int value) {
+    if(low > high)
+        return -1;
+    int mid = (low + high) / 2;
+    if (arr[mid] == value) {
+        return mid;
+    } else if (arr[mid] < value) {
+        return BinarySearchRecursive(arr, mid + 1, high, value);
+    } else {
+        return BinarySearchRecursive(arr, low, mid - 1, value);
     }
+}
+
+/* Testing code */
+public static void main(String[] args) {
+    int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+    System.out.println(BinarySearchRecursive(arr, 0, arr.length - 1, 6));
+    System.out.println(BinarySearchRecursive(arr, 0, arr.length - 1, 16));
+}
 
 }
