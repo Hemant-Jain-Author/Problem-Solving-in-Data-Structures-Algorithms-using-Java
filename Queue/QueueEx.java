@@ -28,7 +28,7 @@ public class QueueEx {
             return -1;
     }
 
-    public static void main2(String[] args) {
+    public static void main1(String[] args) {
         // Testing code
         int tour[][] = { { 8, 6 }, { 1, 4 }, { 7, 6 } };
         System.out.println(" Circular Tour : " + CircularTour(tour, 3));
@@ -47,8 +47,11 @@ public class QueueEx {
             arr[index++] = value;
 
             if (value == dst) {
-                System.out.print(arr);
-                return steps;
+                for (int i=0;i<index;i++)
+                    System.out.print(arr[i]);
+                System.out.print("Steps countr :: " + steps);
+                
+                    return steps;
             }
             steps++;
             if (value < dst)

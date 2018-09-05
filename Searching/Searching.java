@@ -5,9 +5,6 @@ import java.util.ArrayList;;
 
 public class Searching {
 
-    public Searching() {
-    }
-
     public static boolean linearSearchUnsorted(int[] arr, int size, int value) {
         int i = 0;
         for (i = 0; i < size; i++) {
@@ -278,7 +275,6 @@ public class Searching {
 
     public static void MissingValues2(int[] arr, int size) {
         HashSet<Integer> ht = new HashSet<Integer>();
-
         int minVal = 999999;
         int maxVal = -999999;
 
@@ -384,7 +380,7 @@ public class Searching {
                 }
             }
         }
-        System.out.println(" The two elements with minimum sum are : " + arr[minFirst] + " , " + arr[minSecond]);
+        System.out.println(" Minimum sum elements are : " + arr[minFirst] + " , " + arr[minSecond]);
     }
 
     public static void minAbsSumPair2(int[] arr, int size) {
@@ -415,7 +411,7 @@ public class Searching {
                 break;
             }
         }
-        System.out.println(" The two elements with minimum sum are : " + arr[minFirst] + " , " + arr[minSecond]);
+        System.out.println(" Minimum sum pair : " + arr[minFirst] + " , " + arr[minSecond]);
     }
 
     public static void main7(String[] str) {
@@ -927,7 +923,7 @@ public class Searching {
     }
 
     public static int getMedian(int[] arr, int size) {
-        Arrays.sort(arr); // Arrays.sort(arr);
+        Arrays.sort(arr);
         return arr[size / 2];
     }
 
@@ -1019,6 +1015,38 @@ public class Searching {
         firstIndex = findFirstIndex(arr, 0, size - 1, key);
         lastIndex = findLastIndex(arr, 0, size - 1, key);
         return (lastIndex - firstIndex + 1);
+    }
+
+    /* Using binary search method. */
+    public static int FirstIndex(int arr[], int size, int low, int high, int value) {
+        int mid = 0;
+        if (high >= low)
+            mid = (low + high) / 2;
+
+        /*
+         * Find first occurrence of value, either it should be the first element of the
+         * array or the value before it is smaller than it.
+         */
+        if ((mid == 0 || arr[mid - 1] < value) && (arr[mid] == value))
+            return mid;
+        else if (arr[mid] < value)
+            return FirstIndex(arr, size, mid + 1, high, value);
+        else
+            return FirstIndex(arr, size, low, mid - 1, value);
+    }
+
+    public static boolean isMajority(int arr[], int size) {
+        int i;
+        int majority = arr[size / 2];
+        i = FirstIndex(arr, size, 0, size - 1, majority);
+        /*
+         * we are using majority element form array so we will get some valid index
+         * always.
+         */
+        if (((i + size / 2) <= (size - 1)) && arr[i + size / 2] == majority)
+            return true;
+        else
+            return false;
     }
 
     public static int findFirstIndex(int[] arr, int start, int end, int key) {

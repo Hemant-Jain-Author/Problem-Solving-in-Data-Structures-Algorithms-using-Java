@@ -1,4 +1,4 @@
-public class StringAlgo {
+public class Demo {
 
 	public static boolean matchExpUtil(char[] exp, char[] str, int i, int j) {
 		

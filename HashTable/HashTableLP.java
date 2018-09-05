@@ -104,7 +104,6 @@ public class HashTableLP {
 		ht.DeleteNode(49);
 		ht.DeleteNode(58);
 		ht.DeleteNode(69);
-
 		ht.Print();
 	}
 }

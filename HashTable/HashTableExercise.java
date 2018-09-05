@@ -71,7 +71,6 @@ public class HashTableExercise {
             if (hs.contains(curr) == false)
                 return curr;
         }
-
         return Integer.MAX_VALUE;
     }
 

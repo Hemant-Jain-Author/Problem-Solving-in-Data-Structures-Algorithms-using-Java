@@ -20,11 +20,8 @@ public class DoublyCircularLinkedList {
 
 	private Node head = null;
 	private Node tail = null;
-	private int size = 0;
-
-	public DoublyCircularLinkedList() {
-	}
-
+    private int size = 0;
+    
 	public int size() {
 		return size;
 	}
@@ -125,7 +122,7 @@ public class DoublyCircularLinkedList {
 		return false;
 	}
 
-	public void freeList() {
+	public void deleteList() {
 		head = null;
 		tail = null;
 		size = 0;

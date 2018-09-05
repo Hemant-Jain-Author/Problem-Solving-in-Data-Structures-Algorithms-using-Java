@@ -22,9 +22,6 @@ public class DoublyLinkedList {
     private Node tail;
     private int size = 0;
 
-    public DoublyLinkedList() {
-    }
-
     public int size() {
         return size;
     }
@@ -121,7 +118,7 @@ public class DoublyLinkedList {
         return false;
     }
 
-    public void freeList() {
+    public void deleteList() {
         head = null;
         tail = null;
         size = 0;
@@ -235,7 +232,24 @@ public class DoublyLinkedList {
         return dll;
     }
 
-    public static void main(String[] args) {
 
-    }
+	public static void main(String[] args) {
+		DoublyLinkedList ll = new DoublyLinkedList();
+		ll.addHead(1);
+		ll.addHead(2);
+		ll.addHead(3);
+		ll.addHead(4);
+		ll.addHead(5);
+		ll.addHead(6);
+		ll.removeHead();
+		ll.deleteList();
+		ll.print();
+		ll.addHead(11);
+		ll.addHead(21);
+		ll.addHead(31);
+		ll.addHead(41);
+		ll.addHead(51);
+		ll.addHead(61);
+		ll.print();
+	}
 }
