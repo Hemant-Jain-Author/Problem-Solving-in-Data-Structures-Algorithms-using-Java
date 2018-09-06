@@ -1,6 +1,6 @@
 public class HeapInteger {
 
-    private static final int CAPACITY = 16;
+    private static final int CAPACITY = 32;
     private int size; // Number of elements in heap
     private int[] arr; // The heap array
 
@@ -11,28 +11,25 @@ public class HeapInteger {
 
     public HeapInteger(int[] array) {
         size = array.length;
-        arr = new int[array.length + 1];
-        System.arraycopy(array, 0, arr, 1, array.length);// we do not use 0
-                                                         // index
-
+        arr = array;
         // Build Heap operation over array
-        for (int i = (size / 2); i > 0; i--) {
+        for (int i = (size / 2); i >= 0; i--) {
             proclateDown(i);
         }
     }
     // Other Methods.
 
     private void proclateDown(int position) {
-        int lChild = 2 * position;
+        int lChild = 2 * position + 1;
         int rChild = lChild + 1;
         int small = -1;
         int temp;
 
-        if (lChild <= size) {
+        if (lChild < size) {
             small = lChild;
         }
 
-        if (rChild <= size && (arr[rChild] - arr[lChild]) < 0) {
+        if (rChild < size && (arr[rChild] - arr[lChild]) < 0) {
             small = rChild;
         }
 
@@ -45,7 +42,7 @@ public class HeapInteger {
     }
 
     private void proclateUp(int position) {
-        int parent = position / 2;
+        int parent = (position - 1) / 2;
         int temp;
         if (parent == 0) {
             return;
@@ -64,14 +61,14 @@ public class HeapInteger {
             doubleSize();
         }
 
-        arr[++size] = value;
-        proclateUp(size);
+        arr[size++] = value;
+        proclateUp(size - 1);
     }
 
     private void doubleSize() {
         int[] old = arr;
         arr = new int[arr.length * 2];
-        System.arraycopy(old, 1, arr, 1, size);
+        System.arraycopy(old, 0, arr, 0, size);
     }
 
     public int remove() {
@@ -79,18 +76,17 @@ public class HeapInteger {
             throw new IllegalStateException();
         }
 
-        int value = arr[1];
-        arr[1] = arr[size];
+        int value = arr[0];
+        arr[0] = arr[size - 1];
         size--;
-        proclateDown(1);
+        proclateDown(0);
         return value;
     }
 
     public void print() {
-        for (int i = 1; i <= size; i++) {
+        for (int i = 0; i < size; i++) {
             System.out.print(" " + arr[i]);
         }
-
     }
 
     boolean IsMinHeap(int[] arr, int size) {
@@ -132,26 +128,44 @@ public class HeapInteger {
         if (isEmpty()) {
             throw new IllegalStateException();
         }
-        return arr[1];
+        return arr[0];
     }
 
-    public static void heapSort(int[] array) {
+    public static void heapSort(int[] array, boolean inc) {
         HeapInteger hp = new HeapInteger(array);
+        int temp;
         for (int i = 0; i < array.length; i++) {
-            array[i] = hp.remove();
+            array[array.length - i - 1] = hp.remove();
         }
+        if (inc)
+            for (int start = 0, stop = array.length - 1; start < stop; start++, stop--) {
+                temp = array[start];
+                array[start] = array[stop];
+                array[stop] = temp;
+            }
+
     }
 
     public static void main(String[] args) {
         int[] a = { 1, 9, 6, 7, 8, 0, 2, 4, 5, 3 };
         HeapInteger hp = new HeapInteger(a);
         hp.print();
-        /*
-         * for (int i = 0; i < a.length; i++) { System.out.println("pop value :: " +
-         * hp.remove()); }
-         * 
-         * Heap.heapSort(a); for (int i = 0; i < a.length; i++) {
-         * System.out.println("value is :: " + a[i]); }
-         */
+
+        for (int i = 0; i < a.length; i++) {
+            System.out.println("pop value :: " + hp.remove());
+        }
+
+        System.out.println();
+        int[] a1 = { 1, 9, 6, 7, 8, 0, 2, 4, 5, 3 };
+        HeapInteger.heapSort(a1, true);
+        for (int i = 0; i < a1.length; i++) {
+            System.out.print(" " + a1[i]);
+        }
+        System.out.println();
+        int[] a2 = { 1, 9, 6, 7, 8, 0, 2, 4, 5, 3 };
+        HeapInteger.heapSort(a2, false);
+        for (int i = 0; i < a2.length; i++) {
+            System.out.print(" " + a2[i]);
+        }
     }
 }

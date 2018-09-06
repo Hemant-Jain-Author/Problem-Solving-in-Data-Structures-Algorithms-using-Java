@@ -47,11 +47,11 @@ public class QueueEx {
             arr[index++] = value;
 
             if (value == dst) {
-                for (int i=0;i<index;i++)
+                for (int i = 0; i < index; i++)
                     System.out.print(arr[i]);
                 System.out.print("Steps countr :: " + steps);
-                
-                    return steps;
+
+                return steps;
             }
             steps++;
             if (value < dst)

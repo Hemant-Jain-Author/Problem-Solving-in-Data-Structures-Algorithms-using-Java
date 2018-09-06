@@ -1,109 +1,109 @@
 
 public class HashTableLP {
 
-	private static int EMPTY_NODE = -1;
-	private static int LAZY_DELETED = -2;
-	private static int FILLED_NODE = 0;
+    private static int EMPTY_NODE = -1;
+    private static int DELETED_NODE = -2;
+    private static int FILLED_NODE = 0;
 
-	private int tableSize;
-	int[] Arr;
-	int[] Flag;
+    private int tableSize;
+    int[] Arr;
+    int[] Flag;
 
-	public HashTableLP(int tSize) {
-		tableSize = tSize;
-		Arr = new int[tSize + 1];
-		Flag = new int[tSize + 1];
-		for (int i = 0; i <= tSize; i++) {
-			Flag[i] = EMPTY_NODE;
-		}
-	}
+    public HashTableLP(int tSize) {
+        tableSize = tSize;
+        Arr = new int[tSize + 1];
+        Flag = new int[tSize + 1];
+        for (int i = 0; i <= tSize; i++) {
+            Flag[i] = EMPTY_NODE;
+        }
+    }
 
-	int ComputeHash(int key) {
-		return key % tableSize;
-	}
+    int computeHash(int key) {
+        return key % tableSize;
+    }
 
-	int resolverFun(int index) {
-		return index;
-	}
+    int resolverFun(int index) {
+        return index;
+    }
 
-	boolean InsertNode(int value) {
-		int hashValue = ComputeHash(value);
-		for (int i = 0; i < tableSize; i++) {
-			if (Flag[hashValue] == EMPTY_NODE || Flag[hashValue] == LAZY_DELETED) {
-				Arr[hashValue] = value;
-				Flag[hashValue] = FILLED_NODE;
-				return true;
-			}
-			hashValue += resolverFun(i);
-			hashValue %= tableSize;
-		}
-		return false;
-	}
+    boolean add(int value) {
+        int hashValue = computeHash(value);
+        for (int i = 0; i < tableSize; i++) {
+            if (Flag[hashValue] == EMPTY_NODE || Flag[hashValue] == DELETED_NODE) {
+                Arr[hashValue] = value;
+                Flag[hashValue] = FILLED_NODE;
+                return true;
+            }
+            hashValue += resolverFun(i);
+            hashValue %= tableSize;
+        }
+        return false;
+    }
 
-	boolean FindNode(int value) {
-		int hashValue = ComputeHash(value);
-		for (int i = 0; i < tableSize; i++) {
-			if (Flag[hashValue] == EMPTY_NODE) {
-				return false;
-			}
+    boolean find(int value) {
+        int hashValue = computeHash(value);
+        for (int i = 0; i < tableSize; i++) {
+            if (Flag[hashValue] == EMPTY_NODE) {
+                return false;
+            }
 
-			if (Flag[hashValue] == FILLED_NODE && Arr[hashValue] == value) {
-				return true;
-			}
+            if (Flag[hashValue] == FILLED_NODE && Arr[hashValue] == value) {
+                return true;
+            }
 
-			hashValue += resolverFun(i);
-			hashValue %= tableSize;
-		}
-		return false;
-	}
+            hashValue += resolverFun(i);
+            hashValue %= tableSize;
+        }
+        return false;
+    }
 
-	boolean DeleteNode(int value) {
-		int hashValue = ComputeHash(value);
-		for (int i = 0; i < tableSize; i++) {
-			if (Flag[hashValue] == EMPTY_NODE) {
-				return false;
-			}
+    boolean delete(int value) {
+        int hashValue = computeHash(value);
+        for (int i = 0; i < tableSize; i++) {
+            if (Flag[hashValue] == EMPTY_NODE) {
+                return false;
+            }
 
-			if (Flag[hashValue] == FILLED_NODE && Arr[hashValue] == value) {
-				Flag[hashValue] = LAZY_DELETED;
-				return true;
-			}
-			hashValue += resolverFun(i);
-			hashValue %= tableSize;
-		}
-		return false;
+            if (Flag[hashValue] == FILLED_NODE && Arr[hashValue] == value) {
+                Flag[hashValue] = DELETED_NODE;
+                return true;
+            }
+            hashValue += resolverFun(i);
+            hashValue %= tableSize;
+        }
+        return false;
 
-	}
+    }
 
-	void Print() {
-		for (int i = 0; i < tableSize; i++) {
-			if (Flag[i] == FILLED_NODE) {
-				System.out.println("Node at index [" + i + " ] :: " + Arr[i]);
-			}
-		}
-	}
+    void print() {
+        for (int i = 0; i < tableSize; i++) {
+            if (Flag[i] == FILLED_NODE) {
+                System.out.println("Node at index [" + i + " ] :: " + Arr[i]);
+            }
+        }
+    }
 
-	public static void main(String[] args) {
-		HashTableLP ht = new HashTableLP(1000);
-		ht.InsertNode(89);
-		ht.InsertNode(18);
-		ht.InsertNode(49);
-		ht.InsertNode(58);
-		ht.InsertNode(69);
-		ht.InsertNode(89);
-		ht.InsertNode(18);
-		ht.InsertNode(49);
-		ht.InsertNode(58);
-		ht.InsertNode(69);
+    public static void main(String[] args) {
+        HashTableLP ht = new HashTableLP(1000);
+        ht.add(89);
+        ht.add(18);
+        ht.add(49);
+        ht.add(58);
+        ht.add(69);
+        ht.add(89);
+        ht.add(18);
+        ht.add(49);
+        ht.add(58);
+        ht.add(69);
 
-		ht.Print();
-		System.out.println("");
+        ht.print();
+        System.out.println("");
 
-		ht.DeleteNode(89);
-		ht.DeleteNode(18);
-		ht.DeleteNode(49);
-		ht.DeleteNode(58);
-		ht.DeleteNode(69);
-		ht.Print();
-	}
+        ht.delete(89);
+        ht.delete(18);
+        ht.delete(49);
+        ht.delete(58);
+        ht.delete(69);
+        ht.print();
+    }
 }

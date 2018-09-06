@@ -343,10 +343,10 @@ public class HeapEx {
     }
 
     /*
-     * public static int kthAbsDiff(int[] arr, int size, int k) { Sort(arr, size,
-     * 1); int diff[100];// = malloc(); int index = 0; for (int i = k + 1; i < size
-     * - 1; i++) { for (int j = i + 1; j < size; j++) diff[index++] = abs(arr[i] -
-     * arr[j]); } Sort(diff, size, 1); return diff[k - 1]; }
+     * public static int kthAbsDiff(int[] arr, int size, int k) { Sort(arr, size,1);
+     * int diff[1000]; int index = 0; for (int i = 0; i < size - 1; i++) { for (int
+     * j = i + 1; j < size; j++) diff[index++] = abs(arr[i] - arr[j]); } Sort(diff,
+     * index); return diff[k - 1]; }
      * 
      * int kthAbsDiff(int[] arr, int size, int k) { Sort(arr, size, 1); Heap hp; int
      * value = 0;
@@ -361,7 +361,6 @@ public class HeapEx {
      * public static void main7(String[] args) { int arr[] = { 1, 2, 3, 4 };
      * System.out.println("", kthAbsDiff(arr, 4, 5)); return 0; }
      */
-
     public static int kthLargestStream(int k) {
         PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
         int size = 0;

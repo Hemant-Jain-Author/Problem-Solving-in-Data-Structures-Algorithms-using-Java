@@ -586,25 +586,25 @@ public class Introduction {
         permutation(arr, 0, 5);
     }
 
-// Binary Search Algorithm - Recursive
-public static int BinarySearchRecursive(int[] arr, int low, int high, int value) {
-    if(low > high)
-        return -1;
-    int mid = (low + high) / 2;
-    if (arr[mid] == value) {
-        return mid;
-    } else if (arr[mid] < value) {
-        return BinarySearchRecursive(arr, mid + 1, high, value);
-    } else {
-        return BinarySearchRecursive(arr, low, mid - 1, value);
+    // Binary Search Algorithm - Recursive
+    public static int BinarySearchRecursive(int[] arr, int low, int high, int value) {
+        if (low > high)
+            return -1;
+        int mid = (low + high) / 2;
+        if (arr[mid] == value) {
+            return mid;
+        } else if (arr[mid] < value) {
+            return BinarySearchRecursive(arr, mid + 1, high, value);
+        } else {
+            return BinarySearchRecursive(arr, low, mid - 1, value);
+        }
     }
-}
 
-/* Testing code */
-public static void main(String[] args) {
-    int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-    System.out.println(BinarySearchRecursive(arr, 0, arr.length - 1, 6));
-    System.out.println(BinarySearchRecursive(arr, 0, arr.length - 1, 16));
-}
+    /* Testing code */
+    public static void main(String[] args) {
+        int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        System.out.println(BinarySearchRecursive(arr, 0, arr.length - 1, 6));
+        System.out.println(BinarySearchRecursive(arr, 0, arr.length - 1, 16));
+    }
 
 }

@@ -64,7 +64,6 @@ public class StackExercise {
 
     public static int postfixEvaluate(String expn) {
         Stack<Integer> stk = new Stack<Integer>();
-
         Scanner tokens = new Scanner(expn);
 
         while (tokens.hasNext()) {
@@ -393,11 +392,9 @@ public class StackExercise {
             stk.push(que.remove());
             i++;
         }
-
         while (stk.isEmpty() == false) {
             que.add(stk.pop());
         }
-
         diff = que.size() - k;
         while (diff > 0) {
             temp = que.remove();

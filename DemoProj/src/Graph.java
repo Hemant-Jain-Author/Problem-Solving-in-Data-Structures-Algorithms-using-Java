@@ -5,8 +5,6 @@ import java.util.Stack;
 import java.util.Queue;
 
 public class Graph {
-    int count;
-    private LinkedList<LinkedList<Edge>> Adj;
 
     private static class Edge {
         private int dest;
@@ -33,6 +31,9 @@ public class Graph {
             return 0;
         }
     }
+
+    int count;
+    private LinkedList<LinkedList<Edge>> Adj;
 
     public Graph(int cnt) {
         count = cnt;
@@ -76,7 +77,7 @@ public class Graph {
         int[] path = new int[count];
 
         for (int i = 0; i < count; i++) {
-            distance[i] = 999999; // infinite
+            distance[i] = 999999;
             path[i] = -1;
         }
         distance[source] = 0;
@@ -123,7 +124,8 @@ public class Graph {
 
         for (int i = 0; i < gph.count; i++) {
             previous[i] = -1;
-            dist[i] = 999999; // infinite
+            dist[i] = Integer.MAX_VALUE; // infinite
+            visited[i] = false;
         }
 
         dist[source] = 0;
@@ -171,7 +173,8 @@ public class Graph {
 
         for (int i = 0; i < gph.count; i++) {
             previous[i] = -1;
-            dist[i] = 999999; // infinite
+            dist[i] = Integer.MAX_VALUE;
+            visited[i] = false;
         }
 
         dist[source] = 0;
@@ -245,6 +248,9 @@ public class Graph {
     public static int rootVertex(Graph gph) {
         int count = gph.count;
         boolean[] visited = new boolean[count];
+        for (int i = 0; i < count; i++) {
+            visited[i] = false;
+        }
         int retVal = -1;
         for (int i = 0; i < count; i++) {
             if (visited[i] == false) {
@@ -285,7 +291,9 @@ public class Graph {
         Stack<Integer> stk = new Stack<Integer>();
         int count = gph.count;
         boolean[] visited = new boolean[count];
-
+        for (int i = 0; i < count; i++) {
+            visited[i] = false;
+        }
         for (int i = 0; i < count; i++) {
             if (visited[i] == false) {
                 topologicalSortDFS(gph, i, visited, stk);
@@ -322,7 +330,9 @@ public class Graph {
     public static boolean pathExist(Graph gph, int source, int dest) {
         int count = gph.count;
         boolean[] visited = new boolean[count];
-
+        for (int i = 0; i < count; i++) {
+            visited[i] = false;
+        }
         dfsRec(gph, source, visited);
         return visited[dest];
     }
@@ -343,7 +353,7 @@ public class Graph {
     /*
      * Kosaraju Algorithm
      * 
-     * Kosarajuâ€™s Algorithm to find strongly connected directed graph based on DFS :
+     * Kosaraju’s Algorithm to find strongly connected directed graph based on DFS :
      *  1) Create a visited array of size V, and Initialize all count in visited
      * array as 0. 2) Choose any vertex and perform a DFS traversal of graph. For
      * all visited count mark them visited as 1. 3) If DFS traversal does not mark
@@ -440,7 +450,9 @@ public class Graph {
     public static boolean isConnectedUndirected(Graph gph) {
         int count = gph.count;
         boolean[] visited = new boolean[count];
-
+        for (int i = 0; i < count; i++) {
+            visited[i] = false;
+        }
         dfsRec(gph, 0, visited);
         for (int i = 0; i < count; i++) {
             if (visited[i] == false) {
@@ -453,7 +465,9 @@ public class Graph {
     public static boolean dfsStack(Graph gph, int source, int target) {
         int count = gph.count;
         boolean[] visited = new boolean[count];
-
+        for (int i = 0; i < count; i++) {
+            visited[i] = false;
+        }
         Stack<Integer> stk = new Stack<Integer>();
         stk.push(source);
         visited[source] = true;
@@ -474,6 +488,9 @@ public class Graph {
     public static boolean dfs(Graph gph, int source, int target) {
         int count = gph.count;
         boolean[] visited = new boolean[count];
+        for (int i = 0; i < count; i++) {
+            visited[i] = false;
+        }
         dfsRec(gph, source, visited);
         return visited[target];
     }
@@ -481,6 +498,10 @@ public class Graph {
     public static boolean bfs(Graph gph, int source, int target) {
         int count = gph.count;
         boolean[] visited = new boolean[count];
+        for (int i = 0; i < count; i++) {
+            visited[i] = false;
+        }
+
         LinkedList<Integer> que = new LinkedList<Integer>();
         que.add(source);
         visited[source] = true;
@@ -527,6 +548,9 @@ public class Graph {
     public static int bfsDistance(Graph gph, int source, int dest) {
         int count = gph.count;
         boolean[] visited = new boolean[count];
+        for (int i = 0; i < count; i++) {
+            visited[i] = false;
+        }
         LinkedList<Integer> que = new LinkedList<Integer>();
         que.add(source);
         visited[source] = true;
@@ -665,6 +689,7 @@ public class Graph {
         if (source == dest) {
             return 1;
         }
+
         int count = 0;
         visited[source] = true;
         LinkedList<Edge> adl = gph.Adj.get(source);
@@ -680,6 +705,9 @@ public class Graph {
     public static int countAllPath(Graph gph, int src, int dest) {
         int count = gph.count;
         boolean[] visited = new boolean[count];
+        for (int i = 0; i < count; i++) {
+            visited[i] = false;
+        }
         return countAllPathDFS(gph, visited, src, dest);
     }
 
@@ -688,7 +716,6 @@ public class Graph {
 
         if (source == dest) {
             System.out.println(path);
-            path.pop();
             return;
         }
         visited[source] = true;
@@ -717,7 +744,6 @@ public class Graph {
         gph.addDirectedEdge(3, 4, 1);
         gph.addDirectedEdge(1, 4, 1);
         gph.print();
-        System.out.println();
         System.out.println(countAllPath(gph, 0, 4));
         printAllPath(gph, 0, 4);
     }
@@ -735,6 +761,10 @@ public class Graph {
             }
         }
         boolean[] visited = new boolean[count];
+        for (int i = 0; i < count; i++) {
+            visited[i] = false;
+        }
+
         visited[source] = true;
         Queue<Integer> que = new LinkedList<Integer>();
         que.add(source);
@@ -779,7 +809,7 @@ public class Graph {
 
     public static void main12() {
         int parentArray[] = { -1, 0, 1, 2, 3 };
-        System.out.println(heightTreeParentArr(parentArray));
+        // System.out.println(heightTreeParentArr(parentArray));
         System.out.println(heightTreeParentArr2(parentArray));
     }
 
@@ -788,9 +818,11 @@ public class Graph {
         int[] previous = new int[gph.count];
         int[] dist = new int[gph.count];
         boolean[] visited = new boolean[gph.count];
+
         for (int i = 0; i < gph.count; i++) {
             previous[i] = -1;
-            dist[i] = 999999; // infinite
+            dist[i] = Integer.MAX_VALUE; // infinite
+            visited[i] = false;
         }
         EdgeComparator comp = new EdgeComparator();
         PriorityQueue<Edge> pq = new PriorityQueue<Edge>(100, comp);
@@ -845,16 +877,16 @@ public class Graph {
         return false;
     }
 
-    public static boolean isCyclePresent(Graph graph) {
+    public static int isCyclePresent(Graph graph) {
         int count = graph.count;
         boolean[] visited = new boolean[count];
         int[] marked = new int[count];
         for (int index = 0; index < count; index++) {
             if (visited[index] == false)
                 if (isCyclePresentDFS(graph, index, visited, marked))
-                    return true;
+                    return 1;
         }
-        return false;
+        return 0;
     }
 
     public static boolean isCyclePresentDFSColor(Graph graph, int index, int[] visited) {
@@ -893,7 +925,7 @@ public class Graph {
         gph.addDirectedEdge(2, 3, 1);
         gph.addDirectedEdge(1, 3, 1);
         gph.addDirectedEdge(3, 4, 1);
-        gph.addDirectedEdge(4, 1, 1);
+        // gph.addDirectedEdge( 4, 1, 1);
         System.out.println(isCyclePresentColor(gph));
     }
 
@@ -929,7 +961,7 @@ public class Graph {
         gph.addUndirectedEdge(3, 4, 1);
         gph.addUndirectedEdge(4, 2, 1);
         gph.addUndirectedEdge(2, 5, 1);
-        // gph.addUndirectedEdge(4, 1, 1);
+        gph.addUndirectedEdge(4, 1, 1);
         System.out.println(isCyclePresentUndirected(gph));
     }
 
@@ -1014,7 +1046,7 @@ public class Graph {
         System.out.println(isEulerian(gph));
     }
 
-    public static boolean isStronglyConnected2(Graph graph) {
+    public static int isStronglyConnected2(Graph graph) {
         int count = graph.count;
         boolean[] visited = new boolean[count];
         Graph gReversed;
@@ -1032,7 +1064,7 @@ public class Graph {
         for (int i = 0; i < count; i++) {
             adl = graph.Adj.get(i);
             if (visited[i] == false && adl.size() > 0)
-                return false;
+                return 0;
         }
 
         gReversed = transposeGraph(graph);
@@ -1044,18 +1076,18 @@ public class Graph {
         for (int i = 0; i < count; i++) {
             adl = graph.Adj.get(i);
             if (visited[i] == false && adl.size() > 0)
-                return false;
+                return 0;
         }
-        return true;
+        return 1;
     }
 
-    public static boolean isEulerianCycle(Graph graph) {
+    public static int isEulerianCycle(Graph graph) {
         // Check if all non - zero degree count are connected
         int count = graph.count;
         int[] inDegree = new int[count];
         int[] outDegree = new int[count];
-        if (!isStronglyConnected2(graph))
-            return false;
+        if (isStronglyConnected2(graph) == 0)
+            return 0;
 
         // Check if in degree and out degree of every vertex is same
         for (int i = 0; i < count; i++) {
@@ -1067,8 +1099,8 @@ public class Graph {
         }
         for (int i = 0; i < count; i++)
             if (inDegree[i] != outDegree[i])
-                return false;
-        return true;
+                return 0;
+        return 1;
     }
 
     public static void main16() {
@@ -1083,20 +1115,20 @@ public class Graph {
     }
 
     public static void main(String[] args) {
-        main2();
-        main3();
-        main4();
-        main5();
-        main6();
-        main7();
-        main8();
-        main9();
-        main10();
-        main11();
-        main12();
-        main13();
-        main14();
-        main15();
-        main16();
+        //main2();//untested
+        //main3();//untested
+        // main4();
+        // main5(); //untested
+        //main6();
+        // main7();//untested
+        //main8();// untested
+        //main9();
+        // main10();
+         main11();//partial tested
+         //main12();//untested
+         //main13();
+         //main14();
+         //main15();
+         //main16();
     }
 }

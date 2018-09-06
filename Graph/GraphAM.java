@@ -68,7 +68,7 @@ public class GraphAM {
         graph.print();
     }
 
-    public static boolean HamiltonianCycleUtil(GraphAM graph, int path[], int pSize, int added[]) {
+    public static boolean hamiltonianCycleUtil(GraphAM graph, int path[], int pSize, int added[]) {
         // Base case full length path is found
         // this last check can be modified to make it a path.
         if (pSize == graph.count) {
@@ -83,7 +83,7 @@ public class GraphAM {
             if (pSize == 0 || (graph.adj[path[pSize - 1]][vertex] == 1 && added[vertex] == 0)) {
                 path[pSize++] = vertex;
                 added[vertex] = 1;
-                if (HamiltonianCycleUtil(graph, path, pSize, added))
+                if (hamiltonianCycleUtil(graph, path, pSize, added))
                     return true;
                 // backtracking
                 pSize--;
@@ -93,10 +93,10 @@ public class GraphAM {
         return false;
     }
 
-    public static boolean HamiltonianCycle(GraphAM graph) {
+    public static boolean hamiltonianCycle(GraphAM graph) {
         int[] path = new int[graph.count + 1];
         int[] added = new int[graph.count];
-        if (HamiltonianCycleUtil(graph, path, 0, added)) {
+        if (hamiltonianCycleUtil(graph, path, 0, added)) {
             System.out.println("Hamiltonian Cycle found :: ");
             for (int i = 0; i <= graph.count; i++)
                 System.out.print(" " + path[i]);
@@ -106,7 +106,7 @@ public class GraphAM {
         return false;
     }
 
-    public static boolean HamiltonianPathUtil(GraphAM graph, int path[], int pSize, int added[]) {
+    public static boolean hamiltonianPathUtil(GraphAM graph, int path[], int pSize, int added[]) {
         // Base case full length path is found
         if (pSize == graph.count) {
             return true;
@@ -117,7 +117,7 @@ public class GraphAM {
             if (pSize == 0 || (graph.adj[path[pSize - 1]][vertex] == 1 && added[vertex] == 0)) {
                 path[pSize++] = vertex;
                 added[vertex] = 1;
-                if (HamiltonianPathUtil(graph, path, pSize, added))
+                if (hamiltonianPathUtil(graph, path, pSize, added))
                     return true;
                 // backtracking
                 pSize--;
@@ -127,11 +127,11 @@ public class GraphAM {
         return false;
     }
 
-    public static boolean HamiltonianPath(GraphAM graph) {
+    public static boolean hamiltonianPath(GraphAM graph) {
         int[] path = new int[graph.count];
         int[] added = new int[graph.count];
 
-        if (HamiltonianPathUtil(graph, path, 0, added)) {
+        if (hamiltonianPathUtil(graph, path, 0, added)) {
             System.out.println("Hamiltonian Path found :: ");
             for (int i = 0; i < graph.count; i++)
                 System.out.println(" " + path[i]);
@@ -152,8 +152,8 @@ public class GraphAM {
             for (int j = 0; j < count; j++)
                 if (adj[i][j] == 1)
                     graph.addDirectedEdge(i, j, 1);
-        System.out.println("HamiltonianPath : " + HamiltonianPath(graph));
-        System.out.println("HamiltonianCycle : " + HamiltonianCycle(graph));
+        System.out.println("hamiltonianPath : " + hamiltonianPath(graph));
+        System.out.println("hamiltonianCycle : " + hamiltonianCycle(graph));
 
         GraphAM graph2 = new GraphAM(count);
         int[][] adj2 = { { 0, 1, 0, 1, 0 }, { 1, 0, 1, 1, 0 }, { 0, 1, 0, 0, 1 }, { 1, 1, 0, 0, 0 },
@@ -163,11 +163,11 @@ public class GraphAM {
                 if (adj2[i][j] == 1)
                     graph2.addDirectedEdge(i, j, 1);
 
-        System.out.println("HamiltonianPath :  " + HamiltonianPath(graph2));
-        System.out.println("HamiltonianCycle :  " + HamiltonianCycle(graph2));
+        System.out.println("hamiltonianPath :  " + hamiltonianPath(graph2));
+        System.out.println("hamiltonianCycle :  " + hamiltonianCycle(graph2));
     }
 
-    public static void Dijkstra(GraphAM gph, int source) {
+    public static void dijkstra(GraphAM gph, int source) {
         int[] previous = new int[gph.count];
         int[] dist = new int[gph.count];
         boolean[] visited = new boolean[gph.count];
@@ -218,7 +218,7 @@ public class GraphAM {
         }
     }
 
-    public static void Prims(GraphAM gph) {
+    public static void prims(GraphAM gph) {
         int[] previous = new int[gph.count];
         int[] dist = new int[gph.count];
         int source = 0;
@@ -287,8 +287,8 @@ public class GraphAM {
         gph.addUndirectedEdge(6, 8, 6);
         gph.addUndirectedEdge(7, 8, 7);
         gph.print();
-        // prims(gph);
-        Dijkstra(gph, 0);
+        prims(gph);
+        dijkstra(gph, 0);
     }
 
     public static void main(String[] args) {
@@ -305,8 +305,8 @@ public class GraphAM {
         gph.addUndirectedEdge(6, 7, 7);
         gph.addUndirectedEdge(7, 8, 17);
         gph.print();
-        Prims(gph);
-        //Dijkstra(gph, 1);
+        prims(gph);
+        dijkstra(gph, 1);
     }
 
 }

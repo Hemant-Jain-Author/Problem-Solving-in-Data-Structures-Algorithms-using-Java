@@ -1,4 +1,6 @@
 public class CircularLinkedList {
+    private Node tail;
+    private int size = 0;
 
     private static class Node {
         private int value;
@@ -15,8 +17,7 @@ public class CircularLinkedList {
         }
     }
 
-    private Node tail;
-    private int size = 0;
+}
 
     public int size() {
         return size;
@@ -137,7 +138,7 @@ public class CircularLinkedList {
         return cl;
     }
 
-    public boolean isPresent(int data) {
+    public boolean searchList(int data) {
         Node temp = tail;
         for (int i = 0; i < size; i++) {
             if (temp.value == data)
