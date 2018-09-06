@@ -13,20 +13,20 @@ public class TST {
         }
     };
 
-    public void insert(String word) {
-        root = insert(root, word, 0);
+    public void add(String word) {
+        root = add(root, word, 0);
     }
 
-    private Node insert(Node curr, String word, int wordIndex) {
+    private Node add(Node curr, String word, int wordIndex) {
         if (curr == null)
             curr = new Node(word.charAt(wordIndex));
         if (word.charAt(wordIndex) < curr.data)
-            curr.left = insert(curr.left, word, wordIndex);
+            curr.left = add(curr.left, word, wordIndex);
         else if (word.charAt(wordIndex) > curr.data)
-            curr.right = insert(curr.right, word, wordIndex);
+            curr.right = add(curr.right, word, wordIndex);
         else {
             if (wordIndex < word.length() - 1)
-                curr.equal = insert(curr.equal, word, wordIndex + 1);
+                curr.equal = add(curr.equal, word, wordIndex + 1);
             else
                 curr.isLastChar = true;
         }
@@ -60,9 +60,9 @@ public class TST {
     public static void main(String[] args) {
 
         TST tt = new TST();
-        tt.insert("banana");
-        tt.insert("apple");
-        tt.insert("mango");
+        tt.add("banana");
+        tt.add("apple");
+        tt.add("mango");
         System.out.println("\nSearch results for apple, banana, grapes and mango :");
         tt.find("apple");
         tt.find("banana");

@@ -21,14 +21,14 @@ public class Trie {
         root = new Node(' ');// first node with dummy value.
     }
 
-    Node Insert(String str) {
+    Node add(String str) {
         if (str == null) {
             return root;
         }
-        return Insert(root, str.toLowerCase(), 0);
+        return add(root, str.toLowerCase(), 0);
     }
 
-    Node Insert(Node curr, String str, int index) {
+    Node add(Node curr, String str, int index) {
         if (curr == null) {
             curr = new Node(str.charAt(index - 1));
         }
@@ -36,22 +36,22 @@ public class Trie {
         if (str.length() == index) {
             curr.isLastChar = true;
         } else {
-            curr.child[str.charAt(index) - 'a'] = Insert(curr.child[str.charAt(index) - 'a'], str, index + 1);
+            curr.child[str.charAt(index) - 'a'] = add(curr.child[str.charAt(index) - 'a'], str, index + 1);
         }
 
         return curr;
     }
 
-    void Remove(String str) {
+    void remove(String str) {
         if (str == null) {
             return;
         }
 
         str = str.toLowerCase();
-        Remove(root, str, 0);
+        remove(root, str, 0);
     }
 
-    void Remove(Node curr, String str, int index) {
+    void remove(Node curr, String str, int index) {
         if (curr == null) {
             return;
         }
@@ -63,19 +63,19 @@ public class Trie {
             return;
         }
 
-        Remove(curr.child[str.charAt(index) - 'a'], str, index + 1);
+        remove(curr.child[str.charAt(index) - 'a'], str, index + 1);
     }
 
-    boolean Find(String str) {
+    boolean find(String str) {
         if (str == null) {
             return false;
         }
 
         str = str.toLowerCase();
-        return Find(root, str, 0);
+        return find(root, str, 0);
     }
 
-    boolean Find(Node curr, String str, int index) {
+    boolean find(Node curr, String str, int index) {
         if (curr == null) {
             return false;
         }
@@ -84,7 +84,7 @@ public class Trie {
             return curr.isLastChar;
         }
 
-        return Find(curr.child[str.charAt(index) - 'a'], str, index + 1);
+        return find(curr.child[str.charAt(index) - 'a'], str, index + 1);
     }
 
     public static void main(String[] args) {
@@ -93,13 +93,13 @@ public class Trie {
         String b = "heman";
         String c = "hemantjain";
         String d = "jain";
-        t.Insert(a);
-        t.Insert(d);
-        System.out.println(t.Find(a));
-        t.Remove(a);
-        t.Remove(d);
-        System.out.println(t.Find(a));
-        System.out.println(t.Find(c));
-        System.out.println(t.Find(d));
+        t.add(a);
+        t.add(d);
+        System.out.println(t.find(a));
+        t.remove(a);
+        t.remove(d);
+        System.out.println(t.find(a));
+        System.out.println(t.find(c));
+        System.out.println(t.find(d));
     }
 }

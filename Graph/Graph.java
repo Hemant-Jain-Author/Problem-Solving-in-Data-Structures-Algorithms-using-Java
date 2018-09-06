@@ -5,6 +5,7 @@ import java.util.Stack;
 import java.util.Queue;
 
 public class Graph {
+
     int count;
     private LinkedList<LinkedList<Edge>> Adj;
 

@@ -27,14 +27,6 @@ public class HashTableSC {
         return hashValue % tableSize;
     }
 
-    int resolverFun(int i) {
-        return i;
-    }
-
-    int resolverFun2(int i) {
-        return i * i;
-    }
-
     public void insert(int value) {
         int index = computeHash(value);
         listArray[index] = new Node(value, listArray[index]);

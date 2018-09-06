@@ -1,4 +1,5 @@
 public class StringTree {
+    Node root = null;
 
     class Node {
         String value;
@@ -7,14 +8,13 @@ public class StringTree {
         Node rChild;
     };
 
-    Node root = null;
     // Other Methods.
 
     public void print() {
         print(root);
     }
 
-    public void print(Node curr)/* pre order */
+    public void print(Node curr) /* pre order */
     {
         if (curr != null) {
             System.out.print(" value is ::" + curr.value);
@@ -24,11 +24,11 @@ public class StringTree {
         }
     }
 
-    public void insert(String value) {
-        root = insert(value, root);
+    public void add(String value) {
+        root = add(value, root);
     }
 
-    Node insert(String value, Node curr) {
+    Node add(String value, Node curr) {
         int compare;
         if (curr == null) {
             curr = new Node();
@@ -40,9 +40,9 @@ public class StringTree {
             if (compare == 0)
                 curr.count++;
             else if (compare == 1)
-                curr.lChild = insert(value, curr.lChild);
+                curr.lChild = add(value, curr.lChild);
             else
-                curr.rChild = insert(value, curr.rChild);
+                curr.rChild = add(value, curr.rChild);
         }
         return curr;
     }
@@ -95,12 +95,12 @@ public class StringTree {
 
     public static void main(String[] args) {
         StringTree tt = new StringTree();
-        tt.insert("banana");
-        tt.insert("apple");
-        tt.insert("mango");
-        tt.insert("banana");
-        tt.insert("apple");
-        tt.insert("mango");
+        tt.add("banana");
+        tt.add("apple");
+        tt.add("mango");
+        tt.add("banana");
+        tt.add("apple");
+        tt.add("mango");
         System.out.println("\nSearch results for apple, banana, grapes and mango :\n");
         tt.find("apple");
         tt.find("banana");

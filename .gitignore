@@ -1,3 +1,4 @@
 /.metadata/
 *.class
 */err
+*.java

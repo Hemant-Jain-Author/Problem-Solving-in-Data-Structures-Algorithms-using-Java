@@ -5,38 +5,13 @@ import java.util.Stack;
 import java.util.Queue;
 
 public class GraphAM {
+
     int count;
     int[][] adj;
 
     GraphAM(int cnt) {
         count = cnt;
         adj = new int[count][count];
-    }
-
-    private static class Edge {
-        private int dest;
-        private int cost;
-
-        public Edge(int dst, int cst) {
-            dest = dst;
-            cost = cst;
-        }
-
-        public Edge(int dst) {
-            this(dst, 1);
-        }
-    }
-
-    static class EdgeComparator implements Comparator<Edge> {
-        public int compare(Edge x, Edge y) {
-            if (x.cost < y.cost) {
-                return -1;
-            }
-            if (x.cost > y.cost) {
-                return 1;
-            }
-            return 0;
-        }
     }
 
     public void addDirectedEdge(int src, int dst, int cost) {
@@ -165,6 +140,28 @@ public class GraphAM {
 
         System.out.println("hamiltonianPath :  " + hamiltonianPath(graph2));
         System.out.println("hamiltonianCycle :  " + hamiltonianCycle(graph2));
+    }
+
+    private static class Edge {
+        private int dest;
+        private int cost;
+
+        public Edge(int dst, int cst) {
+            dest = dst;
+            cost = cst;
+        }
+    }
+
+    static class EdgeComparator implements Comparator<Edge> {
+        public int compare(Edge x, Edge y) {
+            if (x.cost < y.cost) {
+                return -1;
+            }
+            if (x.cost > y.cost) {
+                return 1;
+            }
+            return 0;
+        }
     }
 
     public static void dijkstra(GraphAM gph, int source) {
@@ -308,5 +305,4 @@ public class GraphAM {
         prims(gph);
         dijkstra(gph, 1);
     }
-
 }
