@@ -193,6 +193,22 @@ public class LinkedList {
             return compareList(head1.next, head2.next);
     }
 
+    public boolean compareList2(ListList ll2) {
+        Node head1 = head;
+        Node head2 = ll2.head;
+
+        while (head1 == null && head2 == null) {
+            if (head1 -> value != head2 -> value)
+                return false;
+            head1 = head1 -> next;
+            head2 = head2 -> next;
+        }
+
+        if (head1 == null && head2 == null)
+            return true;
+        return false;
+    }
+
     public int findLength() {
         Node curr = head;
         int count = 0;

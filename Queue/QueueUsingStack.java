@@ -1,13 +1,13 @@
-import java.util.ArrayDeque;
+import java.util.Stack;
 
 public class QueueUsingStack {
 
-    private ArrayDeque<Integer> stk1;
-    private ArrayDeque<Integer> stk2;
+    private Stack<Integer> stk1;
+    private Stack<Integer> stk2;
 
     public QueueUsingStack() {
-        stk1 = new ArrayDeque<Integer>();
-        stk2 = new ArrayDeque<Integer>();
+        stk1 = new Stack<Integer>();
+        stk2 = new Stack<Integer>();
     }
 
     void add(int value) {
@@ -32,6 +32,7 @@ public class QueueUsingStack {
         que.add(1);
         que.add(11);
         que.add(111);
+        System.out.println(que.remove());
         System.out.println(que.remove());
     }
 }
