@@ -47,10 +47,6 @@ public class StringTree {
         return curr;
     }
 
-    void freeTree() {
-        root = null;
-    }
-
     boolean find(String value) {
         boolean ret = find(root, value);
         System.out.println("Find " + value + " Return " + ret);
@@ -74,7 +70,6 @@ public class StringTree {
 
     int frequency(String value) {
         return frequency(root, value);
-
     }
 
     int frequency(Node curr, String value) {
@@ -93,6 +88,10 @@ public class StringTree {
         }
     }
 
+    void freeTree() {
+        root = null;
+    }
+
     public static void main(String[] args) {
         StringTree tt = new StringTree();
         tt.add("banana");
@@ -108,13 +107,10 @@ public class StringTree {
         tt.find("applkhjkhkj");
         tt.find("grapes");
         tt.find("mango");
-
         tt.print();
         System.out.println("frequency returned :: " + tt.frequency("apple"));
         System.out.println("frequency returned :: " + tt.frequency("banana"));
         System.out.println("frequency returned :: " + tt.frequency("mango"));
         System.out.println("frequency returned :: " + tt.frequency("hemant"));
-
     }
-
 }
