@@ -58,7 +58,6 @@ public class TST {
     }
 
     public static void main(String[] args) {
-
         TST tt = new TST();
         tt.add("banana");
         tt.add("apple");

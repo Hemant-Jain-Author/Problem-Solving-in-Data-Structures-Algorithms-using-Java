@@ -9,13 +9,13 @@ public class algo {
     public static int fibonacci2(int n) {
         int first = 0;
         int second = 1;
-        int i, temp = 0;
+        int temp = 0;
 
         if (n == 0)
             return first;
         else if (n == 1)
             return second;
-        i = 2;
+        int i = 2;
         while (i <= n) {
             temp = first + second;
             first = second;
@@ -56,7 +56,6 @@ public class algo {
 
     public static void main1(String[] args) {
         int[] Q = new int[8];
-        ;
         NQueens(Q, 0, 8);
     }
 

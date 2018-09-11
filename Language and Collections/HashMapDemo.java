@@ -7,9 +7,7 @@ the values may be duplicated.
 import java.util.HashMap;
 
 public class HashMapDemo {
-	
 	public static void main(String[] args) {
-		
 		// Create a hash map.
 		HashMap<String, Integer> hm = new HashMap<String, Integer>();	
 		// Put elements into the map

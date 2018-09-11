@@ -9,7 +9,6 @@ public class StringTree {
     };
 
     // Other Methods.
-
     public void print() {
         print(root);
     }
@@ -29,14 +28,13 @@ public class StringTree {
     }
 
     Node add(String value, Node curr) {
-        int compare;
         if (curr == null) {
             curr = new Node();
             curr.value = value;
             curr.lChild = curr.rChild = null;
             curr.count = 1;
         } else {
-            compare = curr.value.compareTo(value);
+            int compare = curr.value.compareTo(value);
             if (compare == 0)
                 curr.count++;
             else if (compare == 1)
@@ -54,10 +52,9 @@ public class StringTree {
     }
 
     boolean find(Node curr, String value) {
-        int compare;
         if (curr == null)
             return false;
-        compare = curr.value.compareTo(value);
+        int compare = curr.value.compareTo(value);
         if (compare == 0)
             return true;
         else {
@@ -73,11 +70,10 @@ public class StringTree {
     }
 
     int frequency(Node curr, String value) {
-        int compare;
         if (curr == null)
             return 0;
 
-        compare = curr.value.compareTo(value);
+        int compare = curr.value.compareTo(value);
         if (compare == 0)
             return curr.count;
         else {

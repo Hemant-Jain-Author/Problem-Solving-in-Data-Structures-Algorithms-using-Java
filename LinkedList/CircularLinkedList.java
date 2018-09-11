@@ -10,14 +10,7 @@ public class CircularLinkedList {
             value = v;
             next = n;
         }
-
-        public Node(int v) {
-            value = v;
-            next = null;
-        }
     }
-
-}
 
     public int size() {
         return size;

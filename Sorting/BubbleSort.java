@@ -30,21 +30,21 @@ public class BubbleSort {
         }
     }
 
-public void sort2() {
-    int size = arr.length;
-    int i, j, temp, swapped = 1;
-    for (i = 0; i < (size - 1) && swapped == 1; i++) {
-        swapped = 0;
-        for (j = 0; j < size - i - 1; j++) {
-            if (more(arr[j], arr[j + 1])) {
-                temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-                swapped = 1;
+    public void sort2() {
+        int size = arr.length;
+        int i, j, temp, swapped = 1;
+        for (i = 0; i < (size - 1) && swapped == 1; i++) {
+            swapped = 0;
+            for (j = 0; j < size - i - 1; j++) {
+                if (more(arr[j], arr[j + 1])) {
+                    temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    swapped = 1;
+                }
             }
         }
     }
-}
 
     public static void main(String[] args) {
         int[] array = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };

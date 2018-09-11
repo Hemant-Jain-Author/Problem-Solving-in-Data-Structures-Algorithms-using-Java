@@ -121,9 +121,9 @@ public class Analysis {
     }
 
     int fun12(int n) {
-        int i, j, m = 0;
+        int i, j = 0, m = 0;
         for (i = 0; i < n; i++) {
-            for (j = 0; j < n; j++) {
+            for (; j < n; j++) {
                 m += 1;
             }
         }
@@ -131,7 +131,7 @@ public class Analysis {
     }
 
     int fun13(int n) {
-        int i, j, m = 0;
+        int i, j = 0, m = 0;
         for (i = 1; i <= n; i *= 2) {
             for (j = 0; j <= i; j++) {
                 m += 1;
@@ -156,5 +156,4 @@ public class Analysis {
         System.out.println(a.fun12(100));
         System.out.println(a.fun13(100));
     }
-
 }

@@ -146,16 +146,23 @@ public class Introduction {
             }
         }
     }
-    /*
-     * public static void WaveArray(int[] arr){ int size = arr.length; QuickSort srt
-     * = new QuickSort(arr); srt.sort(); for(int i = 0 ; i < size -1 ; i+= 2) {
-     * swap(arr, i, i+1); } }
-     */
+    
+    public static void WaveArray(int[] arr)
+    { 
+        int size = arr.length; 
+        Arrays.sort(arr); 
+        printArray(arr, arr.length);
+        for(int i = 0 ; i < size -1 ; i+= 2) {
+            swap(arr, i, i+1); 
+        } 
+    }
+    
 
     /* Testing code */
     public static void main6(String[] args) {
         int[] arr = { 8, 1, 2, 3, 4, 5, 6, 4, 2 };
-        // WaveArray(arr);
+        printArray(arr, arr.length);
+        WaveArray(arr);
         printArray(arr, arr.length);
         int[] arr2 = { 8, 1, 2, 3, 4, 5, 6, 4, 2 };
         WaveArray2(arr2);
@@ -173,6 +180,7 @@ public class Introduction {
                 arr[curr] = value;
                 value = curr = temp;
             }
+
             /* check if some swaps happened. */
             if (value != -1) {
                 arr[curr] = value;
@@ -195,7 +203,6 @@ public class Introduction {
     /* Testing code */
     public static void main7(String[] args) {
         int[] arr = { 8, -1, 6, 1, 9, 3, 2, 7, 4, -1 };
-
         int size = arr.length;
         indexArray2(arr, size);
         printArray(arr, size);
@@ -318,11 +325,7 @@ public class Introduction {
     }
 
     public static void MaxMinArr(int arr[], int size) {
-        int[] aux = new int[size];
-        for (int i = 0; i < size; i++) {
-            aux[i] = arr[i];
-        }
-
+        int[] aux = Arrays.copyOf(arr, size);
         int start = 0;
         int stop = size - 1;
         for (int i = 0; i < size; i++) {
@@ -439,26 +442,47 @@ public class Introduction {
     }
 
     /*
-     * public static int ArrayIndexMaxDiff3(int arr[], int size) { int[] leftMin =
-     * new int[size]; int[] rightMax = new int[size]; int minIndex = 0, maxIndex =
-     * 0; int i, j; int maxDiff; leftMin[minIndex++] = 0; for (i = 1; i < size; i++)
-     * { if (arr[leftMin[minIndex]] > arr[i]) { leftMin[minIndex++] = i; } }
-     * 
-     * rightMax[maxIndex++] = size - 1; for (i = size - 2; i >= 0; i--) { if
-     * (arr[rightMax[-1]] < arr[i]) { rightMax[maxIndex++] = i; } }
-     * 
-     * i = 0; j = maxIndex - 1; maxDiff = -1;
-     * 
-     * while (i < minIndex && j >= 0) { if (arr[leftMin[i]] < arr[rightMax[j]]) {
-     * maxDiff = Math.max(maxDiff, rightMax[j] - leftMin[i]); j -= 1; } else { i +=
-     * 1; } } return maxDiff; }
-     */
-    public static void main12(String[] args) {
+    public static int ArrayIndexMaxDiff3(int arr[], int size) { 
+        int[] leftMin = new int[size]; 
+        int[] rightMax = new int[size]; 
+        int minIndex = 0, maxIndex = 0; 
+        int i, j; 
+        int maxDiff; 
+        leftMin[minIndex++] = 0;
+        for (i = 1; i < size; i++)
+        {
+         if (arr[leftMin[minIndex]] > arr[i]) { 
+             leftMin[minIndex++] = i; 
+            } 
+        }
+     
+        rightMax[maxIndex++] = size - 1; 
+        for (i = size - 2; i >= 0; i--) { 
+            if (arr[rightMax[maxIndex]] < arr[i]) { 
+                rightMax[maxIndex++] = i; 
+            } 
+        }
+     
+        i = 0; 
+        j = maxIndex - 1; 
+        maxDiff = -1;
+     
+        while (i < minIndex && j >= 0) { 
+            if (arr[leftMin[i]] < arr[rightMax[j]]) {
+                maxDiff = Math.max(maxDiff, rightMax[j] - leftMin[i]); 
+                j -= 1; 
+            } else { 
+                i += 1; 
+            } 
+        } 
+        return maxDiff; 
+    }
+    */
+    public static void main(String[] args) {
         int[] arr = { 33, 9, 10, 3, 2, 60, 30, 33, 1 };
         System.out.println("ArrayIndexMaxDiff : " + ArrayIndexMaxDiff(arr, arr.length));
         System.out.println("ArrayIndexMaxDiff : " + ArrayIndexMaxDiff2(arr, arr.length));
-        // System.out.println("ArrayIndexMaxDiff : " + ArrayIndexMaxDiff3(arr,
-        // arr.length));
+      //  System.out.println("ArrayIndexMaxDiff : " + ArrayIndexMaxDiff3(arr, arr.length));
     }
 
     public static int maxPathSum(int[] arr1, int size1, int[] arr2, int size2) {
@@ -601,7 +625,7 @@ public class Introduction {
     }
 
     /* Testing code */
-    public static void main(String[] args) {
+    public static void main16(String[] args) {
         int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         System.out.println(BinarySearchRecursive(arr, 0, arr.length - 1, 6));
         System.out.println(BinarySearchRecursive(arr, 0, arr.length - 1, 16));

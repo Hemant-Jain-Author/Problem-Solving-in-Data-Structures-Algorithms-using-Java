@@ -175,72 +175,61 @@ public class SortingEx {
         int arr[] = { 5, 1, 1, 1, 2, 3, 5 };
         ArrayReduction(arr, arr.length);
     }
-/*
-    public static void SortFrequency(int[] arr, int size) {
+    /*
+     * public static void SortFrequency(int[] arr, int size) { HashMap<Integer,
+     * Integer> ht = new HashMap<Integer, Integer>(); int value; for (int i = 0; i <
+     * size; i++) { if (ht.containsKey(arr[i])) { ht.put(arr[i], ht.get(arr[i]) +
+     * 1); } else { ht.put(arr[i], 1); } } ht.sort ht.SortFrequency(arr, size);
+     * 
+     * // User is recommended to write his own sorting function. // For convenience
+     * author is using inbuilt functions.
+     * 
+     * for key,value in reversed(sorted(mp.iteritems(), key = lambda (k, v):(v,k))):
+     * for i in range(value): print key ,
+     * 
+     * // Testing code arr = [2, 3, 2, 4, 5, 12, 2, 3, 3, 3, 12] SortFrequency(arr)
+     * 
+     */
+
+    public static void SortByOrder(int[] arr, int size, int arr2[], int size2) {
         HashMap<Integer, Integer> ht = new HashMap<Integer, Integer>();
         int value;
         for (int i = 0; i < size; i++) {
             if (ht.containsKey(arr[i])) {
-                ht.put(arr[i], ht.get(arr[i]) + 1);
+                value = ht.get(arr[i]);
+                ht.put(arr[i], value + 1);
             } else {
                 ht.put(arr[i], 1);
             }
         }
-    ht.sort
-    ht.SortFrequency(arr, size);
 
-    // User is recommended to write his own sorting function.
-    // For convenience author is using inbuilt functions.
-    
-     for key,value in reversed(sorted(mp.iteritems(), key = lambda (k, v):(v,k))): 
-     for i in range(value): 
-     print key , 
-     
-     // Testing code 
-     arr = [2, 3, 2, 4, 5, 12, 2, 3, 3, 3, 12] 
-     SortFrequency(arr)
-    
-*/
-
-public static void SortByOrder(int[] arr, int size, int arr2[], int size2) {
-    HashMap<Integer, Integer> ht = new HashMap<Integer, Integer>();
-    int value;
-    for (int i = 0; i < size; i++) {
-        if (ht.containsKey(arr[i])) {
-            value = ht.get(arr[i]);
-            ht.put(arr[i], value + 1);
-        } else {
-            ht.put(arr[i], 1);
-        }
-    }
-
-    for (int j = 0; j < size2; j++) {
-        if (ht.containsKey(arr2[j])) {
-            value = ht.get(arr2[j]);
-            for (int k = 0; k < value; k++) {
-                System.out.print(arr2[j]);
+        for (int j = 0; j < size2; j++) {
+            if (ht.containsKey(arr2[j])) {
+                value = ht.get(arr2[j]);
+                for (int k = 0; k < value; k++) {
+                    System.out.print(arr2[j]);
+                }
+                ht.remove(arr2[j]);
             }
-            ht.remove(arr2[j]);
         }
-    }
 
-    for (int i = 0; i < size; i++) {
-        if (ht.containsKey(arr[i])) {
-            value = ht.get(arr[i]);
-            for (int k = 0; k < value; k++) {
-                System.out.print(arr[i]);
+        for (int i = 0; i < size; i++) {
+            if (ht.containsKey(arr[i])) {
+                value = ht.get(arr[i]);
+                for (int k = 0; k < value; k++) {
+                    System.out.print(arr[i]);
+                }
+                ht.remove(arr[i]);
             }
-            ht.remove(arr[i]);
         }
     }
-}
 
-// Testing code
-public static void main7(String[] args) {
-    int arr[] = { 2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8 };
-    int arr2[] = { 2, 1, 8, 3 };
-    SortByOrder(arr, arr.length, arr2, arr2.length);
-}
+    // Testing code
+    public static void main7(String[] args) {
+        int arr[] = { 2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8 };
+        int arr2[] = { 2, 1, 8, 3 };
+        SortByOrder(arr, arr.length, arr2, arr2.length);
+    }
 
     public static void merge(int[] arr1, int size1, int[] arr2, int size2) {
         int index = 0;

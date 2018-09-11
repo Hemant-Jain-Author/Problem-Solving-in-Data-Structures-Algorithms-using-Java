@@ -22,8 +22,6 @@ public class DoublyLinkedList {
     }
 
     /* Other methods */
-}
-
     public int size() {
         return size;
     }
