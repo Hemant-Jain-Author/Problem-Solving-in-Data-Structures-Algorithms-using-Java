@@ -588,7 +588,7 @@ public class Searching {
         ClosestPair2(first, first.length, 6);
     }
 
-    public static int SumPairRestArray(int[] arr, int size) {
+    public static boolean SumPairRestArray(int[] arr, int size) {
         int total, low, high, curr, value;
         Arrays.sort(arr);
         total = 0;
@@ -601,13 +601,13 @@ public class Searching {
             curr = arr[low] + arr[high];
             if (curr == value) {
                 System.out.println("Pair is :: " + arr[low] + arr[high]);
-                return 1;
+                return true;
             } else if (curr < value)
                 low += 1;
             else
                 high -= 1;
         }
-        return 0;
+        return false;
     }
 
     public static void ZeroSumTriplets(int[] arr, int size) {
@@ -1462,17 +1462,17 @@ public class Searching {
         return output;
     }
 
-    public static int DuplicateKDistance(int arr[], int size, int k) {
+    public static boolean DuplicateKDistance(int arr[], int size, int k) {
         HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
 
         for (int i = 0; i < size; i++) {
             if (hm.containsKey(arr[i]) && i - hm.get(arr[i]) <= k) {
                 System.out.println("Value:" + arr[i] + " Index: " + hm.get(arr[i]) + " & " + i);
-                return 1;
+                return true;
             } else
                 hm.put(arr[i], i);
         }
-        return 0;
+        return false;
     }
 
     /*
