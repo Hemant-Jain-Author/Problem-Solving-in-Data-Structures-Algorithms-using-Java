@@ -1,20 +1,13 @@
 public class BubbleSort {
-
-    private int[] arr;
-
-    public BubbleSort(int[] array) {
-        arr = array;
-    }
-
-    private boolean less(int value1, int value2) {
+    private static boolean less(int value1, int value2) {
         return value1 < value2;
     }
 
-    private boolean more(int value1, int value2) {
+    private static boolean more(int value1, int value2) {
         return value1 > value2;
     }
 
-    public void sort() {
+    public static void sort(int[] arr) {
         int size = arr.length;
 
         int i, j, temp;
@@ -30,7 +23,7 @@ public class BubbleSort {
         }
     }
 
-    public void sort2() {
+    public static void sort2(int[] arr) {
         int size = arr.length;
         int i, j, temp, swapped = 1;
         for (i = 0; i < (size - 1) && swapped == 1; i++) {
@@ -48,10 +41,15 @@ public class BubbleSort {
 
     public static void main(String[] args) {
         int[] array = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
-        BubbleSort bs = new BubbleSort(array);
-        bs.sort2();
+        BubbleSort.sort(array);
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " ");
+        }
+        System.out.println();
+        int[] array2 = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
+        BubbleSort.sort2(array2);
+        for (int i = 0; i < array2.length; i++) {
+            System.out.print(array2[i] + " ");
         }
     }
 }

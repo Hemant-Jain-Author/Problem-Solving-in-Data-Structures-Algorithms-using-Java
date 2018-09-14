@@ -27,12 +27,12 @@ public class HashTableSC {
         return hashValue % tableSize;
     }
 
-    public void insert(int value) {
+    public void add(int value) {
         int index = computeHash(value);
         listArray[index] = new Node(value, listArray[index]);
     }
 
-    public boolean delete(int value) {
+    public boolean remove(int value) {
         int index = computeHash(value);
         Node nextNode, head = listArray[index];
         if (head != null && head.value == value) {
@@ -78,11 +78,11 @@ public class HashTableSC {
         HashTableSC ht = new HashTableSC();
 
         for (int i = 100; i < 110; i++) {
-            ht.insert(i);
+            ht.add(i);
         }
         System.out.println("search 100 :: " + ht.find(100));
-        System.out.println("remove 100 :: " + ht.delete(100));
+        System.out.println("remove 100 :: " + ht.remove(100));
         System.out.println("search 100 :: " + ht.find(100));
-        System.out.println("remove 100 :: " + ht.delete(100));
+        System.out.println("remove 100 :: " + ht.remove(100));
     }
 }

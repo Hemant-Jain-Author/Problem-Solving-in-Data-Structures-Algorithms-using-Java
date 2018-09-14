@@ -1,5 +1,4 @@
 public class QueueLL {
-    private Node head = null;
     private Node tail = null;
     private int size = 0;
 
@@ -24,15 +23,24 @@ public class QueueLL {
     public int peek() throws IllegalStateException {
         if (isEmpty())
             throw new IllegalStateException("StackEmptyException");
-        return head.value;
+        int value;
+        if (tail == tail.next)
+            value = tail.value;
+        else
+            value = tail.next.value;
+        
+        return value;
     }
 
     public void add(int value) {
         Node temp = new Node(value, null);
 
-        if (head == null)
-            head = tail = temp;
+        if (tail == null){
+            tail = temp;
+            tail.next = tail;
+        }
         else {
+            temp.next = tail.next;
             tail.next = temp;
             tail = temp;
         }
@@ -42,18 +50,18 @@ public class QueueLL {
     public int remove() throws IllegalStateException {
         if (isEmpty())
             throw new IllegalStateException("StackEmptyException");
-        int value = head.value;
-        head = head.next;
+        
+        int value=0;
+        if (tail == tail.next){
+            value = tail.value;
+            tail = null;
+        }
+        else{
+            value = tail.next.value;
+            tail.next = tail.next.next;
+        }
         size--;
         return value;
-    }
-
-    public void print() {
-        Node temp = head;
-        while (temp != null) {
-            System.out.print(temp.value + " ");
-            temp = temp.next;
-        }
     }
 
     public static void main(String[] args) {
@@ -63,6 +71,5 @@ public class QueueLL {
         q.add(3);
         for (int i = 0; i < 3; i++)
             System.out.println(q.remove());
-        q.print();
     }
 }
