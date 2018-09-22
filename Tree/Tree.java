@@ -361,11 +361,10 @@ public class Tree {
                         temp = node.lChild;
                         return temp;
                     }
-
-                    Node maxNode = FindMaxNode(node.lChild);
-                    int maxValue = maxNode.value;
-                    node.value = maxValue;
-                    node.lChild = DeleteNode(node.lChild, maxValue);
+                    Node minNode = FindMinNode(node.rChild);
+                    int minValue = minNode.value;
+                    node.value = minValue;
+                    node.rChild = DeleteNode(node.rChild, minValue);
                 }
             } else {
                 if (node.value > value) {
