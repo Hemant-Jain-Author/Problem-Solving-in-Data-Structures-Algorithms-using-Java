@@ -344,7 +344,7 @@ public class Graph {
             LinkedList<Edge> adl = gph.Adj.get(curr);
             for (Edge adn : adl) {
                 if (adn.dest == dest) {
-                    return depth;
+                    return depth+1;
                 }
                 if (visited[adn.dest] == false) {
                     visited[adn.dest] = true;
