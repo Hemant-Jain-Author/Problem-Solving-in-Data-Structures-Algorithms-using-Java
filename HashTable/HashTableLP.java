@@ -99,3 +99,12 @@ public class HashTableLP {
         ht.print();
     }
 }
+/*
+Node at index [1 ] :: 1
+Node at index [2 ] :: 2
+Node at index [3 ] :: 3
+true
+false
+Node at index [2 ] :: 2
+Node at index [3 ] :: 3
+*/

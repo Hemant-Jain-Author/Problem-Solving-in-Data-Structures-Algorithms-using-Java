@@ -27,10 +27,14 @@ public class Introduction {
         return total;
     }
 
-    public static void main0(String[] args) {
+    /* Testing code */
+    public static void main1() {
         int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         System.out.println("Sum of values in array:" + SumArray(arr));
     }
+/*
+Sum of values in array:45
+*/
 
     public void function2() {
         System.out.println("fun2 line 1");
@@ -42,12 +46,19 @@ public class Introduction {
         System.out.println("fun1 line 2");
     }
 
+    /* Testing code */
     public void main2() {
         System.out.println("main line 1");
         function1();
         System.out.println("main line 2");
     }
-
+/*
+main line 1
+fun1 line 1
+fun2 line 1
+fun1 line 2
+main line 2
+*/
     public static int SequentialSearch(int[] arr, int size, int value) {
         for (int i = 0; i < size; i++) {
             if (value == arr[i]) {
@@ -64,7 +75,7 @@ public class Introduction {
         int low = 0;
         int high = size - 1;
         while (low <= high) {
-            mid = low + (high - low) / 2; // To avoid the overflow
+            mid = (low + high) / 2; 
             if (arr[mid] == value) {
                 return mid;
             } else {
@@ -78,12 +89,15 @@ public class Introduction {
         return -1;
     }
 
-    public static void main3(String[] args) {
+    public static void main3() {
         int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        System.out.println("Sum of values in array:" + SequentialSearch(arr, arr.length, 7));
-        System.out.println("Sum of values in array:" + BinarySearch(arr, arr.length, 7));
+        System.out.println("SequentialSearch:" + SequentialSearch(arr, arr.length, 7));
+        System.out.println("BinarySearch:" + BinarySearch(arr, arr.length, 7));
     }
-
+/*
+SequentialSearch:6
+BinarySearch:6
+*/
     public static void rotateArray(int[] a, int n, int k) {
         reverseArray(a, 0, k - 1);
         reverseArray(a, k, n - 1);
@@ -108,12 +122,15 @@ public class Introduction {
         }
     }
 
-    public static void main4(String[] args) {
+    /* Testing code */
+    public static void main4() {
         int[] arr = { 1, 2, 3, 4, 5, 6 };
         rotateArray(arr, arr.length, 2);
         printArray(arr, arr.length);
     }
-
+/*
+[ 3 4 5 6 1 2 ]
+*/
     public static int maxSubArraySum(int[] a, int size) {
         int maxSoFar = 0, maxEndingHere = 0;
 
@@ -129,11 +146,14 @@ public class Introduction {
         return maxSoFar;
     }
 
-    public static void main5(String[] args) {
+    /* Testing code */
+    public static void main5() {
         int[] arr = { 1, -2, 3, 4, -4, 6, -4, 3, 2 };
         System.out.println("Max sub array sum :" + maxSubArraySum(arr, 9));
     }
-
+/*
+Max sub array sum :10
+*/
     public static void WaveArray2(int[] arr) {
         int size = arr.length;
         /* Odd elements are lesser then even elements. */
@@ -151,7 +171,6 @@ public class Introduction {
     { 
         int size = arr.length; 
         Arrays.sort(arr); 
-        printArray(arr, arr.length);
         for(int i = 0 ; i < size -1 ; i+= 2) {
             swap(arr, i, i+1); 
         } 
@@ -159,16 +178,18 @@ public class Introduction {
     
 
     /* Testing code */
-    public static void main6(String[] args) {
+    public static void main6() {
         int[] arr = { 8, 1, 2, 3, 4, 5, 6, 4, 2 };
-        printArray(arr, arr.length);
         WaveArray(arr);
         printArray(arr, arr.length);
         int[] arr2 = { 8, 1, 2, 3, 4, 5, 6, 4, 2 };
         WaveArray2(arr2);
         printArray(arr2, arr2.length);
     }
-
+/*
+[ 2 1 3 2 4 4 6 5 8 ]
+[ 8 1 3 2 5 4 6 2 4 ]
+*/
     public static void indexArray(int[] arr, int size) {
         for (int i = 0; i < size; i++) {
             int curr = i;
@@ -201,7 +222,7 @@ public class Introduction {
     }
 
     /* Testing code */
-    public static void main7(String[] args) {
+    public static void main7() {
         int[] arr = { 8, -1, 6, 1, 9, 3, 2, 7, 4, -1 };
         int size = arr.length;
         indexArray2(arr, size);
@@ -211,7 +232,10 @@ public class Introduction {
         indexArray(arr2, size);
         printArray(arr2, size);
     }
-
+/*
+[ -1 1 2 3 4 -1 6 7 8 9 ]
+[ -1 1 2 3 4 -1 6 7 8 9 ]
+*/
     public static void Sort1toN(int[] arr, int size) {
         int curr, value, next;
         for (int i = 0; i < size; i++) {
@@ -238,7 +262,8 @@ public class Introduction {
         }
     }
 
-    public static void main8(String[] args) {
+    /* Testing code */
+    public static void main8() {
         int[] arr = { 8, 5, 6, 1, 9, 3, 2, 7, 4, 10 };
         int size = arr.length;
         Sort1toN2(arr, size);
@@ -249,7 +274,10 @@ public class Introduction {
         printArray(arr2, size);
 
     }
-
+/*
+[ 1 2 3 4 5 6 7 8 9 10 ]
+[ 1 2 3 4 5 6 7 8 9 10 ]
+*/
     public static int SmallestPositiveMissingNumber(int[] arr, int size) {
         int found;
         for (int i = 1; i < size + 1; i++) {
@@ -314,16 +342,23 @@ public class Introduction {
         return -1;
     }
 
-    public static void main9(String[] args) {
+    /* Testing code */
+    public static void main9() {
         int[] arr = { 8, 5, 6, 1, 9, 11, 2, 7, 4, 10 };
         int size = arr.length;
 
-        System.out.println("Max sub array sum :" + SmallestPositiveMissingNumber(arr, size));
-        System.out.println("Max sub array sum :" + SmallestPositiveMissingNumber2(arr, size));
-        System.out.println("Max sub array sum :" + SmallestPositiveMissingNumber3(arr, size));
-        System.out.println("Max sub array sum :" + SmallestPositiveMissingNumber4(arr, size));
+        System.out.println("SmallestPositiveMissingNumber :" + SmallestPositiveMissingNumber(arr, size));
+        System.out.println("SmallestPositiveMissingNumber :" + SmallestPositiveMissingNumber2(arr, size));
+        System.out.println("SmallestPositiveMissingNumber :" + SmallestPositiveMissingNumber3(arr, size));
+        System.out.println("SmallestPositiveMissingNumber :" + SmallestPositiveMissingNumber4(arr, size));
     }
 
+/*
+SmallestPositiveMissingNumber :3
+SmallestPositiveMissingNumber :3
+SmallestPositiveMissingNumber :3
+SmallestPositiveMissingNumber :3
+*/
     public static void MaxMinArr(int arr[], int size) {
         int[] aux = Arrays.copyOf(arr, size);
         int start = 0;
@@ -354,7 +389,7 @@ public class Introduction {
     }
 
     /* Testing code */
-    public static void main10(String[] args) {
+    public static void main10() {
         int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
         int size = arr.length;
         MaxMinArr(arr, size);
@@ -364,7 +399,10 @@ public class Introduction {
         MaxMinArr2(arr2, size2);
         printArray(arr2, size2);
     }
-
+/*
+[ 7 1 6 2 5 3 4 ]
+[ 7 1 6 2 5 3 4 ]
+*/
     public static int maxCircularSum(int[] arr, int size) {
         int sumAll = 0;
         int currVal = 0;
@@ -385,11 +423,13 @@ public class Introduction {
     }
 
     /* Testing code */
-    public static void main11(String[] args) {
+    public static void main11() {
         int[] arr = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
         System.out.println("MaxCirculrSm: " + maxCircularSum(arr, arr.length));
     }
-
+/*
+MaxCirculrSm: 290
+*/
     public static int ArrayIndexMaxDiff(int[] arr, int size) {
         int maxDiff = -1;
         int j;
@@ -478,13 +518,18 @@ public class Introduction {
         return maxDiff; 
     }
     */
-    public static void main(String[] args) {
+
+    /* Testing code */
+    public static void main12() {
         int[] arr = { 33, 9, 10, 3, 2, 60, 30, 33, 1 };
         System.out.println("ArrayIndexMaxDiff : " + ArrayIndexMaxDiff(arr, arr.length));
         System.out.println("ArrayIndexMaxDiff : " + ArrayIndexMaxDiff2(arr, arr.length));
       //  System.out.println("ArrayIndexMaxDiff : " + ArrayIndexMaxDiff3(arr, arr.length));
     }
-
+/*
+ArrayIndexMaxDiff : 6
+ArrayIndexMaxDiff : 6
+*/
     public static int maxPathSum(int[] arr1, int size1, int[] arr2, int size2) {
         int i = 0, j = 0, result = 0, sum1 = 0, sum2 = 0;
 
@@ -519,12 +564,14 @@ public class Introduction {
     }
 
     /* Testing code */
-    public static void main13(String[] args) {
+    public static void main13() {
         int[] arr1 = { 12, 13, 18, 20, 22, 26, 70 };
         int[] arr2 = { 11, 15, 18, 19, 20, 26, 30, 31 };
         System.out.println("Max Path Sum :: " + maxPathSum(arr1, arr1.length, arr2, arr2.length));
     }
-
+/*
+Max Path Sum :: 201
+*/
     public int factorial(int i) {
         // Termination Condition
         if (i <= 1) {
@@ -565,12 +612,22 @@ public class Introduction {
         towerOfHanoi(num - 1, temp, dst, src);
     }
 
-    public static void main14(String[] args) {
-        int num = 4;
-        System.out.println("The sequence of moves involved in the Tower of Hanoi are :\n");
+    /* Testing code */
+    public static void main14() {
+        int num = 3;
+        System.out.println("The sequence of moves involved in the Tower of Hanoi are :");
         towerOfHanoi(num, 'A', 'C', 'B');
     }
-
+/*
+The sequence of moves involved in the Tower of Hanoi are :
+Move 1 disk  from peg A to peg C
+Move 2 disk  from peg A to peg B
+Move 1 disk  from peg C to peg B
+Move 3 disk  from peg A to peg C
+Move 1 disk  from peg B to peg A
+Move 2 disk  from peg B to peg C
+Move 1 disk  from peg A to peg C
+*/
     public static int GCD(int m, int n) {
         if (m < n) {
             return (GCD(n, m));
@@ -602,14 +659,22 @@ public class Introduction {
         return;
     }
 
-    public static void main15(String[] args) {
-        int[] arr = new int[5];
-        for (int i = 0; i < 5; i++) {
+    /* Testing code */
+    public static void main15() {
+        int[] arr = new int[3];
+        for (int i = 0; i < 3; i++) {
             arr[i] = i;
         }
-        permutation(arr, 0, 5);
+        permutation(arr, 0, 3);
     }
-
+/*
+[ 0 1 2 ]
+[ 0 2 1 ]
+[ 1 0 2 ]
+[ 1 2 0 ]
+[ 2 1 0 ]
+[ 2 0 1 ]
+*/
     // Binary Search Algorithm - Recursive
     public static int BinarySearchRecursive(int[] arr, int low, int high, int value) {
         if (low > high)
@@ -625,10 +690,32 @@ public class Introduction {
     }
 
     /* Testing code */
-    public static void main16(String[] args) {
+    public static void main16() {
         int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         System.out.println(BinarySearchRecursive(arr, 0, arr.length - 1, 6));
         System.out.println(BinarySearchRecursive(arr, 0, arr.length - 1, 16));
     }
-
+/*
+5
+-1
+*/
+    public static void main(String[] args){
+        main1();
+        Introduction i = new Introduction();
+        i.main2();
+        main3();
+        main4();
+        main5();
+        main6();
+        main7();
+        main8();
+        main9();
+        main10();
+        main11();
+        main12();
+        main13();
+        main14();
+        main15();
+        main16();
+    }
 }

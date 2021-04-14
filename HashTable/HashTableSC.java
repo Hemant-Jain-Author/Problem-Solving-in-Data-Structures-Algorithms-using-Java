@@ -86,3 +86,9 @@ public class HashTableSC {
         System.out.println("remove 100 :: " + ht.remove(100));
     }
 }
+/*
+search 100 :: true
+remove 100 :: true
+search 100 :: false
+remove 100 :: false
+*/

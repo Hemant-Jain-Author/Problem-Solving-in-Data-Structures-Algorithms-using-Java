@@ -5,7 +5,6 @@ import java.util.Stack;
 import java.util.Queue;
 
 public class GraphAM {
-
     int count;
     int[][] adj;
 
@@ -34,7 +33,7 @@ public class GraphAM {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main1() {
         GraphAM graph = new GraphAM(4);
         graph.addUndirectedEdge(0, 1, 1);
         graph.addUndirectedEdge(0, 2, 1);
@@ -42,7 +41,12 @@ public class GraphAM {
         graph.addUndirectedEdge(2, 3, 1);
         graph.print();
     }
-
+/*
+Node index [ 0 ] is connected with : 1 2 
+Node index [ 1 ] is connected with : 0 2 
+Node index [ 2 ] is connected with : 0 1 3 
+Node index [ 3 ] is connected with : 2 
+*/
     private static class Edge {
         private int dest;
         private int cost;
@@ -160,15 +164,15 @@ public class GraphAM {
         int count = gph.count;
         for (int i = 0; i < count; i++) {
             if (dist[i] == Integer.MAX_VALUE) {
-                System.out.println(" \n node id " + i + "  prev " + previous[i] + " distance : Unreachable");
+                System.out.println("node id " + i + "  prev " + previous[i] + " distance : Unreachable");
             } else {
-                System.out.println(" node id " + i + "  prev " + previous[i] + " distance : " + dist[i]);
+                System.out.println("node id " + i + "  prev " + previous[i] + " distance : " + dist[i]);
 
             }
         }
     }
 
-    public static void main40(String[] args) {
+    public static void main2() {
         GraphAM gph = new GraphAM(9);
         gph.addUndirectedEdge(0, 1, 4);
         gph.addUndirectedEdge(0, 7, 8);
@@ -188,8 +192,41 @@ public class GraphAM {
         prims(gph);
         dijkstra(gph, 0);
     }
+/*
+Node index [ 0 ] is connected with : 1 7 
+Node index [ 1 ] is connected with : 0 2 7 
+Node index [ 2 ] is connected with : 1 3 5 8 
+Node index [ 3 ] is connected with : 2 4 5 
+Node index [ 4 ] is connected with : 3 5 
+Node index [ 5 ] is connected with : 2 3 4 6 
+Node index [ 6 ] is connected with : 5 7 8 
+Node index [ 7 ] is connected with : 0 1 6 8 
+Node index [ 8 ] is connected with : 2 6 7 
 
-    public static void main41(String[] args) {
+
+node id 0  prev -1 distance : 0
+node id 1  prev 0 distance : 4
+node id 2  prev 5 distance : 4
+node id 3  prev 2 distance : 7
+node id 4  prev 3 distance : 9
+node id 5  prev 6 distance : 2
+node id 6  prev 7 distance : 1
+node id 7  prev 0 distance : 8
+node id 8  prev 2 distance : 2
+
+node id 0  prev -1 distance : 0
+node id 1  prev 0 distance : 4
+node id 2  prev 1 distance : 12
+node id 3  prev 2 distance : 19
+node id 4  prev 5 distance : 21
+node id 5  prev 6 distance : 11
+node id 6  prev 7 distance : 9
+node id 7  prev 0 distance : 8
+node id 8  prev 2 distance : 14
+
+*/
+
+    public static void main3() {
         GraphAM gph = new GraphAM(9);
         gph.addUndirectedEdge(0, 2, 1);
         gph.addUndirectedEdge(1, 2, 5);
@@ -206,7 +243,37 @@ public class GraphAM {
         prims(gph);
         dijkstra(gph, 1);
     }
+/*
+Node index [ 0 ] is connected with : 2 
+Node index [ 1 ] is connected with : 2 3 4 
+Node index [ 2 ] is connected with : 0 1 3 
+Node index [ 3 ] is connected with : 1 2 5 
+Node index [ 4 ] is connected with : 1 5 6 
+Node index [ 5 ] is connected with : 3 4 7 
+Node index [ 6 ] is connected with : 4 7 
+Node index [ 7 ] is connected with : 5 6 8 
+Node index [ 8 ] is connected with : 7 
 
+node id 0  prev -1 distance : 0
+node id 1  prev 2 distance : 5
+node id 2  prev 0 distance : 1
+node id 3  prev 2 distance : 2
+node id 4  prev 5 distance : 6
+node id 5  prev 3 distance : 4
+node id 6  prev 4 distance : 3
+node id 7  prev 5 distance : 1
+node id 8  prev 7 distance : 17
+
+node id 0  prev 2 distance : 6
+node id 1  prev -1 distance : 0
+node id 2  prev 1 distance : 5
+node id 3  prev 1 distance : 7
+node id 4  prev 1 distance : 9
+node id 5  prev 3 distance : 11
+node id 6  prev 4 distance : 12
+node id 7  prev 5 distance : 12
+node id 8  prev 7 distance : 29
+*/
     public static boolean hamiltonianPathUtil(GraphAM graph, int path[], int pSize, int added[]) {
         // Base case full length path is found
         if (pSize == graph.count) {
@@ -233,10 +300,10 @@ public class GraphAM {
         int[] added = new int[graph.count];
 
         if (hamiltonianPathUtil(graph, path, 0, added)) {
-            System.out.println("Hamiltonian Path found :: ");
+            System.out.print("Hamiltonian Path found :: ");
             for (int i = 0; i < graph.count; i++)
-                System.out.println(" " + path[i]);
-
+                System.out.print(" " + path[i]);
+            System.out.println("");
             return true;
         }
 
@@ -273,19 +340,25 @@ public class GraphAM {
         int[] path = new int[graph.count + 1];
         int[] added = new int[graph.count];
         if (hamiltonianCycleUtil(graph, path, 0, added)) {
-            System.out.println("Hamiltonian Cycle found :: ");
+            System.out.print("Hamiltonian Cycle found :: ");
             for (int i = 0; i <= graph.count; i++)
                 System.out.print(" " + path[i]);
+            System.out.println("");
             return true;
         }
         System.out.println("Hamiltonian Cycle not found");
         return false;
     }
 
-    public static void main2(String[] args) {
+    public static void main4() {
         int count = 5;
         GraphAM graph = new GraphAM(count);
-        int[][] adj = { { 0, 1, 0, 1, 0 }, { 1, 0, 1, 1, 0 }, { 0, 1, 0, 0, 1 }, { 1, 1, 0, 0, 1 }, { 0, 1, 1, 1, 0 } };
+        int[][] adj = { 
+            { 0, 1, 0, 1, 0 }, 
+            { 1, 0, 1, 1, 0 }, 
+            { 0, 1, 0, 0, 1 }, 
+            { 1, 1, 0, 0, 1 }, 
+            { 0, 1, 1, 1, 0 } };
 
         for (int i = 0; i < count; i++)
             for (int j = 0; j < count; j++)
@@ -295,8 +368,12 @@ public class GraphAM {
         System.out.println("hamiltonianCycle : " + hamiltonianCycle(graph));
 
         GraphAM graph2 = new GraphAM(count);
-        int[][] adj2 = { { 0, 1, 0, 1, 0 }, { 1, 0, 1, 1, 0 }, { 0, 1, 0, 0, 1 }, { 1, 1, 0, 0, 0 },
-                { 0, 1, 1, 0, 0 } };
+        int[][] adj2 = { 
+            { 0, 1, 0, 1, 0 }, 
+            { 1, 0, 1, 1, 0 }, 
+            { 0, 1, 0, 0, 1 }, 
+            { 1, 1, 0, 0, 0 },
+            { 0, 1, 1, 0, 0 } };
         for (int i = 0; i < count; i++)
             for (int j = 0; j < count; j++)
                 if (adj2[i][j] == 1)
@@ -305,5 +382,23 @@ public class GraphAM {
         System.out.println("hamiltonianPath :  " + hamiltonianPath(graph2));
         System.out.println("hamiltonianCycle :  " + hamiltonianCycle(graph2));
     }
+/*
+Hamiltonian Path found ::  0 1 2 4 3
+hamiltonianPath : true
 
+Hamiltonian Cycle found ::  0 1 2 4 3 0
+hamiltonianCycle : true
+
+Hamiltonian Path found ::  0 3 1 2 4
+hamiltonianPath :  true
+
+Hamiltonian Cycle not found
+hamiltonianCycle :  false
+*/
+    public static void main(String[] args) {
+            //main1();
+            //main2(); 
+            //main3(); 
+            main4(); 
+    }
 }

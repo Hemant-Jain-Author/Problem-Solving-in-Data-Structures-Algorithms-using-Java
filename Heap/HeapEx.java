@@ -1,5 +1,6 @@
 import java.util.PriorityQueue;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class HeapEx {
 
@@ -33,7 +34,7 @@ public static int KthSmallest2(int[] arr, int size, int k) {
     for (i = 0; i < size; i++) {
         pq.add(arr[i]);
     }
-
+    i = 0;
     while (i < size && i < k) {
         value = pq.remove();
         i += 1;
@@ -67,18 +68,22 @@ public static boolean isMaxHeap(int[] arr, int size) {
     return true;
 }
 
-public static void main2(String[] args) {
+public static void main1(String[] args) {
     int arr[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
     System.out.println("Kth Smallest :: " + KthSmallest(arr, arr.length, 3));
     int arr2[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
     System.out.println("Kth Smallest :: " + KthSmallest2(arr2, arr2.length, 3));
     int arr3[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
     System.out.println("isMaxHeap :: " + isMaxHeap(arr3, arr3.length));
-    int arr4[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
-    Arrays.sort(arr4);
+    int arr4[] = { 1, 2, 3, 4, 5, 6, 7, 8 };
     System.out.println("isMinHeap :: " + isMinHeap(arr4, arr4.length));
 }
-
+/*
+Kth Smallest :: 5
+Kth Smallest :: 5
+isMaxHeap :: true
+isMinHeap :: true
+*/
 public static int KSmallestProduct(int[] arr, int size, int k) {
     Arrays.sort(arr);// , size, 1);
     int product = 1;
@@ -136,7 +141,7 @@ public static int KSmallestProduct2(int[] arr, int size, int k) {
     for (i = 0; i < size; i++) {
         pq.add(arr[i]);
     }
-
+    i = 0;
     while (i < size && i < k) {
         product *= pq.remove();
         i += 1;
@@ -144,7 +149,7 @@ public static int KSmallestProduct2(int[] arr, int size, int k) {
     return product;
 }
 
-public static void main3(String[] args) {
+public static void main2(String[] args) {
     int arr[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
     System.out.println("Kth Smallest product:: " + KSmallestProduct(arr, 8, 3));
     int arr2[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
@@ -152,11 +157,16 @@ public static void main3(String[] args) {
     int arr3[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
     System.out.println("Kth Smallest product:: " + KSmallestProduct3(arr3, 8, 3));
 }
+/*
+Kth Smallest product:: 10
+Kth Smallest product:: 10
+Kth Smallest product:: 10
+*/
 
 public static void PrintLargerHalf(int[] arr, int size) {
     Arrays.sort(arr);// , size, 1);
     for (int i = size / 2; i < size; i++)
-        System.out.print(arr[i]);
+        System.out.print(arr[i] + " ");
     System.out.println();
 }
 
@@ -175,11 +185,11 @@ public static void PrintLargerHalf2(int[] arr, int size) {
 public static void PrintLargerHalf3(int[] arr, int size) {
     QuickSelectUtil(arr, 0, size - 1, size / 2);
     for (int i = size / 2; i < size; i++)
-        System.out.print(arr[i]);
+        System.out.print(arr[i]+ " ");
     System.out.println();
 }
 
-public static void main4(String[] args) {
+public static void main3(String[] args) {
     int arr[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
     PrintLargerHalf(arr, 8);
     int arr2[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
@@ -187,11 +197,16 @@ public static void main4(String[] args) {
     int arr3[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
     PrintLargerHalf3(arr3, 8);
 }
+/*
+6 7 7 8 
+[6, 7, 7, 8]
+6 7 7 8 
+*/
 
 public static void sortK(int[] arr, int size, int k) {
     PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
     int i = 0;
-    for (i = 0; i < size; i++) {
+    for (i = 0; i < k; i++) {
         pq.add(arr[i]);
     }
 
@@ -208,16 +223,20 @@ public static void sortK(int[] arr, int size, int k) {
     for (i = k; i < size; i++) {
         arr[i] = output[i];
     }
-    System.out.println(output);
 }
 
 // Testing Code
-public static void main5(String[] args) {
+public static void main4(String[] args) {
     int k = 3;
     int[] arr = { 1, 5, 4, 10, 50, 9 };
     int size = arr.length;
     sortK(arr, size, k);
+    for(int i=0; i < size; i++)
+        System.out.print(arr[i]+ " ");
 }
+/*
+1 5 4 9 10 50 
+*/
 
 public static int ChotaBhim(int cups[], int size) {
     int time = 60;
@@ -236,7 +255,7 @@ public static int ChotaBhim(int cups[], int size) {
         cups[index] = temp;
         time -= 1;
     }
-    System.out.println("Total %d " + total);
+    System.out.println("Total : " + total);
     return total;
 }
 
@@ -266,7 +285,7 @@ public static int ChotaBhim2(int cups[], int size) {
 
 public static int ChotaBhim3(int cups[], int size) {
     int time = 60;
-    PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
+    PriorityQueue<Integer> pq = new PriorityQueue<Integer>(Collections.reverseOrder());
     int i = 0;
     for (i = 0; i < size; i++) {
         pq.add(cups[i]);
@@ -287,17 +306,21 @@ public static int ChotaBhim3(int cups[], int size) {
 
 public static int JoinRopes(int ropes[], int size) {
     Arrays.sort(ropes);
-    System.out.println(ropes);
+    for(int i=0, j=size-1; i < j; i++,j--)
+    {
+        int temp = ropes[i];
+        ropes[i] = ropes[j];
+        ropes[j] = temp;
+    }
     int total = 0;
     int value = 0;
-    int temp, index;
+    int index;
     int length = size;
 
     while (length >= 2) {
         value = ropes[length - 1] + ropes[length - 2];
         total += value;
         index = length - 2;
-
         while (index > 0 && ropes[index - 1] < value) {
             ropes[index] = ropes[index - 1];
             index -= 1;
@@ -324,11 +347,11 @@ public static int JoinRopes2(int ropes[], int size) {
         pq.add(value);
         total += value;
     }
-    System.out.println("Total : %d " + total);
+    System.out.println("Total : " + total);
     return total;
 }
 
-public static void main6(String[] args) {
+public static void main(String[] args) {
     int cups[] = { 2, 1, 7, 4, 2 };
     ChotaBhim(cups, cups.length);
     int cups2[] = { 2, 1, 7, 4, 2 };
@@ -336,11 +359,18 @@ public static void main6(String[] args) {
     int cups3[] = { 2, 1, 7, 4, 2 };
     ChotaBhim3(cups3, cups.length);
 
-    int ropes[] = { 2, 1, 7, 4, 2 };
+    int ropes[] = { 4, 3, 2, 6 };
     JoinRopes(ropes, ropes.length);
-    int rope2[] = { 2, 1, 7, 4, 2 };
+    int rope2[] = {4, 3, 2, 6};
     JoinRopes2(rope2, rope2.length);
 }
+/*
+Total : 76
+Total : 76
+Total : 76
+Total : 29
+Total : 29
+*/
 
 /*
     * public static int kthAbsDiff(int[] arr, int size, int k) { Sort(arr, size,1);
@@ -384,7 +414,7 @@ public static int kthLargestStream(int k) {
     }
 }
 
-public static void main(String[] args) {
+public static void main7(String[] args) {
     kthLargestStream(3);
 }
 /*

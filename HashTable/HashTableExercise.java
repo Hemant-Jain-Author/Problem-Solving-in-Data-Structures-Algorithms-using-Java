@@ -11,8 +11,7 @@ public class HashTableExercise {
         System.out.println("isAnagram : " + isAnagram(first, second));
         System.out.println("isAnagram : " + isAnagram(first, third));
 
-        removeDuplicate(first);
-        System.out.println(first);
+        System.out.println(removeDuplicate(first));
 
         int arr[] = { 1, 2, 3, 5, 6, 7, 8, 9, 10 };
         System.out.println(findMissing(arr, 1, 10));
@@ -21,7 +20,14 @@ public class HashTableExercise {
         printRepeating(arr1);
         printFirstRepeating(arr1);
     }
-
+/*
+isAnagram : true
+isAnagram : false
+hello
+4
+Repeating elements are: 4 1
+First Repeating number is : 1
+*/
     public static boolean isAnagram(char[] str1, char[] str2) {
         int size1 = str1.length;
         int size2 = str2.length;
@@ -98,7 +104,7 @@ public class HashTableExercise {
             }
             hs.add(arr[i]);
         }
-        System.out.println("First Repeating number is : " + firstRepeating);
+        System.out.println("First Repeating number is:" + firstRepeating);
     }
 
     public static int hornerHash(char[] key, int tableSize) {

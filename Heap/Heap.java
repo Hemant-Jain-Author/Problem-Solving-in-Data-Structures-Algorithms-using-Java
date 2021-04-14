@@ -148,7 +148,12 @@ public class Heap {
 			System.out.print(a3[i] + " ");
 		}
 	}
-
+/*
+-1 0 1 4 3 6 2 7 5 9 8 100 
+-1 0 1 2 3 4 5 6 7 8 9 100 
+0 1 2 3 4 5 6 7 8 9 
+9 8 7 6 5 4 3 2 1 0 
+*/
 	boolean isMinHeap(int[] arr, int size) {
 		for (int i = 0; i <= (size - 2) / 2; i++) {
 			if (2 * i + 1 < size) {
