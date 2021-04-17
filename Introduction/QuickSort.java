@@ -1,7 +1,5 @@
 public class QuickSort {
-
     private int[] arr;
-
     public QuickSort(int[] array) {
         arr = array;
     }
@@ -31,10 +29,8 @@ public class QuickSort {
             }
         }
         swap(arr, upper, start); // upper is the pivot position
-        quickSortUtil(arr, start, upper - 1); // pivot -1 is the upper for left
-                                              // sub array.
-        quickSortUtil(arr, upper + 1, stop); // pivot + 1 is the lower for right
-                                             // sub array.
+        quickSortUtil(arr, start, upper - 1); // pivot -1 is the upper for left sub array.
+        quickSortUtil(arr, upper + 1, stop); // pivot + 1 is the lower for right sub array.
     }
 
     public void sort() {

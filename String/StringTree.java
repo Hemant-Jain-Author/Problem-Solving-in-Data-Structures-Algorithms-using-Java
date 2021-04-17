@@ -47,7 +47,6 @@ public class StringTree {
 
     boolean find(String value) {
         boolean ret = find(root, value);
-        System.out.println("Find " + value + " Return " + ret);
         return ret;
     }
 
@@ -93,20 +92,14 @@ public class StringTree {
         tt.add("banana");
         tt.add("apple");
         tt.add("mango");
-        tt.add("banana");
-        tt.add("apple");
-        tt.add("mango");
-        System.out.println("\nSearch results for apple, banana, grapes and mango :\n");
-        tt.find("apple");
-        tt.find("banana");
-        tt.find("banan");
-        tt.find("applkhjkhkj");
-        tt.find("grapes");
-        tt.find("mango");
-        tt.print();
-        System.out.println("frequency returned :: " + tt.frequency("apple"));
-        System.out.println("frequency returned :: " + tt.frequency("banana"));
-        System.out.println("frequency returned :: " + tt.frequency("mango"));
-        System.out.println("frequency returned :: " + tt.frequency("hemant"));
+        System.out.println("Apple Found : " + tt.find("apple"));
+        System.out.println("Banana Found : " + tt.find("banana"));
+        System.out.println("Grapes Found : " + tt.find("grapes"));
+ 
     }
 }
+/*
+Apple Found : true
+Banana Found : true
+Grapes Found : false
+*/

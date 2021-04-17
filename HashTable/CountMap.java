@@ -45,4 +45,11 @@ public class CountMap<T> {
         cm.remove(2);
         System.out.println("count is : " + cm.get(2));
 	}
+
+/*
+count is : 2
+count is : 1
+count is : 0
+*/
+
 }

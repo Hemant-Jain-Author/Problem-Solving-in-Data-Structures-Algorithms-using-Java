@@ -23,6 +23,7 @@ public class StringAlgo {
     public static void main1() {
         System.out.println(matchExp("*llo,?World?", "Hello, World!"));
     }
+// true
 
     public static boolean match(String src, String ptn) {
         char[] source = src.toCharArray();
@@ -45,6 +46,7 @@ public class StringAlgo {
     public static void main2() {
         System.out.println(match("harrypottermustnotgotoschool", "pottergo"));
     }
+// true
 
     public static char[] myStrdup(char[] src) {
         int index = 0;
@@ -57,7 +59,7 @@ public class StringAlgo {
 
     public static boolean isPrime(int n) {
         boolean answer = (n > 1) ? true : false;
-        for (int i = 2; i * i < n; ++i) {
+        for (int i = 2; i * i <= n; ++i) {
             if (n % i == 0) {
                 answer = false;
                 break;
@@ -67,12 +69,13 @@ public class StringAlgo {
     }
 
     public static void main3() {
-        System.out.print("Prime numbers under 100 :: ");
-        for (int i = 0; i < 100; i++)
+        System.out.print("Prime numbers under 10 :: ");
+        for (int i = 0; i < 10; i++)
             if (isPrime(i))
                 System.out.print(i + " ");
         System.out.println();
     }
+// Prime numbers under 10 :: 2 3 5 7 
 
     public static int myAtoi(String str) {
         int value = 0;
@@ -87,7 +90,7 @@ public class StringAlgo {
     public static void main4() {
         System.out.println(myAtoi("1000"));
     }
-
+// 1000
     public static boolean isUniqueChar(String str) {
         int[] bitarr = new int[26];
         int index;
@@ -116,25 +119,28 @@ public class StringAlgo {
     }
 
     public static void main5() {
-        System.out.println(isUniqueChar("aple"));
-        System.out.println(isUniqueChar("apple"));
+        isUniqueChar("aple");
+        isUniqueChar("apple");
     }
-
-    public static char ToUpper(char s) {
+/*
+No duplicate detected!
+Duplicate detected!
+*/
+    public static char toUpper(char s) {
         if (s >= 97 && s <= (97 + 25)) {
             s = (char) (s - 32);
         }
         return s;
     }
 
-    public static char ToLower(char s) {
+    public static char toLower(char s) {
         if (s >= 65 && s <= (65 + 25)) {
             s = (char) (s + 32);
         }
         return s;
     }
 
-    public static char LowerUpper(char s) {
+    public static char lowerUpper(char s) {
         if (s >= 97 && s <= (97 + 25)) {
             s = (char) (s - 32);
         } else if (s >= 65 && s <= (65 + 25)) {
@@ -144,17 +150,23 @@ public class StringAlgo {
     }
 
     public static void main6() {
-        System.out.println(ToLower('A'));
-        System.out.println(ToUpper('a'));
-        System.out.println(LowerUpper('s'));
-        System.out.println(LowerUpper('S'));
+        System.out.println(toLower('A'));
+        System.out.println(toUpper('a'));
+        System.out.println(lowerUpper('s'));
+        System.out.println(lowerUpper('S'));
     }
+/*
+a
+A
+S
+s
+*/
 
     public static boolean isPermutation(String s1, String s2) {
         int[] count = new int[256];
         int length = s1.length();
         if (s2.length() != length) {
-            System.out.println("is permutation return false\n");
+            System.out.println("is permutation return false");
             return false;
         }
         for (int i = 0; i < 256; i++) {
@@ -168,18 +180,21 @@ public class StringAlgo {
         }
         for (int i = 0; i < length; i++) {
             if (count[i] != 0) {
-                System.out.println("is permutation return false\n");
+                System.out.println("is permutation return false");
                 return false;
             }
         }
-        System.out.println("is permutation return true\n");
+        System.out.println("is permutation return true");
         return true;
     }
 
     public static void main7() {
         System.out.println(isPermutation("apple", "plepa"));
     }
-
+/*
+is permutation return true
+true
+*/
     public static boolean isPalindrome(String str) {
         int i = 0, j = str.length() - 1;
         while (i < j && str.charAt(i) == str.charAt(j)) {
@@ -196,9 +211,13 @@ public class StringAlgo {
     }
 
     public static void main8() {
-        System.out.println(isPalindrome("hello"));
-        System.out.println(isPalindrome("eoloe"));
+        isPalindrome("hello");
+        isPalindrome("eoloe");
     }
+/*
+String is not a Palindrome
+String is a Palindrome
+*/
 
     public static int pow(int x, int n) {
         int value;
@@ -216,6 +235,7 @@ public class StringAlgo {
     public static void main9() {
         System.out.println(pow(5, 2));
     }
+// 25
 
     public static int myStrcmp(String a, String b) {
         int index = 0;
@@ -244,7 +264,7 @@ public class StringAlgo {
     public static void main10() {
         System.out.println(myStrcmp("abs", "abs"));
     }
-
+// 0
     public static String reverseString(String str) {
         char[] a = str.toCharArray();
         reverseStringUtil(a);
@@ -298,7 +318,10 @@ public class StringAlgo {
         System.out.println(reverseString("apple"));
         System.out.println(reverseWords("hello world"));
     }
-
+/*
+elppa
+world hello
+*/
     public static void printAnagram(String str) {
         char[] a = str.toCharArray();
         int n = a.length;
@@ -328,30 +351,41 @@ public class StringAlgo {
     public static void main12() {
         printAnagram("123");
     }
-
+/*
+123
+213
+321
+231
+132
+312
+*/
     public static void shuffle(String str) {
         char[] ar = str.toCharArray();
         int n = ar.length / 2;
         int count = 0;
         int k = 1;
-        char temp = '\0';
+        char temp = '\0', temp2;
         for (int i = 1; i < n; i = i + 2) {
             temp = ar[i];
             k = i;
             do {
                 k = (2 * k) % (2 * n - 1);
-                temp ^= ar[k] ^= temp ^= ar[k];
+                temp2 = temp;
+                temp = ar[k];
+                ar[k] = temp2;
                 count++;
             } while (i != k);
             if (count == (2 * n - 2)) {
                 break;
             }
         }
+        System.out.println(ar);
     }
 
     public static void main13() {
         shuffle("ABCDE12345");
     }
+// A1B2C3D4E5
 
     public static char[] addBinary(String firstStr, String secondStr) {
         char[] first = firstStr.toCharArray();
@@ -389,7 +423,7 @@ public class StringAlgo {
     public static void main14() {
         System.out.println(addBinary("1000", "11111111"));
     }
-
+// 100000111 
     public static void main(String[] args) {
         main1();
         main2();

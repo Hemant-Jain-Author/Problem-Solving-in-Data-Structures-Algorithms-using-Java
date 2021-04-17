@@ -24,10 +24,10 @@ public class GraphAM {
 
     public void print() {
         for (int i = 0; i < count; i++) {
-            System.out.print("Node index [ " + i + " ] is connected with : ");
+            System.out.print("Vertex " + i + " is connected to : ");
             for (int j = 0; j < count; j++) {
                 if (adj[i][j] != 0)
-                    System.out.print(j + " ");
+                    System.out.print("(" + j + ", " + adj[i][j] + ") ");
             }
             System.out.println("");
         }
@@ -42,10 +42,10 @@ public class GraphAM {
         graph.print();
     }
 /*
-Node index [ 0 ] is connected with : 1 2 
-Node index [ 1 ] is connected with : 0 2 
-Node index [ 2 ] is connected with : 0 1 3 
-Node index [ 3 ] is connected with : 2 
+Vertex 0 is connected to : (1, 1) (2, 1) 
+Vertex 1 is connected to : (0, 1) (2, 1) 
+Vertex 2 is connected to : (0, 1) (1, 1) (3, 1) 
+Vertex 3 is connected to : (2, 1)
 */
     private static class Edge {
         private int dest;
@@ -112,9 +112,9 @@ Node index [ 3 ] is connected with : 2
         int count = gph.count;
         for (int i = 0; i < count; i++) {
             if (dist[i] == Integer.MAX_VALUE) {
-                System.out.println(" \n node id " + i + "  prev " + previous[i] + " distance : Unreachable");
+                System.out.println("node id " + i + "  prev " + previous[i] + " distance : Unreachable");
             } else {
-                System.out.println(" node id " + i + "  prev " + previous[i] + " distance : " + dist[i]);
+                System.out.println("node id " + i + "  prev " + previous[i] + " distance : " + dist[i]);
 
             }
         }
@@ -193,15 +193,15 @@ Node index [ 3 ] is connected with : 2
         dijkstra(gph, 0);
     }
 /*
-Node index [ 0 ] is connected with : 1 7 
-Node index [ 1 ] is connected with : 0 2 7 
-Node index [ 2 ] is connected with : 1 3 5 8 
-Node index [ 3 ] is connected with : 2 4 5 
-Node index [ 4 ] is connected with : 3 5 
-Node index [ 5 ] is connected with : 2 3 4 6 
-Node index [ 6 ] is connected with : 5 7 8 
-Node index [ 7 ] is connected with : 0 1 6 8 
-Node index [ 8 ] is connected with : 2 6 7 
+Vertex 0 is connected to : (1, 4) (7, 8) 
+Vertex 1 is connected to : (0, 4) (2, 8) (7, 11) 
+Vertex 2 is connected to : (1, 8) (3, 7) (5, 4) (8, 2) 
+Vertex 3 is connected to : (2, 7) (4, 9) (5, 14) 
+Vertex 4 is connected to : (3, 9) (5, 10) 
+Vertex 5 is connected to : (2, 4) (3, 14) (4, 10) (6, 2) 
+Vertex 6 is connected to : (5, 2) (7, 1) (8, 6) 
+Vertex 7 is connected to : (0, 8) (1, 11) (6, 1) (8, 7) 
+Vertex 8 is connected to : (2, 2) (6, 6) (7, 7)  
 
 
 node id 0  prev -1 distance : 0
@@ -244,15 +244,15 @@ node id 8  prev 2 distance : 14
         dijkstra(gph, 1);
     }
 /*
-Node index [ 0 ] is connected with : 2 
-Node index [ 1 ] is connected with : 2 3 4 
-Node index [ 2 ] is connected with : 0 1 3 
-Node index [ 3 ] is connected with : 1 2 5 
-Node index [ 4 ] is connected with : 1 5 6 
-Node index [ 5 ] is connected with : 3 4 7 
-Node index [ 6 ] is connected with : 4 7 
-Node index [ 7 ] is connected with : 5 6 8 
-Node index [ 8 ] is connected with : 7 
+Vertex 0 is connected to : (2, 1) 
+Vertex 1 is connected to : (2, 5) (3, 7) (4, 9) 
+Vertex 2 is connected to : (0, 1) (1, 5) (3, 2) 
+Vertex 3 is connected to : (1, 7) (2, 2) (5, 4) 
+Vertex 4 is connected to : (1, 9) (5, 6) (6, 3) 
+Vertex 5 is connected to : (3, 4) (4, 6) (7, 1) 
+Vertex 6 is connected to : (4, 3) (7, 7) 
+Vertex 7 is connected to : (5, 1) (6, 7) (8, 17) 
+Vertex 8 is connected to : (7, 17)
 
 node id 0  prev -1 distance : 0
 node id 1  prev 2 distance : 5
@@ -398,7 +398,7 @@ hamiltonianCycle :  false
     public static void main(String[] args) {
             //main1();
             //main2(); 
-            //main3(); 
-            main4(); 
+            main3(); 
+            //main4(); 
     }
 }

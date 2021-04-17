@@ -20,7 +20,6 @@ public class QuickSelect {
         }
 
         swap(arr, upper, start); // upper is the pivot position
-
         if (k < upper)
             quickSelect(arr, start, upper - 1, k); // pivot -1 is the upper for
                                                    // left sub array.
@@ -37,11 +36,13 @@ public class QuickSelect {
 
     public static int get(int arr[], int k) {
         quickSelect(arr, 0, arr.length - 1, k);
-        return arr[4];
+        return arr[k-1];
     }
 
     public static void main(String[] args) {
-        int[] array = { 3, 4, 2, 1, 6, 5, 7, 8, 10, 9 };
+        int[] array = { 3, 4, 2, 1, 6, 5, 7, 8 };
         System.out.print("value at index 5 is : " + QuickSelect.get(array, 5));
     }
 }
+
+// value at index 5 is : 5

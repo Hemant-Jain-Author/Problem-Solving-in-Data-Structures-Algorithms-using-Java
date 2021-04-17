@@ -128,6 +128,7 @@ public class DoublyLinkedList {
             System.out.print(temp.value + " ");
             temp = temp.next;
         }
+        System.out.println("");
     }
 
     // SORTED INSERT DECREASING
@@ -235,18 +236,12 @@ public class DoublyLinkedList {
         ll.addHead(1);
         ll.addHead(2);
         ll.addHead(3);
-        ll.addHead(4);
-        ll.addHead(5);
-        ll.addHead(6);
-        ll.removeHead();
-        ll.deleteList();
         ll.print();
-        ll.addHead(11);
-        ll.addHead(21);
-        ll.addHead(31);
-        ll.addHead(41);
-        ll.addHead(51);
-        ll.addHead(61);
+        ll.removeHead();
         ll.print();
     }
 }
+/*
+3 2 1 
+2 1 
+*/

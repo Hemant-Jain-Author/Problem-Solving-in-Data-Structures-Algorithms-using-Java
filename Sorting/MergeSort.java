@@ -1,5 +1,8 @@
 public class MergeSort {
     private int[] arr;
+    public MergeSort(int[] array) {
+        arr = array;
+    }
 
     private void merge(int[] arr, int[] tempArray, int lowerIndex, int middleIndex, int upperIndex) {
         int lowerStart = lowerIndex;
@@ -41,12 +44,8 @@ public class MergeSort {
         mergeSrt(arr, tempArray, 0, size - 1);
     }
 
-    public MergeSort(int[] array) {
-        arr = array;
-    }
-
     public static void main(String[] args) {
-        int[] array = { 3, 4, 2, 1, 6, 5, 7, 8, 1, 1 };
+        int[] array = { 3, 4, 2, 1, 6, 5, 7, 8};
         MergeSort m = new MergeSort(array);
         m.sort();
         for (int i = 0; i < array.length; i++) {
@@ -54,3 +53,4 @@ public class MergeSort {
         }
     }
 }
+// 1 2 3 4 5 6 7 8

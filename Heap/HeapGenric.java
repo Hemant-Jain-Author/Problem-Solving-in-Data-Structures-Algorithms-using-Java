@@ -1,5 +1,4 @@
 public class Heap<T extends Comparable<T>> {
-
 	private static final int CAPACITY = 32;
 	private int size; // Number of elements in Heap
 	private T[] arr; // The Heap array

@@ -65,11 +65,16 @@ public class QueueLL {
     }
 
     public static void main(String[] args) {
-        QueueLL q = new QueueLL();
-        q.add(1);
-        q.add(2);
-        q.add(3);
+        QueueLL que = new QueueLL();
+        que.add(1);
+        que.add(2);
+        que.add(3);
         for (int i = 0; i < 3; i++)
-            System.out.println(q.remove());
+            System.out.println(que.remove());
     }
 }
+/*
+1
+2
+3
+*/

@@ -33,13 +33,14 @@ public class StackExercise {
         return stk.isEmpty();
     }
 
-    public static void main(String[] args) {
+    public static void main1() {
         String expn = "{()}[]";
         boolean value = isBalancedParenthesis(expn);
-        System.out.println("Given Expn:" + expn);
         System.out.println("Result after isParenthesisMatched:" + value);
     }
-
+/*
+Result after isParenthesisMatched:true
+*/
     public static <T> void insertAtBottom(Stack<T> stk, T value) {
         if (stk.isEmpty()) {
             stk.push(value);
@@ -93,13 +94,16 @@ public class StackExercise {
         return stk.pop();
     }
 
-    public static void main2(String[] args) {
+    public static void main2() {
         String expn = "6 5 2 3 + 8 * + 3 + *";
         int value = postfixEvaluate(expn);
         System.out.println("Given Postfix Expn: " + expn);
         System.out.println("Result after Evaluation: " + value);
     }
-
+/*
+Given Postfix Expn: 6 5 2 3 + 8 * + 3 + *
+Result after Evaluation: 288
+*/
     public static int precedence(char x) {
         if (x == '(') {
             return (0);
@@ -168,13 +172,16 @@ public class StackExercise {
         return output.toCharArray();
     }
 
-    public static void main3(String[] args) {
+    public static void main3() {
         String expn = "10+((3))*5/(16-4)";
         String value = infixToPostfix(expn);
         System.out.println("Infix Expn: " + expn);
         System.out.println("Postfix Expn: " + value);
     }
-
+/*
+Infix Expn: 10+((3))*5/(16-4)
+Postfix Expn: 10 3 5 * 16 4 - / + 
+*/
     public static String infixToPrefix(String expn) {
         char[] arr = expn.toCharArray();
         reverseString(arr);
@@ -211,14 +218,17 @@ public class StackExercise {
         }
     }
 
-    public static void main4(String[] args) {
+    public static void main4() {
         String expn = "10+((3))*5/(16-4)";
         String value = infixToPrefix(expn);
         System.out.println("Infix Expn: " + expn);
         System.out.println("Prefix Expn: " + value);
     }
-
-    public static int[] StockSpanRange(int[] arr) {
+/*
+Infix Expn: 10+((3))*5/(16-4)
+Prefix Expn:  +10 * 3 / 5  - 16 4
+*/
+    public static int[] stockSpanRange(int[] arr) {
         int[] SR = new int[arr.length];
         SR[0] = 1;
         for (int i = 1; i < arr.length; i++) {
@@ -230,7 +240,7 @@ public class StackExercise {
         return SR;
     }
 
-    public static int[] StockSpanRange2(int[] arr) {
+    public static int[] stockSpanRange2(int[] arr) {
         Stack<Integer> stk = new Stack<Integer>();
 
         int[] SR = new int[arr.length];
@@ -246,20 +256,25 @@ public class StackExercise {
         return SR;
     }
 
-    public static void main5(String[] args) {
+    public static void main5() {
         int[] arr = { 6, 5, 4, 3, 2, 4, 5, 7, 9 };
-        int size = arr.length;
-        int[] value = StockSpanRange(arr);
-        System.out.print("\nStockSpanRange : ");
+        int[] value = stockSpanRange(arr);
+        System.out.print("stockSpanRange : ");
         for (int val : value)
-            System.out.print(" " + val);
-        value = StockSpanRange2(arr);
-        System.out.print("\nStockSpanRange : ");
-        for (int val : value)
-            System.out.print(" " + val);
-    }
+            System.out.print(val + " ");
+        System.out.println();
 
-    public static int GetMaxArea(int[] arr) {
+        value = stockSpanRange2(arr);
+        System.out.print("stockSpanRange : ");
+        for (int val : value)
+            System.out.print(val + " ");
+        System.out.println();
+    }
+/*
+stockSpanRange : 1 1 1 1 1 4 6 8 9 
+stockSpanRange : 1 1 1 1 1 4 6 8 9 
+*/
+    public static int getMaxArea(int[] arr) {
         int size = arr.length;
         int maxArea = -1;
         int currArea;
@@ -279,7 +294,7 @@ public class StackExercise {
         return maxArea;
     }
 
-    public static int GetMaxArea2(int[] arr) {
+    public static int getMaxArea2(int[] arr) {
         int size = arr.length;
         Stack<Integer> stk = new Stack<Integer>();
         int maxArea = 0;
@@ -303,15 +318,17 @@ public class StackExercise {
         return maxArea;
     }
 
-    public static void main6(String[] args) {
+    public static void main6() {
         int[] arr = { 7, 6, 5, 4, 4, 1, 6, 3, 1 };
-        int size = arr.length;
-        int value = GetMaxArea(arr);
-        System.out.println("GetMaxArea :: " + value);
-        value = GetMaxArea2(arr);
-        System.out.println("GetMaxArea :: " + value);
+        int value = getMaxArea(arr);
+        System.out.println("getMaxArea :: " + value);
+        value = getMaxArea2(arr);
+        System.out.println("getMaxArea :: " + value);
     }
-
+/*
+getMaxArea :: 20
+getMaxArea :: 20
+*/
     public static void sortedInsert(Stack<Integer> stk, int element) {
         int temp;
         if (stk.isEmpty() || element > stk.peek())
@@ -403,17 +420,15 @@ public class StackExercise {
         }
     }
 
-    public static void main7(String[] args) {
+    public static void main7() {
         Stack<Integer> stk = new Stack<Integer>();
         stk.push(1);
         stk.push(2);
         stk.push(3);
-        stk.push(4);
-        stk.push(5);
         System.out.println(stk);
     }
-
-    public static void main8(String[] args) {
+// [1, 2, 3]
+    public static void main8() {
         Stack<Integer> stk = new Stack<Integer>();
         stk.push(-2);
         stk.push(13);
@@ -433,16 +448,20 @@ public class StackExercise {
         que.add(1);
         que.add(2);
         que.add(3);
-        que.add(4);
-        que.add(5);
-        que.add(6);
         System.out.println(que);
         reverseQueue(que);
         System.out.println(que);
         reverseKElementInQueue(que, 2);
         System.out.println(que);
     }
-
+/*
+[-2, 13, 16, -6, 40]
+[40, -6, 16, 13, -2]
+[40, -6, 16, -2, 13]
+[1, 2, 3]
+[3, 2, 1]
+[2, 3, 1]
+*/
     public static int maxDepthParenthesis(String expn, int size) {
         Stack<Character> stk = new Stack<Character>();
         int maxDepth = 0;
@@ -482,17 +501,16 @@ public class StackExercise {
         return maxDepth;
     }
 
-    public static void main9(String[] args) {
+    public static void main9() {
         String expn = "((((A)))((((BBB()))))()()()())";
         int size = expn.length();
-        int value = maxDepthParenthesis(expn, size);
-        int value2 = maxDepthParenthesis2(expn, size);
-
-        System.out.println("Given expn " + expn);
-        System.out.println("Max depth parenthesis is " + value);
-        System.out.println("Max depth parenthesis is " + value2);
+        System.out.println("Max depth parenthesis is " + maxDepthParenthesis(expn, size));
+        System.out.println("Max depth parenthesis is " + maxDepthParenthesis2(expn, size));
     }
-
+/*
+Max depth parenthesis is 6
+Max depth parenthesis is 6
+*/
     public static int longestContBalParen(String string, int size) {
         Stack<Integer> stk = new Stack<Integer>();
         stk.push(-1);
@@ -514,12 +532,13 @@ public class StackExercise {
         return length;
     }
 
-    public static void main10(String[] args) {
+    public static void main10() {
         String expn = "())((()))(())()(()";
         int size = expn.length();
-        int value = longestContBalParen(expn, size);
-        System.out.println("longestContBalParen " + value);
+        System.out.println("longestContBalParen " + longestContBalParen(expn, size));
     }
+
+// longestContBalParen 12
 
     public static int reverseParenthesis(String expn, int size) {
         Stack<Character> stk = new Stack<Character>();
@@ -551,14 +570,14 @@ public class StackExercise {
         return reversal;
     }
 
-    public static void main11(String[] args) {
-        String expn = "())((()))(())()(()()()()))";
+    public static void main11() {
         String expn2 = ")(())(((";
         int size = expn2.length();
         int value = reverseParenthesis(expn2, size);
-        System.out.println("Given expn : " + expn2);
         System.out.println("reverse Parenthesis is : " + value);
     }
+
+// reverse Parenthesis is : 3
 
     public static boolean findDuplicateParenthesis(String expn, int size) {
         Stack<Character> stk = new Stack<Character>();
@@ -581,16 +600,13 @@ public class StackExercise {
         return false;
     }
 
-    public static void main12(String[] args) {
-        // expn = "(((a+(b))+(c+d)))"
-        // expn = "(b)"
+    public static void main12() {
         String expn = "(((a+b))+c)";
-        System.out.println("Given expn : " + expn);
         int size = expn.length();
         boolean value = findDuplicateParenthesis(expn, size);
         System.out.println("Duplicate Found : " + value);
     }
-
+// Duplicate Found : true
     public static void printParenthesisNumber(String expn, int size) {
         char ch;
         Stack<Integer> stk = new Stack<Integer>();
@@ -601,25 +617,27 @@ public class StackExercise {
             if (ch == '(') {
                 stk.push(count);
                 output += count;
+                output += " ";
                 count += 1;
-            } else if (ch == ')')
+            } else if (ch == ')'){
                 output += stk.pop();
+                output += " ";
+            }
+                
         }
-        System.out.println("Parenthesis Count ");
-        System.out.println(output);
+        System.out.println("Parenthesis Count " + output);
     }
 
-    public static void main13(String[] args) {
+    public static void main13() {
         String expn1 = "(((a+(b))+(c+d)))";
         String expn2 = "(((a+b))+c)(((";
-        int size = expn1.length();
-        System.out.println("Given expn " + expn1);
-        printParenthesisNumber(expn1, size);
-        size = expn2.length();
-        System.out.println("\nGiven expn " + expn2);
-        printParenthesisNumber(expn2, size);
+        printParenthesisNumber(expn1, expn1.length());
+        printParenthesisNumber(expn2, expn2.length());
     }
-
+/*
+Parenthesis Count 1 2 3 4 4 3 5 5 2 1 
+Parenthesis Count 1 2 3 3 2 1 4 5 6 
+*/
     public static void nextLargerElement(int[] arr, int size) {
         int[] output = new int[size];
         int outIndex = 0;
@@ -637,6 +655,7 @@ public class StackExercise {
         }
         for (int val : output)
             System.out.print(val + " ");
+        System.out.println();
     }
 
     public static void nextLargerElement2(int[] arr, int size) {
@@ -662,6 +681,7 @@ public class StackExercise {
         }
         for (int val : output)
             System.out.print(val + " ");
+        System.out.println();
     }
 
     public static void nextSmallerElement(int[] arr, int size) {
@@ -684,16 +704,21 @@ public class StackExercise {
         }
         for (int val : output)
             System.out.print(val + " ");
+        System.out.println();
     }
 
-    public static void main14(String[] args) {
+    public static void main14() {
         int[] arr = { 13, 21, 3, 6, 20, 3 };
         int size = arr.length;
         nextLargerElement(arr, size);
         nextLargerElement2(arr, size);
         nextSmallerElement(arr, size);
     }
-
+/*
+21 -1 6 20 -1 -1 
+21 -1 6 20 -1 -1 
+3 3 -1 3 3 -1 
+*/
     public static void nextLargerElementCircular(int[] arr, int size) {
         Stack<Integer> stk = new Stack<Integer>();
         int curr, index;
@@ -714,15 +739,17 @@ public class StackExercise {
         }
         for (int val : output)
             System.out.print(val + " ");
+        System.out.println();
     }
 
-    public static void main15(String[] args) {
+    public static void main15() {
         int arr[] = { 6, 3, 9, 8, 10, 2, 1, 15, 7 };
-        int size = arr.length;
-        nextLargerElementCircular(arr, size);
+        nextLargerElementCircular(arr, arr.length);
     }
 
-    public static void RottenFruitUtil(int[][] arr, int maxCol, int maxRow, int currCol, int currRow, int[][] traversed,
+// 9 9 10 10 15 15 15 -1 9
+
+    public static void rottenFruitUtil(int[][] arr, int maxCol, int maxRow, int currCol, int currRow, int[][] traversed,
             int day) { // Range check
         if (currCol < 0 || currCol >= maxCol || currRow < 0 || currRow >= maxRow)
             return;
@@ -732,13 +759,13 @@ public class StackExercise {
         // Update rot time.
         traversed[currCol][currRow] = day;
         // each line corresponding to 4 direction.
-        RottenFruitUtil(arr, maxCol, maxRow, currCol - 1, currRow, traversed, day + 1);
-        RottenFruitUtil(arr, maxCol, maxRow, currCol + 1, currRow, traversed, day + 1);
-        RottenFruitUtil(arr, maxCol, maxRow, currCol, currRow + 1, traversed, day + 1);
-        RottenFruitUtil(arr, maxCol, maxRow, currCol, currRow - 1, traversed, day + 1);
+        rottenFruitUtil(arr, maxCol, maxRow, currCol - 1, currRow, traversed, day + 1);
+        rottenFruitUtil(arr, maxCol, maxRow, currCol + 1, currRow, traversed, day + 1);
+        rottenFruitUtil(arr, maxCol, maxRow, currCol, currRow + 1, traversed, day + 1);
+        rottenFruitUtil(arr, maxCol, maxRow, currCol, currRow - 1, traversed, day + 1);
     }
 
-    public static int RottenFruit(int[][] arr, int maxCol, int maxRow) {
+    public static int rottenFruit(int[][] arr, int maxCol, int maxRow) {
         int[][] traversed = new int[maxCol][maxRow];
         for (int i = 0; i < maxCol; i++) {
             for (int j = 0; j < maxRow; j++) {
@@ -749,7 +776,7 @@ public class StackExercise {
         for (int i = 0; i < maxCol - 1; i++) {
             for (int j = 0; j < maxRow - 1; j++) {
                 if (arr[i][j] == 2)
-                    RottenFruitUtil(arr, maxCol, maxRow, i, j, traversed, 0);
+                    rottenFruitUtil(arr, maxCol, maxRow, i, j, traversed, 0);
             }
         }
 
@@ -767,12 +794,17 @@ public class StackExercise {
         return maxDay;
     }
 
-    public static void main16(String[] args) {
-        int arr[][] = { { 1, 0, 1, 1, 0 }, { 2, 1, 0, 1, 0 }, { 0, 0, 0, 2, 1 }, { 0, 2, 0, 0, 1 }, { 1, 1, 0, 0, 1 } };
-        System.out.println(RottenFruit(arr, 5, 5));
+    public static void main16() {
+        int arr[][] = { 
+            { 1, 0, 1, 1, 0 }, 
+            { 2, 1, 0, 1, 0 }, 
+            { 0, 0, 0, 2, 1 }, 
+            { 0, 2, 0, 0, 1 }, 
+            { 1, 1, 0, 0, 1 } };
+        System.out.println(rottenFruit(arr, 5, 5));
     }
-
-    public static void StepsOfKnightUtil(int size, int currCol, int currRow, int[][] traversed, int dist) {
+// 3
+    public static void stepsOfKnightUtil(int size, int currCol, int currRow, int[][] traversed, int dist) {
         // Range check
         if (currCol < 0 || currCol >= size || currRow < 0 || currRow >= size)
             return;
@@ -784,17 +816,17 @@ public class StackExercise {
         // Update rot time.
         traversed[currCol][currRow] = dist;
         // each line corresponding to 4 direction.
-        StepsOfKnightUtil(size, currCol - 2, currRow - 1, traversed, dist + 1);
-        StepsOfKnightUtil(size, currCol - 2, currRow + 1, traversed, dist + 1);
-        StepsOfKnightUtil(size, currCol + 2, currRow - 1, traversed, dist + 1);
-        StepsOfKnightUtil(size, currCol + 2, currRow + 1, traversed, dist + 1);
-        StepsOfKnightUtil(size, currCol - 1, currRow - 2, traversed, dist + 1);
-        StepsOfKnightUtil(size, currCol + 1, currRow - 2, traversed, dist + 1);
-        StepsOfKnightUtil(size, currCol - 1, currRow + 2, traversed, dist + 1);
-        StepsOfKnightUtil(size, currCol + 1, currRow + 2, traversed, dist + 1);
+        stepsOfKnightUtil(size, currCol - 2, currRow - 1, traversed, dist + 1);
+        stepsOfKnightUtil(size, currCol - 2, currRow + 1, traversed, dist + 1);
+        stepsOfKnightUtil(size, currCol + 2, currRow - 1, traversed, dist + 1);
+        stepsOfKnightUtil(size, currCol + 2, currRow + 1, traversed, dist + 1);
+        stepsOfKnightUtil(size, currCol - 1, currRow - 2, traversed, dist + 1);
+        stepsOfKnightUtil(size, currCol + 1, currRow - 2, traversed, dist + 1);
+        stepsOfKnightUtil(size, currCol - 1, currRow + 2, traversed, dist + 1);
+        stepsOfKnightUtil(size, currCol + 1, currRow + 2, traversed, dist + 1);
     }
 
-    public static int StepsOfKnight(int size, int srcX, int srcY, int dstX, int dstY) {
+    public static int stepsOfKnight(int size, int srcX, int srcY, int dstX, int dstY) {
         int[][] traversed = new int[size][size];
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -802,16 +834,16 @@ public class StackExercise {
             }
         }
 
-        StepsOfKnightUtil(size, srcX - 1, srcY - 1, traversed, 0);
+        stepsOfKnightUtil(size, srcX - 1, srcY - 1, traversed, 0);
         int retval = traversed[dstX - 1][dstY - 1];
         return retval;
     }
 
-    public static void main17(String[] args) {
-        System.out.println(StepsOfKnight(20, 10, 10, 20, 20));
+    public static void main17() {
+        System.out.println(stepsOfKnight(20, 10, 10, 20, 20));
     }
-
-    public static void DistNearestFillUtil(int[][] arr, int maxCol, int maxRow, int currCol, int currRow,
+// 8
+    public static void distNearestFillUtil(int[][] arr, int maxCol, int maxRow, int currCol, int currRow,
             int[][] traversed, int dist) { // Range check
         if (currCol < 0 || currCol >= maxCol || currRow < 0 || currRow >= maxRow)
             return;
@@ -821,13 +853,13 @@ public class StackExercise {
         // Update distance.
         traversed[currCol][currRow] = dist;
         // each line corresponding to 4 direction.
-        DistNearestFillUtil(arr, maxCol, maxRow, currCol - 1, currRow, traversed, dist + 1);
-        DistNearestFillUtil(arr, maxCol, maxRow, currCol + 1, currRow, traversed, dist + 1);
-        DistNearestFillUtil(arr, maxCol, maxRow, currCol, currRow + 1, traversed, dist + 1);
-        DistNearestFillUtil(arr, maxCol, maxRow, currCol, currRow - 1, traversed, dist + 1);
+        distNearestFillUtil(arr, maxCol, maxRow, currCol - 1, currRow, traversed, dist + 1);
+        distNearestFillUtil(arr, maxCol, maxRow, currCol + 1, currRow, traversed, dist + 1);
+        distNearestFillUtil(arr, maxCol, maxRow, currCol, currRow + 1, traversed, dist + 1);
+        distNearestFillUtil(arr, maxCol, maxRow, currCol, currRow - 1, traversed, dist + 1);
     }
 
-    public static void DistNearestFill(int[][] arr, int maxCol, int maxRow) {
+    public static void distNearestFill(int[][] arr, int maxCol, int maxRow) {
         int[][] traversed = new int[maxCol][maxRow];
         for (int i = 0; i < maxCol; i++) {
             for (int j = 0; j < maxRow; j++) {
@@ -837,23 +869,34 @@ public class StackExercise {
         for (int i = 0; i < maxCol; i++) {
             for (int j = 0; j < maxRow; j++) {
                 if (arr[i][j] == 1)
-                    DistNearestFillUtil(arr, maxCol, maxRow, i, j, traversed, 0);
+                    distNearestFillUtil(arr, maxCol, maxRow, i, j, traversed, 0);
             }
         }
 
         for (int i = 0; i < maxCol; i++) {
             for (int j = 0; j < maxRow; j++) {
-                System.out.println("" + traversed[i][j]);
+                System.out.print(traversed[i][j] + " ");
             }
-            System.out.println("\n");
+            System.out.println();
         }
     }
 
-    public static void main18(String[] args) {
-        int arr[][] = { { 1, 0, 1, 1, 0 }, { 1, 1, 0, 1, 0 }, { 0, 0, 0, 0, 1 }, { 0, 0, 0, 0, 1 }, { 0, 0, 0, 0, 1 } };
-        DistNearestFill(arr, 5, 5);
+    public static void main18() {
+        int arr[][] = { 
+            { 1, 0, 1, 1, 0 }, 
+            { 1, 1, 0, 1, 0 }, 
+            { 0, 0, 0, 0, 1 }, 
+            { 0, 0, 0, 0, 1 }, 
+            { 0, 0, 0, 0, 1 } };
+        distNearestFill(arr, 5, 5);
     }
-
+/*
+0 1 0 0 1 
+0 0 1 0 1 
+1 1 2 1 0 
+2 2 2 1 0 
+3 3 2 1 0 
+*/
     public static int findLargestIslandUtil(int[][] arr, int maxCol, int maxRow, int currCol, int currRow, int value,
             int[][] traversed) {
         if (currCol < 0 || currCol >= maxCol || currRow < 0 || currRow >= maxRow)
@@ -893,11 +936,16 @@ public class StackExercise {
         return maxVal;
     }
 
-    public static void main19(String[] args) {
-        int arr[][] = { { 1, 0, 1, 1, 0 }, { 1, 0, 0, 1, 0 }, { 0, 1, 1, 1, 1 }, { 0, 1, 0, 0, 0 }, { 1, 1, 0, 0, 1 } };
+    public static void main19() {
+        int arr[][] = { 
+            { 1, 0, 1, 1, 0 }, 
+            { 1, 0, 0, 1, 0 }, 
+            { 0, 1, 1, 1, 1 }, 
+            { 0, 1, 0, 0, 0 }, 
+            { 1, 1, 0, 0, 1 } };
         System.out.println("Largest Island : " + findLargestIsland(arr, 5, 5));
     }
-
+// Largest Island : 12
     public static boolean isKnown(int relation[][], int a, int b) {
         if (relation[a][b] == 1)
             return true;
@@ -943,14 +991,22 @@ public class StackExercise {
         return first;
     }
 
-    public static void main20(String[] args) {
-        int[][] arr = { { 1, 0, 1, 1, 0 }, { 1, 0, 0, 1, 0 }, { 0, 0, 1, 1, 1 }, { 0, 0, 0, 0, 0 }, { 1, 1, 0, 1, 1 } };
+    public static void main20() {
+        int[][] arr = { 
+            { 1, 0, 1, 1, 0 }, 
+            { 1, 0, 0, 1, 0 }, 
+            { 0, 0, 1, 1, 1 }, 
+            { 0, 0, 0, 0, 0 }, 
+            { 1, 1, 0, 1, 1 } };
 
         System.out.println("Celebrity : " + findCelebrity(arr, 5));
         System.out.println("Celebrity : " + findCelebrity2(arr, 5));
     }
-
-    public static int IsMinHeap(int[] arr, int size) {
+/*
+Celebrity : 3
+Celebrity : 3
+*/
+    public static int isMinHeap(int[] arr, int size) {
         for (int i = 0; i <= (size - 2) / 2; i++) {
             if (2 * i + 1 < size) {
                 if (arr[i] > arr[2 * i + 1])
@@ -964,7 +1020,7 @@ public class StackExercise {
         return 1;
     }
 
-    public static int IsMaxHeap(int[] arr, int size) {
+    public static int isMaxHeap(int[] arr, int size) {
         for (int i = 0; i <= (size - 2) / 2; i++) {
             if (2 * i + 1 < size) {
                 if (arr[i] < arr[2 * i + 1])
@@ -976,5 +1032,32 @@ public class StackExercise {
             }
         }
         return 1;
+    }
+
+    public static void main(String[] args) {
+        //main1();
+        //main2();
+        //main3();
+        //main4();
+        //main5();
+        //main6();
+        //main7();
+        //main8();
+        //main9();
+        //main10();
+        //main11();
+        //main12();
+        //main13();
+        //main14();
+        main15();
+        main16();
+        main17();
+        //main18();
+        //main19();
+        //main20();
+        /*main21();
+        main22();
+        main23();
+        main24();*/
     }
 }

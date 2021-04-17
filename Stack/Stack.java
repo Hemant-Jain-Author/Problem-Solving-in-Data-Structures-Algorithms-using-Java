@@ -61,6 +61,10 @@ public class Stack {
         s.print();
         System.out.println(s.pop());
         System.out.println(s.pop());
-        s.print();
     }
 }
+/*
+3 2 1 
+3
+2
+*/

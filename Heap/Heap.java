@@ -1,8 +1,7 @@
 public class Heap {
-
 	private static final int CAPACITY = 32;
-	private int size; // Number of elements in Heap
-	private int[] arr; // The Heap array
+	private int size; 	// Number of elements in Heap
+	private int[] arr; 	// The Heap array
 	boolean isMinHeap;
 
 	public Heap(boolean isMin) {
@@ -39,11 +38,9 @@ public class Heap {
 		if (lChild < size) {
 			child = lChild;
 		}
-
 		if (rChild < size && compare(arr, lChild, rChild)) {
 			child = rChild;
 		}
-
 		if (child != -1 && compare(arr, parent, child)) {
 			temp = arr[parent];
 			arr[parent] = arr[child];
@@ -58,7 +55,6 @@ public class Heap {
 		if (parent < 0) {
 			return;
 		}
-
 		if (compare(arr, parent, child)) {
 			temp = arr[child];
 			arr[child] = arr[parent];
@@ -71,7 +67,6 @@ public class Heap {
 		if (size == arr.length) {
 			doubleSize();
 		}
-
 		arr[size++] = value;
 		proclateUp(size - 1);
 	}
@@ -124,35 +119,34 @@ public class Heap {
 	}
 
 	public static void main(String[] args) {
-		int[] a = { 1, 9, 6, 7, 8, 0, 2, 4, 5, 3 };
+		int[] a = { 1, 9, 6, 7, 8, 2, 4, 5, 3 };
 		Heap hp = new Heap(a, true);
-		hp.add(-1);
-		hp.add(100);
 		hp.print();
 		System.out.println();
+
 		while (!hp.isEmpty()) {
 			System.out.print(hp.remove() + " ");
 		}
 		System.out.println();
 
-		int[] a2 = { 1, 9, 6, 7, 8, 0, 2, 4, 5, 3 };
+		int[] a2 = { 1, 9, 6, 7, 8, 2, 4, 5, 3 };
 		Heap.heapSort(a2, true);
 		for (int i = 0; i < a2.length; i++) {
 			System.out.print(a2[i] + " ");
 		}
 		System.out.println();
 
-		int[] a3 = { 1, 9, 6, 7, 8, 0, 2, 4, 5, 3 };
+		int[] a3 = { 1, 9, 6, 7, 8, 2, 4, 5, 3 };
 		Heap.heapSort(a3, false);
 		for (int i = 0; i < a3.length; i++) {
 			System.out.print(a3[i] + " ");
 		}
 	}
 /*
--1 0 1 4 3 6 2 7 5 9 8 100 
--1 0 1 2 3 4 5 6 7 8 9 100 
-0 1 2 3 4 5 6 7 8 9 
-9 8 7 6 5 4 3 2 1 0 
+1 3 2 5 8 6 4 9 7 
+1 2 3 4 5 6 7 8 9 
+1 2 3 4 5 6 7 8 9 
+9 8 7 6 5 4 3 2 1
 */
 	boolean isMinHeap(int[] arr, int size) {
 		for (int i = 0; i <= (size - 2) / 2; i++) {

@@ -28,12 +28,14 @@ public class QueueEx {
             return -1;
     }
 
-    public static void main1(String[] args) {
+    public static void main1() {
         // Testing code
         int tour[][] = { { 8, 6 }, { 1, 4 }, { 7, 6 } };
-        System.out.println(" Circular Tour : " + CircularTour(tour, 3));
+        System.out.println("Circular Tour : " + CircularTour(tour, 3));
     }
-
+/*
+Circular Tour : 2
+*/
     public static int convertXY(int src, int dst) {
         ArrayDeque<Integer> que = new ArrayDeque<Integer>();
         int arr[] = new int[100];
@@ -47,10 +49,6 @@ public class QueueEx {
             arr[index++] = value;
 
             if (value == dst) {
-                for (int i = 0; i < index; i++)
-                    System.out.print(arr[i]);
-                System.out.print("Steps countr :: " + steps);
-
                 return steps;
             }
             steps++;
@@ -62,10 +60,12 @@ public class QueueEx {
         return -1;
     }
 
-    public static void main3(String[] args) {
-        convertXY(2, 7);
+    public static void main2() {
+        System.out.println("Steps countr :: " + convertXY(2, 7));
     }
-
+/*
+Steps countr :: 3
+*/
     public static void maxSlidingWindows(int arr[], int size, int k) {
         ArrayDeque<Integer> que = new ArrayDeque<Integer>();
         for (int i = 0; i < size; i++) {
@@ -80,17 +80,20 @@ public class QueueEx {
             // Largest value in window of size k is at index que[0]
             // It is displayed to the screen.
             if (i >= (k - 1))
-                System.out.println(arr[que.peek()]);
+                System.out.print(arr[que.peek()] + " ");
         }
+        System.out.println();
     }
 
-    public static void main4(String[] args) {
+    public static void main3() {
         int arr[] = { 11, 2, 75, 92, 59, 90, 55 };
         int k = 3;
         maxSlidingWindows(arr, 7, 3);
         // Output 75, 92, 92, 92, 90
     }
-
+/*
+75 92 92 92 90 
+*/
     public static int minOfMaxSlidingWindows(int arr[], int size, int k) {
         ArrayDeque<Integer> que = new ArrayDeque<Integer>();
         int minVal = 999999;
@@ -110,13 +113,15 @@ public class QueueEx {
         return minVal;
     }
 
-    public static void main5(String[] args) {
+    public static void main4() {
         int arr[] = { 11, 2, 75, 92, 59, 90, 55 };
         int k = 3;
         minOfMaxSlidingWindows(arr, 7, 3);
         // Output 75
     }
-
+/*
+Min of max is :: 75
+*/
     public static void maxOfMinSlidingWindows(int arr[], int size, int k) {
         ArrayDeque<Integer> que = new ArrayDeque<Integer>();
         int maxVal = -999999;
@@ -135,13 +140,15 @@ public class QueueEx {
         System.out.println("Max of min is :: " + maxVal);
     }
 
-    public static void main6(String[] args) {
+    public static void main5() {
         int arr[] = { 11, 2, 75, 92, 59, 90, 55 };
         int k = 3;
         maxOfMinSlidingWindows(arr, 7, 3);
         // Output 59, as minimum values in sliding windows are [2, 2, 59, 59, 55]
     }
-
+/*
+Max of min is :: 59
+*/
     public static void firstNegSlidingWindows(int arr[], int size, int k) {
         ArrayDeque<Integer> que = new ArrayDeque<Integer>();
 
@@ -154,17 +161,28 @@ public class QueueEx {
             // window of size k
             if (i >= (k - 1)) {
                 if (que.size() > 0)
-                    System.out.print(arr[que.peek()]);
+                    System.out.print(arr[que.peek()] + " ");
                 else
                     System.out.print("NAN");
             }
         }
     }
 
-    public static void main(String[] args) {
+    public static void main6() {
         int arr[] = { 3, -2, -6, 10, -14, 50, 14, 21 };
         int k = 3;
         firstNegSlidingWindows(arr, 8, 3);
         // Output [-2, -2, -6, -14, -14, NAN]
+    }
+/*
+-2 -2 -6 -14 -14 NAN
+*/
+    public static void main(String[] args) {
+        main1();
+        main2();
+        main3();
+        main4();
+        main5();
+        main6();
     }
 }

@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.ArrayList;;
 
 public class Searching {
-
     public static boolean linearSearchUnsorted(int[] arr, int size, int value) {
         for (int i = 0; i < size; i++) {
             if (value == arr[i]) {
@@ -26,7 +25,7 @@ public class Searching {
     }
 
     // Binary Search Algorithm - Iterative Way
-    public static boolean Binarysearch(int[] arr, int size, int value) {
+    public static boolean binarySearch(int[] arr, int size, int value) {
         int low = 0;
         int high = size - 1;
         int mid;
@@ -44,14 +43,14 @@ public class Searching {
         return false;
     }
 
-    public static boolean BinarySearchRec(int[] arr, int size, int value) {
+    public static boolean binarySearchRec(int[] arr, int size, int value) {
         int low = 0;
         int high = size - 1;
-        return BinarySearchRecUtil(arr, low, high, value);
+        return binarySearchRecUtil(arr, low, high, value);
     }
 
     // Binary Search Algorithm - Recursive Way
-    public static boolean BinarySearchRecUtil(int[] arr, int low, int high, int value) {
+    public static boolean binarySearchRecUtil(int[] arr, int low, int high, int value) {
         if (low > high) {
             return false;
         }
@@ -59,13 +58,13 @@ public class Searching {
         if (arr[mid] == value) {
             return true;
         } else if (arr[mid] < value) {
-            return BinarySearchRecUtil(arr, mid + 1, high, value);
+            return binarySearchRecUtil(arr, mid + 1, high, value);
         } else {
-            return BinarySearchRecUtil(arr, low, mid - 1, value);
+            return binarySearchRecUtil(arr, low, mid - 1, value);
         }
     }
 
-    public static int BinarySearch(int[] arr, int start, int end, int key, boolean isInc) {
+    public static int binarySearch(int[] arr, int start, int end, int key, boolean isInc) {
         int mid;
         if (end < start) {
             return -1;
@@ -75,24 +74,35 @@ public class Searching {
             return mid;
         }
         if (isInc != false && key < arr[mid] || isInc == false && key > arr[mid]) {
-            return BinarySearch(arr, start, mid - 1, key, isInc);
+            return binarySearch(arr, start, mid - 1, key, isInc);
         } else {
-            return BinarySearch(arr, mid + 1, end, key, isInc);
+            return binarySearch(arr, mid + 1, end, key, isInc);
         }
     }
 
-    public static void main1(String[] args) {
+    public static void main1() {
         int[] first = { 1, 3, 5, 7, 9, 25, 30 };
         System.out.println(linearSearchUnsorted(first, 7, 8));
         System.out.println(linearSearchSorted(first, 7, 8));
-        System.out.println(Binarysearch(first, 7, 8));
-        System.out.println(BinarySearchRec(first, 7, 8));
+        System.out.println(binarySearch(first, 7, 8));
+        System.out.println(binarySearchRec(first, 7, 8));
+
         System.out.println(linearSearchUnsorted(first, 7, 25));
         System.out.println(linearSearchSorted(first, 7, 25));
-        System.out.println(Binarysearch(first, 7, 25));
-        System.out.println(BinarySearchRec(first, 7, 25));
+        System.out.println(binarySearch(first, 7, 25));
+        System.out.println(binarySearchRec(first, 7, 25));
 
     }
+/*
+false
+false
+false
+false
+true
+true
+true
+true
+*/
 
     public static void swap(int[] arr, int first, int second) {
         int temp = arr[first];
@@ -100,7 +110,7 @@ public class Searching {
         arr[second] = temp;
     }
 
-    public static int FirstRepeated(int[] arr, int size) {
+    public static int firstRepeated(int[] arr, int size) {
         for (int i = 0; i < size; i++) {
             for (int j = i + 1; j < size; j++) {
                 if (arr[i] == arr[j]) {
@@ -111,13 +121,16 @@ public class Searching {
         return 0;
     }
 
-    public static void main2(String[] args) {
-        int[] first = { 34, 56, 77, 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 34, 20, 30 };
-        System.out.println(FirstRepeated(first, first.length));
+    public static void main2() {
+        int[] first = {1, 3, 5, 3, 9, 1, 30 };
+        System.out.println(firstRepeated(first, first.length));
     }
+/*
+1
+*/
 
     public static void printRepeating(int[] arr, int size) {
-        System.out.print(" \nRepeating elements are ");
+        System.out.print("Repeating elements are ");
         for (int i = 0; i < size; i++) {
             for (int j = i + 1; j < size; j++) {
                 if (arr[i] == arr[j]) {
@@ -125,22 +138,24 @@ public class Searching {
                 }
             }
         }
+        System.out.println();
     }
 
     public static void printRepeating2(int[] arr, int size) {
         Arrays.sort(arr);
-        System.out.print(" \nRepeating elements are ");
+        System.out.print("Repeating elements are ");
 
         for (int i = 1; i < size; i++) {
             if (arr[i] == arr[i - 1]) {
                 System.out.print(" " + arr[i]);
             }
         }
+        System.out.println();
     }
 
     public static void printRepeating3(int[] arr, int size) {
         HashSet<Integer> hs = new HashSet<Integer>();
-        System.out.print(" \nRepeating elements are ");
+        System.out.print("Repeating elements are ");
         for (int i = 0; i < size; i++) {
             if (hs.contains(arr[i])) {
                 System.out.print(" " + arr[i]);
@@ -148,6 +163,7 @@ public class Searching {
                 hs.add(arr[i]);
             }
         }
+        System.out.println();
     }
 
     public static void printRepeating4(int[] arr, int size, int range) {
@@ -156,7 +172,7 @@ public class Searching {
         for (i = 0; i < size; i++) {
             count[i] = 0;
         }
-        System.out.print(" \nRepeating elements are ");
+        System.out.print("Repeating elements are ");
         for (i = 0; i < size; i++) {
             if (count[arr[i]] == 1) {
                 System.out.print(" " + arr[i]);
@@ -164,15 +180,22 @@ public class Searching {
                 count[arr[i]]++;
             }
         }
+        System.out.println();
     }
 
-    public static void main3(String[] args) {
+    public static void main3() {
         int[] first = { 1, 3, 5, 3, 9, 1, 30 };
         printRepeating(first, first.length);
         printRepeating2(first, first.length);
         printRepeating3(first, first.length);
         printRepeating4(first, first.length, 50);
     }
+/*
+Repeating elements are  1 3
+Repeating elements are  1 3
+Repeating elements are  1 3
+Repeating elements are  1 3
+*/
 
     public static int[] removeDuplicates(int[] array, int size) {
         int j = 0;
@@ -187,13 +210,17 @@ public class Searching {
         return ret;
     }
 
-    public static void main4(String[] args) {
+    public static void main4() {
         int[] first = { 1, 3, 5, 3, 9, 1, 30 };
         int[] ret = removeDuplicates(first, first.length);
         for (int i = 0; i < ret.length; i++) {
             System.out.print(ret[i] + " ");
         }
+        System.out.println();
     }
+/*
+1 3 5 9 30 
+*/
 
     public static int findMissingNumber(int[] arr, int size) {
         int i, j, found = 0;
@@ -228,7 +255,6 @@ public class Searching {
 
     public static int findMissingNumber3(int[] arr, int size, int upperRange) {
         HashSet<Integer> st = new HashSet<Integer>();
-
         int i = 0;
         while (i < size) {
             st.add(arr[i]);
@@ -244,14 +270,19 @@ public class Searching {
         return -1;
     }
 
-    public static void main5(String[] args) {
-        int[] first = { 1, 3, 5, 4, 6, 8, 7 };
+    public static void main5() {
+        int[] first = {1, 5, 4, 3, 2, 7, 8, 9};
         System.out.println(findMissingNumber(first, first.length));
-        System.out.println(findMissingNumber2(first, first.length, 8));
-        System.out.println(findMissingNumber3(first, first.length, 8));
+        System.out.println(findMissingNumber2(first, first.length, 9));
+        System.out.println(findMissingNumber3(first, first.length, 9));
     }
+/*
+6
+6
+6
+*/
 
-    public static void MissingValues(int[] arr, int size) {
+    public static void missingValues(int[] arr, int size) {
         Arrays.sort(arr);
         int value = arr[0];
         int i = 0;
@@ -260,13 +291,14 @@ public class Searching {
                 value += 1;
                 i += 1;
             } else {
-                System.out.println(value);
+                System.out.print(value + " ");
                 value += 1;
             }
         }
+        System.out.println();
     }
 
-    public static void MissingValues2(int[] arr, int size) {
+    public static void missingValues2(int[] arr, int size) {
         HashSet<Integer> ht = new HashSet<Integer>();
         int minVal = 999999;
         int maxVal = -999999;
@@ -280,19 +312,24 @@ public class Searching {
         }
         for (int i = minVal; i < maxVal + 1; i++) {
             if (ht.contains(i) == false) {
-                System.out.println(i);
+                System.out.print(i + " ");
             }
         }
+        System.out.println();
     }
 
-    public static void main6(String[] args) {
-        int[] arr = { 1, 9, 2, 8, 3, 7, 4, 6 };
+    public static void main6() {
+        int[] arr = {11, 14, 13, 17, 21, 18, 19, 23, 24};
         int size = arr.length;
-        MissingValues(arr, size);
-        MissingValues2(arr, size);
+        missingValues(arr, size);
+        missingValues2(arr, size);
     }
+/*
+12 15 16 20 22 
+12 15 16 20 22 
+*/
 
-    public static void OddCount(int[] arr, int size) {
+    public static void oddCount(int[] arr, int size) {
         HashMap<Integer, Integer> ctr = new HashMap<Integer, Integer>();
         int count = 0;
 
@@ -304,15 +341,16 @@ public class Searching {
         }
         for (int i = 0; i < size; i++) {
             if (ctr.containsKey(arr[i]) && (ctr.get(arr[i]) % 2 == 1)) {
-                System.out.println(arr[i]);
+                System.out.print(arr[i] + " ");
                 count++;
                 ctr.remove(arr[i]);
             }
         }
+        System.out.println();
         System.out.println("Odd count is :: " + count);
     }
 
-    public static void OddCount2(int[] arr, int size) {
+    public static void oddCount2(int[] arr, int size) {
         int xorSum = 0;
         int first = 0;
         int second = 0;
@@ -338,10 +376,22 @@ public class Searching {
             else
                 second ^= arr[i];
         }
-        System.out.println(first + second);
+        System.out.println(first + " " + second);
     }
 
-    public static void SumDistinct(int[] arr, int size) {
+    public static void main7() {
+        int[] arr = {10, 25, 30, 10, 15, 25, 15, 40};
+        int size = arr.length;
+        oddCount(arr, size);
+        oddCount2(arr, size);
+    }
+/*
+30 40 
+Odd count is :: 2
+30 40
+*/
+
+    public static void sumDistinct(int[] arr, int size) {
         int sum = 0;
         Arrays.sort(arr);
         for (int i = 0; i < (size - 1); i++) {
@@ -349,8 +399,17 @@ public class Searching {
                 sum += arr[i];
         }
         sum += arr[size - 1];
-        System.out.println(sum);
+        System.out.println("sum : " + sum);
     }
+
+    public static void main8() {
+        int[] arr = {1, 2, 3, 1, 1, 4, 5, 6};
+        int size = arr.length;
+        sumDistinct(arr, size);
+    }
+/*
+sum : 21
+*/
 
     public static void minAbsSumPair(int[] arr, int size) {
         int l, r, minSum, sum, minFirst, minSecond;
@@ -373,7 +432,7 @@ public class Searching {
                 }
             }
         }
-        System.out.println(" Minimum sum elements are : " + arr[minFirst] + " , " + arr[minSecond]);
+        System.out.println("Minimum sum elements are : " + arr[minFirst] + " , " + arr[minSecond]);
     }
 
     public static void minAbsSumPair2(int[] arr, int size) {
@@ -392,7 +451,7 @@ public class Searching {
         for (l = 0, r = size - 1; l < r;) {
             sum = (arr[l] + arr[r]);
             if (Math.abs(sum) < minSum) {
-                minSum = Math.abs(sum);/// just corrected......hemant
+                minSum = Math.abs(sum);
                 minFirst = l;
                 minSecond = r;
             }
@@ -404,21 +463,25 @@ public class Searching {
                 break;
             }
         }
-        System.out.println(" Minimum sum pair : " + arr[minFirst] + " , " + arr[minSecond]);
+        System.out.println("Minimum sum elements are : " + arr[minFirst] + " , " + arr[minSecond]);
     }
 
-    public static void main7(String[] str) {
+    public static void main9() {
         int[] first = { 1, 5, -10, 3, 2, -6, 8, 9, 6 };
         minAbsSumPair2(first, first.length);
         minAbsSumPair(first, first.length);
 
     }
+/*
+Minimum sum elements are : -6 , 6
+Minimum sum elements are : -6 , 6
+*/
 
-    public static boolean FindPair(int[] arr, int size, int value) {
+    public static boolean findPair(int[] arr, int size, int value) {
         for (int i = 0; i < size; i++) {
             for (int j = i + 1; j < size; j++) {
                 if ((arr[i] + arr[j]) == value) {
-                    System.out.println("The pair is : " + arr[i] + "," + arr[j]);
+                    System.out.println("The pair is : " + arr[i] + ", " + arr[j]);
                     return true;
                 }
             }
@@ -426,14 +489,14 @@ public class Searching {
         return false;
     }
 
-    public static boolean FindPair2(int[] arr, int size, int value) {
+    public static boolean findPair2(int[] arr, int size, int value) {
         int first = 0, second = size - 1;
         int curr;
         Arrays.sort(arr);// Arrays.sort(arr);
         while (first < second) {
             curr = arr[first] + arr[second];
             if (curr == value) {
-                System.out.println("The pair is " + arr[first] + "," + arr[second]);
+                System.out.println("The pair is " + arr[first] + ", " + arr[second]);
                 return true;
             } else if (curr < value) {
                 first++;
@@ -444,11 +507,11 @@ public class Searching {
         return false;
     }
 
-    public static boolean FindPair3(int[] arr, int size, int value) {
+    public static boolean findPair3(int[] arr, int size, int value) {
         HashSet<Integer> hs = new HashSet<Integer>();
         for (int i = 0; i < size; i++) {
             if (hs.contains(value - arr[i])) {
-                System.out.println("The pair is : " + arr[i] + " , " + (value - arr[i]));
+                System.out.println("The pair is : " + arr[i] + ", " + (value - arr[i]));
                 return true;
             }
             hs.add(arr[i]);
@@ -456,15 +519,23 @@ public class Searching {
         return false;
     }
 
-    public static void main8(String[] args) {
+    public static void main10() {
         int[] first = { 1, 5, 4, 3, 2, 7, 8, 9, 6 };
-        System.out.println(FindPair(first, first.length, 8));
-        System.out.println(FindPair2(first, first.length, 8));
-        System.out.println(FindPair3(first, first.length, 8));
+        System.out.println(findPair(first, first.length, 8));
+        System.out.println(findPair2(first, first.length, 8));
+        System.out.println(findPair3(first, first.length, 8));
 
     }
+/*
+The pair is : 1, 7
+true
+The pair is 1, 7
+true
+The pair is : 5, 3
+true
+*/
 
-    public static boolean FindDifference(int arr[], int size, int value) {
+    public static boolean findDifference(int arr[], int size, int value) {
         for (int i = 0; i < size; i++) {
             for (int j = i + 1; j < size; j++) {
                 if (Math.abs(arr[i] - arr[j]) == value) {
@@ -476,7 +547,7 @@ public class Searching {
         return false;
     }
 
-    public static boolean FindDifference2(int arr[], int size, int value) {
+    public static boolean findDifference2(int arr[], int size, int value) {
         int first = 0;
         int second = 0;
         int diff;
@@ -493,6 +564,17 @@ public class Searching {
         }
         return false;
     }
+    public static void main11() {
+        int[] first = { 1, 5, 4, 3, 2, 7, 8, 9, 6 };
+        System.out.println(findDifference(first, first.length, 6));
+        System.out.println(findDifference2(first, first.length, 6));
+    }
+/*
+The pair is:: 1 & 7
+true
+The pair is::1 & 7
+true
+*/
 
     public static int findMinDiff(int[] arr, int size) {
         Arrays.sort(arr);
@@ -504,8 +586,15 @@ public class Searching {
         }
         return diff;
     }
+    public static void main12() {
+        int[] second = {1, 6, 4, 19, 17, 20};
+        System.out.println("findMinDiff : " + findMinDiff(second, second.length));
+    }
+/*
+findMinDiff : 1
+*/
 
-    public static int MinDiffPair(int arr1[], int size1, int arr2[], int size2) {
+    public static int minDiffPair(int arr1[], int size1, int arr2[], int size2) {
         int minDiff = 9999999;
         int first = 0;
         int second = 0;
@@ -524,20 +613,22 @@ public class Searching {
             else
                 second += 1;
         }
-        System.out.println("The pair is :: " + out1 + out2);
+        System.out.println("The pair is :: " + out1 + " " + out2);
         System.out.println("Minimum difference is :: " + minDiff);
         return minDiff;
     }
 
-    public static void main88(String[] args) {
+    public static void main13() {   
         int[] first = { 1, 5, 4, 3, 2, 7, 8, 9, 6 };
-        System.out.println(FindDifference(first, first.length, 6));
-        System.out.println(FindDifference2(first, first.length, 6));
-        System.out.println(findMinDiff(first, first.length));
-        System.out.println(MinDiffPair(first, first.length, first, first.length));
+        int[] third = {6, 4, 19, 17, 20};
+        minDiffPair(first, first.length, third, third.length);
     }
+/*
+The pair is :: 4 4
+Minimum difference is :: 0
+*/
 
-    public static void ClosestPair(int arr[], int size, int value) {
+    public static void closestPair(int arr[], int size, int value) {
         int diff = 999999;
         int first = -1;
         int second = -1;
@@ -552,10 +643,10 @@ public class Searching {
                 }
             }
         }
-        System.out.println("closest pair is ::" + first + second);
+        System.out.println("closest pair is :: " + first + " " + second);
     }
 
-    public static void ClosestPair2(int arr[], int size, int value) {
+    public static void closestPair2(int arr[], int size, int value) {
         int first = 0, second = 0;
         int start = 0;
         int stop = size - 1;
@@ -579,16 +670,20 @@ public class Searching {
                 }
             }
         }
-        System.out.println("closest pair is :: " + first + second);
+        System.out.println("closest pair is :: " + first + " " + second);
     }
 
-    public static void main99(String[] args) {
-        int[] first = { 1, 5, 4, 3, 2, 7, 8, 9, 6 };
-        ClosestPair(first, first.length, 6);
-        ClosestPair2(first, first.length, 6);
+    public static void main14() {
+        int[] first = { 10, 20, 3, 4, 50, 80 };
+        closestPair(first, first.length, 47);
+        closestPair2(first, first.length, 47);
     }
+/*
+closest pair is :: 3 50
+closest pair is :: 3 50
+*/
 
-    public static boolean SumPairRestArray(int[] arr, int size) {
+    public static boolean sumPairRestArray(int[] arr, int size) {
         int total, low, high, curr, value;
         Arrays.sort(arr);
         total = 0;
@@ -600,7 +695,7 @@ public class Searching {
         while (low < high) {
             curr = arr[low] + arr[high];
             if (curr == value) {
-                System.out.println("Pair is :: " + arr[low] + arr[high]);
+                System.out.println("Pair is :: " + arr[low] + " " + arr[high]);
                 return true;
             } else if (curr < value)
                 low += 1;
@@ -610,18 +705,27 @@ public class Searching {
         return false;
     }
 
-    public static void ZeroSumTriplets(int[] arr, int size) {
+    public static void main15() {
+        int[] first = {1, 2, 4, 8, 16, 15};
+        System.out.println(sumPairRestArray(first, first.length));
+    }
+/*
+Pair is :: 8 15
+true
+*/
+
+    public static void zeroSumTriplets(int[] arr, int size) {
         for (int i = 0; i < (size - 2); i++) {
             for (int j = i + 1; j < (size - 1); j++) {
                 for (int k = j + 1; k < size; k++) {
                     if (arr[i] + arr[j] + arr[k] == 0)
-                        System.out.println("Triplet :: " + arr[i] + arr[j] + arr[k]);
+                        System.out.println("Triplet:: " + arr[i] + " " + arr[j] + " " + arr[k]);
                 }
             }
         }
     }
 
-    public static void ZeroSumTriplets2(int[] arr, int size) {
+    public static void zeroSumTriplets2(int[] arr, int size) {
         int start, stop;
         Arrays.sort(arr);
         for (int i = 0; i < (size - 2); i++) {
@@ -630,7 +734,7 @@ public class Searching {
 
             while (start < stop) {
                 if (arr[i] + arr[start] + arr[stop] == 0) {
-                    System.out.println("Triplet :: " + arr[i] + arr[start] + arr[stop]);
+                    System.out.println("Triplet :: " + arr[i] + " " + arr[start] + " " + arr[stop]);
                     start += 1;
                     stop -= 1;
                 } else if (arr[i] + arr[start] + arr[stop] > 0)
@@ -641,12 +745,24 @@ public class Searching {
         }
     }
 
+    public static void main16() {
+        int[] first = {0, -1, 2, -3, 1};
+        zeroSumTriplets(first, first.length);
+        zeroSumTriplets2(first, first.length);
+    }
+/*
+Triplet:: 0 -1 1
+Triplet:: 2 -3 1
+Triplet :: -3 1 2
+Triplet :: -1 0 1
+*/
+
     public static void findTriplet(int arr[], int size, int value) {
         for (int i = 0; i < (size - 2); i++)
             for (int j = i + 1; j < (size - 1); j++)
                 for (int k = j + 1; k < size; k++) {
                     if ((arr[i] + arr[j] + arr[k]) == value)
-                        System.out.println("Triplet :: " + arr[i] + arr[j] + arr[k]);
+                        System.out.println("Triplet :: " + arr[i] + " " + arr[j] + " " + arr[k]);
                 }
     }
 
@@ -658,7 +774,7 @@ public class Searching {
             stop = size - 1;
             while (start < stop) {
                 if (arr[i] + arr[start] + arr[stop] == value) {
-                    System.out.println("Triplet ::" + arr[i] + arr[start] + arr[stop]);
+                    System.out.println("Triplet ::" + arr[i] + " " + arr[start] + " " + arr[stop]);
                     start += 1;
                     stop -= 1;
                 } else if (arr[i] + arr[start] + arr[stop] > value)
@@ -668,19 +784,30 @@ public class Searching {
             }
         }
     }
+    public static void main17() {
+        int[] first = {1, 5, 15, 6, 9, 8};
+        findTriplet(first, first.length, 22);
+        findTriplet2(first, first.length, 22);
+    }
+/*
+Triplet :: 1 15 6
+Triplet :: 5 9 8
+Triplet ::1 6 15
+Triplet ::5 8 9
+*/
 
-    public static void ABCTriplet(int[] arr, int size) {
+    public static void abcTriplet(int[] arr, int size) {
         int start, stop;
         Arrays.sort(arr);
-        for (int i = 0; i < (size - 2); i++) {
-            start = i + 1;
+        for (int i = 0; i < size; i++) {
+            start = 0;
             stop = size - 1;
             while (start < stop) {
                 if (arr[i] == arr[start] + arr[stop]) {
-                    System.out.println("Triplet ::%d, %d, %d" + arr[i] + arr[start] + arr[stop]);
+                    System.out.println("abcTriplet:: " + arr[start] + " " + arr[stop] + " " + arr[i]) ;
                     start += 1;
                     stop -= 1;
-                } else if (arr[i] > arr[start] + arr[stop])
+                } else if (arr[i] < arr[start] + arr[stop])
                     stop -= 1;
                 else
                     start += 1;
@@ -688,7 +815,18 @@ public class Searching {
         }
     }
 
-    public static void SmallerThenTripletCount(int arr[], int size, int value) {
+    public static void main18() {
+        int[] first = {1, 5, 15, 6, 9, 8};
+        abcTriplet(first, first.length);
+    }
+
+/*
+abcTriplet:: 1 5 6
+abcTriplet:: 1 8 9
+abcTriplet:: 6 9 15
+*/
+
+    public static void smallerThenTripletCount(int arr[], int size, int value) {
         int start, stop;
         int count = 0;
         Arrays.sort(arr);
@@ -708,14 +846,22 @@ public class Searching {
         System.out.println(count);
     }
 
-    public static void APTriplets(int[] arr, int size) {
+    public static void main19() {
+        int[] first = {-2, -1,  0, 1};
+        smallerThenTripletCount(first, first.length, 2);
+    }
+/*
+4
+*/
+
+    public static void apTriplets(int[] arr, int size) {
         int i, j, k;
         for (i = 1; i < size - 1; i++) {
             j = i - 1;
             k = i + 1;
             while (j >= 0 && k < size) {
                 if (arr[j] + arr[k] == 2 * arr[i]) {
-                    System.out.println("Triplet ::" + arr[j] + arr[i] + arr[k]);
+                    System.out.println("AP Triplet:: " + arr[j] + " " + arr[i] + " " + arr[k]);
                     k += 1;
                     j -= 1;
                 } else if (arr[j] + arr[k] < 2 * arr[i])
@@ -726,14 +872,24 @@ public class Searching {
         }
     }
 
-    public static void GPTriplets(int[] arr, int size) {
+    public static void main20() {
+        int[] arr = { 2, 4, 10, 12, 14, 18, 36};
+        apTriplets(arr, arr.length);
+    }
+/*
+AP Triplet:: 2 10 18
+AP Triplet:: 10 12 14
+AP Triplet:: 10 14 18
+*/
+
+    public static void gpTriplets(int[] arr, int size) {
         int i, j, k;
         for (i = 1; i < size - 1; i++) {
             j = i - 1;
             k = i + 1;
             while (j >= 0 && k < size) {
                 if (arr[j] * arr[k] == arr[i] * arr[i]) {
-                    System.out.println("Triplet is :: " + arr[j] + arr[i] + arr[k]);
+                    System.out.println("GP Triplet:: " + arr[j] + " " + arr[i] + " " + arr[k]);
                     k += 1;
                     j -= 1;
                 } else if (arr[j] + arr[k] < 2 * arr[i])
@@ -743,6 +899,17 @@ public class Searching {
             }
         }
     }
+
+    public static void main21() {
+        int[] arr = {1, 2, 4, 8, 16};
+        gpTriplets(arr, arr.length);
+    }
+/*
+GP Triplet:: 1 2 4
+GP Triplet:: 2 4 8
+GP Triplet:: 1 4 16
+GP Triplet:: 4 8 16
+*/
 
     public static int numberOfTriangles(int[] arr, int size) {
         int i, j, k, count = 0;
@@ -776,6 +943,16 @@ public class Searching {
         }
         return count;
     }
+
+    public static void main22() {
+        int[] arr = {1, 2, 3, 4, 5};
+        System.out.println(numberOfTriangles(arr, arr.length));
+        System.out.println(numberOfTriangles2(arr, arr.length));
+    }
+/*    
+3
+3
+*/
 
     public static int getMax(int[] arr, int size) {
         int max = arr[0], count = 1, maxCount = 1;
@@ -826,12 +1003,17 @@ public class Searching {
         return max;
     }
 
-    public static void main9(String[] args) {
+    public static void main23() {
         int[] first = { 1, 30, 5, 13, 9, 31, 5 };
         System.out.println(getMax(first, first.length));
         System.out.println(getMax2(first, first.length));
         System.out.println(getMax3(first, first.length, 50));
     }
+/*
+5
+5
+5
+*/
 
     public static int getMajority(int[] arr, int size) {
         int max = 0, count = 0, maxCount = 0;
@@ -856,7 +1038,7 @@ public class Searching {
     public static int getMajority2(int[] arr, int size) {
         int majIndex = size / 2, count = 1;
         int candidate;
-        Arrays.sort(arr); // Sort(arr,size);
+        Arrays.sort(arr); 
         candidate = arr[majIndex];
         count = 0;
         for (int i = 0; i < size; i++) {
@@ -900,19 +1082,32 @@ public class Searching {
         }
     }
 
-    public static void main10(String[] args) {
+    public static void main24() {
         int[] first = { 1, 5, 5, 13, 5, 31, 5 };
         System.out.println(getMajority(first, first.length));
         System.out.println(getMajority2(first, first.length));
         System.out.println(getMajority3(first, first.length));
     }
+/*
+5
+5
+5
+*/
 
     public static int getMedian(int[] arr, int size) {
         Arrays.sort(arr);
         return arr[size / 2];
     }
+    
+    public static void main25() {
+        int[] first = { 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 };
+        System.out.println(getMedian(first, first.length));
+    }
+/*
+6
+*/
 
-    public static int SearchBotinicArrayMax(int[] arr, int size) {
+    public static int searchBitonicArrayMax(int[] arr, int size) {
         int start = 0, end = size - 1;
         int mid = (start + end) / 2;
         int maximaFound = 0;
@@ -943,17 +1138,17 @@ public class Searching {
         return arr[mid];
     }
 
-    public static int SearchBitonicArray(int[] arr, int size, int key) {
-        int max = FindMaxBitonicArray(arr, size);
-        int k = BinarySearch(arr, 0, max, key, true);
+    public static int searchBitonicArray(int[] arr, int size, int key) {
+        int max = findMaxBitonicArray(arr, size);
+        int k = binarySearch(arr, 0, max, key, true);
         if (k != -1) {
             return k;
         } else {
-            return BinarySearch(arr, max + 1, size - 1, key, false);
+            return binarySearch(arr, max + 1, size - 1, key, false);
         }
     }
 
-    public static int FindMaxBitonicArray(int[] arr, int size) {
+    public static int findMaxBitonicArray(int[] arr, int size) {
         int start = 0, end = size - 1, mid;
         if (size < 3) {
             System.out.println("error");
@@ -978,12 +1173,15 @@ public class Searching {
         return -1;
     }
 
-    public static void main11(String[] args) {
+    public static void main26() {
         int[] first = { 1, 5, 10, 13, 20, 30, 8, 7, 6 };
-
-        System.out.println(SearchBotinicArrayMax(first, first.length));
-        System.out.println(SearchBitonicArray(first, first.length, 7));
+        System.out.println(searchBitonicArrayMax(first, first.length));
+        System.out.println(searchBitonicArray(first, first.length, 7));
     }
+/*
+30
+7
+*/
 
     public static int findKeyCount(int[] arr, int size, int key) {
         int count = 0;
@@ -995,44 +1193,6 @@ public class Searching {
         return count;
     }
 
-    public static int findKeyCount2(int[] arr, int size, int key) {
-        int firstIndex, lastIndex;
-        firstIndex = findFirstIndex(arr, 0, size - 1, key);
-        lastIndex = findLastIndex(arr, 0, size - 1, key);
-        return (lastIndex - firstIndex + 1);
-    }
-
-    /* Using binary search method. */
-    public static int FirstIndex(int arr[], int size, int low, int high, int value) {
-        int mid = 0;
-        if (high >= low)
-            mid = (low + high) / 2;
-
-        /*
-         * Find first occurrence of value, either it should be the first element of the
-         * array or the value before it is smaller than it.
-         */
-        if ((mid == 0 || arr[mid - 1] < value) && (arr[mid] == value))
-            return mid;
-        else if (arr[mid] < value)
-            return FirstIndex(arr, size, mid + 1, high, value);
-        else
-            return FirstIndex(arr, size, low, mid - 1, value);
-    }
-
-    public static boolean isMajority(int arr[], int size) {
-        int majority = arr[size / 2];
-        int i = FirstIndex(arr, size, 0, size - 1, majority);
-        /*
-         * we are using majority element form array so we will get some valid index
-         * always.
-         */
-        if (((i + size / 2) <= (size - 1)) && arr[i + size / 2] == majority)
-            return true;
-        else
-            return false;
-    }
-
     public static int findFirstIndex(int[] arr, int start, int end, int key) {
         int mid;
         if (end < start) {
@@ -1042,7 +1202,7 @@ public class Searching {
         if (key == arr[mid] && (mid == start || arr[mid - 1] != key)) {
             return mid;
         }
-        if (key <= arr[mid])// <= is us the number.t in sorted array.
+        if (key <= arr[mid])
         {
             return findFirstIndex(arr, start, mid - 1, key);
         } else {
@@ -1058,7 +1218,7 @@ public class Searching {
         if (key == arr[mid] && (mid == end || arr[mid + 1] != key)) {
             return mid;
         }
-        if (key < arr[mid])// <
+        if (key < arr[mid])
         {
             return findLastIndex(arr, start, mid - 1, key);
         } else {
@@ -1066,11 +1226,62 @@ public class Searching {
         }
     }
 
-    public static void main12(String[] args) {
+    public static int findKeyCount2(int[] arr, int size, int key) {
+        int firstIndex, lastIndex;
+        firstIndex = findFirstIndex(arr, 0, size - 1, key);
+        lastIndex = findLastIndex(arr, 0, size - 1, key);
+        return (lastIndex - firstIndex + 1);
+    }
+
+    public static void main27() {
         int[] first = { 1, 5, 10, 13, 20, 30, 8, 7, 6 };
         System.out.println(findKeyCount(first, first.length, 6));
         System.out.println(findKeyCount2(first, first.length, 6));
     }
+/*
+1
+1
+*/
+
+    /* Using binary search method. */
+    public static int firstIndex(int arr[], int size, int low, int high, int value) {
+        int mid = 0;
+        if (high >= low)
+            mid = (low + high) / 2;
+
+        /*
+         * Find first occurrence of value, either it should be the first element of the
+         * array or the value before it is smaller than it.
+         */
+        if ((mid == 0 || arr[mid - 1] < value) && (arr[mid] == value))
+            return mid;
+        else if (arr[mid] < value)
+            return firstIndex(arr, size, mid + 1, high, value);
+        else
+            return firstIndex(arr, size, low, mid - 1, value);
+    }
+
+    public static boolean isMajority(int arr[], int size) {
+        int majority = arr[size / 2];
+        int i = firstIndex(arr, size, 0, size - 1, majority);
+        /*
+         * we are using majority element form array so we will get some valid index
+         * always.
+         */
+        if (((i + size / 2) <= (size - 1)) && arr[i + size / 2] == majority)
+            return true;
+        else
+            return false;
+    }
+
+    public static void main28() {
+        int[] arr = {3, 3, 3, 3, 4, 5, 10};
+        System.out.println(isMajority(arr, arr.length));
+    }
+/*
+true
+*/
+
 
     public static int maxProfit(int stocks[], int size) {
         int buy = 0, sell = 0;
@@ -1093,10 +1304,15 @@ public class Searching {
         return maxProfit;
     }
 
-    public static void main133(String[] args) {
+    public static void main29() {
         int[] first = { 10, 150, 6, 67, 61, 16, 86, 6, 67, 78, 150, 3, 28, 143 };
         System.out.println(maxProfit(first, first.length));
     }
+/*
+Purchase day is- 2 at price 6
+Sell day is- 10 at price 150
+144
+*/
 
     public static int findMedian(int[] arrFirst, int sizeFirst, int[] arrSecond, int sizeSecond) {
         int medianIndex = ((sizeFirst + sizeSecond) + (sizeFirst + sizeSecond) % 2) / 2;// cealing
@@ -1118,20 +1334,23 @@ public class Searching {
         }
     }
 
-    public static void main13(String[] args) {
+    public static void main30() {
         int[] first = { 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 };
         int[] second = { 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 };
         System.out.println(findMedian(first, first.length, second, second.length));
     }
+/*
+6
+*/
 
-    public static int BinarySearch01(int[] arr, int size) {
+    public static int binarySearch01(int[] arr, int size) {
         if (size == 1 && arr[0] == 1) {
             return 0;
         }
-        return BinarySearch01Util(arr, 0, size - 1);
+        return binarySearch01Util(arr, 0, size - 1);
     }
 
-    public static int BinarySearch01Util(int[] arr, int start, int end) {
+    public static int binarySearch01Util(int[] arr, int start, int end) {
         if (end < start) {
             return -1;
         }
@@ -1140,18 +1359,21 @@ public class Searching {
             return mid;
         }
         if (0 == arr[mid]) {
-            return BinarySearch01Util(arr, mid + 1, end);
+            return binarySearch01Util(arr, mid + 1, end);
         } else {
-            return BinarySearch01Util(arr, start, mid - 1);
+            return binarySearch01Util(arr, start, mid - 1);
         }
     }
 
-    public static void main14(String[] args) {
+    public static void main31() {
         int[] first = { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 };
-        System.out.println(BinarySearch01(first, first.length));
+        System.out.println(binarySearch01(first, first.length));
     }
+/*
+8
+*/
 
-    public static int RotationMaxUtil(int arr[], int start, int end) {
+    public static int rotationMaxUtil(int arr[], int start, int end) {
         if (end <= start) {
             return arr[start];
         }
@@ -1160,16 +1382,24 @@ public class Searching {
             return arr[mid];
 
         if (arr[start] <= arr[mid]) /* increasing part. */
-            return RotationMaxUtil(arr, mid + 1, end);
+            return rotationMaxUtil(arr, mid + 1, end);
         else
-            return RotationMaxUtil(arr, start, mid - 1);
+            return rotationMaxUtil(arr, start, mid - 1);
     }
 
-    public static int RotationMax(int[] arr, int size) {
-        return RotationMaxUtil(arr, 0, size - 1);
+    public static int rotationMax(int[] arr, int size) {
+        return rotationMaxUtil(arr, 0, size - 1);
     }
 
-    public static int FindRotationMaxUtil(int arr[], int start, int end) {
+    public static void main32() {
+        int[] first = { 34, 56, 77, 1, 5, 6, 6, 8, 10, 20, 30, 34 };
+        System.out.println(rotationMax(first, first.length));
+    }
+/*
+77
+*/   
+
+    public static int findRotationMaxUtil(int arr[], int start, int end) {
         /* single element case. */
         if (end <= start)
             return start;
@@ -1179,21 +1409,36 @@ public class Searching {
             return mid;
 
         if (arr[start] <= arr[mid]) /* increasing part. */
-            return FindRotationMaxUtil(arr, mid + 1, end);
+            return findRotationMaxUtil(arr, mid + 1, end);
         else
-            return FindRotationMaxUtil(arr, start, mid - 1);
+            return findRotationMaxUtil(arr, start, mid - 1);
     }
 
-    public static int FindRotationMax(int[] arr, int size) {
-        return FindRotationMaxUtil(arr, 0, size - 1);
+    public static int findRotationMax(int[] arr, int size) {
+        return findRotationMaxUtil(arr, 0, size - 1);
     }
 
-    public static int CountRotation(int[] arr, int size) {
-        int maxIndex = FindRotationMaxUtil(arr, 0, size - 1);
+    public static void main33() {
+        int[] first = { 34, 56, 77, 1, 5, 6, 6, 8, 10, 20, 30, 34 };
+        System.out.println(findRotationMax(first, first.length));
+    }
+/*
+2
+*/
+
+    public static int countRotation(int[] arr, int size) {
+        int maxIndex = findRotationMaxUtil(arr, 0, size - 1);
         return (maxIndex + 1) % size;
     }
+    public static void main34() {
+        int[] first = { 34, 56, 77, 1, 5, 6, 6, 8, 10, 20, 30, 34 };
+        System.out.println(countRotation(first, first.length));
+    }
+/*
+3
+*/
 
-    public static int BinarySearchRotateArrayUtil(int[] arr, int start, int end, int key) {
+    public static int binarySearchRotateArrayUtil(int[] arr, int start, int end, int key) {
         if (end < start) {
             return -1;
         }
@@ -1203,29 +1448,34 @@ public class Searching {
         }
         if (arr[mid] > arr[start]) {
             if (arr[start] <= key && key < arr[mid]) {
-                return BinarySearchRotateArrayUtil(arr, start, mid - 1, key);
+                return binarySearchRotateArrayUtil(arr, start, mid - 1, key);
             } else {
-                return BinarySearchRotateArrayUtil(arr, mid + 1, end, key);
+                return binarySearchRotateArrayUtil(arr, mid + 1, end, key);
             }
         } else {
             if (arr[mid] < key && key <= arr[end]) {
-                return BinarySearchRotateArrayUtil(arr, mid + 1, end, key);
+                return binarySearchRotateArrayUtil(arr, mid + 1, end, key);
             } else {
-                return BinarySearchRotateArrayUtil(arr, start, mid - 1, key);
+                return binarySearchRotateArrayUtil(arr, start, mid - 1, key);
             }
         }
     }
 
-    public static int BinarySearchRotateArray(int[] arr, int size, int key) {
-        return BinarySearchRotateArrayUtil(arr, 0, size - 1, key);
+    public static int binarySearchRotateArray(int[] arr, int size, int key) {
+        return binarySearchRotateArrayUtil(arr, 0, size - 1, key);
     }
 
-    public static void main555(String[] args) {
+    public static void main35() {
         int[] first = { 34, 56, 77, 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 };
-        System.out.println(BinarySearchRotateArray(first, first.length, 20));
-        System.out.println(CountRotation(first, first.length));
-        System.out.println(first[FindRotationMax(first, first.length)]);
+        System.out.println(binarySearchRotateArray(first, first.length, 20));
+        System.out.println(countRotation(first, first.length));
+        System.out.println(first[findRotationMax(first, first.length)]);
     }
+/*
+15
+3
+77
+*/
 
     public static int minAbsDiffAdjCircular(int[] arr, int size) {
         int diff = 9999999;
@@ -1238,13 +1488,14 @@ public class Searching {
         return diff;
     }
 
-    /*
-     * Testing code
-     */
-    public static void main666(String[] str) {
+    // Testing Code
+    public static void main36() {
         int[] arr = { 5, 29, 18, 51, 11 };
         System.out.println(minAbsDiffAdjCircular(arr, arr.length));
     }
+/*
+6
+*/
 
     public static void swapch(char[] arr, int first, int second) {
         char temp = arr[first];
@@ -1261,11 +1512,14 @@ public class Searching {
         }
     }
 
-    public static void main16(String[] args) {
+    public static void main37() {
         char[] str = "aaaabbbb".toCharArray();
         transformArrayAB1(str, str.length);
         System.out.println(str);
     }
+/*
+abababab
+*/
 
     public static boolean checkPermutation(char[] array1, int size1, char[] array2, int size2) {
         if (size1 != size2) {
@@ -1281,14 +1535,16 @@ public class Searching {
         return true;
     }
 
-    public static void main17(String[] args) {
+    public static void main38() {
         char[] str1 = "aaaabbbb".toCharArray();
         char[] str2 = "bbaaaabb".toCharArray();
-
         System.out.println(checkPermutation(str1, str1.length, str2, str2.length));
     }
+/*
+true
+*/
 
-    public static boolean FindElementIn2DArray(int[] arr[], int r, int c, int value) {
+    public static boolean findElementIn2DArray(int[] arr[], int r, int c, int value) {
         int row = 0;
         int column = c - 1;
         while (row < r && column >= 0) {
@@ -1358,16 +1614,33 @@ public class Searching {
         int diff = second - first;
 
         for (int i = 0; i < size; i++)
+        {
             index = (arr[i] - first) / diff;
-        if (index > size - 1 || count[index] != 0)
-            return false;
-        count[index] = 1;
+            if (index > size - 1 || count[index] != 0)
+                return false;
+            count[index] = 1;
+        }    
 
         for (int i = 0; i < size; i++)
+        {       
             if (count[i] != 1)
                 return false;
+        }
         return true;
     }
+
+    public static void main39() {
+        int[] arr = { 20, 25, 15, 5, 0, 10, 35, 30};
+        System.out.println(isAP(arr, arr.length));
+        System.out.println(isAP2(arr, arr.length));
+        System.out.println(isAP3(arr, arr.length));
+
+    }
+/*
+true
+true
+true
+*/
 
     public static int findBalancedPoint(int[] arr, int size) {
         int first = 0;
@@ -1387,14 +1660,15 @@ public class Searching {
         return -1;
     }
 
-    /*
-     * Testing code
-     */
-    public static void main18(String[] args) {
+    // Testing Code
+    public static void main40() {
         int[] arr = { -7, 1, 5, 2, -4, 3, 0 };
         System.out.println(findBalancedPoint(arr, arr.length));
 
     }
+/*
+3
+*/
 
     public static int findFloor(int arr[], int size, int value) {
         int start = 0;
@@ -1439,7 +1713,17 @@ public class Searching {
         return -1;
     }
 
-    public static int ClosestNumber(int arr[], int size, int num) {
+    public static void main41() {
+        int[] arr = {2, 4, 8, 16};
+        System.out.println(findFloor(arr, arr.length, 5));
+        System.out.println(findCeil(arr, arr.length, 5));
+    }
+/*
+1
+2
+*/
+
+    public static int closestNumber(int arr[], int size, int num) {
         int start = 0;
         int stop = size - 1;
         int output = -1;
@@ -1462,7 +1746,15 @@ public class Searching {
         return output;
     }
 
-    public static boolean DuplicateKDistance(int arr[], int size, int k) {
+    public static void main42() {
+        int[] arr = {2, 4, 8, 16};
+        System.out.println(closestNumber(arr, arr.length, 9));
+    }
+/*
+8
+*/
+
+    public static boolean duplicateKDistance(int arr[], int size, int k) {
         HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
 
         for (int i = 0; i < size; i++) {
@@ -1475,13 +1767,14 @@ public class Searching {
         return false;
     }
 
-    /*
-     * Testing code
-     */
-    public static void main66(String[] args) {
+    // Testing Code
+    public static void main43() {
         int[] arr = { 1, 2, 3, 1, 4, 5 };
-        DuplicateKDistance(arr, arr.length, 3);
+        duplicateKDistance(arr, arr.length, 3);
     }
+/*
+Value:1 Index: 0 & 3
+*/
 
     public static void frequencyCounts(int[] arr, int size) {
         int index;
@@ -1498,10 +1791,22 @@ public class Searching {
             }
         }
         for (int i = 0; i < size; i++)
-            System.out.println((i + 1) + Math.abs(arr[i]));
+            System.out.println((i + 1) + " " + Math.abs(arr[i]));
     }
 
-    public static int KLargestElements(int arrIn[], int size, int k) {
+    public static void main44() {
+        int[] arr = {1, 2, 2, 2, 1};
+        frequencyCounts(arr, arr.length);
+    }
+/*
+1 2
+2 3
+3 0
+4 0
+5 0
+*/
+
+    public static void kLargestElements(int arrIn[], int size, int k) {
         int[] arr = new int[size];
         for (int i = 0; i < size; i++)
             arr[i] = arrIn[i];
@@ -1509,15 +1814,13 @@ public class Searching {
         Arrays.sort(arr);
         for (int i = 0; i < size; i++) {
             if (arrIn[i] >= arr[size - k]) {
-                System.out.println(arrIn[i]);
-                return arrIn[i];
+                System.out.print(arrIn[i] + " ");
             }
-
         }
-        return -1;
+        System.out.println();
     }
 
-    public static void QuickSelectUtil(int arr[], int lower, int upper, int k) {
+    public static void quickSelectUtil(int arr[], int lower, int upper, int k) {
         if (upper <= lower)
             return;
 
@@ -1526,10 +1829,10 @@ public class Searching {
         int stop = upper;
 
         while (lower < upper) {
-            while (arr[lower] <= pivot) {
+            while (arr[lower] <= pivot  && lower < upper) {
                 lower++;
             }
-            while (arr[upper] > pivot) {
+            while (arr[upper] > pivot && lower <= upper) {
                 upper--;
             }
             if (lower < upper) {
@@ -1539,28 +1842,69 @@ public class Searching {
 
         swap(arr, upper, start); // upper is the pivot position
         if (k < upper)
-            QuickSelectUtil(arr, start, upper - 1, k); // pivot -1 is the upper for left sub array.
+            quickSelectUtil(arr, start, upper - 1, k); // pivot -1 is the upper for left sub array.
         if (k > upper)
-            QuickSelectUtil(arr, upper + 1, stop, k); // pivot + 1 is the lower for right sub array.
+            quickSelectUtil(arr, upper + 1, stop, k); // pivot + 1 is the lower for right sub array.
     }
 
-    public static int KLargestElements2(int arrIn[], int size, int k) {
+    public static void kLargestElements2(int arrIn[], int size, int k) {
         int[] arr = new int[size];
         for (int i = 0; i < size; i++)
             arr[i] = arrIn[i];
 
-        QuickSelectUtil(arr, 0, size - 1, size - k);
+        quickSelectUtil(arr, 0, size - 1, size - k);
         for (int i = 0; i < size; i++) {
             if (arrIn[i] >= arr[size - k]) {
-                System.out.println(arrIn[i]);
-                return arrIn[i];
+                System.out.print(arrIn[i] + " ");
             }
         }
-        return -1;
+        System.out.println();
     }
 
-    /* linear search method */
-    public static int FixPoint(int[] arr, int size) {
+    public static void main45() {
+        int[] arr = {10, 50, 30, 60, 15};
+        kLargestElements(arr, arr.length, 2);
+        kLargestElements2(arr, arr.length, 2);
+    }
+
+/*
+50 60 
+50 60 
+*/
+
+/*
+def ksmallest_elements(arrIn, k):
+    size = len(arrIn)
+    arr = list(arrIn)
+    arr.sort()
+    for i in range(size):
+        if arrIn[i] <= arr[k-1]:
+            print(arrIn[i], end=' ')
+
+def ksmallest_elements2(arrIn, k):
+    size = len(arrIn)
+    arr = list(arrIn)
+    quick_select_util(arr, 0, size-1, k)
+    for i in range(size):
+        if arrIn[i] <= arr[k-1]:
+            print(arrIn[i], end=' ')
+
+def main38():
+    arr = [4, 2, 6, 1, 5]
+    ksmallest_elements(arr, 3)
+    print("")
+    ksmallest_elements2(arr, 3)
+    print("")
+    arr = [ 1, 5, 8, 9, 6, 7, 3, 4, 2, 0]
+    ksmallest_elements(arr, 5)
+    print("")
+    ksmallest_elements2(arr, 5)
+    print("")
+
+*/
+
+/* linear search method */
+    public static int fixPoint(int[] arr, int size) {
         for (int i = 0; i < size; i++) {
             if (arr[i] == i)
                 return i;
@@ -1569,7 +1913,7 @@ public class Searching {
     }
 
     /* Binary search method */
-    public static int FixPoint2(int[] arr, int size) {
+    public static int fixPoint2(int[] arr, int size) {
         int low = 0;
         int high = size - 1;
         int mid;
@@ -1586,13 +1930,23 @@ public class Searching {
         return -1;
     }
 
+    public static void main46() {
+        int[] arr = {-10, -2, 0, 3, 11, 12, 35, 51, 200};
+        System.out.println(fixPoint(arr, arr.length));
+        System.out.println(fixPoint2(arr, arr.length));
+    }
+/*
+3
+3
+*/
+
     public static int subArraySums(int arr[], int size, int value) {
         int first = 0;
         int second = 0;
         int sum = arr[first];
         while (second < size && first < size) {
             if (sum == value)
-                System.out.println(first + second);
+                System.out.println(first + " " + second);
 
             if (sum < value) {
                 second += 1;
@@ -1606,7 +1960,19 @@ public class Searching {
         return sum;
     }
 
-    public static int MaxConSub(int[] arr, int size) {
+    public static void main47() {
+        int[] arr = {15, 5, 5, 20, 10, 5, 5, 20, 10, 10};
+        subArraySums(arr, arr.length, 20);
+    }
+/*
+0 1
+3 3
+4 6
+7 7
+8 9
+*/
+
+    public static int maxConSub(int[] arr, int size) {
         int currMax = 0;
         int maximum = 0;
         for (int i = 0; i < size; i++) {
@@ -1620,7 +1986,7 @@ public class Searching {
         return maximum;
     }
 
-    public static int MaxConSubArr(int[] A, int sizeA, int[] B, int sizeB) {
+    public static int maxConSubArr(int[] A, int sizeA, int[] B, int sizeB) {
         int currMax = 0;
         int maximum = 0;
         HashSet<Integer> hs = new HashSet<Integer>();
@@ -1632,22 +1998,24 @@ public class Searching {
             if (hs.contains(A[i]))
                 currMax = 0;
             else
+            {    
                 currMax = Math.max(A[i], currMax + A[i]);
-        if (currMax < 0)
-            currMax = 0;
-        if (maximum < currMax)
-            maximum = currMax;
+                if (currMax < 0)
+                    currMax = 0;
+                if (maximum < currMax)
+                    maximum = currMax;
+            }
         System.out.println(maximum);
         return maximum;
     }
 
-    public static int MaxConSubArr2(int A[], int sizeA, int B[], int sizeB) {
+    public static int maxConSubArr2(int A[], int sizeA, int B[], int sizeB) {
         Arrays.sort(B);
         int currMax = 0;
         int maximum = 0;
 
         for (int i = 0; i < sizeA; i++) {
-            if (Binarysearch(B, sizeB, A[i]))
+            if (binarySearch(B, sizeB, A[i]))
                 currMax = 0;
             else {
                 currMax = Math.max(A[i], currMax + A[i]);
@@ -1661,7 +2029,21 @@ public class Searching {
         return maximum;
     }
 
-    public static int RainWater(int[] arr, int size) {
+    public static void main48() {
+        int[] arr = {1, 2, -3, 4, 5, -10, 6, 7};
+        maxConSub(arr, arr.length);
+        int[] arr2 = {1, 2, 3, 4, 5, -10, 6, 7, 3};
+        int[] arr3 = {1, 3};
+        maxConSubArr(arr2, arr2.length, arr3, arr3.length);
+        maxConSubArr2(arr2, arr2.length, arr3, arr3.length);
+    }
+/*
+13
+13
+13
+*/
+
+    public static int rainWater(int[] arr, int size) {
         int[] leftHigh = new int[size];
         int[] rightHigh = new int[size];
 
@@ -1687,7 +2069,7 @@ public class Searching {
         return water;
     }
 
-    public static int RainWater2(int[] arr, int size) {
+    public static int rainWater2(int[] arr, int size) {
         int water = 0;
         int leftMax = 0, rightMax = 0;
         int left = 0;
@@ -1712,6 +2094,16 @@ public class Searching {
         return water;
     }
 
+    public static void main49() {
+        int[] arr = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+        rainWater(arr, arr.length);
+        rainWater2(arr, arr.length);
+    }
+/*
+Water : 6
+Water : 6
+*/
+
     public static void seperateEvenAndOdd(int[] arr, int size) {
         int left = 0, right = size - 1;
         while (left < right) {
@@ -1727,12 +2119,68 @@ public class Searching {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main50() {
         int[] first = { 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 };
         seperateEvenAndOdd(first, first.length);
         for (int val : first) {
             System.out.print(val + " ");
-            ;
         }
+    }
+
+/*
+30 20 6 6 6 6 6 6 10 8 7 13 5 1
+*/
+
+    public static void main(String[] args) {
+        main1();
+        main2();
+        main3();
+        main4();
+        main5();
+        main6();
+        main7();
+        main8();
+        main9();
+        main10();
+        main11();
+        main12();
+        main13();
+        main14();
+        main15();
+        main16();
+        main17();
+        main18();
+        main19();
+        main20();
+        main21();
+        main22();
+        main23();
+        main24();
+        main25();
+        main26();
+        main27();
+        main28();
+        main29();
+        main30();
+        main31();
+        main32();
+        main33();
+        main34();
+        main35();
+        main36();
+        main37();
+        main38();
+        main39();
+        main40();
+        main41();
+        main42();
+        main43();
+        main44();
+        main45();
+        main46();
+        main47();
+        main48();
+        main49();
+        main50();
     }
 }

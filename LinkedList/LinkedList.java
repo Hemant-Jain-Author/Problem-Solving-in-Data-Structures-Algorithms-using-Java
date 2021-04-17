@@ -275,23 +275,25 @@ public boolean compareList2(LinkedList ll2) {
         }
 
         int diff;
-        if (l1 < 12) {
-            Node temp = head;
-            head = head2;
-            head2 = temp;
+        tempHead = this.head;
+        tempHead2 = head2;
+        if (l1 < l2) {
+            Node temp = tempHead;
+            tempHead = tempHead2;
+            tempHead2 = temp;
             diff = l2 - l1;
         } else {
             diff = l1 - l2;
         }
 
         for (; diff > 0; diff--) {
-            head = head.next;
+            tempHead = tempHead.next;
         }
-        while (head != head2) {
-            head = head.next;
-            head2 = head2.next;
+        while (tempHead != tempHead2) {
+            tempHead = tempHead.next;
+            tempHead2 = tempHead2.next;
         }
-        return head;
+        return tempHead;
     }
 
     public void deleteList() {
@@ -305,6 +307,7 @@ public boolean compareList2(LinkedList ll2) {
             System.out.print(temp.value + " ");
             temp = temp.next;
         }
+        System.out.println("");
     }
 
     public void sortedInsert(int value) {
@@ -412,14 +415,26 @@ public boolean compareList2(LinkedList ll2) {
         ll2.addHead(3);
         ll2.print();
 
-        System.out.println((ll.findIntersection(ll2)).value);
-        /*
-         * LinkedList l2 = ll.copyList(); l2.print(); LinkedList l3 =
-         * ll.CopyListReversed(); l3.print()
-         * 
-         * System.out.println(ll.nthNodeFromBegining(2));
-         * System.out.println(ll.nthNodeFromEnd(2));
-         * System.out.println(ll.nthNodeFromEnd2(2));
-         */
+        System.out.println("findIntersection: " + (ll.findIntersection(ll2)).value);
+        ll.print();
+        LinkedList l2 = ll.copyList(); 
+        l2.print(); 
+        LinkedList l3 = ll.copyListReversed(); 
+        l3.print();
+         
+        System.out.println(ll.nthNodeFromBegining(2));
+        System.out.println(ll.nthNodeFromEnd(2));
+        System.out.println(ll.nthNodeFromEnd2(2));
+        
     }
 }
+/*
+3 2 1 2 1 
+findIntersection: 2
+3 2 1 
+3 2 1 
+1 2 3 
+2
+2
+2
+*/

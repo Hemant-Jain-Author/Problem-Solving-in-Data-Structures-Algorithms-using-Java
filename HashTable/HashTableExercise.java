@@ -4,39 +4,20 @@ import java.util.HashSet;
 public class HashTableExercise {
 
     public static void main(String[] args) {
-        char[] first = "hello".toCharArray();
-        char[] second = "elloh".toCharArray();
-        char[] third = "world".toCharArray();
-
-        System.out.println("isAnagram : " + isAnagram(first, second));
-        System.out.println("isAnagram : " + isAnagram(first, third));
-
-        System.out.println(removeDuplicate(first));
-
-        int arr[] = { 1, 2, 3, 5, 6, 7, 8, 9, 10 };
-        System.out.println(findMissing(arr, 1, 10));
-
-        int arr1[] = { 1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1 };
-        printRepeating(arr1);
-        printFirstRepeating(arr1);
+        main1();
+        main2();
+        main3();
+        main4();
+        main5();
     }
-/*
-isAnagram : true
-isAnagram : false
-hello
-4
-Repeating elements are: 4 1
-First Repeating number is : 1
-*/
+
     public static boolean isAnagram(char[] str1, char[] str2) {
         int size1 = str1.length;
         int size2 = str2.length;
-
         if (size1 != size2)
             return false;
 
         HashMap<Character, Integer> hm = new HashMap<Character, Integer>();
-
         for (char ch : str1) {
             if (hm.containsKey(ch))
                 hm.put(ch, hm.get(ch) + 1);
@@ -50,9 +31,21 @@ First Repeating number is : 1
             else
                 hm.put(ch, hm.get(ch) - 1);
         }
-
         return true;
     }
+
+    public static void main1() {
+        char[] first = "hello".toCharArray();
+        char[] second = "elloh".toCharArray();
+        char[] third = "world".toCharArray();
+
+        System.out.println("isAnagram : " + isAnagram(first, second));
+        System.out.println("isAnagram : " + isAnagram(first, third));
+    }
+/*
+isAnagram : true
+isAnagram : false
+*/
 
     public static String removeDuplicate(char[] str) {
         HashSet<Character> hs = new HashSet<Character>();
@@ -67,6 +60,14 @@ First Repeating number is : 1
         return out;
     }
 
+    public static void main2() {
+        char[] first = "hello".toCharArray();
+        System.out.println(removeDuplicate(first));
+    }
+/*
+helo
+*/
+
     public static int findMissing(int[] arr, int start, int end) {
         HashSet<Integer> hs = new HashSet<Integer>();
         for (int i : arr) {
@@ -80,6 +81,14 @@ First Repeating number is : 1
         return Integer.MAX_VALUE;
     }
 
+    public static void main3() {
+        int arr[] = { 1, 2, 3, 5, 6, 7, 8, 9, 10 };
+        System.out.println(findMissing(arr, 1, 10));
+    }
+/*
+4
+*/
+
     public static void printRepeating(int[] arr) {
         HashSet<Integer> hs = new HashSet<Integer>();
 
@@ -91,6 +100,13 @@ First Repeating number is : 1
                 hs.add(val);
         }
     }
+    public static void main4() {
+        int arr1[] = { 1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1 };
+        printRepeating(arr1);
+    }
+/*
+Repeating elements are: 4 1
+*/
 
     public static void printFirstRepeating(int[] arr) {
         int i;
@@ -106,6 +122,14 @@ First Repeating number is : 1
         }
         System.out.println("First Repeating number is:" + firstRepeating);
     }
+
+    public static void main5() {
+        int arr1[] = { 1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1 };
+        printFirstRepeating(arr1);
+    }
+/*
+First Repeating number is:1
+*/
 
     public static int hornerHash(char[] key, int tableSize) {
         int size = key.length;

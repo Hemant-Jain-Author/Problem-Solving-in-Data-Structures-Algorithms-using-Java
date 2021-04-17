@@ -49,11 +49,6 @@ public class TST {
 
     public boolean find(String word) {
         boolean ret = find(root, word, 0);
-        System.out.print(word + " :: ");
-        if (ret)
-            System.out.println(" Found ");
-        else
-            System.out.println("Not Found ");
         return ret;
     }
 
@@ -62,10 +57,13 @@ public class TST {
         tt.add("banana");
         tt.add("apple");
         tt.add("mango");
-        System.out.println("\nSearch results for apple, banana, grapes and mango :");
-        tt.find("apple");
-        tt.find("banana");
-        tt.find("mango");
-        tt.find("grapes");
+        System.out.println("Apple Found : " + tt.find("apple"));
+        System.out.println("Banana Found : " + tt.find("banana"));
+        System.out.println("Grapes Found : " + tt.find("grapes"));
     }
 }
+/*
+Apple Found : true
+Banana Found : true
+Grapes Found : false
+*/

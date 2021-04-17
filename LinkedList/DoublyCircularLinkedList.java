@@ -145,9 +145,9 @@ public class DoublyCircularLinkedList {
         ll.addHead(1);
         ll.addHead(2);
         ll.addHead(3);
-        ll.addHead(1);
-        ll.addHead(2);
-        ll.addHead(3);
         ll.print();
     }
 }
+/*
+3 2 1
+*/

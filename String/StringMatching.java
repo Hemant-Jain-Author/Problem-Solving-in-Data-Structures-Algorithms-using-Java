@@ -1,4 +1,4 @@
-public class Algo {
+public class StringMatching {
     int bruteForceSearch(String text, String pattern) {
         return bruteForceSearch(text.toCharArray(), pattern.toCharArray());
     }
@@ -121,9 +121,14 @@ public class Algo {
     public static void main(String[] args) {
         String st1 = "hello, world!";
         String st2 = "world";
-        Algo algo = new Algo();
+        StringMatching algo = new StringMatching();
         System.out.println("BruteForceSearch return : " + algo.bruteForceSearch(st1, st2));
         System.out.println("RobinKarp return : " + algo.robinKarp(st1, st2));
         System.out.println("KMP return : " + algo.KMP(st1, st2));
     }
+/*
+BruteForceSearch return : 7
+RobinKarp return : 7
+KMP return : 7
+*/
 }

@@ -52,14 +52,15 @@ public class HashTableSC {
     }
 
     public void print() {
+        System.out.print("Hash Table contains ::");
         for (int i = 0; i < tableSize; i++) {
-            System.out.println("printing for index value :: " + i + "List of value printing :: ");
             Node head = listArray[i];
             while (head != null) {
-                System.out.println(head.value);
+                System.out.print(head.value + " ");
                 head = head.next;
             }
         }
+        System.out.println();
     }
 
     public boolean find(int value) {
@@ -76,19 +77,17 @@ public class HashTableSC {
 
     public static void main(String[] args) {
         HashTableSC ht = new HashTableSC();
-
-        for (int i = 100; i < 110; i++) {
-            ht.add(i);
-        }
-        System.out.println("search 100 :: " + ht.find(100));
-        System.out.println("remove 100 :: " + ht.remove(100));
-        System.out.println("search 100 :: " + ht.find(100));
-        System.out.println("remove 100 :: " + ht.remove(100));
+        ht.add(1);
+        ht.add(2);
+        ht.add(3);
+        ht.print();
+        System.out.println("Find key 2 : " + ht.find(2));
+        ht.remove(2);
+        System.out.println("Find key 2 : " + ht.find(2));
     }
 }
 /*
-search 100 :: true
-remove 100 :: true
-search 100 :: false
-remove 100 :: false
+Hash Table contains ::1 2 3 
+Find key 2 : true
+Find key 2 : false
 */

@@ -58,6 +58,7 @@ public class StackLL {
             System.out.print(temp.value + " ");
             temp = temp.next;
         }
+        System.out.println();
     }
 
     public static void main(String[] args) {
@@ -68,6 +69,10 @@ public class StackLL {
         s.print();
         System.out.println(s.pop());
         System.out.println(s.pop());
-        s.print();
     }
+/*
+3 2 1 
+3
+2
+*/
 }

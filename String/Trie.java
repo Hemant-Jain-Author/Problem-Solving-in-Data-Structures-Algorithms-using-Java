@@ -16,7 +16,7 @@ public class Trie {
     };
 
     public Trie() {
-        root = new Node(' ');// first node with dummy value.
+        root = new Node(' ');
     }
 
     Node add(String str) {
@@ -79,18 +79,17 @@ public class Trie {
     }
 
     public static void main(String[] args) {
-        Trie t = new Trie();
-        String a = "hemant";
-        String b = "heman";
-        String c = "hemantjain";
-        String d = "jain";
-        t.add(a);
-        t.add(d);
-        System.out.println(t.find(a));
-        t.remove(a);
-        t.remove(d);
-        System.out.println(t.find(a));
-        System.out.println(t.find(c));
-        System.out.println(t.find(d));
+        Trie tt = new Trie();
+        tt.add("banana");
+        tt.add("apple");
+        tt.add("mango");
+        System.out.println("Apple Found : " + tt.find("apple"));
+        System.out.println("Banana Found : " + tt.find("banana"));
+        System.out.println("Grapes Found : " + tt.find("grapes"));
     }
 }
+/*
+Apple Found : true
+Banana Found : true
+Grapes Found : false
+*/

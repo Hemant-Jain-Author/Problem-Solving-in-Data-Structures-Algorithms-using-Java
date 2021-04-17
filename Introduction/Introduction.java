@@ -18,7 +18,7 @@ public class Introduction {
         return;
     }
 
-    public static int SumArray(int[] arr) {
+    public static int sumArray(int[] arr) {
         int size = arr.length;
         int total = 0;
         for (int index = 0; index < size; index++) {
@@ -30,7 +30,7 @@ public class Introduction {
     /* Testing code */
     public static void main1() {
         int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        System.out.println("Sum of values in array:" + SumArray(arr));
+        System.out.println("Sum of values in array:" + sumArray(arr));
     }
 /*
 Sum of values in array:45
@@ -59,7 +59,7 @@ fun2 line 1
 fun1 line 2
 main line 2
 */
-    public static int SequentialSearch(int[] arr, int size, int value) {
+    public static int sequentialSearch(int[] arr, int size, int value) {
         for (int i = 0; i < size; i++) {
             if (value == arr[i]) {
                 {
@@ -70,7 +70,7 @@ main line 2
         return -1;
     }
 
-    public static int BinarySearch(int[] arr, int size, int value) {
+    public static int binarySearch(int[] arr, int size, int value) {
         int mid;
         int low = 0;
         int high = size - 1;
@@ -91,12 +91,12 @@ main line 2
 
     public static void main3() {
         int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        System.out.println("SequentialSearch:" + SequentialSearch(arr, arr.length, 7));
-        System.out.println("BinarySearch:" + BinarySearch(arr, arr.length, 7));
+        System.out.println("sequentialSearch:" + sequentialSearch(arr, arr.length, 7));
+        System.out.println("binarySearch:" + binarySearch(arr, arr.length, 7));
     }
 /*
-SequentialSearch:6
-BinarySearch:6
+sequentialSearch:6
+binarySearch:6
 */
     public static void rotateArray(int[] a, int n, int k) {
         reverseArray(a, 0, k - 1);
@@ -154,7 +154,7 @@ BinarySearch:6
 /*
 Max sub array sum :10
 */
-    public static void WaveArray2(int[] arr) {
+    public static void waveArray2(int[] arr) {
         int size = arr.length;
         /* Odd elements are lesser then even elements. */
         for (int i = 1; i < size; i += 2) {
@@ -167,7 +167,7 @@ Max sub array sum :10
         }
     }
     
-    public static void WaveArray(int[] arr)
+    public static void waveArray(int[] arr)
     { 
         int size = arr.length; 
         Arrays.sort(arr); 
@@ -180,10 +180,10 @@ Max sub array sum :10
     /* Testing code */
     public static void main6() {
         int[] arr = { 8, 1, 2, 3, 4, 5, 6, 4, 2 };
-        WaveArray(arr);
+        waveArray(arr);
         printArray(arr, arr.length);
         int[] arr2 = { 8, 1, 2, 3, 4, 5, 6, 4, 2 };
-        WaveArray2(arr2);
+        waveArray2(arr2);
         printArray(arr2, arr2.length);
     }
 /*
@@ -236,7 +236,7 @@ Max sub array sum :10
 [ -1 1 2 3 4 -1 6 7 8 9 ]
 [ -1 1 2 3 4 -1 6 7 8 9 ]
 */
-    public static void Sort1toN(int[] arr, int size) {
+    public static void sort1toN(int[] arr, int size) {
         int curr, value, next;
         for (int i = 0; i < size; i++) {
             curr = i;
@@ -251,7 +251,7 @@ Max sub array sum :10
         }
     }
 
-    public static void Sort1toN2(int[] arr, int size) {
+    public static void sort1toN2(int[] arr, int size) {
         int temp;
         for (int i = 0; i < size; i++) {
             while (arr[i] != i + 1 && arr[i] > 1) {
@@ -266,11 +266,11 @@ Max sub array sum :10
     public static void main8() {
         int[] arr = { 8, 5, 6, 1, 9, 3, 2, 7, 4, 10 };
         int size = arr.length;
-        Sort1toN2(arr, size);
+        sort1toN2(arr, size);
         printArray(arr, size);
         int[] arr2 = { 8, 5, 6, 1, 9, 3, 2, 7, 4, 10 };
         size = arr2.length;
-        Sort1toN(arr2, size);
+        sort1toN(arr2, size);
         printArray(arr2, size);
 
     }
@@ -278,7 +278,7 @@ Max sub array sum :10
 [ 1 2 3 4 5 6 7 8 9 10 ]
 [ 1 2 3 4 5 6 7 8 9 10 ]
 */
-    public static int SmallestPositiveMissingNumber(int[] arr, int size) {
+    public static int smallestPositiveMissingNumber(int[] arr, int size) {
         int found;
         for (int i = 1; i < size + 1; i++) {
             found = 0;
@@ -295,7 +295,7 @@ Max sub array sum :10
         return -1;
     }
 
-    public static int SmallestPositiveMissingNumber2(int[] arr, int size) {
+    public static int smallestPositiveMissingNumber2(int[] arr, int size) {
         HashMap<Integer, Integer> hs = new HashMap<Integer, Integer>();
         for (int i = 0; i < size; i++) {
             hs.put(arr[i], 1);
@@ -308,7 +308,7 @@ Max sub array sum :10
         return -1;
     }
 
-    public static int SmallestPositiveMissingNumber3(int[] arr, int size) {
+    public static int smallestPositiveMissingNumber3(int[] arr, int size) {
         int[] aux = new int[size];
         Arrays.fill(aux, -1);
 
@@ -325,7 +325,7 @@ Max sub array sum :10
         return -1;
     }
 
-    public static int SmallestPositiveMissingNumber4(int[] arr, int size) {
+    public static int smallestPositiveMissingNumber4(int[] arr, int size) {
         int temp;
         for (int i = 0; i < size; i++) {
             while (arr[i] != i + 1 && arr[i] > 0 && arr[i] <= size) {
@@ -347,19 +347,19 @@ Max sub array sum :10
         int[] arr = { 8, 5, 6, 1, 9, 11, 2, 7, 4, 10 };
         int size = arr.length;
 
-        System.out.println("SmallestPositiveMissingNumber :" + SmallestPositiveMissingNumber(arr, size));
-        System.out.println("SmallestPositiveMissingNumber :" + SmallestPositiveMissingNumber2(arr, size));
-        System.out.println("SmallestPositiveMissingNumber :" + SmallestPositiveMissingNumber3(arr, size));
-        System.out.println("SmallestPositiveMissingNumber :" + SmallestPositiveMissingNumber4(arr, size));
+        System.out.println("smallestPositiveMissingNumber :" + smallestPositiveMissingNumber(arr, size));
+        System.out.println("smallestPositiveMissingNumber :" + smallestPositiveMissingNumber2(arr, size));
+        System.out.println("smallestPositiveMissingNumber :" + smallestPositiveMissingNumber3(arr, size));
+        System.out.println("smallestPositiveMissingNumber :" + smallestPositiveMissingNumber4(arr, size));
     }
 
 /*
-SmallestPositiveMissingNumber :3
-SmallestPositiveMissingNumber :3
-SmallestPositiveMissingNumber :3
-SmallestPositiveMissingNumber :3
+smallestPositiveMissingNumber :3
+smallestPositiveMissingNumber :3
+smallestPositiveMissingNumber :3
+smallestPositiveMissingNumber :3
 */
-    public static void MaxMinArr(int arr[], int size) {
+    public static void maxMinArr(int arr[], int size) {
         int[] aux = Arrays.copyOf(arr, size);
         int start = 0;
         int stop = size - 1;
@@ -374,7 +374,7 @@ SmallestPositiveMissingNumber :3
         }
     }
 
-    public static void ReverseArr(int arr[], int start, int stop) {
+    public static void reverseArr(int arr[], int start, int stop) {
         while (start < stop) {
             swap(arr, start, stop);
             start += 1;
@@ -382,9 +382,9 @@ SmallestPositiveMissingNumber :3
         }
     }
 
-    public static void MaxMinArr2(int arr[], int size) {
+    public static void maxMinArr2(int arr[], int size) {
         for (int i = 0; i < (size - 1); i++) {
-            ReverseArr(arr, i, size - 1);
+            reverseArr(arr, i, size - 1);
         }
     }
 
@@ -392,11 +392,11 @@ SmallestPositiveMissingNumber :3
     public static void main10() {
         int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
         int size = arr.length;
-        MaxMinArr(arr, size);
+        maxMinArr(arr, size);
         printArray(arr, size);
         int[] arr2 = { 1, 2, 3, 4, 5, 6, 7 };
         int size2 = arr.length;
-        MaxMinArr2(arr2, size2);
+        maxMinArr2(arr2, size2);
         printArray(arr2, size2);
     }
 /*
@@ -430,7 +430,7 @@ SmallestPositiveMissingNumber :3
 /*
 MaxCirculrSm: 290
 */
-    public static int ArrayIndexMaxDiff(int[] arr, int size) {
+    public static int arrayIndexMaxDiff(int[] arr, int size) {
         int maxDiff = -1;
         int j;
         for (int i = 0; i < size; i++) {
@@ -446,7 +446,7 @@ MaxCirculrSm: 290
         return maxDiff;
     }
 
-    public static int ArrayIndexMaxDiff2(int[] arr, int size) {
+    public static int arrayIndexMaxDiff2(int[] arr, int size) {
         int[] leftMin = new int[size];
         int[] rightMax = new int[size];
         leftMin[0] = arr[0];
@@ -482,7 +482,7 @@ MaxCirculrSm: 290
     }
 
     /*
-    public static int ArrayIndexMaxDiff3(int arr[], int size) { 
+    public static int arrayIndexMaxDiff3(int arr[], int size) { 
         int[] leftMin = new int[size]; 
         int[] rightMax = new int[size]; 
         int minIndex = 0, maxIndex = 0; 
@@ -522,13 +522,13 @@ MaxCirculrSm: 290
     /* Testing code */
     public static void main12() {
         int[] arr = { 33, 9, 10, 3, 2, 60, 30, 33, 1 };
-        System.out.println("ArrayIndexMaxDiff : " + ArrayIndexMaxDiff(arr, arr.length));
-        System.out.println("ArrayIndexMaxDiff : " + ArrayIndexMaxDiff2(arr, arr.length));
-      //  System.out.println("ArrayIndexMaxDiff : " + ArrayIndexMaxDiff3(arr, arr.length));
+        System.out.println("arrayIndexMaxDiff : " + arrayIndexMaxDiff(arr, arr.length));
+        System.out.println("arrayIndexMaxDiff : " + arrayIndexMaxDiff2(arr, arr.length));
+      //  System.out.println("arrayIndexMaxDiff : " + arrayIndexMaxDiff3(arr, arr.length));
     }
 /*
-ArrayIndexMaxDiff : 6
-ArrayIndexMaxDiff : 6
+arrayIndexMaxDiff : 6
+arrayIndexMaxDiff : 6
 */
     public static int maxPathSum(int[] arr1, int size1, int[] arr2, int size2) {
         int i = 0, j = 0, result = 0, sum1 = 0, sum2 = 0;
@@ -628,14 +628,14 @@ Move 1 disk  from peg B to peg A
 Move 2 disk  from peg B to peg C
 Move 1 disk  from peg A to peg C
 */
-    public static int GCD(int m, int n) {
+    public static int gcd(int m, int n) {
         if (m < n) {
-            return (GCD(n, m));
+            return (gcd(n, m));
         }
         if (m % n == 0) {
             return (n);
         }
-        return (GCD(n, m % n));
+        return (gcd(n, m % n));
     }
 
     public static int fibonacci(int n) {
@@ -676,24 +676,24 @@ Move 1 disk  from peg A to peg C
 [ 2 0 1 ]
 */
     // Binary Search Algorithm - Recursive
-    public static int BinarySearchRecursive(int[] arr, int low, int high, int value) {
+    public static int binarySearchRecursive(int[] arr, int low, int high, int value) {
         if (low > high)
             return -1;
         int mid = (low + high) / 2;
         if (arr[mid] == value) {
             return mid;
         } else if (arr[mid] < value) {
-            return BinarySearchRecursive(arr, mid + 1, high, value);
+            return binarySearchRecursive(arr, mid + 1, high, value);
         } else {
-            return BinarySearchRecursive(arr, low, mid - 1, value);
+            return binarySearchRecursive(arr, low, mid - 1, value);
         }
     }
 
     /* Testing code */
     public static void main16() {
         int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        System.out.println(BinarySearchRecursive(arr, 0, arr.length - 1, 6));
-        System.out.println(BinarySearchRecursive(arr, 0, arr.length - 1, 16));
+        System.out.println(binarySearchRecursive(arr, 0, arr.length - 1, 6));
+        System.out.println(binarySearchRecursive(arr, 0, arr.length - 1, 16));
     }
 /*
 5

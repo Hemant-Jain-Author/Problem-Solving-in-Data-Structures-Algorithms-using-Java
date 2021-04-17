@@ -1,7 +1,12 @@
 import java.util.Arrays;
 
 public class QuickSort {
-    private static void quickSort(int arr[], int lower, int upper) {
+    private int[] arr;
+    public QuickSort(int[] array) {
+        arr = array;
+    }
+
+    private void quickSort(int arr[], int lower, int upper) {
         if (upper <= lower)
             return;
         int pivot = arr[lower];
@@ -24,22 +29,24 @@ public class QuickSort {
         quickSort(arr, upper + 1, stop); // pivot + 1 is the lower for right sub array
     }
 
-    public static void sort(int arr[]) {
+    public void sort() {
         int size = arr.length;
         quickSort(arr, 0, size - 1);
     }
 
-    private static void swap(int arr[], int first, int second) {
+    private void swap(int arr[], int first, int second) {
         int temp = arr[first];
         arr[first] = arr[second];
         arr[second] = temp;
     }
 
     public static void main(String[] args) {
-        int[] array = { 3, 4, 2, 1, 6, 5, 7, 8, 1, 1 };
-        QuickSort.sort(array);
+        int[] array = { 3, 4, 2, 1, 6, 5, 7, 8, 10, 9 };
+        QuickSort srt = new QuickSort(array);
+        srt.sort();
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " ");
         }
     }
 }
+// 1 2 3 4 5 6 7 8 9 10

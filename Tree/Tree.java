@@ -46,114 +46,117 @@ public class Tree {
         return curr;
     }
 
-    public void InsertNode(int value) {
-        root = InsertNode(root, value);
+    public void insertNode(int value) {
+        root = insertNode(root, value);
     }
 
-    private Node InsertNode(Node node, int value) {
+    private Node insertNode(Node node, int value) {
         if (node == null) {
             node = new Node(value, null, null);
         } else {
             if (node.value > value) {
-                node.lChild = InsertNode(node.lChild, value);
+                node.lChild = insertNode(node.lChild, value);
             } else {
-                node.rChild = InsertNode(node.rChild, value);
+                node.rChild = insertNode(node.rChild, value);
             }
         }
         return node;
     }
 
-    public void PrintPreOrder() {
-        PrintPreOrder(root);
+    public void printPreOrder() {
+        printPreOrder(root);
+        System.out.println();
     }
 
-    private void PrintPreOrder(Node node)/* pre order */
+    private void printPreOrder(Node node)/* pre order */
     {
         if (node != null) {
-            System.out.print(" " + node.value);
-            PrintPreOrder(node.lChild);
-            PrintPreOrder(node.rChild);
+            System.out.print(node.value + " ");
+            printPreOrder(node.lChild);
+            printPreOrder(node.rChild);
         }
     }
 
-    public void NthPreOrder(int index) {
+    public void nthPreOrder(int index) {
         int[] counter = { 0 };
-        NthPreOrder(root, index, counter);
+        nthPreOrder(root, index, counter);
     }
 
-    private void NthPreOrder(Node node, int index, int[] counter)/* pre order */
+    private void nthPreOrder(Node node, int index, int[] counter)/* pre order */
     {
         if (node != null) {
             counter[0]++;
             if (counter[0] == index) {
-                System.out.print(node.value);
+                System.out.println(node.value);
             }
-            NthPreOrder(node.lChild, index, counter);
-            NthPreOrder(node.rChild, index, counter);
+            nthPreOrder(node.lChild, index, counter);
+            nthPreOrder(node.rChild, index, counter);
         }
     }
 
-    public void PrintPostOrder() {
-        PrintPostOrder(root);
+    public void printPostOrder() {
+        printPostOrder(root);
+        System.out.println();
     }
 
-    private void PrintPostOrder(Node node)/* post order */
+    private void printPostOrder(Node node)/* post order */
     {
         if (node != null) {
-            PrintPostOrder(node.lChild);
-            PrintPostOrder(node.rChild);
-            System.out.print(" " + node.value);
+            printPostOrder(node.lChild);
+            printPostOrder(node.rChild);
+            System.out.print(node.value + " ");
         }
     }
 
-    public void NthPostOrder(int index) {
+    public void nthPostOrder(int index) {
         int[] counter = { 0 };
-        NthPostOrder(root, index, counter);
+        nthPostOrder(root, index, counter);
     }
 
-    private void NthPostOrder(Node node, int index, int[] counter)/* post order */
+    private void nthPostOrder(Node node, int index, int[] counter)/* post order */
     {
         if (node != null) {
-            NthPostOrder(node.lChild, index, counter);
-            NthPostOrder(node.rChild, index, counter);
+            nthPostOrder(node.lChild, index, counter);
+            nthPostOrder(node.rChild, index, counter);
             counter[0]++;
             if (counter[0] == index) {
-                System.out.print(" " + node.value);
+                System.out.println(node.value);
             }
         }
     }
 
-    public void PrintInOrder() {
-        PrintInOrder(root);
+    public void printInOrder() {
+        printInOrder(root);
+        System.out.println();
     }
 
-    private void PrintInOrder(Node node)/* In order */
+    private void printInOrder(Node node)/* In order */
     {
         if (node != null) {
-            PrintInOrder(node.lChild);
-            System.out.print(" " + node.value);
-            PrintInOrder(node.rChild);
+            printInOrder(node.lChild);
+            System.out.print(node.value + " ");
+            printInOrder(node.rChild);
         }
     }
 
-    public void NthInOrder(int index) {
+    public void nthInOrder(int index) {
         int[] counter = { 0 };
-        NthInOrder(root, index, counter);
+        nthInOrder(root, index, counter);
     }
 
-    private void NthInOrder(Node node, int index, int[] counter) {
+    private void nthInOrder(Node node, int index, int[] counter) {
 
         if (node != null) {
-            NthInOrder(node.lChild, index, counter);
+            nthInOrder(node.lChild, index, counter);
             counter[0]++;
             if (counter[0] == index) {
-                System.out.print(" " + node.value);
+                System.out.println(node.value);
             }
-            NthInOrder(node.rChild, index, counter);
+            nthInOrder(node.rChild, index, counter);
         }
     }
 
-    public void PrintBredthFirst() {
+    public void printBredthFirst() {
         ArrayDeque<Node> que = new ArrayDeque<Node>();
         Node temp;
         if (root != null)
@@ -161,7 +164,7 @@ public class Tree {
 
         while (que.isEmpty() == false) {
             temp = que.remove();
-            System.out.print(" " + temp.value);
+            System.out.print(temp.value + " ");
 
             if (temp.lChild != null)
                 que.add(temp.lChild);
@@ -170,25 +173,26 @@ public class Tree {
         }
     }
 
-    public void PrintDepthFirst() {
+    public void printDepthFirst() {
         ArrayDeque<Node> stk = new ArrayDeque<Node>();
         Node temp;
 
         if (root != null)
             stk.push(root);
-
+            
         while (stk.isEmpty() == false) {
             temp = stk.pop();
-            System.out.println(temp.value);
+            System.out.print(temp.value + " ");
 
             if (temp.lChild != null)
                 stk.push(temp.lChild);
             if (temp.rChild != null)
                 stk.push(temp.rChild);
         }
+        System.out.println();
     }
 
-    void PrintLevelOrderLineByLine() {
+    void printLevelOrderLineByLine() {
         ArrayDeque<Node> que1 = new ArrayDeque<Node>();
         ArrayDeque<Node> que2 = new ArrayDeque<Node>();
         Node temp = null;
@@ -197,7 +201,7 @@ public class Tree {
         while (que1.size() != 0 || que2.size() != 0) {
             while (que1.size() != 0) {
                 temp = que1.remove();
-                System.out.print(" " + temp.value);
+                System.out.print(temp.value + " ");
                 if (temp.lChild != null)
                     que2.add(temp.lChild);
                 if (temp.rChild != null)
@@ -206,8 +210,8 @@ public class Tree {
             System.out.println("");
 
             while (que2.size() != 0) {
-                temp = (Node) que2.remove();
-                System.out.print(" " + temp.value);
+                temp = que2.remove();
+                System.out.print(temp.value + " ");
                 if (temp.lChild != null)
                     que1.add(temp.lChild);
                 if (temp.rChild != null)
@@ -217,7 +221,7 @@ public class Tree {
         }
     }
 
-    void PrintLevelOrderLineByLine2() {
+    void printLevelOrderLineByLine2() {
         ArrayDeque<Node> que = new ArrayDeque<Node>();
         Node temp = null;
         int count = 0;
@@ -228,7 +232,7 @@ public class Tree {
             count = que.size();
             while (count > 0) {
                 temp = que.remove();
-                System.out.print(" " + temp.value);
+                System.out.print(temp.value + " ");
                 if (temp.lChild != null)
                     que.add(temp.lChild);
                 if (temp.rChild != null)
@@ -239,7 +243,7 @@ public class Tree {
         }
     }
 
-    void PrintSpiralTree() {
+    void printSpiralTree() {
         Stack<Node> stk1 = new Stack<Node>();
         Stack<Node> stk2 = new Stack<Node>();
 
@@ -249,7 +253,7 @@ public class Tree {
         while (stk1.size() != 0 || stk2.size() != 0) {
             while (stk1.size() != 0) {
                 temp = stk1.pop();
-                System.out.print(" " + temp.value);
+                System.out.print(temp.value + " ");
                 if (temp.rChild != null)
                     stk2.push(temp.rChild);
                 if (temp.lChild != null)
@@ -257,18 +261,19 @@ public class Tree {
             }
             while (stk2.size() != 0) {
                 temp = stk2.pop();
-                System.out.print(" " + temp.value);
+                System.out.print(temp.value + " ");
                 if (temp.lChild != null)
                     stk1.push(temp.lChild);
                 if (temp.rChild != null)
                     stk1.push(temp.rChild);
             }
         }
+        System.out.println();
     }
 
-    public boolean Find(int value) {
+    public boolean find(int value) {
         Node curr = root;
-
+        
         while (curr != null) {
             if (curr.value == value) {
                 return true;
@@ -281,14 +286,14 @@ public class Tree {
         return false;
     }
 
-    public boolean Find2(int value) {
+    public boolean find2(int value) {
         Node curr = root;
         while (curr != null && curr.value != value)
             curr = (curr.value > value) ? curr.lChild : curr.rChild;
         return curr != null;
     }
 
-    public int FindMin() {
+    public int findMin() {
         Node node = root;
         if (node == null) {
             return Integer.MAX_VALUE;
@@ -300,7 +305,7 @@ public class Tree {
         return node.value;
     }
 
-    public int FindMax() {
+    public int findMax() {
         Node node = root;
         if (node == null) {
             return Integer.MIN_VALUE;
@@ -312,7 +317,7 @@ public class Tree {
         return node.value;
     }
 
-    public Node FindMaxNode(Node curr) {
+    public Node findMaxNode(Node curr) {
         Node node = curr;
         if (node == null) {
             return null;
@@ -324,7 +329,7 @@ public class Tree {
         return node;
     }
 
-    public Node FindMinNode(Node curr) {
+    public Node findMinNode(Node curr) {
         Node node = curr;
         if (node == null) {
             return null;
@@ -336,15 +341,15 @@ public class Tree {
         return node;
     }
 
-    public void Free() {
+    public void free() {
         root = null;
     }
 
-    public void DeleteNode(int value) {
-        root = DeleteNode(root, value);
+    public void deleteNode(int value) {
+        root = deleteNode(root, value);
     }
 
-    private Node DeleteNode(Node node, int value) {
+    private Node deleteNode(Node node, int value) {
         Node temp = null;
 
         if (node != null) {
@@ -361,32 +366,32 @@ public class Tree {
                         temp = node.lChild;
                         return temp;
                     }
-                    Node minNode = FindMinNode(node.rChild);
+                    Node minNode = findMinNode(node.rChild);
                     int minValue = minNode.value;
                     node.value = minValue;
-                    node.rChild = DeleteNode(node.rChild, minValue);
+                    node.rChild = deleteNode(node.rChild, minValue);
                 }
             } else {
                 if (node.value > value) {
-                    node.lChild = DeleteNode(node.lChild, value);
+                    node.lChild = deleteNode(node.lChild, value);
                 } else {
-                    node.rChild = DeleteNode(node.rChild, value);
+                    node.rChild = deleteNode(node.rChild, value);
                 }
             }
         }
         return node;
     }
 
-    public int TreeDepth() {
-        return TreeDepth(root);
+    public int treeDepth() {
+        return treeDepth(root);
     }
 
-    private int TreeDepth(Node curr) {
+    private int treeDepth(Node curr) {
         if (curr == null)
             return 0;
         else {
-            int lDepth = TreeDepth(curr.lChild);
-            int rDepth = TreeDepth(curr.rChild);
+            int lDepth = treeDepth(curr.lChild);
+            int rDepth = treeDepth(curr.rChild);
 
             if (lDepth > rDepth)
                 return lDepth + 1;
@@ -409,58 +414,58 @@ public class Tree {
                     && (node1.value == node2.value));
     }
 
-    public Node Ancestor(int first, int second) {
+    public Node ancestor(int first, int second) {
         if (first > second) {
             int temp = first;
             first = second;
             second = temp;
         }
-        return Ancestor(root, first, second);
+        return ancestor(root, first, second);
     }
 
-    private Node Ancestor(Node curr, int first, int second) {
+    private Node ancestor(Node curr, int first, int second) {
         if (curr == null) {
             return null;
         }
 
         if (curr.value > first && curr.value > second) {
-            return Ancestor(curr.lChild, first, second);
+            return ancestor(curr.lChild, first, second);
         }
         if (curr.value < first && curr.value < second) {
-            return Ancestor(curr.rChild, first, second);
+            return ancestor(curr.rChild, first, second);
         }
         return curr;
     }
 
-    public Tree CopyTree() {
+    public Tree copyTree() {
         Tree tree2 = new Tree();
-        tree2.root = CopyTree(root);
+        tree2.root = copyTree(root);
         return tree2;
     }
 
-    private Node CopyTree(Node curr) {
+    private Node copyTree(Node curr) {
         Node temp;
         if (curr != null) {
             temp = new Node(curr.value);
-            temp.lChild = CopyTree(curr.lChild);
-            temp.rChild = CopyTree(curr.rChild);
+            temp.lChild = copyTree(curr.lChild);
+            temp.rChild = copyTree(curr.rChild);
             return temp;
         } else
             return null;
     }
 
-    public Tree CopyMirrorTree() {
+    public Tree copyMirrorTree() {
         Tree tree2 = new Tree();
-        tree2.root = CopyMirrorTree(root);
+        tree2.root = copyMirrorTree(root);
         return tree2;
     }
 
-    private Node CopyMirrorTree(Node curr) {
+    private Node copyMirrorTree(Node curr) {
         Node temp;
         if (curr != null) {
             temp = new Node(curr.value);
-            temp.rChild = CopyMirrorTree(curr.lChild);
-            temp.lChild = CopyMirrorTree(curr.rChild);
+            temp.rChild = copyMirrorTree(curr.lChild);
+            temp.lChild = copyMirrorTree(curr.rChild);
             return temp;
         } else
             return null;
@@ -478,18 +483,16 @@ public class Tree {
     }
 
     public int numFullNodesBT() {
-        return numNodes(root);
+        return numFullNodesBT(root);
     }
 
     public int numFullNodesBT(Node curr) {
-        int count;
         if (curr == null)
             return 0;
 
-        count = numFullNodesBT(curr.rChild) + numFullNodesBT(curr.lChild);
+        int count = numFullNodesBT(curr.rChild) + numFullNodesBT(curr.lChild);
         if (curr.rChild != null && curr.lChild != null)
             count++;
-
         return count;
     }
 
@@ -497,7 +500,7 @@ public class Tree {
         return maxLengthPathBT(root);
     }
 
-    private int maxLengthPathBT(Node curr)// diameter
+    private int maxLengthPathBT(Node curr) // diameter
     {
         int max;
         int leftPath, rightPath;
@@ -506,8 +509,8 @@ public class Tree {
         if (curr == null)
             return 0;
 
-        leftPath = TreeDepth(curr.lChild);
-        rightPath = TreeDepth(curr.rChild);
+        leftPath = treeDepth(curr.lChild);
+        rightPath = treeDepth(curr.rChild);
 
         max = leftPath + rightPath + 1;
 
@@ -544,7 +547,7 @@ public class Tree {
         if (curr == null)
             return 0;
 
-        return (curr.value + sumAllBT(curr.lChild) + sumAllBT(curr.lChild));
+        return (curr.value + sumAllBT(curr.lChild) + sumAllBT(curr.rChild));
     }
 
     public void iterativePreOrder() {
@@ -564,6 +567,7 @@ public class Tree {
             if (curr.lChild != null)
                 stk.push(curr.lChild);
         }
+        System.out.println();
     }
 
     public void iterativePostOrder() {
@@ -595,6 +599,7 @@ public class Tree {
                 }
             }
         }
+        System.out.println();
     }
 
     public void iterativeInOrder() {
@@ -626,23 +631,28 @@ public class Tree {
                 }
             }
         }
+        System.out.println();
     }
 
-    public boolean isBST3(Node root) {
+    private boolean isBST3(Node root) {
         if (root == null)
             return true;
-        if (root.lChild != null && FindMaxNode(root.lChild).value > root.value)
+        if (root.lChild != null && findMaxNode(root.lChild).value > root.value)
             return false;
-        if (root.rChild != null && FindMinNode(root.rChild).value <= root.value)
+        if (root.rChild != null && findMinNode(root.rChild).value <= root.value)
             return false;
         return (isBST3(root.lChild) && isBST3(root.rChild));
+    }
+
+    public boolean isBST3() {
+        return isBST3(root);
     }
 
     public boolean isBST() {
         return isBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
-    public boolean isBST(Node curr, int min, int max) {
+    private boolean isBST(Node curr, int min, int max) {
         if (curr == null)
             return true;
 
@@ -833,15 +843,15 @@ public class Tree {
         stk.pop();
     }
 
-    public int LCA(int first, int second) {
-        Node ans = LCA(root, first, second);
+    public int lca(int first, int second) {
+        Node ans = lca(root, first, second);
         if (ans != null)
             return ans.value;
         else
             return Integer.MIN_VALUE;
     }
 
-    private Node LCA(Node curr, int first, int second) {
+    private Node lca(Node curr, int first, int second) {
         Node left, right;
 
         if (curr == null)
@@ -850,8 +860,8 @@ public class Tree {
         if (curr.value == first || curr.value == second)
             return curr;
 
-        left = LCA(curr.lChild, first, second);
-        right = LCA(curr.rChild, first, second);
+        left = lca(curr.lChild, first, second);
+        right = lca(curr.rChild, first, second);
 
         if (left != null && right != null)
             return curr;
@@ -861,23 +871,35 @@ public class Tree {
             return right;
     }
 
-    public int LcaBST(int first, int second) {
-        return LcaBST(root, first, second);
+public int lcaBST(int first, int second) {
+    int result;
+    if(first > second)
+        result =  lcaBST(root, second, first);
+    else
+        result =   lcaBST(root, first, second);
+    
+    if(result == Integer.MAX_VALUE)
+        System.out.println("lca does not exist");
+    else
+        System.out.println("lca is :" + result);
+    return result;
+}
+
+private int lcaBST(Node curr, int first, int second) {
+    if (curr == null) {
+        return Integer.MAX_VALUE;
     }
 
-    private int LcaBST(Node curr, int first, int second) {
-        if (curr == null) {
-            return Integer.MAX_VALUE;
-        }
-
-        if (curr.value > first && curr.value > second) {
-            return LcaBST(curr.lChild, first, second);
-        }
-        if (curr.value < first && curr.value < second) {
-            return LcaBST(curr.rChild, first, second);
-        }
+    if (curr.value > second) {
+        return lcaBST(curr.lChild, first, second);
+    }
+    if (curr.value < first ) {
+        return lcaBST(curr.rChild, first, second);
+    }
+    if (Find(first) && Find(second))
         return curr.value;
-    }
+    return Integer.MAX_VALUE;
+}
 
     public void trimOutsideRange(int min, int max) {
         trimOutsideRange(root, min, max);
@@ -903,6 +925,7 @@ public class Tree {
 
     public void printInRange(int min, int max) {
         printInRange(root, min, max);
+        System.out.println();
     }
 
     private void printInRange(Node root, int min, int max) {
@@ -917,7 +940,7 @@ public class Tree {
         printInRange(root.rChild, min, max);
     }
 
-    public int FloorBST(int val) {
+    public int floorBST(double val) {
         Node curr = root;
         int floor = Integer.MAX_VALUE;
 
@@ -935,7 +958,7 @@ public class Tree {
         return floor;
     }
 
-    public int CeilBST(int val) {
+    public int ceilBST(double val) {
         Node curr = root;
         int ceil = Integer.MIN_VALUE;
 
@@ -999,75 +1022,263 @@ public class Tree {
         return false;
     }
 
-    public void CreateBinaryTree(int[] arr) {
-        root = CreateBinaryTree(arr, 0, arr.length - 1);
+    public void createBinaryTree(int[] arr) {
+        root = createBinaryTree(arr, 0, arr.length - 1);
     }
 
-    private Node CreateBinaryTree(int[] arr, int start, int end) {
+    private Node createBinaryTree(int[] arr, int start, int end) {
         Node curr = null;
         if (start > end)
             return null;
 
         int mid = (start + end) / 2;
         curr = new Node(arr[mid]);
-        curr.lChild = CreateBinaryTree(arr, start, mid - 1);
-        curr.rChild = CreateBinaryTree(arr, mid + 1, end);
+        curr.lChild = createBinaryTree(arr, start, mid - 1);
+        curr.rChild = createBinaryTree(arr, mid + 1, end);
         return curr;
     }
 
-    boolean isBSTArray(int preorder[], int size) {
-        Stack<Integer> stk = new Stack<Integer>();
-        int value;
-        int root = -999999;
-        for (int i = 0; i < size; i++) {
-            value = preorder[i];
+boolean isBSTArray(int preorder[]) {
+    int size = preorder.length;
+    Stack<Integer> stk = new Stack<Integer>();
+    int value;
+    int root = -999999;
+    for (int i = 0; i < size; i++) {
+        value = preorder[i];
 
-            // If value of the right child is less than root.
-            if (value < root)
-                return false;
-            // First left child values will be popped
-            // Last popped value will be the root.
-            while (stk.size() > 0 && stk.peek() < value)
-                root = stk.pop();
-            // add current value to the stack.
-            stk.push(value);
-        }
-        return true;
+        // If value of the right child is less than root.
+        if (value < root)
+            return false;
+        // First left child values will be popped
+        // Last popped value will be the root.
+        while (stk.size() > 0 && stk.peek() < value)
+            root = stk.pop();
+        // add current value to the stack.
+        stk.push(value);
     }
+    return true;
+}
 
-    public static void main(String[] args) {
+    public static void main1() {
         Tree t = new Tree();
         int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         t.levelOrderBinaryTree(arr);
-        System.out.println("");
+        t.printPreOrder();
+        // 1 2 4 8 9 5 10 3 6 7 
+
+        t.printPostOrder();
+        // 8 9 4 10 5 2 6 7 3 1 
+
+        t.printInOrder();
+        // 8 4 9 2 10 5 1 6 3 7 
+
+        t.iterativePreOrder();
+        // 1 2 4 8 9 5 10 3 6 7 
+
+        t.iterativePostOrder();
+        // 8 9 4 10 5 2 6 7 3 1 
+
+        t.iterativeInOrder();
+        // 8 4 9 2 10 5 1 6 3 7 
+
+        t.printBredthFirst();
+        // 1 2 3 4 5 6 7 8 9 10 
+        
+        t.printDepthFirst();
+        // 1 3 7 6 2 5 10 4 9 8
+
+        t.printLevelOrderLineByLine();
+/*
+1 
+2 3 
+4 5 6 7 
+8 9 10 
+*/
+
+        t.printLevelOrderLineByLine2();
+/*
+1 
+2 3 
+4 5 6 7 
+8 9 10 
+*/
+
+       t.printSpiralTree();
+        // 1 2 3 7 6 5 4 8 9 10 
+
+        t.nthInOrder(2);
+        t.nthPostOrder(2);
+        t.nthPreOrder(2);
+
+/*
+4
+9
+2
+*/
+
+        t.printAllPath();
+/*
+[1, 3, 7]
+[1, 3, 6]
+[1, 2, 5, 10]
+[1, 2, 4, 9]
+[1, 2, 4, 8]
+*/
+        System.out.println(t.numNodes());
+        // 10
+
+        System.out.println(t.sumAllBT());
+        // 55
+
+        System.out.println(t.numLeafNodes());
+        // 5
+
+        System.out.println(t.numFullNodesBT());
+        // 4
+
+        System.out.println(t.searchBT(9));
+        // true
+
+        System.out.println(t.findMaxBT());
+        // 10
+
+        System.out.println(t.treeDepth());
+        // 4
+
+        System.out.println(t.maxLengthPathBT());
+        // 6
+
+        Tree t2 = t.copyTree();
+        t2.printLevelOrderLineByLine();
+/*
+1 
+2 3 
+4 5 6 7 
+8 9 10 
+*/
+        Tree t3 = t.copyMirrorTree();
+        t3.printLevelOrderLineByLine();
+/*
+1 
+3 2 
+7 6 5 4 
+10 9 8
+*/
+        System.out.println(t.isEqual(t2));
+/*
+true
+*/
         System.out.println(t.isHeap());
         System.out.println(t.isHeap2());
         System.out.println(t.isCompleteTree());
+        System.out.println(t.isCompleteTree2());
+/*
+true
+true
+true
+true
+*/        
+    }
 
-        System.out.println("");
-        t.PrintBredthFirst();
-        System.out.println("");
-        t.PrintPreOrder();
-        System.out.println("");
-        t.PrintLevelOrderLineByLine();
-        System.out.println("");
-        t.PrintLevelOrderLineByLine2();
-        System.out.println("");
-        t.PrintSpiralTree();
-        System.out.println("");
-        t.printAllPath();
-        System.out.println("");
-        t.NthInOrder(4);
-        System.out.println("");
-        t.NthPostOrder(4);
-        System.out.println("");
-        t.NthPreOrder(4);
-        System.out.println("");
+    public static void main2() {
+        Tree t = new Tree();
+        t.insertNode(2);
+        t.insertNode(1);
+        t.insertNode(3);
+        t.insertNode(4);
+
+        t.printInOrder();
+
         /*
-         * t.PrintPostOrder(); System.out.println(); t.iterativePostOrder();
-         * t.PrintBredthFirst(); // t.treeToListRec(); t.printAllPath();
-         * System.out.println(t.LCA(10, 3)); t.iterativePreOrder(); t.PrintPreOrder();
-         * // t.CreateBinaryTree(arr); // System.out.println(t.isBST2());
-         */
+        1 2 3 4 
+        */
+        System.out.println(t.Find(3));
+        System.out.println(t.Find(6));
+        /*
+        true
+        false
+        */
+        System.out.println(t.isBST());
+        System.out.println(t.isBST2());
+        System.out.println(t.isBST3());
+        /*
+        true
+        true
+        true
+        */
+
+
+        System.out.println("Before delete operation.");
+        t.printInOrder();
+        t.deleteNode(2);
+        System.out.println("After delete operation.");
+        t.printInOrder();
+        /*
+        Before delete operation.
+        1 2 3 4 
+        After delete operation.
+        1 3 4 
+        */
+
+    }
+
+    public static void main3() {
+        Tree t = new Tree();  
+        t.insertNode(2);
+        t.insertNode(1);
+        t.insertNode(3);
+        t.insertNode(4);
+        t.lcaBST(3, 4);
+        t.lcaBST(1, 4);
+        t.lcaBST(10, 4);
+    }
+/*
+lca is :3
+lca is :2
+lca does not exist
+*/
+    public static void main4() {
+        Tree t = new Tree();  
+        int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        t.createBinaryTree(arr);
+        t.printInOrder();
+        t.printInRange(4, 7);
+        t.trimOutsideRange(4, 7);
+        t.printInOrder();
+    }
+/*
+1 2 3 4 5 6 7 8 9 10 
+4 5 6 7 
+4 5 6 7 
+*/
+    public static void main5() {   
+        Tree t = new Tree();  
+        int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        t.createBinaryTree(arr); 
+        System.out.println(t.ancestor(1, 10).value);
+        // 5
+
+        System.out.println(t.ceilBST(5.5));
+        // 6
+
+        System.out.println(t.floorBST(8));
+        // 8
+
+        int[] arr1 = { 5, 2, 4, 6, 9, 10 };
+        int[] arr2 = { 5, 2, 6, 4, 7, 9, 10 };
+        System.out.println(t.isBSTArray(arr1));
+        System.out.println(t.isBSTArray(arr2));
+        /*
+        true
+        false
+        */
+    }
+
+    public static void main(String[] args) {
+        //main1();
+        //main2();
+        //main3();
+        //main4();
+        main5();
     }
 }

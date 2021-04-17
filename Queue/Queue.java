@@ -46,13 +46,16 @@ public class Queue {
 
     public static void main(String[] args) {
         Queue que = new Queue();
-
-        for (int i = 0; i < 20; i++) {
-            que.add(i);
-        }
-        for (int i = 0; i < 22; i++) {
+        que.add(1);
+        que.add(2);
+        que.add(3);
+        for (int i = 0; i < 3; i++)
             System.out.println(que.remove());
-        }
-
     }
 }
+
+/*
+1
+2
+3
+*/

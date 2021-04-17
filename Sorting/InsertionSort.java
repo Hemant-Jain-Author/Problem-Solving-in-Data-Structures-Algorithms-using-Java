@@ -1,10 +1,15 @@
 
 public class InsertionSort {
-    private static boolean more(int value1, int value2) {
+    private int[] arr;
+    public InsertionSort(int[] array) {
+        arr = array;
+    }
+
+    private boolean more(int value1, int value2) {
         return value1 > value2;
     }
 
-    public static void sort(int[] arr) {
+    public void sort() {
         int size = arr.length;
         int temp, j;
         for (int i = 1; i < size; i++) {
@@ -18,10 +23,14 @@ public class InsertionSort {
 
     public static void main(String[] args) {
         int[] array = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
-        InsertionSort.sort(array);
+        BubbleSort srt = new BubbleSort(array);
+        srt.sort();
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " ");
 
         }
     }
 }
+/*
+1 2 3 4 5 6 7 8 9
+*/

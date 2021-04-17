@@ -12,19 +12,24 @@ public class TwoStack {
 
     public static void main(String[] args) {
         TwoStack st = new TwoStack();
-        for (int i = 0; i < 10; i++) {
-            st.StackPush1(i);
-        }
-        for (int j = 0; j < 10; j++) {
-            st.StackPush2(j + 10);
-        }
-        for (int i = 0; i < 10; i++) {
-            System.out.println("stack one pop value is : " + st.StackPop1());
-            System.out.println("stack two pop value is : " + st.StackPop2());
-        }
+        st.push1(1);
+        st.push1(2);
+        st.push1(3);
+        st.push2(4);
+        st.push2(5);
+        st.push2(6);
+        System.out.println("stk1 pop : " + st.pop1());
+        System.out.println("stk1 pop : " + st.pop1());
+        System.out.println("stk2 pop : " + st.pop2());
+        System.out.println("stk2 pop : " + st.pop2());
     }
-
-    public void StackPush1(int value) {
+/*
+stk1 pop : 3
+stk1 pop : 2
+stk2 pop : 6
+stk2 pop : 5
+*/
+    public void push1(int value) {
         if (top1 < top2 - 1) {
             data[++top1] = value;
         } else {
@@ -32,7 +37,7 @@ public class TwoStack {
         }
     }
 
-    public void StackPush2(int value) {
+    public void push2(int value) {
         if (top1 < top2 - 1) {
             data[--top2] = value;
         } else {
@@ -40,7 +45,7 @@ public class TwoStack {
         }
     }
 
-    public int StackPop1() {
+    public int pop1() {
         if (top1 >= 0) {
             int value = data[top1--];
             return value;
@@ -50,7 +55,7 @@ public class TwoStack {
         return -999;
     }
 
-    public int StackPop2() {
+    public int pop2() {
         if (top2 < MAX_SIZE) {
             int value = data[top2++];
             return value;

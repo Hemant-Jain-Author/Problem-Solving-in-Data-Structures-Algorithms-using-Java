@@ -30,9 +30,14 @@ public class QueueUsingStack {
     public static void main(String[] args) {
         QueueUsingStack que = new QueueUsingStack();
         que.add(1);
-        que.add(11);
-        que.add(111);
-        System.out.println(que.remove());
-        System.out.println(que.remove());
+        que.add(2);
+        que.add(3);
+        for (int i = 0; i < 3; i++)
+            System.out.println(que.remove());
     }
 }
+/*
+1
+2
+3
+*/
