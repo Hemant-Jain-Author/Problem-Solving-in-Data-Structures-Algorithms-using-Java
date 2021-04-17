@@ -32,7 +32,7 @@ public class algo {
         System.out.println(" ");
     }
 
-    public static boolean Feasible(int[] Q, int k) {
+    public static boolean feasible(int[] Q, int k) {
         for (int i = 0; i < k; i++) {
             if (Q[k] == Q[i] || Math.abs(Q[i] - Q[k]) == Math.abs(i - k)) {
                 return false;
@@ -41,41 +41,41 @@ public class algo {
         return true;
     }
 
-    public static void NQueens(int[] Q, int k, int n) {
+    public static void nQueens(int[] Q, int k, int n) {
         if (k == n) {
             print(Q, n);
             return;
         }
         for (int i = 0; i < n; i++) {
             Q[k] = i;
-            if (Feasible(Q, k)) {
-                NQueens(Q, k + 1, n);
+            if (feasible(Q, k)) {
+                nQueens(Q, k + 1, n);
             }
         }
     }
 
     public static void main1() {
         int[] Q = new int[8];
-        NQueens(Q, 0, 8);
+        nQueens(Q, 0, 8);
     }
 
-    public static void TOHUtil(int num, char from, char to, char temp) {
+    public static void tohUtil(int num, char from, char to, char temp) {
         if (num < 1) {
             return;
         }
 
-        TOHUtil(num - 1, from, temp, to);
+        tohUtil(num - 1, from, temp, to);
         System.out.println("Move disk " + num + " from peg " + from + " to peg " + to);
-        TOHUtil(num - 1, temp, to, from);
+        tohUtil(num - 1, temp, to, from);
     }
 
-    public static void TowersOfHanoi(int num) {
+    public static void towersOfHanoi(int num) {
         System.out.println("The sequence of moves involved in the Tower of Hanoi are :");
-        TOHUtil(num, 'A', 'C', 'B');
+        tohUtil(num, 'A', 'C', 'B');
     }
 
     public static void main2() {
-        TowersOfHanoi(3);
+        towersOfHanoi(3);
     }
 
     int isPrime(int n) {
