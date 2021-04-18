@@ -5,14 +5,22 @@ public class HashSetDemo {
 		// Create a hash set.
 		HashSet<String> hs = new HashSet<String>();
 		// Add elements to the hash set.
-		hs.add("India");
-		hs.add("USA");
-		hs.add("Brazil");
+		hs.add("Banana");
+		hs.add("Apple");
+		hs.add("Mango");
 		System.out.println(hs);		
-		System.out.println("Hash Table contains USA : " + hs.contains("USA"));
-		System.out.println("Hash Table contains UK : " + hs.contains("UK"));
-		hs.remove("USA");
+		System.out.println("Apple present : " + hs.contains("Apple"));
+		System.out.println("Grapes present : " + hs.contains("Grapes"));
+		hs.remove("Apple");
 		System.out.println(hs);
-		System.out.println("Hash Table contains USA : " + hs.contains("USA"));
+		System.out.println("Apple present : " + hs.contains("Apple"));
 	}
 }
+
+/*
+[Apple, Mango, Banana]
+Apple present : true
+Grapes present : false
+[Mango, Banana]
+Apple present : false
+*/

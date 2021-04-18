@@ -11,15 +11,22 @@ public class HashMapDemo {
 		// Create a hash map.
 		HashMap<String, Integer> hm = new HashMap<String, Integer>();	
 		// Put elements into the map
-		hm.put("Mason", new Integer(55));
-		hm.put("Jacob", new Integer(77));
-		hm.put("William", new Integer(99));
-		hm.put("Emma", new Integer(65));
-		System.out.println("Students count :: " + hm.size());
-		for(String key : hm.keySet()){
-			System.out.println(key + " score marks :" + hm.get(key));
-		}
-			System.out.println("Emma score available ::" + hm.containsKey("Emma"));
-			System.out.println("John score available :: " + hm.containsKey("John"));
+		hm.put("Apple", 40);
+		hm.put("Banana", 10);
+		hm.put("Mango", 20);
+
+		System.out.println("Size :: " + hm.size());
+		for(String key : hm.keySet())
+			System.out.println(key + " cost :" + hm.get(key));
+		System.out.println("Apple present ::" + hm.containsKey("Apple"));
+		System.out.println("Grapes present :: " + hm.containsKey("Grapes"));
 	}
 }
+/*
+Size :: 3
+Apple cost :40
+Mango cost :20
+Banana cost :10
+Apple present ::true
+Grapes present :: false
+*/

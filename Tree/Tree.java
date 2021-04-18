@@ -896,7 +896,7 @@ private int lcaBST(Node curr, int first, int second) {
     if (curr.value < first ) {
         return lcaBST(curr.rChild, first, second);
     }
-    if (Find(first) && Find(second))
+    if (find(first) && find(second))
         return curr.value;
     return Integer.MAX_VALUE;
 }
@@ -1192,8 +1192,8 @@ true
         /*
         1 2 3 4 
         */
-        System.out.println(t.Find(3));
-        System.out.println(t.Find(6));
+        System.out.println(t.find(3));
+        System.out.println(t.find(6));
         /*
         true
         false

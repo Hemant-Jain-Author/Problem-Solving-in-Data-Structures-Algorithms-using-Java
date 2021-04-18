@@ -1,11 +1,6 @@
 import java.util.Arrays;
 
 public class QuickSort {
-    private int[] arr;
-    public QuickSort(int[] array) {
-        arr = array;
-    }
-
     private void quickSort(int arr[], int lower, int upper) {
         if (upper <= lower)
             return;
@@ -29,7 +24,7 @@ public class QuickSort {
         quickSort(arr, upper + 1, stop); // pivot + 1 is the lower for right sub array
     }
 
-    public void sort() {
+    public void sort(int[] arr) {
         int size = arr.length;
         quickSort(arr, 0, size - 1);
     }
@@ -42,8 +37,8 @@ public class QuickSort {
 
     public static void main(String[] args) {
         int[] array = { 3, 4, 2, 1, 6, 5, 7, 8, 10, 9 };
-        QuickSort srt = new QuickSort(array);
-        srt.sort();
+        QuickSort srt = new QuickSort();
+        srt.sort(array);
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " ");
         }

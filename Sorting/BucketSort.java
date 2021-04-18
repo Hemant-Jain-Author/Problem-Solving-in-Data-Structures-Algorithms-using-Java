@@ -1,10 +1,5 @@
 public class BucketSort {
-    private int[] arr;
-    public BucketSort(int[] array) {
-        arr = array;
-    }
-
-    public void sort(int lowerRange, int upperRange) {
+    public void sort(int[] arr, int lowerRange, int upperRange) {
         int i, j;
         int size = arr.length;
         int range = upperRange - lowerRange;
@@ -24,8 +19,8 @@ public class BucketSort {
 
     public static void main(String[] args) {
         int[] array = { 23, 24, 22, 21, 26, 25, 27, 28, 21, 21 };
-        BucketSort b = new BucketSort(array);
-        b.sort(20, 30);
+        BucketSort b = new BucketSort();
+        b.sort(array, 20, 30);
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " ");
         }

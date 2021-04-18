@@ -524,7 +524,6 @@ MaxCirculrSm: 290
         int[] arr = { 33, 9, 10, 3, 2, 60, 30, 33, 1 };
         System.out.println("arrayIndexMaxDiff : " + arrayIndexMaxDiff(arr, arr.length));
         System.out.println("arrayIndexMaxDiff : " + arrayIndexMaxDiff2(arr, arr.length));
-      //  System.out.println("arrayIndexMaxDiff : " + arrayIndexMaxDiff3(arr, arr.length));
     }
 /*
 arrayIndexMaxDiff : 6
@@ -581,7 +580,7 @@ Max Path Sum :: 201
         return i * factorial(i - 1);
     }
 
-    ///////////////
+    
     public void printInt1(int number) {
         char digit = (char) (number % 10 + '0');
         number = number / 10;

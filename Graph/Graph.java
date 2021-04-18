@@ -391,7 +391,7 @@ Root vertex is :: 5
             LinkedList<Edge> adl = gph.Adj.get(curr);
             for (Edge adn : adl) {
                 if (adn.dest == dest) {
-                    return depth+1;
+                    return depth + 1;
                 }
                 if (visited[adn.dest] == false) {
                     visited[adn.dest] = true;

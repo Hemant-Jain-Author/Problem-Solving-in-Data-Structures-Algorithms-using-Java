@@ -140,22 +140,22 @@ public class Analysis {
         return m;
     }
 
-    public static void main(String[] args) {
-        Analysis a = new Analysis();
-        System.out.println("N = 100, Number of instructions in O(n)::" + a.fun1(100));
-        System.out.println("N = 100, Number of instructions in O(n^2)::" + a.fun2(100));
-        System.out.println("N = 100, Number of instructions in O(n^2)::" + a.fun3(100));
-        System.out.println("N = 100, Number of instructions in O(log(n))::" + a.fun4(100));
-        System.out.println("N = 100, Number of instructions in O(log(n))::" + a.fun5(100));
-        System.out.println("N = 100, Number of instructions in O(n^3)::" + a.fun6(100));
-        System.out.println("N = 100, Number of instructions in O(n^2)::" + a.fun7(100));
-        System.out.println("N = 100, Number of instructions in O(n^(3/2))::" + a.fun8(100));
-        System.out.println("N = 100, Number of instructions in O(n)::" + a.fun9(100));
-        System.out.println("N = 100, Number of instructions in O(n^2)::" + a.fun10(100));
-        System.out.println("N = 100, Number of instructions in O(n^3)::" + a.fun11(100));
-        System.out.println("N = 100, Number of instructions in O(n)::" + a.fun12(100));
-        System.out.println("N = 100, Number of instructions in O(n)::" + a.fun13(100));
-    }
+public static void main(String[] args) {
+    Analysis a = new Analysis();
+    System.out.println("N = 100, Number of instructions in O(n)::" + a.fun1(100));
+    System.out.println("N = 100, Number of instructions in O(n^2)::" + a.fun2(100));
+    System.out.println("N = 100, Number of instructions in O(n^2)::" + a.fun3(100));
+    System.out.println("N = 100, Number of instructions in O(log(n))::" + a.fun4(100));
+    System.out.println("N = 100, Number of instructions in O(log(n))::" + a.fun5(100));
+    System.out.println("N = 100, Number of instructions in O(n^3)::" + a.fun6(100));
+    System.out.println("N = 100, Number of instructions in O(n^2)::" + a.fun7(100));
+    System.out.println("N = 100, Number of instructions in O(n^(3/2))::" + a.fun8(100));
+    System.out.println("N = 100, Number of instructions in O(n)::" + a.fun9(100));
+    System.out.println("N = 100, Number of instructions in O(n^2)::" + a.fun10(100));
+    System.out.println("N = 100, Number of instructions in O(n^3)::" + a.fun11(100));
+    System.out.println("N = 100, Number of instructions in O(n)::" + a.fun12(100));
+    System.out.println("N = 100, Number of instructions in O(n)::" + a.fun13(100));
+}
 }
 /*
 N = 100, Number of instructions in O(n)::100

@@ -38,9 +38,11 @@ public class StackExercise {
         boolean value = isBalancedParenthesis(expn);
         System.out.println("Result after isParenthesisMatched:" + value);
     }
+
 /*
 Result after isParenthesisMatched:true
 */
+
     public static <T> void insertAtBottom(Stack<T> stk, T value) {
         if (stk.isEmpty()) {
             stk.push(value);
@@ -100,10 +102,12 @@ Result after isParenthesisMatched:true
         System.out.println("Given Postfix Expn: " + expn);
         System.out.println("Result after Evaluation: " + value);
     }
+
 /*
 Given Postfix Expn: 6 5 2 3 + 8 * + 3 + *
 Result after Evaluation: 288
 */
+
     public static int precedence(char x) {
         if (x == '(') {
             return (0);
@@ -178,10 +182,12 @@ Result after Evaluation: 288
         System.out.println("Infix Expn: " + expn);
         System.out.println("Postfix Expn: " + value);
     }
+
 /*
 Infix Expn: 10+((3))*5/(16-4)
 Postfix Expn: 10 3 5 * 16 4 - / + 
 */
+
     public static String infixToPrefix(String expn) {
         char[] arr = expn.toCharArray();
         reverseString(arr);
@@ -224,10 +230,12 @@ Postfix Expn: 10 3 5 * 16 4 - / +
         System.out.println("Infix Expn: " + expn);
         System.out.println("Prefix Expn: " + value);
     }
+
 /*
 Infix Expn: 10+((3))*5/(16-4)
 Prefix Expn:  +10 * 3 / 5  - 16 4
 */
+
     public static int[] stockSpanRange(int[] arr) {
         int[] SR = new int[arr.length];
         SR[0] = 1;
@@ -270,10 +278,12 @@ Prefix Expn:  +10 * 3 / 5  - 16 4
             System.out.print(val + " ");
         System.out.println();
     }
+
 /*
 stockSpanRange : 1 1 1 1 1 4 6 8 9 
 stockSpanRange : 1 1 1 1 1 4 6 8 9 
 */
+
     public static int getMaxArea(int[] arr) {
         int size = arr.length;
         int maxArea = -1;
@@ -325,10 +335,12 @@ stockSpanRange : 1 1 1 1 1 4 6 8 9
         value = getMaxArea2(arr);
         System.out.println("getMaxArea :: " + value);
     }
+
 /*
 getMaxArea :: 20
 getMaxArea :: 20
 */
+
     public static void sortedInsert(Stack<Integer> stk, int element) {
         int temp;
         if (stk.isEmpty() || element > stk.peek())
@@ -345,7 +357,7 @@ getMaxArea :: 20
         if (stk.isEmpty() == false) {
             temp = stk.pop();
             sortStack(stk);
-            stk.push(temp);
+            sortedInsert(stk, temp);
         }
     }
 
@@ -427,7 +439,9 @@ getMaxArea :: 20
         stk.push(3);
         System.out.println(stk);
     }
+
 // [1, 2, 3]
+
     public static void main8() {
         Stack<Integer> stk = new Stack<Integer>();
         stk.push(-2);
@@ -454,6 +468,7 @@ getMaxArea :: 20
         reverseKElementInQueue(que, 2);
         System.out.println(que);
     }
+
 /*
 [-2, 13, 16, -6, 40]
 [40, -6, 16, 13, -2]
@@ -462,6 +477,7 @@ getMaxArea :: 20
 [3, 2, 1]
 [2, 3, 1]
 */
+
     public static int maxDepthParenthesis(String expn, int size) {
         Stack<Character> stk = new Stack<Character>();
         int maxDepth = 0;
@@ -507,10 +523,12 @@ getMaxArea :: 20
         System.out.println("Max depth parenthesis is " + maxDepthParenthesis(expn, size));
         System.out.println("Max depth parenthesis is " + maxDepthParenthesis2(expn, size));
     }
+
 /*
 Max depth parenthesis is 6
 Max depth parenthesis is 6
 */
+
     public static int longestContBalParen(String string, int size) {
         Stack<Integer> stk = new Stack<Integer>();
         stk.push(-1);
@@ -606,7 +624,9 @@ Max depth parenthesis is 6
         boolean value = findDuplicateParenthesis(expn, size);
         System.out.println("Duplicate Found : " + value);
     }
+
 // Duplicate Found : true
+
     public static void printParenthesisNumber(String expn, int size) {
         char ch;
         Stack<Integer> stk = new Stack<Integer>();
@@ -634,10 +654,12 @@ Max depth parenthesis is 6
         printParenthesisNumber(expn1, expn1.length());
         printParenthesisNumber(expn2, expn2.length());
     }
+
 /*
 Parenthesis Count 1 2 3 4 4 3 5 5 2 1 
 Parenthesis Count 1 2 3 3 2 1 4 5 6 
 */
+
     public static void nextLargerElement(int[] arr, int size) {
         int[] output = new int[size];
         int outIndex = 0;
@@ -660,7 +682,6 @@ Parenthesis Count 1 2 3 3 2 1 4 5 6
 
     public static void nextLargerElement2(int[] arr, int size) {
         Stack<Integer> stk = new Stack<Integer>();
-        // output = [-1] * size;
         int[] output = new int[size];
         int index = 0;
         int curr;
@@ -714,11 +735,13 @@ Parenthesis Count 1 2 3 3 2 1 4 5 6
         nextLargerElement2(arr, size);
         nextSmallerElement(arr, size);
     }
+
 /*
 21 -1 6 20 -1 -1 
 21 -1 6 20 -1 -1 
 3 3 -1 3 3 -1 
 */
+
     public static void nextLargerElementCircular(int[] arr, int size) {
         Stack<Integer> stk = new Stack<Integer>();
         int curr, index;
@@ -803,7 +826,9 @@ Parenthesis Count 1 2 3 3 2 1 4 5 6
             { 1, 1, 0, 0, 1 } };
         System.out.println(rottenFruit(arr, 5, 5));
     }
+
 // 3
+
     public static void stepsOfKnightUtil(int size, int currCol, int currRow, int[][] traversed, int dist) {
         // Range check
         if (currCol < 0 || currCol >= size || currRow < 0 || currRow >= size)
@@ -842,7 +867,9 @@ Parenthesis Count 1 2 3 3 2 1 4 5 6
     public static void main17() {
         System.out.println(stepsOfKnight(20, 10, 10, 20, 20));
     }
+
 // 8
+
     public static void distNearestFillUtil(int[][] arr, int maxCol, int maxRow, int currCol, int currRow,
             int[][] traversed, int dist) { // Range check
         if (currCol < 0 || currCol >= maxCol || currRow < 0 || currRow >= maxRow)
@@ -890,6 +917,7 @@ Parenthesis Count 1 2 3 3 2 1 4 5 6
             { 0, 0, 0, 0, 1 } };
         distNearestFill(arr, 5, 5);
     }
+
 /*
 0 1 0 0 1 
 0 0 1 0 1 
@@ -897,6 +925,7 @@ Parenthesis Count 1 2 3 3 2 1 4 5 6
 2 2 2 1 0 
 3 3 2 1 0 
 */
+
     public static int findLargestIslandUtil(int[][] arr, int maxCol, int maxRow, int currCol, int currRow, int value,
             int[][] traversed) {
         if (currCol < 0 || currCol >= maxCol || currRow < 0 || currRow >= maxRow)
@@ -945,7 +974,9 @@ Parenthesis Count 1 2 3 3 2 1 4 5 6
             { 1, 1, 0, 0, 1 } };
         System.out.println("Largest Island : " + findLargestIsland(arr, 5, 5));
     }
+
 // Largest Island : 12
+
     public static boolean isKnown(int relation[][], int a, int b) {
         if (relation[a][b] == 1)
             return true;
@@ -1002,10 +1033,12 @@ Parenthesis Count 1 2 3 3 2 1 4 5 6
         System.out.println("Celebrity : " + findCelebrity(arr, 5));
         System.out.println("Celebrity : " + findCelebrity2(arr, 5));
     }
+
 /*
 Celebrity : 3
 Celebrity : 3
 */
+
     public static int isMinHeap(int[] arr, int size) {
         for (int i = 0; i <= (size - 2) / 2; i++) {
             if (2 * i + 1 < size) {

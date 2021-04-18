@@ -1,14 +1,9 @@
 public class SelectionSort {
-    private int[] arr;
-    public SelectionSort(int[] array) {
-        arr = array;
-    }
-
-    private boolean more(int value1, int value2) {
+     private boolean more(int value1, int value2) {
         return value1 > value2;
     }
 
-    public void sort()// sorted array created in reverse order.
+    public void sort(int[] arr)// sorted array created in reverse order.
     {
         int size = arr.length;
         int i, j, max, temp;
@@ -25,7 +20,7 @@ public class SelectionSort {
         }
     }
 
-    public void sort2() // sorted array created in forward direction    
+    public void sort2(int[] arr) // sorted array created in forward direction    
     {
         int size = arr.length;
         int i, j, min, temp;
@@ -44,16 +39,16 @@ public class SelectionSort {
 
     public static void main(String[] args) {
         int[] array = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
-        SelectionSort srt = new SelectionSort(array);
-        srt.sort();
+        SelectionSort srt = new SelectionSort();
+        srt.sort(array);
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " ");
         }
         System.out.println();
 
         int[] array2 = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
-        srt = new SelectionSort(array2);
-        srt.sort2();
+        srt = new SelectionSort();
+        srt.sort2(array2);
         for (int i = 0; i < array2.length; i++) {
             System.out.print(array2[i] + " ");
         }

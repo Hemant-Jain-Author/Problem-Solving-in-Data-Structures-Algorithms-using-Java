@@ -3,13 +3,17 @@ import java.util.LinkedList;
 public class LinkedListDemo {
 	public static void main(String[] args) {
 		LinkedList<Integer> ll = new LinkedList<Integer>();
-		ll.addFirst(2); // 8 is added to the list
-		ll.addLast(10); // 9 is added to last of the list.
-		ll.addFirst(1); // 7 is added to first of the list.
-		ll.addLast(11); // 20 is added to last of the list
-		System.out.println("Contents of Linked List: " + ll);
+		ll.addFirst(1); 
+		ll.addLast(3); 
+		ll.addFirst(2); 
+		ll.addLast(4); 
+		System.out.println("Linked List: " + ll);
 		ll.removeFirst();
 		ll.removeLast();
-		System.out.println("Contents of Linked List: " + ll);
+		System.out.println("Linked List: " + ll);
 	}
 }
+/* 
+Linked List: [2, 1, 3, 4]
+Linked List: [1, 3] 
+*/
