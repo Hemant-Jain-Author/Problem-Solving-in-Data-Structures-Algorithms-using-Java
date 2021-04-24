@@ -13,12 +13,6 @@ public class DoublyLinkedList {
             next = nxt;
             prev = prv;
         }
-
-        public Node(int v) {
-            value = v;
-            next = null;
-            prev = null;
-        }
     }
 
     /* Other methods */
@@ -106,7 +100,7 @@ public class DoublyLinkedList {
         return false;
     }
 
-    public boolean isPresent(int key) {
+    public boolean search(int key) {
         Node temp = head;
         while (temp != null) {
             if (temp.value == key)
@@ -140,16 +134,18 @@ public class DoublyLinkedList {
         {
             head = temp;
             tail = temp;
+            return;
         }
 
-        if (head.value <= value)// at the begining
+        if (head.value > value)// at the begining
         {
             temp.next = head;
             head.prev = temp;
             head = temp;
+            return;
         }
 
-        while (curr.next != null && curr.next.value > value)// treversal
+        while (curr.next != null && curr.next.value < value)// treversal
         {
             curr = curr.next;
         }
@@ -194,13 +190,12 @@ public class DoublyLinkedList {
     /* Remove Duplicate */
     public void removeDuplicate() {
         Node curr = head;
-        Node deleteMe;
         while (curr != null) {
             if ((curr.next != null) && curr.value == curr.next.value) {
-                deleteMe = curr.next;
-                curr.next = deleteMe.next;
-                curr.next.prev = curr;
-                if (deleteMe == tail) {
+                curr.next = curr.next.next;
+                if(curr.next != null)
+                    curr.next.prev = curr;
+                if (curr.next == null) {
                     tail = curr;
                 }
             } else {
@@ -231,7 +226,7 @@ public class DoublyLinkedList {
         return dll;
     }
 
-    public static void main(String[] args) {
+    public static void main1() {
         DoublyLinkedList ll = new DoublyLinkedList();
         ll.addHead(1);
         ll.addHead(2);
@@ -239,9 +234,60 @@ public class DoublyLinkedList {
         ll.print();
         ll.removeHead();
         ll.print();
+        System.out.println(ll.search(2));
+    }
+/*
+3 2 1 
+2 1 
+true
+*/
+        
+    public static void main2() {
+        DoublyLinkedList ll = new DoublyLinkedList();
+        ll.sortedInsert(1);
+        ll.sortedInsert(2);
+        ll.sortedInsert(3);
+        ll.print();
+        ll.sortedInsert(1);
+        ll.sortedInsert(2);
+        ll.sortedInsert(3);
+        ll.print();
+        ll.removeDuplicate();
+        ll.print();
+    }
+/*
+1 2 3 
+1 1 2 2 3 3 
+1 2 3 
+*/
+
+    public static void main3() {
+        DoublyLinkedList ll = new DoublyLinkedList();
+        ll.addHead(1);
+        ll.addHead(2);
+        ll.addHead(3);
+        ll.print();
+
+        DoublyLinkedList l2 = ll.copyList(); 
+        l2.print(); 
+        DoublyLinkedList l3 = ll.copyListReversed(); 
+        l3.print();
+    }
+/*
+3 2 1 
+3 2 1 
+1 2 3
+*/
+
+    public static void main(String[] args) {
+        //main1();
+        //main2();
+        main3();
     }
 }
 /*
 3 2 1 
 2 1 
+true
 */
+

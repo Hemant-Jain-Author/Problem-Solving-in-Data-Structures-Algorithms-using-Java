@@ -101,6 +101,9 @@ public class CircularLinkedList {
 
     public CircularLinkedList copyListReversed() {
         CircularLinkedList cl = new CircularLinkedList();
+        if(tail == null) {
+            return cl;
+        }
         Node curr = tail.next;
         Node head = curr;
 
@@ -117,6 +120,9 @@ public class CircularLinkedList {
 
     public CircularLinkedList copyList() {
         CircularLinkedList cl = new CircularLinkedList();
+        if(tail == null) {
+            return cl;
+        }
         Node curr = tail.next;
         Node head = curr;
 
@@ -131,7 +137,7 @@ public class CircularLinkedList {
         return cl;
     }
 
-    public boolean searchList(int data) {
+    public boolean search(int data) {
         Node temp = tail;
         for (int i = 0; i < size; i++) {
             if (temp.value == data)
@@ -148,6 +154,7 @@ public class CircularLinkedList {
 
     public void print() {
         if (isEmpty()) {
+            System.out.println("Empty List.");
             return;
         }
         Node temp = tail.next;
@@ -155,18 +162,89 @@ public class CircularLinkedList {
             System.out.print(temp.value + " ");
             temp = temp.next;
         }
-        System.out.print(temp.value);
+        System.out.println(temp.value);
     }
 
-    public static void main(String[] args) {
+    public static void main1() {
         CircularLinkedList ll = new CircularLinkedList();
         ll.addHead(1);
         ll.addHead(2);
         ll.addHead(3);
         ll.print();
+        System.out.println(ll.size());
+        System.out.println(ll.isEmpty());
+        System.out.println(ll.peek());
+        System.out.println(ll.search(3));
     }
-}
 
 /*
-3 2 1 
+3 2 1
+3
+false
+3
+true
 */
+
+    public static void main2() {
+        CircularLinkedList ll = new CircularLinkedList();
+        ll.addHead(1);
+        ll.addHead(2);
+        ll.addHead(3);
+        ll.print();        
+        ll.addTail(4);
+        ll.print();
+    }
+
+/*
+3 2 1
+3 2 1 4
+*/
+
+    public static void main3() {
+        CircularLinkedList ll = new CircularLinkedList();
+        ll.addHead(1);
+        ll.addHead(2);
+        ll.addHead(3);
+        ll.print();    
+        ll.removeHead();
+        ll.print();
+        ll.removeNode(2);
+        ll.print();
+        ll.deleteList();
+        ll.print();
+    }
+
+/*
+3 2 1
+3 2 1 4
+3 2 1
+2 1
+1
+Empty List.
+*/
+
+    public static void main4() {
+        CircularLinkedList ll = new CircularLinkedList();
+        ll.addHead(1);
+        ll.addHead(2);
+        ll.addHead(3);
+        ll.print();
+        CircularLinkedList ll2 = ll.copyList();
+        ll2.print();
+        CircularLinkedList ll3 = ll.copyListReversed();
+        ll3.print();
+    }
+
+/*
+3 2 1
+3 2 1
+1 2 3
+*/
+
+    public static void main(String[] args) {
+        main1();
+        main2();
+        main3();
+        main4();
+    }
+}

@@ -9,7 +9,7 @@ public static void printArray(int[] arr, int count) {
     for (int i = 0; i < count; i++) {
         System.out.print(" " + arr[i]);
     }
-    System.out.print(" ]\n");
+    System.out.println(" ]");
 }
 
 public static void swap(int[] arr, int x, int y) {
@@ -97,7 +97,7 @@ public static void main2() {
 /*
 [ 1 2 3 4 5 6 7 8 10 12 9 11 14 13 15 16 17 18 ]
 */
-int minSwaps(int arr[], int size, int val) {
+public static int minSwaps(int arr[], int size, int val) {
     int swapCount = 0;
     int first = 0;
     int second = size - 1;
@@ -117,6 +117,14 @@ int minSwaps(int arr[], int size, int val) {
     return swapCount;
 }
 
+//Testing code
+public static void main3() {
+ int array[] = {1, 2, 3, 4, 18, 5, 17, 6, 16, 7, 15, 8, 14, 9, 13, 10, 12, 11};
+ System.out.println("minSwaps " + minSwaps(array, array.length, 10));;
+
+}
+// minSwaps 3
+   
 public static void seperateEvenAndOdd(int data[], int size) {
     int left = 0, right = size - 1;
     while (left < right) {
@@ -133,7 +141,7 @@ public static void seperateEvenAndOdd(int data[], int size) {
 }
 
 // Testing code
-public static void main8() {
+public static void main4() {
     int array[] = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
     seperateEvenAndOdd(array, array.length);
     printArray(array, array.length);
@@ -155,7 +163,7 @@ public static void absBubbleSort(int[] arr, int size, int ref) {
 }
 
 // Testing code
-public static void main3() {
+public static void main5() {
     int array[] = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
     int ref = 5;
     absBubbleSort(array, array.length, ref);
@@ -171,7 +179,6 @@ public static boolean eqMore(int value1, int value2, int A) {
 }
 
 public static void arrayReduction(int[] arr, int size) {
-
     Arrays.sort(arr);
     int count = 1;
     int reduction = arr[0];
@@ -182,15 +189,15 @@ public static void arrayReduction(int[] arr, int size) {
             count += 1;
         }
     }
-    System.out.println("Total number of reductions " + count);
+    System.out.println("Total number of reductions: " + count);
 }
 
 // Testing code
-public static void main4() {
+public static void main6() {
     int arr[] = { 5, 1, 1, 1, 2, 3, 5 };
     arrayReduction(arr, arr.length);
 }
-// Total number of reductions 4
+// Total number of reductions: 4
 
 /*
     * public static void SortFrequency(int[] arr, int size) { HashMap<Integer,
@@ -242,7 +249,7 @@ public static void sortByOrder(int[] arr, int size, int arr2[], int size2) {
 }
 
 // Testing code
-public static void main5() {
+public static void main7() {
     int arr[] = { 2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8 };
     int arr2[] = { 2, 1, 8, 3 };
     sortByOrder(arr, arr.length, arr2, arr2.length);
@@ -277,7 +284,7 @@ public static void merge(int[] arr1, int size1, int[] arr2, int size2) {
 }
 
 // Testing code.
-public static void main6() {
+public static void main8() {
     int arr1[] = { 1, 5, 9, 10, 15, 20 };
     int arr2[] = { 2, 3, 8, 13 };
     merge(arr1, arr1.length, arr2, arr2.length);
@@ -358,12 +365,10 @@ public static void unionIntersectionSorted(int arr1[], int size1, int arr2[], in
             second += 1;
         }
     }
-
     while (first < size1) {
         unionArr[uIndex++] = arr1[first];
         first += 1;
     }
-
     while (second < size2) {
         unionArr[uIndex++] = arr2[second];
         second += 1;
@@ -378,7 +383,7 @@ public static void unionIntersectionUnsorted(int arr1[], int size1, int arr2[], 
     unionIntersectionSorted(arr1, size1, arr2, size2);
 }
 
-public static void main7() {
+public static void main10() {
     int arr1[] = { 1, 11, 2, 3, 14, 5, 6, 8, 9 };
     int arr2[] = { 2, 4, 5, 12, 7, 8, 13, 10 };
     unionIntersectionUnsorted(arr1, arr1.length, arr2, arr2.length);
@@ -388,14 +393,15 @@ public static void main7() {
 [ 2 5 8 ]
 */
     public static void main(String[] args) {
-        //main1();
-        //main2();
-        //main3();
-        //main4();
-        //main5();
-        //main6();
-        //main7();
-        //main8();
+        main1();
+        main2();
+        main3();
+        main4();
+        main5();
+        main6();
+        main7();
+        main8();
         main9();
+        main10();
     }
 }

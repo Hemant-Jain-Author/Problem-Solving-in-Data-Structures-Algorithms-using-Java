@@ -13,12 +13,6 @@ public class DoublyCircularLinkedList {
             next = nxt;
             prev = prv;
         }
-
-        public Node(int v) {
-            value = v;
-            next = this;
-            prev = this;
-        }
     }
     /* Other methods */
 
@@ -108,7 +102,7 @@ public class DoublyCircularLinkedList {
         return value;
     }
 
-    public boolean isPresent(int key) {
+    public boolean search(int key) {
         Node temp = head;
         if (head == null)
             return false;
@@ -130,6 +124,7 @@ public class DoublyCircularLinkedList {
 
     public void print() {
         if (isEmpty()) {
+            System.out.println("Empty List.");    
             return;
         }
         Node temp = head;
@@ -137,17 +132,55 @@ public class DoublyCircularLinkedList {
             System.out.print(temp.value + " ");
             temp = temp.next;
         }
-        System.out.print(temp.value);
+        System.out.println(temp.value);
     }
 
-    public static void main(String[] args) {
+    public static void main1() {
         DoublyCircularLinkedList ll = new DoublyCircularLinkedList();
         ll.addHead(1);
         ll.addHead(2);
         ll.addHead(3);
         ll.print();
+        System.out.println(ll.size());
+        System.out.println(ll.isEmpty());
+        System.out.println(ll.peekHead());
+        System.out.println(ll.search(3));
     }
-}
+
 /*
 3 2 1
+3
+false
+3
+true
 */
+
+    public static void main2() {
+        DoublyCircularLinkedList ll = new DoublyCircularLinkedList();
+        ll.addHead(1);
+        ll.addHead(2);
+        ll.addHead(3);
+        ll.print();        
+        ll.addTail(4);
+        ll.print();
+        ll.removeHead();
+        ll.print();
+        ll.removeTail();
+        ll.print();
+        ll.deleteList();
+        ll.print();
+    }
+
+/*
+3 2 1
+3 2 1 4
+2 1 4
+2 1
+Empty List.
+*/
+
+    public static void main(String[] args) {
+        main1();
+        main2();
+    }
+}

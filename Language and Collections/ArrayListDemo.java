@@ -13,3 +13,10 @@ public class ArrayListDemo {
 		System.out.println("Array IsEmpty : " + al.isEmpty());
 	}
 }
+
+/*
+Contents of Array : [1, 2]
+Array Size : 2
+Array IsEmpty : false
+Array IsEmpty : true
+*/
