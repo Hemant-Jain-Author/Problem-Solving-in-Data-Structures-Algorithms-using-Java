@@ -70,9 +70,9 @@ public class StackLL {
         System.out.println(s.pop());
         System.out.println(s.pop());
     }
+}
 /*
 3 2 1 
 3
 2
 */
-}

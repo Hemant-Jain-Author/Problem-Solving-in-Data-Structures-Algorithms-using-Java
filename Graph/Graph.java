@@ -59,7 +59,6 @@ public class Graph {
     public static boolean dfsStack(Graph gph, int source, int target) {
         int count = gph.count;
         boolean[] visited = new boolean[count];
-
         Stack<Integer> stk = new Stack<Integer>();
         stk.push(source);
         visited[source] = true;
@@ -138,16 +137,16 @@ public class Graph {
         System.out.println(Graph.bfs(gph, 0, 2));
         System.out.println(Graph.dfsStack(gph, 0, 2));
     }
-/*
-Vertex 0 is connected to : (1, 3) (4, 2) 
-Vertex 1 is connected to : (2, 1) 
-Vertex 2 is connected to : (3, 1) 
-Vertex 3 is connected to : 
-Vertex 4 is connected to : (1, -2) (3, 1) 
-true
-true
-true
-*/
+    /*
+    Vertex 0 is connected to : (1, 3) (4, 2) 
+    Vertex 1 is connected to : (2, 1) 
+    Vertex 2 is connected to : (3, 1) 
+    Vertex 3 is connected to : 
+    Vertex 4 is connected to : (1, -2) (3, 1) 
+    true
+    true
+    true
+    */
     public static void topologicalSort(Graph gph) {
         Stack<Integer> stk = new Stack<Integer>();
         int count = gph.count;
@@ -175,19 +174,18 @@ true
         gph.print();
         topologicalSort(gph);
     }
-/*
-Vertex 0 is connected to : 
-Vertex 1 is connected to : 
-Vertex 2 is connected to : (3, 1) 
-Vertex 3 is connected to : (1, 1) 
-Vertex 4 is connected to : (0, 1) (1, 1) 
-Vertex 5 is connected to : (2, 1) (0, 1) 
-topologicalSort ::  5 4 2 3 1 0
-*/
+    /*
+    Vertex 0 is connected to : 
+    Vertex 1 is connected to : 
+    Vertex 2 is connected to : (3, 1) 
+    Vertex 3 is connected to : (1, 1) 
+    Vertex 4 is connected to : (0, 1) (1, 1) 
+    Vertex 5 is connected to : (2, 1) (0, 1) 
+    topologicalSort ::  5 4 2 3 1 0
+    */
     public static boolean pathExist(Graph gph, int source, int dest) {
         int count = gph.count;
         boolean[] visited = new boolean[count];
-
         dfsUtil(gph, source, visited);
         return visited[dest];
     }
@@ -254,19 +252,19 @@ topologicalSort ::  5 4 2 3 1 0
         System.out.println(countAllPath(gph, 0, 4));
         printAllPath(gph, 0, 4);
     }
-/*
-Vertex 0 is connected to : (1, 1) (2, 1) 
-Vertex 1 is connected to : (3, 1) (4, 1) 
-Vertex 2 is connected to : (3, 1) 
-Vertex 3 is connected to : (4, 1) 
-Vertex 4 is connected to : 
-PathExist :: true
+    /*
+    Vertex 0 is connected to : (1, 1) (2, 1) 
+    Vertex 1 is connected to : (3, 1) (4, 1) 
+    Vertex 2 is connected to : (3, 1) 
+    Vertex 3 is connected to : (4, 1) 
+    Vertex 4 is connected to : 
+    PathExist :: true
 
-3
-[0, 1, 3, 4]
-[0, 1, 4]
-[0, 2, 3, 4]
-*/
+    3
+    [0, 1, 3, 4]
+    [0, 1, 4]
+    [0, 2, 3, 4]
+    */
     public static int rootVertex(Graph gph) {
         int count = gph.count;
         boolean[] visited = new boolean[count];
@@ -294,20 +292,20 @@ PathExist :: true
         gph.print();
         rootVertex(gph);
     }
-/*
-Vertex 0 is connected to : (1, 1) (2, 1) 
-Vertex 1 is connected to : (3, 1) 
-Vertex 2 is connected to : 
-Vertex 3 is connected to : 
-Vertex 4 is connected to : (1, 1) 
-Vertex 5 is connected to : (6, 1) (2, 1) 
-Vertex 6 is connected to : (4, 1) (0, 1) 
-Root vertex is :: 5
-*/
     /*
-     * Given a directed graph, find transitive closure matrix or reach ability
-     * matrix vertex v is reachable form vertex u if their is a path from u to v.
-     */
+    Vertex 0 is connected to : (1, 1) (2, 1) 
+    Vertex 1 is connected to : (3, 1) 
+    Vertex 2 is connected to : 
+    Vertex 3 is connected to : 
+    Vertex 4 is connected to : (1, 1) 
+    Vertex 5 is connected to : (6, 1) (2, 1) 
+    Vertex 6 is connected to : (4, 1) (0, 1) 
+    Root vertex is :: 5
+    */
+    /*
+    * Given a directed graph, find transitive closure matrix or reach ability
+    * matrix vertex v is reachable form vertex u if their is a path from u to v.
+    */
 
     public static void transitiveClosureUtil(Graph gph, int source, int dest, int[][] tc) {
         tc[source][dest] = 1;
@@ -343,12 +341,12 @@ Root vertex is :: 5
             System.out.println();
         }
     }
-/*
-1 1 1 1 
-1 1 1 1 
-1 1 1 1 
-0 0 0 1 
-*/
+    /*
+    1 1 1 1 
+    1 1 1 1 
+    1 1 1 1 
+    0 0 0 1 
+    */
 
     public static void bfsLevelNode(Graph gph, int source) {
         int count = gph.count;
@@ -417,25 +415,25 @@ Root vertex is :: 5
         bfsLevelNode(gph, 1);
         System.out.println(bfsDistance(gph, 1, 6));
     }
-/*
-Vertex 0 is connected to : (1, 1) (2, 1) (4, 1) 
-Vertex 1 is connected to : (0, 1) (2, 1) 
-Vertex 2 is connected to : (0, 1) (1, 1) (5, 1) 
-Vertex 3 is connected to : (4, 1) 
-Vertex 4 is connected to : (0, 1) (3, 1) (5, 1) (6, 1) 
-Vertex 5 is connected to : (2, 1) (4, 1) 
-Vertex 6 is connected to : (4, 1) 
+    /*
+    Vertex 0 is connected to : (1, 1) (2, 1) (4, 1) 
+    Vertex 1 is connected to : (0, 1) (2, 1) 
+    Vertex 2 is connected to : (0, 1) (1, 1) (5, 1) 
+    Vertex 3 is connected to : (4, 1) 
+    Vertex 4 is connected to : (0, 1) (3, 1) (5, 1) (6, 1) 
+    Vertex 5 is connected to : (2, 1) (4, 1) 
+    Vertex 6 is connected to : (4, 1) 
 
-Node  - Level
-1 - 0
-0 - 1
-2 - 1
-4 - 2
-5 - 2
-3 - 3
-6 - 3
-3
-*/
+    Node  - Level
+    1 - 0
+    0 - 1
+    2 - 1
+    4 - 2
+    5 - 2
+    3 - 3
+    6 - 3
+    3
+    */
     public static boolean isCyclePresentUndirectedDFS(Graph graph, int index, int parentIndex, boolean[] visited) {
         visited[index] = true;
         int dest;
@@ -471,12 +469,12 @@ Node  - Level
         // gph.addUndirectedEdge(4, 1, 1);
         System.out.println(isCyclePresentUndirected(gph));
     }
-/*
-false
-*/
     /*
-     * Given a directed graph find if there is a cycle in it.
-     */
+    false
+    */
+    /*
+    * Given a directed graph find if there is a cycle in it.
+    */
     public static boolean isCyclePresentDFS(Graph graph, int index, boolean[] visited, int[] marked) {
         visited[index] = true;
         marked[index] = 1;
@@ -544,9 +542,9 @@ false
         gph.addDirectedEdge(4, 1, 1);
         System.out.println(isCyclePresentColor(gph));
     }
-/*
-true
-*/
+    /*
+    true
+    */
     public static Graph transposeGraph(Graph gph) {
         int count = gph.count;
         Graph g = new Graph(count);
@@ -574,16 +572,18 @@ true
     }
 
     /*
-     * Kosaraju Algorithm
-     * 
-     * Kosaraju’s Algorithm to find strongly connected directed graph based on DFS :
-     * 1) Create a visited array of size V, and Initialize all count in visited
-     * array as 0. 2) Choose any vertex and perform a DFS traversal of graph. For
-     * all visited count mark them visited as 1. 3) If DFS traversal does not mark
-     * all count as 1, then return 0. 4) Find transpose or reverse of graph 5)
-     * Repeat step 1, 2 and 3 for the reversed graph. 6) If DFS traversal mark all
-     * the count as 1, then return 1.
-     */
+    * Kosaraju Algorithm
+    * 
+    * Kosaraju’s Algorithm to find strongly connected directed graph based on DFS :
+    * 1) Create a visited array of size V, and Initialize all count in visited array as 0. 
+    * 2) Choose any vertex and perform a DFS traversal of graph. For 
+    * all visited count mark them visited as 1. 
+    * 3) If DFS traversal does not mark
+    * all count as 1, then return 0. 
+    * 4) Find transpose or reverse of graph 
+    * 5) Repeat step 1, 2 and 3 for the reversed graph. 
+    * 6) If DFS traversal mark all the count as 1, then return 1.
+    */
     public static boolean isStronglyConnected(Graph gph) {
         int count = gph.count;
         boolean visited[] = new boolean[count];
@@ -617,9 +617,9 @@ true
         gph.addDirectedEdge(4, 2, 1);
         System.out.println("IsStronglyConnected:: " + isStronglyConnected(gph));
     }
-/*
-IsStronglyConnected:: true
-*/
+    /*
+    IsStronglyConnected:: true
+    */
     public static void stronglyConnectedComponent(Graph gph) {
         int count = gph.count;
         boolean[] visited = new boolean[count];
@@ -657,12 +657,15 @@ IsStronglyConnected:: true
         gph.addDirectedEdge(5, 3, 1);
         gph.addDirectedEdge(5, 6, 1);
         stronglyConnectedComponent(gph);
+        
+        Graph gReversed = transposeGraph(gph);
+        gReversed.print();
     }
-/*
-[1, 2, 0]
-[4, 5, 3]
-[6]
-*/
+    /*
+    [1, 2, 0]
+    [4, 5, 3]
+    [6]
+    */
     public static void prims(Graph gph) {
         int[] previous = new int[gph.count];
         int[] dist = new int[gph.count];
@@ -732,37 +735,37 @@ IsStronglyConnected:: true
         System.out.println();
         dijkstra(gph, 0);
     }
-/*
-Vertex 0 is connected to : (1, 4) (7, 8) 
-Vertex 1 is connected to : (0, 4) (2, 8) (7, 11) 
-Vertex 2 is connected to : (1, 8) (3, 7) (8, 2) (5, 4) 
-Vertex 3 is connected to : (2, 7) (4, 9) (5, 14) 
-Vertex 4 is connected to : (3, 9) (5, 10) 
-Vertex 5 is connected to : (2, 4) (3, 14) (4, 10) (6, 2) 
-Vertex 6 is connected to : (5, 2) (7, 1) (8, 6) 
-Vertex 7 is connected to : (0, 8) (1, 11) (6, 1) (8, 7) 
-Vertex 8 is connected to : (2, 2) (6, 6) (7, 7) 
+    /*
+    Vertex 0 is connected to : (1, 4) (7, 8) 
+    Vertex 1 is connected to : (0, 4) (2, 8) (7, 11) 
+    Vertex 2 is connected to : (1, 8) (3, 7) (8, 2) (5, 4) 
+    Vertex 3 is connected to : (2, 7) (4, 9) (5, 14) 
+    Vertex 4 is connected to : (3, 9) (5, 10) 
+    Vertex 5 is connected to : (2, 4) (3, 14) (4, 10) (6, 2) 
+    Vertex 6 is connected to : (5, 2) (7, 1) (8, 6) 
+    Vertex 7 is connected to : (0, 8) (1, 11) (6, 1) (8, 7) 
+    Vertex 8 is connected to : (2, 2) (6, 6) (7, 7) 
 
- node id 0  prev 1 distance : 4
- node id 1  prev -1 distance : 0
- node id 2  prev 1 distance : 8
- node id 3  prev 2 distance : 7
- node id 4  prev 3 distance : 9
- node id 5  prev 2 distance : 4
- node id 6  prev 5 distance : 2
- node id 7  prev 6 distance : 1
- node id 8  prev 2 distance : 2
+    node id 0  prev 1 distance : 4
+    node id 1  prev -1 distance : 0
+    node id 2  prev 1 distance : 8
+    node id 3  prev 2 distance : 7
+    node id 4  prev 3 distance : 9
+    node id 5  prev 2 distance : 4
+    node id 6  prev 5 distance : 2
+    node id 7  prev 6 distance : 1
+    node id 8  prev 2 distance : 2
 
- node id 0  prev -1 distance : 0
- node id 1  prev 0 distance : 4
- node id 2  prev 1 distance : 12
- node id 3  prev 2 distance : 19
- node id 4  prev 5 distance : 21
- node id 5  prev 6 distance : 11
- node id 6  prev 7 distance : 9
- node id 7  prev 0 distance : 8
- node id 8  prev 2 distance : 14
- */
+    node id 0  prev -1 distance : 0
+    node id 1  prev 0 distance : 4
+    node id 2  prev 1 distance : 12
+    node id 3  prev 2 distance : 19
+    node id 4  prev 5 distance : 21
+    node id 5  prev 6 distance : 11
+    node id 6  prev 7 distance : 9
+    node id 7  prev 0 distance : 8
+    node id 8  prev 2 distance : 14
+    */
     public static void shortestPath(Graph gph, int source)// unweighted graph
     {
         int curr;
@@ -809,18 +812,18 @@ Vertex 8 is connected to : (2, 2) (6, 6) (7, 7)
         // prims(gph);
         System.out.println("isConnectedUndirected :: " + isConnectedUndirected(gph));
     }
-/*
-2 to 0 weight 6
--1 to 1 weight 0
-1 to 2 weight 5
-1 to 3 weight 7
-1 to 4 weight 9
-3 to 5 weight 11
-4 to 6 weight 12
-5 to 7 weight 12
-7 to 8 weight 29
-isConnectedUndirected :: true
-*/
+    /*
+    2 to 0 weight 6
+    -1 to 1 weight 0
+    1 to 2 weight 5
+    1 to 3 weight 7
+    1 to 4 weight 9
+    3 to 5 weight 11
+    4 to 6 weight 12
+    5 to 7 weight 12
+    7 to 8 weight 29
+    isConnectedUndirected :: true
+    */
     static class EdgeComparator implements Comparator<Edge> {
         public int compare(Edge x, Edge y) {
             if (x.cost < y.cost) {
@@ -925,19 +928,19 @@ isConnectedUndirected :: true
         System.out.println();
         bellmanFordshortestPath(gph, 0);
     }
-/*
-Vertex 0 is connected to : (1, 3) (4, 2) 
-Vertex 1 is connected to : (2, 1) 
-Vertex 2 is connected to : (3, 1) 
-Vertex 3 is connected to : 
-Vertex 4 is connected to : (1, -2) (3, 1) 
+    /*
+    Vertex 0 is connected to : (1, 3) (4, 2) 
+    Vertex 1 is connected to : (2, 1) 
+    Vertex 2 is connected to : (3, 1) 
+    Vertex 3 is connected to : 
+    Vertex 4 is connected to : (1, -2) (3, 1) 
 
--1 to 0 weight 0
-4 to 1 weight 0
-1 to 2 weight 1
-2 to 3 weight 2
-0 to 4 weight 2
-*/
+    -1 to 0 weight 0
+    4 to 1 weight 0
+    1 to 2 weight 1
+    2 to 3 weight 2
+    0 to 4 weight 2
+    */
     public static int heightTreeParentArr(int[] arr) {
         int count = arr.length;
         int[] heightArr = new int[count];
@@ -998,10 +1001,10 @@ Vertex 4 is connected to : (1, -2) (3, 1)
         System.out.println(heightTreeParentArr(parentArray));
         System.out.println(heightTreeParentArr2(parentArray));
     }
-/*
-4
-4
-*/
+    /*
+    4
+    4
+    */
 
     public static int bestFirstSearchPQ(Graph gph, int source, int dest) {
         int[] previous = new int[gph.count];
@@ -1068,10 +1071,10 @@ Vertex 4 is connected to : (1, -2) (3, 1)
     }
 
     /*
-     * The function returns one of the following values Return 0 if graph is not
-     * Eulerian Return 1 if graph has an Euler path (Semi-Eulerian) Return 2 if
-     * graph has an Euler Circuit (Eulerian)
-     */
+    * The function returns one of the following values Return 0 if graph is not
+    * Eulerian Return 1 if graph has an Euler path (Semi-Eulerian) Return 2 if
+    * graph has an Euler Circuit (Eulerian)
+    */
     public static int isEulerian(Graph graph) {
         int count = graph.count;
         int odd;
@@ -1123,10 +1126,10 @@ Vertex 4 is connected to : (1, -2) (3, 1)
         gph.addDirectedEdge(3, 4, 1);
         System.out.println(isEulerian(gph));
     }
-/*
-graph is Semi-Eulerian
-1
-*/
+    /*
+    graph is Semi-Eulerian
+    1
+    */
     public static boolean isStronglyConnected2(Graph graph) {
         int count = graph.count;
         boolean[] visited = new boolean[count];
@@ -1192,9 +1195,64 @@ graph is Semi-Eulerian
         gph.addDirectedEdge(3, 0, 1);
         System.out.println(isEulerianCycle(gph));
     }
-/*
-true
-*/
+    /*
+    true
+    */
+
+    public static void main17() {
+        Graph gph = new Graph(7);
+        gph.addDirectedEdge(0, 1, 1);
+        gph.addDirectedEdge(1, 2, 1);
+        gph.addDirectedEdge(2, 0, 1);
+        gph.addDirectedEdge(2, 3, 1);
+        gph.addDirectedEdge(3, 4, 1);
+        gph.addDirectedEdge(4, 5, 1);
+        gph.addDirectedEdge(5, 3, 1);
+        gph.addDirectedEdge(5, 6, 1);
+        
+        Graph gReversed = transposeGraph(gph);
+        gReversed.print();
+    }
+
+    /*
+    Vertex 0 is connected to : (2, 1) 
+    Vertex 1 is connected to : (0, 1) 
+    Vertex 2 is connected to : (1, 1) 
+    Vertex 3 is connected to : (2, 1) (5, 1) 
+    Vertex 4 is connected to : (3, 1) 
+    Vertex 5 is connected to : (4, 1) 
+    Vertex 6 is connected to : (5, 1) 
+    */
+
+    public static void main18() {
+        Graph gph = new Graph(9);
+        gph.addUndirectedEdge(0, 1);
+        gph.addUndirectedEdge(0, 7);
+        gph.addUndirectedEdge(1, 2);
+        gph.addUndirectedEdge(1, 7);
+        gph.addUndirectedEdge(2, 3);
+        gph.addUndirectedEdge(2, 8);
+        gph.addUndirectedEdge(2, 5);
+        gph.addUndirectedEdge(3, 4);
+        gph.addUndirectedEdge(3, 5);
+        gph.addUndirectedEdge(4, 5);
+        gph.addUndirectedEdge(5, 6);
+        gph.addUndirectedEdge(6, 7);
+        gph.addUndirectedEdge(6, 8);
+        gph.addUndirectedEdge(7, 8);
+        shortestPath(gph, 0);
+    }
+    /*
+    0 to 0 weight 0
+    0 to 1 weight 1
+    1 to 2 weight 2
+    2 to 3 weight 3
+    3 to 4 weight 4
+    2 to 5 weight 3
+    7 to 6 weight 2
+    0 to 7 weight 1
+    7 to 8 weight 2
+    */
     public static void main(String[] args) {
     /*    main1();
         main2(); 
@@ -1207,10 +1265,12 @@ true
         main9();
         main10(); 
         main11(); 
-        main12(); */
+        main12(); 
         main13(); 
         main14(); 
         main15(); 
         main16();
+        main17();*/
+    	main18();
     }
 }

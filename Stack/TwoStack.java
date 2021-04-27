@@ -10,25 +10,6 @@ public class TwoStack {
         data = new int[MAX_SIZE];
     }
 
-    public static void main(String[] args) {
-        TwoStack st = new TwoStack();
-        st.push1(1);
-        st.push1(2);
-        st.push1(3);
-        st.push2(4);
-        st.push2(5);
-        st.push2(6);
-        System.out.println("stk1 pop : " + st.pop1());
-        System.out.println("stk1 pop : " + st.pop1());
-        System.out.println("stk2 pop : " + st.pop2());
-        System.out.println("stk2 pop : " + st.pop2());
-    }
-/*
-stk1 pop : 3
-stk1 pop : 2
-stk2 pop : 6
-stk2 pop : 5
-*/
     public void push1(int value) {
         if (top1 < top2 - 1) {
             data[++top1] = value;
@@ -64,4 +45,24 @@ stk2 pop : 5
         }
         return -999;
     }
+    public static void main(String[] args) {
+        TwoStack st = new TwoStack();
+        st.push1(1);
+        st.push1(2);
+        st.push1(3);
+        st.push2(4);
+        st.push2(5);
+        st.push2(6);
+        System.out.println("stk1 pop: " + st.pop1());
+        System.out.println("stk1 pop: " + st.pop1());
+        System.out.println("stk2 pop: " + st.pop2());
+        System.out.println("stk2 pop: " + st.pop2());
+    }
 }
+
+/*
+stk1 pop: 3
+stk1 pop: 2
+stk2 pop: 6
+stk2 pop: 5
+*/

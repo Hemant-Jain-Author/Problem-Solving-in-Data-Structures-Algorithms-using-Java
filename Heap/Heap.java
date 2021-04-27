@@ -21,20 +21,19 @@ public class Heap {
 	}
 
 	// Other Methods.
-
 	boolean compare(int[] arr, int first, int second) {
 		if (isMinHeap)
 			return (arr[first] - arr[second]) > 0; // Min heap compare
 		else
 			return (arr[first] - arr[second]) < 0; // Max heap compare
 	}
-
+	
 	private void proclateDown(int parent) {
 		int lChild = 2 * parent + 1;
 		int rChild = lChild + 1;
 		int child = -1;
 		int temp;
-
+	
 		if (lChild < size) {
 			child = lChild;
 		}
@@ -48,7 +47,7 @@ public class Heap {
 			proclateDown(child);
 		}
 	}
-
+	
 	private void proclateUp(int child) {
 		int parent = (child - 1) / 2;
 		int temp;
@@ -70,18 +69,18 @@ public class Heap {
 		arr[size++] = value;
 		proclateUp(size - 1);
 	}
-
+	
 	private void doubleSize() {
 		int[] old = arr;
 		arr = new int[arr.length * 2];
 		System.arraycopy(old, 0, arr, 0, size);
 	}
-
+	
 	public int remove() {
 		if (isEmpty()) {
 			throw new IllegalStateException();
 		}
-
+	
 		int value = arr[0];
 		arr[0] = arr[size - 1];
 		size--;
@@ -110,6 +109,23 @@ public class Heap {
 		return arr[0];
 	}
 
+	public static void main1() {
+		int[] a = { 1, 9, 6, 7, 8, 2, 4, 5, 3 };
+		Heap hp = new Heap(a, true);
+		hp.print();
+		System.out.println();
+	
+		while (!hp.isEmpty()) {
+			System.out.print(hp.remove() + " ");
+		}
+		System.out.println();
+	}
+	
+	/*
+	1 3 2 5 8 6 4 9 7 
+	1 2 3 4 5 6 7 8 9 
+	*/
+	
 	public static void heapSort(int[] array, boolean inc) {
 		// Create max heap for increasing order sorting.
 		Heap hp = new Heap(array, !inc);
@@ -117,65 +133,29 @@ public class Heap {
 			array[array.length - i - 1] = hp.remove();
 		}
 	}
-
-	public static void main(String[] args) {
-		int[] a = { 1, 9, 6, 7, 8, 2, 4, 5, 3 };
-		Heap hp = new Heap(a, true);
-		hp.print();
-		System.out.println();
-
-		while (!hp.isEmpty()) {
-			System.out.print(hp.remove() + " ");
-		}
-		System.out.println();
-
+	
+	public static void main2() {
 		int[] a2 = { 1, 9, 6, 7, 8, 2, 4, 5, 3 };
 		Heap.heapSort(a2, true);
 		for (int i = 0; i < a2.length; i++) {
 			System.out.print(a2[i] + " ");
 		}
 		System.out.println();
-
+	
 		int[] a3 = { 1, 9, 6, 7, 8, 2, 4, 5, 3 };
 		Heap.heapSort(a3, false);
 		for (int i = 0; i < a3.length; i++) {
 			System.out.print(a3[i] + " ");
 		}
 	}
-/*
-1 3 2 5 8 6 4 9 7 
-1 2 3 4 5 6 7 8 9 
-1 2 3 4 5 6 7 8 9 
-9 8 7 6 5 4 3 2 1
-*/
-	boolean isMinHeap(int[] arr, int size) {
-		for (int i = 0; i <= (size - 2) / 2; i++) {
-			if (2 * i + 1 < size) {
-				if (arr[i] > arr[2 * i + 1]) {
-					return false;
-				}
-			}
-			if (2 * i + 2 < size) {
-				if (arr[i] > arr[2 * i + 2]) {
-					return false;
-				}
-			}
-		}
-		return true;
-	}
 
-	boolean isMaxHeap(int[] arr, int size) {
-		for (int i = 0; i <= (size - 2) / 2; i++) {
-			if (2 * i + 1 < size) {
-				if (arr[i] < arr[2 * i + 1]) {
-					return false;
-				}
-			}
-			if (2 * i + 2 < size) {
-				if (arr[i] < arr[2 * i + 2])
-					return false;
-			}
-		}
-		return true;
+	/*
+	1 2 3 4 5 6 7 8 9 
+	9 8 7 6 5 4 3 2 1
+	*/
+	
+	public static void main(String[] args) {
+		main1();
+		main2();
 	}
 }

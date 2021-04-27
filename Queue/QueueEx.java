@@ -1,7 +1,6 @@
 import java.util.ArrayDeque;
 
 public class QueueEx {
-
     public static int CircularTour(int[][] arr, int n) {
         ArrayDeque<Integer> que = new ArrayDeque<Integer>();
         int nextPump = 0, prevPump;
@@ -33,9 +32,9 @@ public class QueueEx {
         int tour[][] = { { 8, 6 }, { 1, 4 }, { 7, 6 } };
         System.out.println("Circular Tour : " + CircularTour(tour, 3));
     }
-/*
-Circular Tour : 2
-*/
+    /*
+    Circular Tour : 2
+    */
     public static int convertXY(int src, int dst) {
         ArrayDeque<Integer> que = new ArrayDeque<Integer>();
         int arr[] = new int[100];
@@ -63,9 +62,9 @@ Circular Tour : 2
     public static void main2() {
         System.out.println("Steps countr :: " + convertXY(2, 7));
     }
-/*
-Steps countr :: 3
-*/
+    /*
+    Steps countr :: 3
+    */
     public static void maxSlidingWindows(int arr[], int size, int k) {
         ArrayDeque<Integer> que = new ArrayDeque<Integer>();
         for (int i = 0; i < size; i++) {
@@ -89,11 +88,12 @@ Steps countr :: 3
         int arr[] = { 11, 2, 75, 92, 59, 90, 55 };
         int k = 3;
         maxSlidingWindows(arr, 7, 3);
-        // Output 75, 92, 92, 92, 90
     }
-/*
-75 92 92 92 90 
-*/
+
+    /*
+    75 92 92 92 90 
+    */
+
     public static int minOfMaxSlidingWindows(int arr[], int size, int k) {
         ArrayDeque<Integer> que = new ArrayDeque<Integer>();
         int minVal = 999999;
@@ -117,11 +117,10 @@ Steps countr :: 3
         int arr[] = { 11, 2, 75, 92, 59, 90, 55 };
         int k = 3;
         minOfMaxSlidingWindows(arr, 7, 3);
-        // Output 75
     }
-/*
-Min of max is :: 75
-*/
+    /*
+    Min of max is :: 75
+    */
     public static void maxOfMinSlidingWindows(int arr[], int size, int k) {
         ArrayDeque<Integer> que = new ArrayDeque<Integer>();
         int maxVal = -999999;
@@ -146,9 +145,9 @@ Min of max is :: 75
         maxOfMinSlidingWindows(arr, 7, 3);
         // Output 59, as minimum values in sliding windows are [2, 2, 59, 59, 55]
     }
-/*
-Max of min is :: 59
-*/
+    /*
+    Max of min is :: 59
+    */
     public static void firstNegSlidingWindows(int arr[], int size, int k) {
         ArrayDeque<Integer> que = new ArrayDeque<Integer>();
 
@@ -172,11 +171,12 @@ Max of min is :: 59
         int arr[] = { 3, -2, -6, 10, -14, 50, 14, 21 };
         int k = 3;
         firstNegSlidingWindows(arr, 8, 3);
-        // Output [-2, -2, -6, -14, -14, NAN]
     }
-/*
--2 -2 -6 -14 -14 NAN
-*/
+
+    /*
+    -2 -2 -6 -14 -14 NAN
+    */
+
     public static void main(String[] args) {
         main1();
         main2();
