@@ -350,21 +350,17 @@ public class Tree {
 	}
 	
 	private Node deleteNode(Node node, int value) {
-	    Node temp = null;
-	
 	    if (node != null) {
 	        if (node.value == value) {
 	            if (node.lChild == null && node.rChild == null) {
 	                return null;
 	            } else {
 	                if (node.lChild == null) {
-	                    temp = node.rChild;
-	                    return temp;
+	                    return node.rChild;
 	                }
 	
-	                if (node.rChild == null) {
-	                    temp = node.lChild;
-	                    return temp;
+	                if (node.rChild == null) { 
+	                    return node.lChild;
 	                }
 	                Node minNode = findMinNode(node.rChild);
 	                int minValue = minNode.value;
