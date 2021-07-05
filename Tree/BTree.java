@@ -5,8 +5,8 @@ public class BTree {
     
     public BTree(int dg) {
         this.root = null;
-        this.max = dg;
-        this.min = dg/2;
+        this.max = dg; // Max number of children.
+        this.min = dg/2; // Min number of children.
     }
 
     class Node {
@@ -18,32 +18,9 @@ public class BTree {
         // Constructor
         Node(boolean leaf) {
             this.n = 0;
-            this.keys = new int[max];
+            this.keys = new int[max]; 
             this.arr = new Node[max+1];
             this.leaf = leaf;
-        }
-    }
-
-    public void print(){
-        if(root == null)
-            return;
-        print(root);
-        System.out.println();
-    }
-
-    public void print(Node node){      
-        int i;
-        System.out.print("Keys: ");
-        for (i = 0; i < node.n; i++) {
-            System.out.print(node.keys[i] + " ");
-        }
-        
-        if(node.leaf == false){
-            System.out.print("(");
-            for (i = 0;  i <= node.n; i++) {
-                    print(node.arr[i]);
-            }
-            System.out.print(")");
         }
     }
 
@@ -115,10 +92,12 @@ public class BTree {
         {
             // Finds the location where new key can be inserted.
             // By moving all keys greater than key to one place forward.
-            int i;
-            for(i = root.n - 1; i >= 0 && root.keys[i] > key ; i--)
+            int i = root.n - 1;
+            while(i >= 0 && root.keys[i] > key){
                 root.keys[i+1] = root.keys[i];
-      
+                i--;
+            }
+
             // Insert the new key at found location
             root.keys[i+1] = key;
             root.n = root.n+1;
@@ -130,7 +109,7 @@ public class BTree {
         }
         if (root.n == max)
         {
-            // If root is full, then tree grows in height.
+            // If root contains more then allowed nodes, then tree grows in height.
             // Allocate memory for new root
             Node rt = new Node(false);
             rt.arr[0] = root;
@@ -165,7 +144,7 @@ public class BTree {
             insert(child, child.arr[i], i, key); // parent, child and index of child.
         }
 
-        if (child.n == max)
+        if (child.n == max) // More nodes than allowed.
         {
             // divide the child into two and then add the median to the parent.
             split(parent, child, index); 
@@ -174,38 +153,30 @@ public class BTree {
 
     public void split(Node parent, Node child, int index)
     {
-        // Create a new node which is going to store half keys of child
-        int first = max/2;
-        int second = max/2;
-        int median;
-
-        if(max%2 == 0)
-        {
-            median = first - 1;
-            first -= 1;
-        } else {
-            median = first;
-        }
+        // Getting index of median.
+        int median = max/2;
+        // Reduce the number of keys in child
+        child.n = median;
 
         Node node = new Node(child.leaf);
-        // Copy the last second keys of child to node        
-        for (int j = 0; j < second; j++)
+        // Copy the second half keys of child to node
+        int j = 0;        
+        while (median + 1 + j < max) {
             node.keys[j] = child.keys[median + 1 + j];
-      
-        // Copy the last second + 1 children of child to node
-        if (child.leaf == false)
-        {
-            for (int j = 0; j <= second; j++)
-                node.arr[j] = child.arr[median + 1 + j ];
+            j++;
         }
-      
-        // Reduce the number of keys in child
-        child.n = first;
-        node.n = second;
-      
+        node.n = j;
+
+        // Copy the second half children of child to node
+        j = 0;
+        while ( child.leaf == false && median + j <= max - 1){
+            node.arr[j] = child.arr[median + 1 + j ];
+            j++;
+        }
+
         // parent is going to have a new child,
         // create space of new child
-        for (int j = parent.n; j >= index+1; j--)
+        for (j = parent.n; j >= index+1; j--)
             parent.arr[j+1] = parent.arr[j];
       
         // Link the new child to the parent node
@@ -214,7 +185,7 @@ public class BTree {
         // A key of child will move to the parent node. 
         // Find the location of new key by moving
         // all greater keys one space forward.
-        for (int j = parent.n-1; j >= index; j--)
+        for (j = parent.n-1; j >= index; j--)
             parent.keys[j+1] = parent.keys[j];
       
         // Copy the middle key of child to the parent
@@ -477,26 +448,35 @@ public class BTree {
         t.insert(9);
         t.insert(10);
         t.printTree();
-/*    
-        int k = 6;
-        System.out.println("6 : " +  ((t.search(k) != null)? "Present" : "Not Present"));
-    
-        k = 11;
-        System.out.println("11 : " +  ((t.search(k) != null)? "Present" : "Not Present"));
+        System.out.println("6 : " +  ((t.search(6) != null)? "Present" : "Not Present"));    
+        System.out.println("11 : " +  ((t.search(11) != null)? "Present" : "Not Present"));
 
         t.remove(6);
         t.remove(3);
         t.remove(7);
-        t.print();
-        t.remove(4);
-        t.print();
-        t.remove(1);
-        t.remove(5);
-        t.remove(2);
-        t.print();
-        t.remove(10);
-        t.remove(8);
-        t.remove(9);
-        t.print();
-    */    }
+        t.printTree();
+    }
 }
+/*
+        key[0]:1
+    key[0]:2
+        key[0]:3
+key[0]:4
+        key[0]:5
+    key[0]:6
+        key[0]:7
+    key[1]:8
+        key[0]:9
+        key[1]:10
+
+6 : Present
+11 : Not Present
+
+    key[0]:1
+    key[1]:2
+key[0]:4
+    key[0]:5
+key[1]:8
+    key[0]:9
+    key[1]:10
+*/

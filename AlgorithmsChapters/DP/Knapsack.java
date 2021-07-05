@@ -1,0 +1,190 @@
+package DP;
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class Knapsack {
+    private class Items {
+        int wt;
+        int cost;
+        double density;
+
+        Items(int w, int v){
+            wt = w;
+            cost = v;
+            density = (double)cost/wt;
+        }
+    }
+    
+    class decDensity implements Comparator<Items> {
+        public int compare(Items a, Items b) {
+            return (int)(b.density - a.density);
+        }
+    }
+
+    class incWeight implements Comparator<Items> {
+        public int compare(Items a, Items b) {            
+        return (a.wt - b.wt);
+        }
+    }
+
+	public double getMaxCostFractional(int[] wt, int[] cost, int capacity) {
+        double totalCost = 0;
+        int n = wt.length;
+		Items[] itemList = new Items[n];
+		for (int i = 0; i < n; i++)
+			itemList[i] = new Items(wt[i], cost[i]);
+        
+        Arrays.sort(itemList, new decDensity());
+        for (int i = 0; i < n; i++) {
+            if (capacity - itemList[i].wt >= 0) {
+                capacity -= itemList[i].wt;
+                totalCost += itemList[i].cost;
+            } else {
+                totalCost += (itemList[i].density * capacity);
+                break;
+            }
+		}
+        return totalCost;
+	}
+
+    public double getMaxCostGreedy(int[] wt, int[] cost, int capacity) {
+        double totalCost = 0;
+        int n = wt.length;
+		Items[] itemList = new Items[n];
+		for (int i = 0; i < n; i++)
+			itemList[i] = new Items(wt[i], cost[i]);
+        
+        Arrays.sort(itemList, new decDensity());
+        for (int i = 0; i < n && capacity > 0; i++) {
+            if (capacity - itemList[i].wt >= 0) {
+                capacity -= itemList[i].wt;
+                totalCost += itemList[i].cost;
+            }
+		}
+        return totalCost;
+	}
+
+    int getMaxCost01Util(Items[] itemList, int n, int capacity) {
+        // Base Case
+        if (n == 0 || capacity == 0)
+            return 0;
+
+        // Return the maximum of two cases:
+        // (1) nth item is included
+        // (2) nth item is not included
+        int first = 0;
+        if (itemList[n - 1].wt <= capacity)
+            first = itemList[n - 1].cost + getMaxCost01Util(itemList, n - 1, capacity - itemList[n - 1].wt);
+        
+        int second = getMaxCost01Util(itemList, n - 1, capacity);
+        return Math.max(first, second);
+    }
+
+    int getMaxCost01(int[] wt, int[] cost, int capacity)
+    {
+        int n = wt.length;
+        Items[] itemList = new Items[n];
+        for (int i = 0; i < n; i++)
+            itemList[i] = new Items(wt[i], cost[i]);
+        Arrays.sort(itemList, new incWeight());
+        return getMaxCost01Util(itemList, n, capacity);
+    }
+    
+    void printItems(int[][] dp, int[] wt, int[] cost, int n, int capacity){
+        int totalCost = dp[capacity][n];
+        System.out.print("Selected items are:");
+        for( int i = n-1; i > 0 ; i-- ){
+            if(totalCost != dp[capacity][i-1]){
+                System.out.print(" (" + wt[i] +"," +cost[i]+")");
+                capacity -= wt[i];
+                totalCost -= cost[i];
+            }
+        }
+    }
+
+    int getMaxCost01DP(int[] wt, int[] cost, int capacity)
+    {
+        int n = wt.length;
+        int[][] dp = new int[capacity + 1][n + 1];
+ 
+        // Build table dp[][] in bottom up approach.
+        // Weights considered against capacity.
+        for (int i = 1; i <= n; i++)
+        {
+            for (int w = 1; w <= capacity; w++)
+            {
+                /* 
+                    java array is 0 initialized. 
+                    Base case with 0 weights or 
+                    0 capacity is already handelled. 
+                */
+
+                // Their are two cases:
+                // (1) ith item is included
+                // (2) ith item is not included
+                int first = 0;
+                if (wt[i-1] <= w) 
+                    first = dp[w - wt[i-1]][i-1] + cost[i-1];
+                
+                int second = dp[w][i-1];
+                dp[w][i] = Math.max( first,second);
+            }
+        }
+        printItems(dp, wt, cost, n, capacity);
+        return dp[capacity][n]; // Number of weights considered and final capacity.
+    }
+
+    int getMaxCost01TD(int[] wt, int[] cost, int capacity)
+    {
+        int n = wt.length;
+        int[][] dp = new int[capacity + 1][n + 1];
+        return getMaxCost01TD(dp, wt, cost, n, capacity);
+    }
+
+    int getMaxCost01TD(int[][] dp, int[] wt, int[] cost, int i, int w)
+    {
+        if(w == 0 || i == 0)
+            return 0;
+        
+        if(dp[w][i] != 0)
+            return dp[w][i];
+
+        // Their are two cases:
+        // (1) ith item is included
+        // (2) ith item is not included
+        int first = 0;
+        if (wt[i-1] <= w) 
+            first = getMaxCost01TD(dp, wt, cost, i-1, w - wt[i-1]) + cost[i-1];
+        
+        int second = getMaxCost01TD(dp, wt, cost, i-1, w) ;
+        return dp[w][i] = Math.max( first,second);
+    }
+
+	public static void main(String[] args)
+	{
+		int[] wt = { 10, 40, 20, 30 };
+		int[] cost = { 60, 40, 90, 120 };
+		int capacity = 50;
+
+        Knapsack kp = new Knapsack();
+
+		double maxCost = kp.getMaxCostFractional(wt, cost, capacity);
+		System.out.println("Maximum cost obtained = " + maxCost);
+        maxCost = kp.getMaxCostGreedy(wt, cost, capacity);
+		System.out.println("Maximum cost obtained = " + maxCost);
+        maxCost = kp.getMaxCost01(wt, cost, capacity);
+		System.out.println("Maximum cost obtained = " + maxCost);
+        maxCost = kp.getMaxCost01DP(wt, cost, capacity);
+		System.out.println("Maximum cost obtained = " + maxCost);
+        maxCost = kp.getMaxCost01TD(wt, cost, capacity);
+		System.out.println("Maximum cost obtained = " + maxCost);
+	}
+}
+
+/*
+Maximum cost obtained = 230.0
+Maximum cost obtained = 210.0
+Selected items are: (30,120) (20,90)
+Maximum cost obtained = 210.0
+Maximum cost obtained = 210.0
+*/

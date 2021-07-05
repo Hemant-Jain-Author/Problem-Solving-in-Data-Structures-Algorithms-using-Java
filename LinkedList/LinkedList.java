@@ -328,7 +328,83 @@ public class LinkedList {
 	    newNode.next = curr.next;
 	    curr.next = newNode;
 	}
+
+	public void bubbleSort() {
+	    Node curr, end = null;
+		int temp;
 	
+	    if (head == null || head.next == null) {
+	        return;
+	    }
+		
+		boolean flag = true;
+		while(flag) {
+			flag = false;
+			curr = head;
+			while (curr.next != end) {
+				if(curr.value > curr.next.value) {
+					flag = true;
+					temp = curr.value;
+					curr.value = curr.next.value;
+					curr.next.value = temp;
+				}
+				curr = curr.next;
+			}
+			end = curr;
+		}
+	}
+
+	public void selectionSort() {
+	    Node curr, end = null, maxNode;
+		int temp, max;
+	
+	    if (head == null || head.next == null) {
+	        return;
+	    }
+		
+		while(head != end) {
+			curr = head;
+			max = curr.value;
+			maxNode = curr;
+			while (curr.next != end) {
+				if(max < curr.next.value) {
+					maxNode = curr.next;
+					max = curr.next.value;
+				}
+				curr = curr.next;
+			}
+			end = curr;
+			if(curr.value < max) {
+				temp = curr.value;
+				curr.value = max;
+				maxNode.value = temp;
+			}
+		}
+	}
+
+	public void insertionSort() {
+	    Node curr, stop;
+		int temp;
+	
+	    if (head == null || head.next == null) {
+	        return;
+	    }
+		
+		stop = head.next;
+		while(stop != null) {
+			curr = head;
+			while (curr != stop) {
+				if(curr.value > stop.value) {
+					temp = curr.value;
+					curr.value = stop.value;
+					stop.value = temp;
+				}
+				curr = curr.next;
+			}
+			stop = stop.next;
+		}
+	}
+
 	public void removeDuplicate() {
 	    Node curr = head;
 	    while (curr != null) {
@@ -633,9 +709,28 @@ public class LinkedList {
 	5 3 2 1 
 	Intersection:: 2
 	*/
-    
+ 
+	public static void main10() {
+	    LinkedList ll = new LinkedList();
+	    ll.addHead(1);
+	    ll.addHead(10);
+	    ll.addHead(9);
+	    ll.addHead(7);
+	    ll.addHead(2);
+	    ll.addHead(3);
+	    ll.addHead(5);
+	    ll.addHead(4);
+	    ll.addHead(6);
+		ll.addHead(8);
+	    ll.print();
+//		ll.bubbleSort();
+//ll.selectionSort();
+ll.insertionSort();
+		ll.print();
+	}
+
 	public static void main(String[] args) {
-        main1();
+/*        main1();
         main2();
         main3();
         main4();
@@ -644,5 +739,6 @@ public class LinkedList {
         main7(); 
         main8(); 
         main9();
+*/		main10();
     }
 }

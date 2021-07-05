@@ -18,20 +18,28 @@ public class SPLAYTree {
         root = null;
     }
     
-    public void printPreOrder() {
-	    printPreOrder(root);
-	    System.out.println();
+	public void printTree() {
+		printTree(root, "", false);
+		System.out.println();
 	}
-	
-	private void printPreOrder(Node node)/* pre order */
-	{
-	    if (node != null) {
-	        System.out.print(node.data + " ");
-	        printPreOrder(node.left);
-	        printPreOrder(node.right);
-	    }
-	}
-    
+
+	private void printTree(Node node, String indent, boolean isLeft) {
+		if (node == null)
+			return;
+		if (isLeft) {
+			System.out.print(indent + "L:");
+			indent += "|  ";
+		} else {
+			System.out.print(indent + "R:");
+			indent += "   ";
+		}
+
+		System.out.println(node.data );
+		printTree(node.left, indent, true);
+		printTree(node.right, indent, false);
+	}  
+
+
     // Function to right rotate subtree rooted with x
     Node rightRotate(Node x) {
         Node y = x.left;
@@ -228,47 +236,35 @@ public class SPLAYTree {
     
     public static void main(String[] arg) {
 	    SPLAYTree tree = new SPLAYTree();  
-        tree.insert(5);tree.printPreOrder();
-        tree.insert(4);tree.printPreOrder();
-        tree.insert(6);tree.printPreOrder();
-        tree.insert(3);tree.printPreOrder();
-        tree.insert(2);tree.printPreOrder();
-        tree.insert(1);tree.printPreOrder();
-        tree.insert(3);tree.printPreOrder();
-        tree.find(2);
-        tree.printPreOrder();
+        tree.insert(5);
+        tree.insert(4);
+        tree.insert(6);
+        tree.insert(3);
+        tree.insert(2);
+        tree.insert(1);
+        tree.insert(3);
+        tree.printTree();
+        
+        System.out.println("Value 2 found: " + tree.find(2));
         tree.delete(2);
-        tree.printPreOrder();
         tree.delete(5);
-        tree.printPreOrder();
-        tree.delete(4);
-        tree.printPreOrder();
-        tree.delete(6);
-        tree.printPreOrder();
-        tree.delete(3);
-        tree.printPreOrder();
-        tree.delete(2);
-        tree.printPreOrder();
-        tree.delete(1);
-        tree.printPreOrder();
+        tree.printTree();
     }
 }
 
 /*
-5 
-4 5 
-6 5 4 
-3 6 4 5 
-2 3 6 4 5 
-1 2 3 6 4 5 
-3 2 1 6 4 5 
+R:3
+   L:2
+   |  L:1
+   R:6
+      L:4
+      |  R:5
 
-2 1 3 6 4 5 
-3 1 6 4 5 
-4 3 1 6 
-6 3 1 
-3 1 
-1 
+Value 2 found: true
+R:4
+   L:3
+   |  L:1
+   R:6 
 */
 
 

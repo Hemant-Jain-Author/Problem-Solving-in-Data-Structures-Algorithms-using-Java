@@ -1,16 +1,16 @@
 import java.util.*;
 
-public class FanwickTree {
-    int fanArray[];
+public class BinaryIndexTree {
+    int BIT[];
     int size;     
 
-    FanwickTree(int arr[])
+    BinaryIndexTree(int arr[])
     {
         size = arr.length;
-        fanArray = new int[size+1];
-        Arrays.fill(fanArray, 0);
+        BIT = new int[size+1];
+        Arrays.fill(BIT, 0);
 
-        // Populating fanArray. 
+        // Populating bit. 
         for(int i = 0; i < size; i++)
             update(i, arr[i]);    
     }
@@ -20,28 +20,28 @@ public class FanwickTree {
         int diff = val - arr[index];
         arr[index] = val;
         
-        // Difference is propogated.
+        // Difference is propagated.
         update(index, diff);
     }
 
     private void update(int index, int val)
     {
-        // Index in fanArray is 1 more than the input array.
+        // Index in bit is 1 more than the input array.
         index = index + 1;
       
         // Traverse to ancestors of nodes.
         while(index <= size)
         {
-            // Add val to current node of fanwick Tree.
-            fanArray[index] += val;
+            // Add val to current node of Binary Index Tree.
+            BIT[index] += val;
         
-            // Next element index calculation.
+            // Next element which need to store val.
             index += index & (-index);
         }
     }
 
-    // Get sum in the range start to end.
-    int getSum(int start, int end)
+    // Range sum in the range start to end.
+    int rangeSum(int start, int end)
     {
         // Check for error conditions.
         if (start > end || start < 0 || end > size - 1 ) {
@@ -49,20 +49,20 @@ public class FanwickTree {
             return -1;
         }
 
-        return getSum(end) - getSum(start);
+        return prefixSum(end) - prefixSum(start-1);
     }
 
-    // Get sum in the range 0 to index.
-    int getSum(int index) 
+    // Prefix sum in the range 0 to index.
+    int prefixSum(int index) 
     {
         int sum = 0;
         index = index + 1;
 
-        // Traverse ancestors of fanwick nodes.
-        while(index>0)
+        // Traverse ancestors of Binary Index Tree nodes.
+        while(index > 0)
         {
             // Add current element to sum.
-            sum += fanArray[index];
+            sum += BIT[index];
       
             // Parent index calculation.
             index -= index & (-index);
@@ -75,14 +75,21 @@ public class FanwickTree {
     public static void main(String args[])
     {
         int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
-        FanwickTree tree = new FanwickTree(arr);
+        BinaryIndexTree tree = new BinaryIndexTree(arr);
     
-        System.out.println("Sum of elements in range(0, 5) :" + tree.getSum(5));
-          
+        System.out.println("Sum of elements in range(0, 5): " + tree.prefixSum(5));
+        System.out.println("Sum of elements in range(2, 5): " + tree.rangeSum(2, 5));
+
         // Set fourth element to 10.
         tree.set(arr, 3, 10); 
   
         // Find sum after the value is updated
-        System.out.println("Sum of elements in range(0, 5): " + tree.getSum(5));
+        System.out.println("Sum of elements in range(0, 5): " + tree.prefixSum(5));
     }
 }
+
+/*
+Sum of elements in range(0, 5): 21
+Sum of elements in range(2, 5): 15
+Sum of elements in range(0, 5): 27
+*/
