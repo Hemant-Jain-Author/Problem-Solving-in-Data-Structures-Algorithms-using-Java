@@ -1,6 +1,6 @@
 package DP;
 
-public class MinPath {
+public class GridMinCost{
     static int min(int x, int y, int z) {
         x = Math.min(x, y);
         return Math.min(x, z);
@@ -52,8 +52,13 @@ public class MinPath {
                         {4, 7, 5},
                         {1, 5, 3}};
                           
-        System.out.print(minCost(cost, 3, 3));
-        System.out.print(minCostDP(cost, 3, 3));
+        System.out.println(minCost(cost, 3, 3));
+        System.out.println(minCostDP(cost, 3, 3));
 
     }
 }
+
+/*
+11
+11
+*/

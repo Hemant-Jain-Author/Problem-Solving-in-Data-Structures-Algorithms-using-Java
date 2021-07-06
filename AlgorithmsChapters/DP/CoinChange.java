@@ -16,8 +16,8 @@ public class CoinChange {
             } else {
                 i--;
             }
-        } 
-        return count;
+        }
+        return (val == 0)? count : -1;     
     }
 
     static int minCoins2( int[] coins, int n, int val ) { // Brute force.
@@ -27,10 +27,12 @@ public class CoinChange {
         int count = Integer.MAX_VALUE;
         for (int i = 0; i < n ; i++) {
             if(coins[i] <= val) {
-                count = Math.min(count, minCoins2(coins, n, val - coins[i] ) + 1);
+                int subCount = minCoins2(coins, n, val - coins[i] );
+                if(subCount >= 0)
+                    count = Math.min(count, subCount + 1);
             }
         }
-        return count;
+        return (count != Integer.MAX_VALUE)? count : -1; 
     }
 
     static int minCoinsTD(int[] coins, int n, int val ) {
@@ -52,9 +54,14 @@ public class CoinChange {
         int result = Integer.MAX_VALUE;
         for (int i = 0; i < n; i++) {
             if (coins[i] <= val) { // check validity of a sub-problem
-                result = Math.min(result, minCoinsTD(dp, coins, n, val - coins[i]) + 1);
+                int subCount = minCoinsTD(dp, coins, n, val - coins[i]);
+                if(subCount != -1)
+                    result = Math.min(result, subCount + 1);
             }
         }
+        if(result == Integer.MAX_VALUE)
+            return -1;
+        
         dp[val] = result;
         return dp[val];
     }
@@ -67,15 +74,28 @@ public class CoinChange {
 
         for (int i = 1; i <= val; i++) {
             for (int j = 0; j < n; j++) {
-                if(coins[j] <= i) // For all coins smaller than or equal to i.
-                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+                // For all coins smaller than or equal to i.
+                if(coins[j] <= i) {
+                    if(dp[i - coins[j]] != Integer.MAX_VALUE)
+                        dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+                }    
             }
         }
-        return dp[val];
+        
+        return (dp[val] != Integer.MAX_VALUE)? dp[val] : -1; 
     }
 
-
     public static void main(String[] args) {
+        int[] coins = {5, 6};
+        int value = 16;
+        int n = coins.length;
+        System.out.println("Count is:" + minCoins(coins, n, value)); 
+        System.out.println("Count is:" + minCoins2(coins, n, value));
+        System.out.println("Count is:" + minCoinsBU(coins, n, value)); 
+        System.out.println("Count is:" + minCoinsTD(coins, n, value)); 
+    }
+
+    public static void main1(String[] args) {
         int[] coins = {1, 5, 6, 9, 12};
         int value = 15;
         int n = coins.length;
