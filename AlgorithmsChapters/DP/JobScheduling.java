@@ -22,7 +22,7 @@ public class JobScheduling {
     int maxValueJobUtil(Job[] arr, int n) {
         // Base case
         if (n == 1) 
-            return arr[n-1].value;
+            return arr[0].value;
      
         // Find Value when current job is included
         int incl = arr[n-1].value;

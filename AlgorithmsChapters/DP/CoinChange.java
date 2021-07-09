@@ -35,55 +35,55 @@ public class CoinChange {
         return (count != Integer.MAX_VALUE)? count : -1; 
     }
 
-    static int minCoinsTD(int[] coins, int n, int val ) {
-        int[] dp = new int[val+1];
-        Arrays.fill(dp, Integer.MAX_VALUE);
-        return minCoinsTD(dp, coins, n, val);
-    }
+static int minCoinsTD(int[] coins, int n, int val ) {
+    int[] dp = new int[val+1];
+    Arrays.fill(dp, Integer.MAX_VALUE);
+    return minCoinsTD(dp, coins, n, val);
+}
 
-    static int minCoinsTD(int[] dp, int[] coins, int n, int val ) {
-        // Base Case
-        if(val == 0)
-            return 0;
+static int minCoinsTD(int[] dp, int[] coins, int n, int val ) {
+    // Base Case
+    if(val == 0)
+        return 0;
 
-        if (dp[val] != Integer.MAX_VALUE) {
-            return dp[val];
-        }
-
-        // Recursion
-        int result = Integer.MAX_VALUE;
-        for (int i = 0; i < n; i++) {
-            if (coins[i] <= val) { // check validity of a sub-problem
-                int subCount = minCoinsTD(dp, coins, n, val - coins[i]);
-                if(subCount != -1)
-                    result = Math.min(result, subCount + 1);
-            }
-        }
-        if(result == Integer.MAX_VALUE)
-            return -1;
-        
-        dp[val] = result;
+    if (dp[val] != Integer.MAX_VALUE) {
         return dp[val];
     }
 
-
-    static int minCoinsBU( int[] coins, int n, int val ) { // DP bottom up approach.
-        int[] dp = new int[val + 1];
-        Arrays.fill(dp, Integer.MAX_VALUE);
-        dp[0] = 0; // Base value.
-
-        for (int i = 1; i <= val; i++) {
-            for (int j = 0; j < n; j++) {
-                // For all coins smaller than or equal to i.
-                if(coins[j] <= i) {
-                    if(dp[i - coins[j]] != Integer.MAX_VALUE)
-                        dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
-                }    
-            }
+    // Recursion
+    int result = Integer.MAX_VALUE;
+    for (int i = 0; i < n; i++) {
+        if (coins[i] <= val) { // check validity of a sub-problem
+            int subCount = minCoinsTD(dp, coins, n, val - coins[i]);
+            if(subCount != -1)
+                result = Math.min(result, subCount + 1);
         }
-        
-        return (dp[val] != Integer.MAX_VALUE)? dp[val] : -1; 
     }
+    if(result == Integer.MAX_VALUE)
+        return -1;
+    
+    dp[val] = result;
+    return dp[val];
+}
+
+
+static int minCoinsBU( int[] coins, int n, int val ) { // DP bottom up approach.
+    int[] dp = new int[val + 1];
+    Arrays.fill(dp, Integer.MAX_VALUE);
+    dp[0] = 0; // Base value.
+
+    for (int i = 1; i <= val; i++) {
+        for (int j = 0; j < n; j++) {
+            // For all coins smaller than or equal to i.
+            if(coins[j] <= i) {
+                if(dp[i - coins[j]] != Integer.MAX_VALUE)
+                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+            }    
+        }
+    }
+    
+    return (dp[val] != Integer.MAX_VALUE)? dp[val] : -1; 
+}
 
     public static void main(String[] args) {
         int[] coins = {5, 6};

@@ -2,16 +2,18 @@ package DP;
 
 public class StockBuySell {
     public static int maxProfit(int[] arr){
-        int obsp = -arr[0];
-        int ossp = 0;
+        int buyProfit = -arr[0]; // Buy stock profit
+        int sellProfit = 0; // Sell stock profit
         int n = arr.length;
         for(int i=1;i<n;i++) {
-            int nbsp = (ossp - arr[i] > obsp)?ossp - arr[i]:obsp;
-            int nssp = (obsp + arr[i] > ossp)?obsp + arr[i]:ossp;
-            obsp = nbsp;
-            ossp = nssp;
+            int newBuyProfit = (sellProfit - arr[i] > buyProfit)?
+                                sellProfit - arr[i] : buyProfit;
+            int newSellProfit = (buyProfit + arr[i] > sellProfit)?
+                                buyProfit + arr[i] : sellProfit;
+            buyProfit = newBuyProfit;
+            sellProfit = newSellProfit;
         }
-        return ossp;
+        return sellProfit;
     }
 
     public static int maxProfit2(int[] arr){
@@ -28,16 +30,16 @@ public class StockBuySell {
     }
 
     public static int maxProfitTC(int[] arr, int t){
-        int obsp = -arr[0];
-        int ossp = 0;
+        int buyProfit = -arr[0];
+        int sellProfit = 0;
         int n = arr.length;
         for(int i=1;i<n;i++) {
-            int nbsp = ((ossp - arr[i]) > obsp) ? (ossp - arr[i]) : obsp;
-            int nssp = ((obsp + arr[i] - t) > ossp) ? (obsp + arr[i] - t) : ossp;
-            obsp = nbsp;
-            ossp = nssp;
+            int newBuyProfit = ((sellProfit - arr[i]) > buyProfit) ? (sellProfit - arr[i]) : buyProfit;
+            int newSellProfit = ((buyProfit + arr[i] - t) > sellProfit) ? (buyProfit + arr[i] - t) : sellProfit;
+            buyProfit = newBuyProfit;
+            sellProfit = newSellProfit;
         }
-        return ossp;
+        return sellProfit;
     }
     public static int maxProfitTC2(int[] arr, int t){
         int n = arr.length;

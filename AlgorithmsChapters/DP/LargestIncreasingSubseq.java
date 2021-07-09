@@ -1,6 +1,6 @@
 package DP;
 
-class LIS {
+class LargestIncreasingSubseq {
     static int lis(int[] arr) {
         int n = arr.length;
         int[] lis = new int[n];

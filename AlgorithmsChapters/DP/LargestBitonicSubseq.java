@@ -2,7 +2,7 @@ package DP;
 
 import java.util.Arrays;
 
-public class LBS {
+public class LargestBitonicSubseq {
     static int lbs(int[] arr) {
         int n = arr.length;
         int[] lis = new int[n];

@@ -1,15 +1,5 @@
 package DP;
 
-/*
-Given two strings s1 and s2, 
-Find the minimum number of operations required to convert s1 to s2.
-
-The available operations are:
-1) Insert a character
-2) Delete a character
-3) Replace a character
-*/
-
 public class EditDist {
     static int min(int x, int y, int z) {
         x = Math.min(x, y);

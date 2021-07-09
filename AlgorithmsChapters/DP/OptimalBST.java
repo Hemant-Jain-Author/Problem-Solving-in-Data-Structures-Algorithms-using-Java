@@ -1,6 +1,6 @@
 package DP;
 
-public class OBST {
+public class OptimalBST {
     static int optCost(int freq[], int i, int j) {
        if (j == i) // one element in this subarray
          return freq[i];
@@ -26,6 +26,7 @@ public class OBST {
     
     static int optCostDP(int keys[], int freq[], int n) {
         int cost[][] = new int[n][n];
+
         for (int i = 0; i < n; i++)
             cost[i][i] = freq[i];
  
@@ -34,8 +35,10 @@ public class OBST {
                 int j = i + l;
                 cost[i][j] = Integer.MAX_VALUE;
                 for (int r = i; r <= j; r++) {
-                    cost[i][j] = Math.min( cost[i][j], sum(freq, i, j) +
-                    ((r-1 >= i)? cost[i][r-1] : 0) + ((r+1 <= j)? cost[r+1][j] : 0));
+                    int leftCost = (r-1 >= i)? cost[i][r-1] : 0;
+                    int rightCost = (r+1 <= j)? cost[r+1][j] : 0; 
+                    cost[i][j] = Math.min( cost[i][j], sum(freq, i, j)
+                                + leftCost + rightCost);
                 }
             }
         }

@@ -18,8 +18,7 @@ public class MinStairCost {
         return Math.min(dp[n - 2], dp[n - 1]);
     }
  
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         int a[] = { 1, 5, 6, 3, 4, 7, 9, 1, 2, 11 };
         int n = a.length;
         System.out.print(minCost(a, n));

@@ -1,4 +1,4 @@
-public class LCS {
+public class LongestCommonSubseq {
 	static int LCSubStr(String st1, String st2) {
 		char X[] = st1.toCharArray();
 		char Y[] = st2.toCharArray();

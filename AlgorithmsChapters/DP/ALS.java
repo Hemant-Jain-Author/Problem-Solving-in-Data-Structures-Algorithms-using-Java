@@ -62,6 +62,7 @@ public class ALS {
         System.out.println(fastestWayTD(a, t, e, x, n));   
     }
 }
+
 /*
 FASTEST-WAY(a, t, e, x, n)
     f1[1] ← e1 + a1[1]

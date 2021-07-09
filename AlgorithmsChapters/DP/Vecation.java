@@ -1,6 +1,7 @@
 import java.util.Arrays;
 
 public class Vecation {
+    // days are must travel days, costs are cost of tickets.
     public static int minCost(int[] days, int[] costs) {
         int n = days.length;
         int max = days[n-1];
@@ -19,7 +20,7 @@ public class Vecation {
             if(j < n && days[j] == i) // That days is definitely travelled.
                 j++;
             else
-                dp[i] = Math.min(dp[i], dp[i - 1]);
+                dp[i] = Math.min(dp[i], dp[i - 1]); // day may be ignored.
         }
         return dp[max];
     }

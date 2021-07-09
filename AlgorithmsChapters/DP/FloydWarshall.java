@@ -18,7 +18,8 @@ public class FloydWarshall {
             for (int i = 0; i < V; i++) {
                 // Pick destination vertices.
                 for (int j = 0; j < V; j++) {
-                    // Shortest path from i to j via k.
+                    // If we have shorter path from i to j via k.
+                    // then update dist[i][j]
                     if( dist[i][k] != INF && dist[k][j] != INF 
                             && dist[i][k] + dist[k][j] < dist[i][j]) {
                         dist[i][j] = dist[i][k] + dist[k][j];

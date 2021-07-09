@@ -102,7 +102,7 @@ public class Knapsack {
         }
     }
 
-    int getMaxCost01DP(int[] wt, int[] cost, int capacity)
+    int getMaxCost01BU(int[] wt, int[] cost, int capacity)
     {
         int n = wt.length;
         int[][] dp = new int[capacity + 1][n + 1];
@@ -113,12 +113,6 @@ public class Knapsack {
         {
             for (int w = 1; w <= capacity; w++)
             {
-                /* 
-                    java array is 0 initialized. 
-                    Base case with 0 weights or 
-                    0 capacity is already handelled. 
-                */
-
                 // Their are two cases:
                 // (1) ith item is included
                 // (2) ith item is not included
@@ -174,7 +168,7 @@ public class Knapsack {
 		System.out.println("Maximum cost obtained = " + maxCost);
         maxCost = kp.getMaxCost01(wt, cost, capacity);
 		System.out.println("Maximum cost obtained = " + maxCost);
-        maxCost = kp.getMaxCost01DP(wt, cost, capacity);
+        maxCost = kp.getMaxCost01BU(wt, cost, capacity);
 		System.out.println("Maximum cost obtained = " + maxCost);
         maxCost = kp.getMaxCost01TD(wt, cost, capacity);
 		System.out.println("Maximum cost obtained = " + maxCost);
