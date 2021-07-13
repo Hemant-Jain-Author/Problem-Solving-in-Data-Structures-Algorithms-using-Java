@@ -171,7 +171,7 @@ public class RBTree {
 		if (x.parent == NullNode || x.parent.parent == NullNode) {
 			return;
 		}
-		// Initialise parent, grandparent, uncle
+		// Initialize parent, grandparent, uncle
 		Node parent = x.parent, grandparent = parent.parent, uncle = uncle(x);
 		Node mid = null;
 

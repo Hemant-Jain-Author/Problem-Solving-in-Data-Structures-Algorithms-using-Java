@@ -426,10 +426,10 @@ public static int maxCircularSum(int[] arr, int size) {
 /* Testing code */
 public static void main11() {
     int[] arr = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
-    System.out.println("MaxCirculrSm: " + maxCircularSum(arr, arr.length));
+    System.out.println("MaxCircularSum: " + maxCircularSum(arr, arr.length));
 }
 /*
-MaxCirculrSm: 290
+MaxCircularSum: 290
 */
 public static int arrayIndexMaxDiff(int[] arr, int size) {
     int maxDiff = -1;

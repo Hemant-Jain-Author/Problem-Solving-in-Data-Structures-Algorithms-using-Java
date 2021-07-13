@@ -51,18 +51,13 @@ static int minCoinsTD(int[] dp, int[] coins, int n, int val ) {
     }
 
     // Recursion
-    int result = Integer.MAX_VALUE;
     for (int i = 0; i < n; i++) {
         if (coins[i] <= val) { // check validity of a sub-problem
             int subCount = minCoinsTD(dp, coins, n, val - coins[i]);
-            if(subCount != -1)
-                result = Math.min(result, subCount + 1);
+            if(subCount != Integer.MAX_VALUE)
+                dp[val] = Math.min(dp[val], subCount + 1);
         }
     }
-    if(result == Integer.MAX_VALUE)
-        return -1;
-    
-    dp[val] = result;
     return dp[val];
 }
 

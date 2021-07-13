@@ -1316,7 +1316,7 @@ public class Searching {
 	*/
 	
 	public static int findMedian(int[] arrFirst, int sizeFirst, int[] arrSecond, int sizeSecond) {
-	    int medianIndex = ((sizeFirst + sizeSecond) + (sizeFirst + sizeSecond) % 2) / 2;// cealing
+	    int medianIndex = ((sizeFirst + sizeSecond) + (sizeFirst + sizeSecond) % 2) / 2;// ceiling
 	                                                                                    // function.
 	    int i = 0, j = 0;
 	    int count = 0;
@@ -2105,7 +2105,7 @@ public class Searching {
 	Water : 6
 	*/
 	
-	public static void seperateEvenAndOdd(int[] arr, int size) {
+	public static void separateEvenAndOdd(int[] arr, int size) {
 	    int left = 0, right = size - 1;
 	    while (left < right) {
 	        if (arr[left] % 2 == 0) {
@@ -2122,7 +2122,7 @@ public class Searching {
 	
 	public static void main50() {
 	    int[] first = { 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 };
-	    seperateEvenAndOdd(first, first.length);
+	    separateEvenAndOdd(first, first.length);
 	    for (int val : first) {
 	        System.out.print(val + " ");
 	    }

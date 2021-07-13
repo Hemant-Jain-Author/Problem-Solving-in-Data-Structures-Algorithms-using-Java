@@ -17,7 +17,7 @@ public class Heap<T extends Comparable<T>> {
 		isMinHeap = isMin;
 		// Build Heap operation over array
 		for (int i = (size / 2); i >= 0; i--) {
-			proclateDown(i);
+			percolateDown(i);
 		}
 	}
 
@@ -30,7 +30,7 @@ public class Heap<T extends Comparable<T>> {
 			return (arr[first].compareTo(arr[second]) < 0);
 	}
 
-	private void proclateDown(int parent) {
+	private void percolateDown(int parent) {
 		int lChild = 2 * parent + 1;
 		int rChild = lChild + 1;
 		int child = -1;
@@ -48,11 +48,11 @@ public class Heap<T extends Comparable<T>> {
 			temp = arr[parent];
 			arr[parent] = arr[child];
 			arr[child] = temp;
-			proclateDown(child);
+			percolateDown(child);
 		}
 	}
 
-	private void proclateUp(int child) {
+	private void percolateUp(int child) {
 		int parent = (child - 1) / 2;
 		T temp;
 		if (parent < 0) {
@@ -63,7 +63,7 @@ public class Heap<T extends Comparable<T>> {
 			temp = arr[child];
 			arr[child] = arr[parent];
 			arr[parent] = temp;
-			proclateUp(parent);
+			percolateUp(parent);
 		}
 	}
 
@@ -73,7 +73,7 @@ public class Heap<T extends Comparable<T>> {
 		}
 
 		arr[size++] = value;
-		proclateUp(size - 1);
+		percolateUp(size - 1);
 	}
 
 	private void doubleSize() {
@@ -90,7 +90,7 @@ public class Heap<T extends Comparable<T>> {
 		T value = arr[0];
 		arr[0] = arr[size - 1];
 		size--;
-		proclateDown(0);
+		percolateDown(0);
 		return value;
 	}
 

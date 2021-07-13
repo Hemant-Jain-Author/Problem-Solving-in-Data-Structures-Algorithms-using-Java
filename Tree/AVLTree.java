@@ -45,7 +45,7 @@ public class AVLTree {
         else if(node.data < data) {
             node.right = insert(node.right, data);
         }
-        else { // Duplicate datas not allowed
+        else { // Duplicate data not allowed
             return node;
         }
 

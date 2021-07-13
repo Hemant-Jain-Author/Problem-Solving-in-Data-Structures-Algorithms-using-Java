@@ -26,30 +26,6 @@ public class ClosestPair {
         return dmin;
     }
 
-    /*
-    public double closestPairBF2(int[][] arr) {
-        int n = arr.length;
-        Point[] p = new Point[n];
-        for (int i=0; i<n; i++) {
-            p[i] = new Point(arr[i][0], arr[i][1]);
-        }
-        return closestPairBF(p, n);
-    }
-
-
-    public static double closestPairBF(Point[] p, int n) {
-        double dmin = Double.MAX_VALUE, d;
-        for (int i = 0; i < n-1 ; i++){
-            for (int j = i + 1; j < n ; j++) {                
-                d =  distance(p[i], p[j]);
-                if (d < dmin) {
-                    dmin = d;
-                }
-            }
-        }
-        return dmin;
-    }
-*/
     private static double distance(Point a, Point b) {
         return Math.sqrt((a.x - b.x)*(a.x - b.x) + 
         (a.y - b.y)*(a.y - b.y));
@@ -96,7 +72,7 @@ public class ClosestPair {
         double dr = closestPairUtil(p, mid+1, stop, q, n);
         double d = Math.min(dl, dr);
 
-        // Build an array strip[] that contains points whose x axis coordinat
+        // Build an array strip[] that contains points whose x axis coordinate
         // in the range p[mid]-d and p[mid]+d
         // Points are already sorted according to y axis.
         Point[] strip = new Point[n];

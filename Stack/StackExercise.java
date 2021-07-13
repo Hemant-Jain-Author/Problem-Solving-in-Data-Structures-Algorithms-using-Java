@@ -193,14 +193,14 @@ public class StackExercise {
 	public static String infixToPrefix(String expn) {
 	    char[] arr = expn.toCharArray();
 	    reverseString(arr);
-	    replaceParanthesis(arr);
+	    replaceParenthesis(arr);
 	    arr = infixToPostfix(arr);
 	    reverseString(arr);
 	    expn = new String(arr);
 	    return expn;
 	}
 	
-	public static void replaceParanthesis(char[] a) {
+	public static void replaceParenthesis(char[] a) {
 	    int lower = 0;
 	    int upper = a.length - 1;
 	    while (lower <= upper) {
@@ -945,8 +945,7 @@ public class StackExercise {
 	    }
 	
 	    stepsOfKnightUtil(size, srcX - 1, srcY - 1, traversed, 0);
-	    int retval = traversed[dstX - 1][dstY - 1];
-	    return retval;
+	    return traversed[dstX - 1][dstY - 1];
 	}
 	
 	public static void main22() {

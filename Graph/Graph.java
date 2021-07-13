@@ -807,7 +807,7 @@ public class Graph {
         gph.addUndirectedEdge(5, 7, 1);
         gph.addUndirectedEdge(6, 7, 7);
         gph.addUndirectedEdge(7, 8, 17);
-        bellmanFordshortestPath(gph, 1);
+        bellmanFordShortestPath(gph, 1);
         // dijkstra(gph, 1);
         // prims(gph);
         System.out.println("isConnectedUndirected :: " + isConnectedUndirected(gph));
@@ -883,7 +883,7 @@ public class Graph {
         }
     }
 
-    public static void bellmanFordshortestPath(Graph gph, int source) {
+    public static void bellmanFordShortestPath(Graph gph, int source) {
         int count = gph.count;
         int[] distance = new int[count];
         int[] path = new int[count];
@@ -926,7 +926,7 @@ public class Graph {
         gph.addDirectedEdge(4, 3, 1);
         gph.print();
         System.out.println();
-        bellmanFordshortestPath(gph, 0);
+        bellmanFordShortestPath(gph, 0);
     }
     /*
     Vertex 0 is connected to : (1, 3) (4, 2) 

@@ -29,11 +29,18 @@ public class MatrixCM {
         return min;
     }
  
-        static int MatrixChainMulBruteForce(int[] p, int n)
-        {
-            int i = 1, j = n - 1;
-            return MatrixChainMulBruteForce(p, i, j);
-        }
+    static int MatrixChainMulBruteForce(int[] p, int n)
+    {
+        int i = 1, j = n - 1;
+        return MatrixChainMulBruteForce(p, i, j);
+    }
+
+    static int MatrixChainMulTD(int[] p, int n) {
+        int[][] dp = new int[n][n];
+        for (int[] row : dp)
+            Arrays.fill(row, Integer.MAX_VALUE);
+        return MatrixChainMulTD(dp, p, 1, n-1);
+    }
 
     // Function for matrix chain multiplication
     static int MatrixChainMulTD(int[][] dp, int[] p, int i, int j) {
@@ -53,40 +60,31 @@ public class MatrixCM {
         }
         return dp[i][j];
     }
-    
-    static int MatrixChainMulTD(int[] p, int n)
-    {
-        int[][] dp = new int[n][n];
-        for (int[] row : dp)
-            Arrays.fill(row, Integer.MAX_VALUE);
-        int i = 1, j = n - 1;
-        return MatrixChainMulTD(dp, p, i, j);
-    }
-    
+        
+
+        
     static int MatrixChainMulBU(int[] p, int n) {   
         int[][] dp = new int[n][n];
         for (int[] row : dp)
             Arrays.fill(row, Integer.MAX_VALUE);
         
-       for (int i = 1; i < n; i++)
-            dp[i][i] = 0;
+        for (int i = 1; i < n; i++)
+                dp[i][i] = 0;
 
-        for(int l = 1; l<n; l++) {
-            for(int i = 1; i<n-l; i++) {
-                int j = i+l;
+        for(int l = 1; l<n; l++) { // l is length of range.
+            for(int i = 1,j = i+l ; j<n; i++, j++) {
                 for(int k = i; k<j; k++) {
                     dp[i][j] = Math.min(dp[i][j], dp[i][k] + p[i-1] * p[k] * p[j] + dp[k+1][j]);
                 }
             }
-         } 
-         return dp[1][n-1];
+        } 
+        return dp[1][n-1];
     }
 
     // Driver Code
     public static void main (String[] args)
     {
-    
-        int arr[] = { 1, 2, 3, 4 }; //{ 10, 100, 10, 50 };
+        int arr[] = { 1, 2, 3, 4 };
         int n= arr.length;
         System.out.println("Matrix Chain Multiplication is: " + MatrixChainMulBruteForce(arr, n));
         System.out.println("Matrix Chain Multiplication is: " + MatrixChainMulTD(arr, n));
@@ -95,47 +93,8 @@ public class MatrixCM {
 }
 
 /*
-Matrix Chain Multiplication is: 15000
+Matrix Chain Multiplication is: 18
+Matrix Chain Multiplication is: 18
+Matrix Chain Multiplication is: 18
 */
 
-/*
-Algorithm MatrixChainMultiplication(p[])
-    for i := 1 to n
-        M[i, i] := 0;
-        for l = 2 to n // l is the moving line
-            for i = 1 to n − l +1
-                j = i + l − 1;
-                M[i, j] =    
-
-Time Complexity will O(n3)
-
-Algorithm MatrixChainMultiplication(p[])
-    for i := 1 to n
-        M[i, i] := 0;
-    for l = 2 to n // l is the moving line
-        for i = 1 to n − l +1
-            j = i + l − 1;
-            M[i, j] =     
-            S[i, j] =   
-
-Algorithm MatrixChainMultiplication(p[])
-    for i := 1 to n
-    M[i, i] := 0;
-    for l = 2 to n // l is the moving line
-        for i = 1 to n − l +1
-            j = i + l − 1;
-            for k = i to j
-                if()
-                    M[i, j] =  ()
-                    S[i, j] =  k
-
-Algorithm PrintOptimalParenthesis(s[], i, j)
-    If i = j
-        Print Ai
-    Else 
-        Print “(”
-        PrintOptimalParenthesis(s[], i,s[i, j])
-        PrintOptimalParenthesis(s[], s[i, j],j)
-        Print “)”
-
-*/

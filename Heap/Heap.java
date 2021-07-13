@@ -16,7 +16,7 @@ public class Heap {
 		isMinHeap = isMin;
 		// Build Heap operation over array
 		for (int i = (size / 2); i >= 0; i--) {
-			proclateDown(i);
+			percolateDown(i);
 		}
 	}
 
@@ -28,7 +28,7 @@ public class Heap {
 			return (arr[first] - arr[second]) < 0; // Max heap compare
 	}
 	
-	private void proclateDown(int parent) {
+	private void percolateDown(int parent) {
 		int lChild = 2 * parent + 1;
 		int rChild = lChild + 1;
 		int child = -1;
@@ -44,11 +44,11 @@ public class Heap {
 			temp = arr[parent];
 			arr[parent] = arr[child];
 			arr[child] = temp;
-			proclateDown(child);
+			percolateDown(child);
 		}
 	}
 	
-	private void proclateUp(int child) {
+	private void percolateUp(int child) {
 		int parent = (child - 1) / 2;
 		int temp;
 		if (parent < 0) {
@@ -58,7 +58,7 @@ public class Heap {
 			temp = arr[child];
 			arr[child] = arr[parent];
 			arr[parent] = temp;
-			proclateUp(parent);
+			percolateUp(parent);
 		}
 	}
 
@@ -67,7 +67,7 @@ public class Heap {
 			doubleSize();
 		}
 		arr[size++] = value;
-		proclateUp(size - 1);
+		percolateUp(size - 1);
 	}
 	
 	private void doubleSize() {
@@ -84,7 +84,7 @@ public class Heap {
 		int value = arr[0];
 		arr[0] = arr[size - 1];
 		size--;
-		proclateDown(0);
+		percolateDown(0);
 		return value;
 	}
 

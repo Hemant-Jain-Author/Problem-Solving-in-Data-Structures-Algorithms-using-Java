@@ -26,7 +26,7 @@ public class Stack2 {
 
 	public void push(int value) {
 	    if (size() == capacity) {
-	        System.out.println("size dubbelled");
+	        System.out.println("size doubled");
 	        int[] newData = new int[capacity * 2];
 	        System.arraycopy(data, 0, newData, 0, capacity);
 	        data = newData;
@@ -51,7 +51,7 @@ public class Stack2 {
 	    int topVal = data[top];
 	    top--;
 	    if (size() == capacity / 2 && capacity > minCapacity) {
-	        System.out.println("size halfed");
+	        System.out.println("size halved");
 	        capacity = capacity / 2;
 	        int[] newData = new int[capacity];
 	        System.arraycopy(data, 0, newData, 0, capacity);
@@ -79,9 +79,9 @@ public class Stack2 {
     }
 }
 /*
-size dubbelled
-size dubbelled
+size doubled
+size doubled
 11 10 9 8 7 6 5 4 3 2 1 
-size halfed
-size halfed
+size halved
+size halved
 */

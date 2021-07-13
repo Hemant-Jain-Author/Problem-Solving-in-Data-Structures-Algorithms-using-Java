@@ -156,7 +156,7 @@ public class Tree {
 	    }
 	}
 	
-	public void printBredthFirst() {
+	public void printBreadthFirst() {
 	    ArrayDeque<Node> que = new ArrayDeque<Node>();
 	    Node temp;
 	    if (root != null)
@@ -731,8 +731,8 @@ public class Tree {
 	}
 	
 	boolean isHeap() {
-	    int infi = -9999999;
-	    return (isCompleteTree() && isHeapUtil(root, infi));
+	    int infinite = -9999999;
+	    return (isCompleteTree() && isHeapUtil(root, infinite));
 	}
 	
 	boolean isHeapUtil2(Node curr, int index, int count, int parentValue) {
@@ -1077,7 +1077,7 @@ public class Tree {
 	    t.iterativeInOrder();
 	    // 8 4 9 2 10 5 1 6 3 7 
 	
-	    t.printBredthFirst();
+	    t.printBreadthFirst();
 	    // 1 2 3 4 5 6 7 8 9 10 
 	    
 	    t.printDepthFirst();

@@ -1,8 +1,7 @@
 package DP;
 
 public class MinStairCost {
-    static int minCost(int cost[], int n) {
-    
+    static int minCost(int cost[], int n) {    
         // base case
         if (n == 1)
             return cost[0];

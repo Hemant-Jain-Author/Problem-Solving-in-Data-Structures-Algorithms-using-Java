@@ -248,7 +248,7 @@ public class BTree {
     // Remove the index key from leaf node.
     void removeFromLeaf (Node node, int index)
     {
-        // Move all the keys after the index possition one step left.
+        // Move all the keys after the index position one step left.
         for (int i=index+1; i<node.n; ++i)
             node.keys[i-1] = node.keys[i];
     
@@ -262,7 +262,7 @@ public class BTree {
     {
         int key = node.keys[index];
     
-        // If the child that precedes key has atleast min keys,
+        // If the child that precedes key has at least min keys,
         // Find the predecessor 'pred' of key in the subtree rooted at index.
         // Replace key by pred and recursively delete pred in arr[index]
         if (node.arr[index].n > min)
@@ -272,7 +272,7 @@ public class BTree {
             remove(node.arr[index], pred);
         }
     
-        // If the child that succedes key has atleast min keys,
+        // If the child that succeeds key has at least min keys,
         // Find the successor 'succ' of key in the subtree rooted at index+1.
         // Replace key by succ and recursively delete succ in arr[ index+1].
         else if  (node.arr[index+1].n > min)
@@ -317,7 +317,7 @@ public class BTree {
         return cur.keys[0];
     }
         
-    // Make sure that the node have at least min numbrer of keys
+    // Make sure that the node have at least min number of keys
     void fixBTree(Node node, int index)
     {
         // If the left sibling has more than min keys.
@@ -357,7 +357,7 @@ public class BTree {
         // Setting child's first key equal to of the current node.
         child.keys[0] = node.keys[index-1];
     
-        // Moving sibling's last child as childs's first child.
+        // Moving sibling's last child as child's first child.
         if(!child.leaf)
             child.arr[0] = sibling.arr[sibling.n];
     

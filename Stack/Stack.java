@@ -24,7 +24,7 @@ public class Stack {
 	
 	public void push(int value) throws IllegalStateException {
 	    if (size() == data.length) {
-	        throw new IllegalStateException("StackOvarflowException");
+	        throw new IllegalStateException("StackOverflowException");
 	    }
 	    top++;
 	    data[top] = value;

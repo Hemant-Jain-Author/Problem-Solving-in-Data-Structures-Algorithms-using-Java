@@ -125,7 +125,7 @@ public static void main3() {
 }
 // minSwaps 3
    
-public static void seperateEvenAndOdd(int data[], int size) {
+public static void separateEvenAndOdd(int data[], int size) {
     int left = 0, right = size - 1;
     while (left < right) {
         if (data[left] % 2 == 0)
@@ -143,7 +143,7 @@ public static void seperateEvenAndOdd(int data[], int size) {
 // Testing code
 public static void main4() {
     int array[] = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
-    seperateEvenAndOdd(array, array.length);
+    separateEvenAndOdd(array, array.length);
     printArray(array, array.length);
 }
 // [ 4 6 8 2 7 3 1 9 5 ]

@@ -220,7 +220,7 @@ public class LinkedList {
 	    return count;
 	}
 	
-	public int nthNodeFromBegining(int index) {
+	public int nthNodeFromBeginning(int index) {
 	    if (index > size() || index < 1)
 	        return Integer.MAX_VALUE;
 	    int count = 0;
@@ -239,7 +239,7 @@ public class LinkedList {
 	        return Integer.MAX_VALUE;
 	    }
 	    startIndex = size - index + 1;
-	    return nthNodeFromBegining(startIndex);
+	    return nthNodeFromBeginning(startIndex);
 	}
 	
 	public int nthNodeFromEnd2(int index) {
@@ -636,7 +636,7 @@ public class LinkedList {
 	    ll.addHead(2);
 	    ll.addHead(3);
 	    ll.print();
-	    System.out.println(ll.nthNodeFromBegining(2));
+	    System.out.println(ll.nthNodeFromBeginning(2));
 	    System.out.println(ll.nthNodeFromEnd(2));
 	    System.out.println(ll.nthNodeFromEnd2(2));
 	}

@@ -60,10 +60,10 @@ public class QueueEx {
     }
 
     public static void main2() {
-        System.out.println("Steps countr :: " + convertXY(2, 7));
+        System.out.println("Steps counter :: " + convertXY(2, 7));
     }
     /*
-    Steps countr :: 3
+    Steps counter :: 3
     */
     public static void maxSlidingWindows(int arr[], int size, int k) {
         ArrayDeque<Integer> que = new ArrayDeque<Integer>();
@@ -86,7 +86,6 @@ public class QueueEx {
 
     public static void main3() {
         int arr[] = { 11, 2, 75, 92, 59, 90, 55 };
-        int k = 3;
         maxSlidingWindows(arr, 7, 3);
     }
 
@@ -115,7 +114,6 @@ public class QueueEx {
 
     public static void main4() {
         int arr[] = { 11, 2, 75, 92, 59, 90, 55 };
-        int k = 3;
         minOfMaxSlidingWindows(arr, 7, 3);
     }
     /*
@@ -141,7 +139,6 @@ public class QueueEx {
 
     public static void main5() {
         int arr[] = { 11, 2, 75, 92, 59, 90, 55 };
-        int k = 3;
         maxOfMinSlidingWindows(arr, 7, 3);
         // Output 59, as minimum values in sliding windows are [2, 2, 59, 59, 55]
     }
@@ -169,7 +166,6 @@ public class QueueEx {
 
     public static void main6() {
         int arr[] = { 3, -2, -6, 10, -14, 50, 14, 21 };
-        int k = 3;
         firstNegSlidingWindows(arr, 8, 3);
     }
 

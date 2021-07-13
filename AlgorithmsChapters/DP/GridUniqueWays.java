@@ -20,7 +20,7 @@ public class GridUniqueWays{
         return dp[m-1][n-1];
     }
 
-    // Digonal movement allowed.
+    // Diagonal movement allowed.
     private static int unique3Ways(int m, int n) {
         int dp[][]=new int[m][n];
         dp[0][0] = 1;
@@ -43,5 +43,11 @@ public class GridUniqueWays{
     
     public static void main(String args[]) {                        
         System.out.println(uniqueWays(3, 3));
+        System.out.println(unique3Ways(3, 3));
+
     }
 }
+
+/*
+6
+*/

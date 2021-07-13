@@ -1,6 +1,5 @@
 public class ForDemo {
 
-	private static final String text = "Hello, World!";
 	static final double PI = 3.141592653589793;
 
 	public static void main1() {

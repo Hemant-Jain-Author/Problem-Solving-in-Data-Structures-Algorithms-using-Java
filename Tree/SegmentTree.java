@@ -24,7 +24,7 @@ public class SegmentTree {
         }
  
         // If there are more than one elements, 
-        // then trevarse left and right subtrees 
+        // then traverse left and right subtrees 
         // and store the sum of values in current node.
         int mid = (start + end) / 2;
         segArr[index] = constructST(input, start, mid, index * 2 + 1) +
@@ -82,7 +82,7 @@ public class SegmentTree {
         // value of the node and its children
 
         if(segStart == segEnd) {
-            if(segStart == ind) { // Index that need to be setd.
+            if(segStart == ind) { // Index that need to be set.
                 int diff = val - segArr[index] ;
                 segArr[index] = val;
                 return diff; 
@@ -96,10 +96,10 @@ public class SegmentTree {
         int diff = setUtil(segStart, mid, ind, val, 2 * index + 1) + 
         setUtil(mid + 1, segEnd, ind, val, 2 * index + 2);
 
-        // Current node value is setd with diff. 
+        // Current node value is set with diff. 
         segArr[index] = segArr[index]  + diff;
 
-        // Value of diff is propogated to the parent node.
+        // Value of diff is propagated to the parent node.
         return diff;
     }
 

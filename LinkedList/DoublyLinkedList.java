@@ -138,7 +138,7 @@ public class DoublyLinkedList {
 	        return;
 	    }
 	
-	    if (head.value > value)// at the begining
+	    if (head.value > value)// at the beginning
 	    {
 	        temp.next = head;
 	        head.prev = temp;
@@ -146,7 +146,7 @@ public class DoublyLinkedList {
 	        return;
 	    }
 	
-	    while (curr.next != null && curr.next.value < value)// treversal
+	    while (curr.next != null && curr.next.value < value)// traversal
 	    {
 	        curr = curr.next;
 	    }

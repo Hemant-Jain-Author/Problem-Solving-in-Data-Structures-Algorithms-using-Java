@@ -22,7 +22,7 @@ public class GridMinCost{
                 minCost(cost, m, n-1));
     }
 
-    private static int minCostDP(int cost[][], int m, int n) {
+    private static int minCostBU(int cost[][], int m, int n) {
         int tc[][]=new int[m][n];
         tc[0][0] = cost[0][0];
 
@@ -53,7 +53,7 @@ public class GridMinCost{
                         {1, 5, 3}};
                           
         System.out.println(minCost(cost, 3, 3));
-        System.out.println(minCostDP(cost, 3, 3));
+        System.out.println(minCostBU(cost, 3, 3));
 
     }
 }

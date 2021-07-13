@@ -24,7 +24,7 @@ public class rmqST {
         }
  
         // If there are more than one elements, 
-        // then trevarse left and right subtrees 
+        // then traverse left and right subtrees 
         // and store the minimum of values in current node.
         int mid = (start + end) / 2;
         segArr[index] = min(constructST(input, start, mid, index * 2 + 1),
@@ -92,7 +92,7 @@ public class rmqST {
                 return val; 
             }
             else {
-                return segArr[index]; // index value is not chaned.
+                return segArr[index]; // index value is not changed.
             }
         }
 
@@ -102,7 +102,7 @@ public class rmqST {
         segArr[index] = min(updateUtil(segStart, mid, ind, val, 2 * index + 1), 
         updateUtil(mid + 1, segEnd, ind, val, 2 * index + 2));
 
-        // Value of diff is propogated to the parent node.
+        // Value of diff is propagated to the parent node.
         return segArr[index];
     }
 

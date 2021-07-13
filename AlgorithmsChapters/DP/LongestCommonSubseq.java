@@ -43,36 +43,3 @@ public class LongestCommonSubseq {
 	}
 }
 
-/*
-Algorithm LCS(X[], m, Y[], n)
-    initilize dp[m][n]
-    for i = 1 to m 
-        dp[i][0] = 0 
-    for j = 1 to n 
-        dp[0][j] = 0;
-    for i = 1 to m
-        for j = 1 to n
-            if X[i] == Y[j]
-                dp[i][j] = dp[i-1][j-1] + 1
-                p[i][j] = ↖
-            else
-                if dp[i-1][j] ≥ dp[i][j-1]
-                    dp[i][j] = dp[i-1][j]
-                    p[i][j] = ↑
-                else
-                    dp[i][j] = dp[i][j-1]
-                    p[i][j] = ←
-
-Algorithm PrintLCS(p[],X[], i, j)
-    if i = 0 
-        return
-    if j = 0 
-        return
-    if p[i][j] = ↖
-        PrintLCS (p[],X[], i − 1, j − 1)
-        print X[i]
-    else if p[i][j] = ↑
-        PrintLCS (p[],X[], i − 1, j)
-    else
-        PrintLCS (p[],X[], i, j − 1)
-*/

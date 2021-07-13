@@ -19,21 +19,8 @@ class LargestIncreasingSubseq {
         return max;
     }
  
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         int arr[] = { 10, 12, 9, 23, 25, 55, 49, 70 };
         System.out.println("Length of lis is " + lis(arr));
     }
 }
-
-/*
-
-function LIS(v[], n)
-    for i ← 1 to n do
-        lis[i] ← 1
-        for j ← 1 to i do
-            if v[j] < v[i] and lis[i] < lis[j]+1 then
-                lis[i] ← lenlisgth[j] +1
-
-    return max (length[i] where 1≤i≤n)
-*/
