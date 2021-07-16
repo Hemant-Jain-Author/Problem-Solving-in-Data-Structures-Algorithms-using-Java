@@ -54,16 +54,3 @@ class ActivitySelection {
 /*
 Activities are : (1,2), (3,4), (5,6), (6,7), (8,9)
 */
-
-
-/*
-Algorithm ActivitySelectionA(S[], F[], N)
-    Sort S[] and F [] in increasing order of finishing time
-    A = {a1}
-    K = 1
-    For m = 2 to N do
-        If S[m] >= F[k]
-            A = A + {am}
-            K = m
-    Return A
-*/
