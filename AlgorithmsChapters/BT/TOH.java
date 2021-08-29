@@ -1,4 +1,3 @@
-package BT;
 // Towers Of Hanoi problem.
 public class TOH {
     public static void tohUtil(int num, char from, char to, char temp) {

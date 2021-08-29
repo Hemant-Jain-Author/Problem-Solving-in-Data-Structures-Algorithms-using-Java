@@ -6,9 +6,10 @@ public class Queue {
     int front = 0;
     int back = 0;
 
-    public Queue() {
+    public Queue(int n) {
         size = 0;
-        data = new int[100];
+        capacity = n;
+        data = new int[n];
     }
 
     public boolean add(int value) {
@@ -18,7 +19,7 @@ public class Queue {
         } else {
             size++;
             data[back] = value;
-            back = (++back) % (capacity - 1);
+            back = (++back) % capacity;
         }
         return true;
     }
@@ -31,7 +32,7 @@ public class Queue {
         } else {
             size--;
             value = data[front];
-            front = (++front) % (capacity - 1);
+            front = (++front) % capacity;
         }
         return value;
     }
@@ -44,18 +45,35 @@ public class Queue {
         return size;
     }
 
+    void print(){
+        if(size == 0) {
+            System.out.print("Queue is empty.");
+            return; 
+        }
+        int temp = front;
+        int s = size;
+        System.out.print("Queue is : ");
+        while(s > 0){
+            s--;
+            System.out.print(data[temp] + " ");
+            temp = (++temp) % capacity;          
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
-        Queue que = new Queue();
-        que.add(1);
-        que.add(2);
-        que.add(3);
-        for (int i = 0; i < 3; i++)
-            System.out.println(que.remove());
+        Queue que = new Queue(5);
+        for(int i=0;i<5;i++){
+            que.add(i);
+        }
+        que.print();
+
+        for (int i = 0; i < 5; i++)
+            System.out.print(que.remove() + " ");
     }
 }
 
 /*
-1
-2
-3
+Queue is : 0 1 2 3 4 
+0 1 2 3 4 
 */

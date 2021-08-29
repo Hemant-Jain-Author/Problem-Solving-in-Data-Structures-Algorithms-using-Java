@@ -6,6 +6,20 @@
 	"configurations": [
 		{
 			"type": "java",
+			"name": "Launch JobSequencing",
+			"request": "launch",
+			"mainClass": "JobSequencing",
+			"projectName": "Problem-Solving-in-Data-Structures-Algorithms-using-Java_d159273f"
+		},
+		{
+			"type": "java",
+			"name": "Launch NutsAndBolts",
+			"request": "launch",
+			"mainClass": "NutsAndBolts",
+			"projectName": "Problem-Solving-in-Data-Structures-Algorithms-using-Java_d159273f"
+		},
+		{
+			"type": "java",
 			"name": "CodeLens (Launch) - Heap",
 			"request": "launch",
 			"cwd": "${workspaceFolder}",

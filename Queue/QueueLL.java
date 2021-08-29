@@ -34,12 +34,10 @@ public class QueueLL {
 
     public void add(int value) {
         Node temp = new Node(value, null);
-
         if (tail == null){
             tail = temp;
             tail.next = tail;
-        }
-        else {
+        } else {
             temp.next = tail.next;
             tail.next = temp;
             tail = temp;
@@ -48,15 +46,14 @@ public class QueueLL {
     }
 
     public int remove() throws IllegalStateException {
-        if (isEmpty())
+        if (size == 0)
             throw new IllegalStateException("StackEmptyException");
         
         int value=0;
         if (tail == tail.next){
             value = tail.value;
             tail = null;
-        }
-        else{
+        } else {
             value = tail.next.value;
             tail.next = tail.next.next;
         }
@@ -64,17 +61,31 @@ public class QueueLL {
         return value;
     }
 
+    void print(){
+        if(size == 0) {
+            System.out.print("Queue is empty.");
+            return;    
+        }
+        Node temp = tail.next;
+        System.out.print("Queue is : ");
+        for(int i=0;i<size;i++){
+            System.out.print(temp.value + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         QueueLL que = new QueueLL();
-        que.add(1);
-        que.add(2);
-        que.add(3);
-        for (int i = 0; i < 3; i++)
-            System.out.println(que.remove());
+        for(int i=0;i<5;i++){
+            que.add(i);
+        }
+        que.print();
+        for (int i = 0; i < 5; i++)
+            System.out.print(que.remove() + " ");
     }
 }
 /*
-1
-2
-3
+Queue is : 0 1 2 3 4 
+0 1 2 3 4 
 */

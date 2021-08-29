@@ -38,6 +38,33 @@ public static int partition01(int[] arr, int size) {
     return count;
 }
 
+public static void partition012_(int[] arr, int size) {
+    int zero = 0, one = 0, two = 0;
+
+    for (int i =0; i < size;i++) {
+        if (arr[i] == 0) {
+            zero += 1;
+        } else if (arr[i] == 1) {
+            one += 1;
+        } else {
+            two += 1;
+        }
+    }
+    int index = 0;
+    while(zero > 0){
+        arr[index++] = 0;
+        zero -= 1;
+    }
+    while(one > 0){
+        arr[index++] = 1;
+        one -= 1;
+    }
+    while(two > 0){
+        arr[index++] = 2;
+        two -= 1;
+    }
+}
+
 public static void partition012(int[] arr, int size) {
     int left = 0;
     int right = size - 1;
@@ -65,6 +92,10 @@ public static void main1() {
     int arr2[] = { 0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1 };
     partition012(arr2, arr2.length);
     printArray(arr2, arr2.length);
+
+    int arr3[] = { 0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1 };
+    partition012_(arr3, arr3.length);
+    printArray(arr3, arr3.length);
 }
 /*
 [ 0 0 0 0 0 0 1 1 1 1 1 1 ]
@@ -124,8 +155,25 @@ public static void main3() {
 
 }
 // minSwaps 3
-   
+ 
 public static void separateEvenAndOdd(int data[], int size) {
+    int left = 0, right = size - 1;
+    int[] aux = new int[size];
+    
+    for (int i=0;i< size;i++) {
+        if (data[i] % 2 == 0) {
+            aux[left] = data[i];
+        	left++;
+        } else if (data[i] % 2 == 1) {
+        	aux[right] = data[i];
+        	right--;
+        }
+    }
+    for (int i=0;i< size;i++)
+    	data[i] = aux[i];
+}
+
+public static void separateEvenAndOdd2(int data[], int size) {
     int left = 0, right = size - 1;
     while (left < right) {
         if (data[left] % 2 == 0)
@@ -145,6 +193,9 @@ public static void main4() {
     int array[] = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
     separateEvenAndOdd(array, array.length);
     printArray(array, array.length);
+    int array2[] = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
+    separateEvenAndOdd2(array2, array2.length);
+    printArray(array2, array2.length);
 }
 // [ 4 6 8 2 7 3 1 9 5 ]
 
@@ -187,8 +238,11 @@ public static void arrayReduction(int[] arr, int size) {
         if (arr[i] - reduction > 0) {
             reduction = arr[i];
             count += 1;
+            System.out.println(size - i);
         }
     }
+    System.out.println(0);
+
     System.out.println("Total number of reductions: " + count);
 }
 
@@ -393,15 +447,17 @@ public static void main10() {
 [ 2 5 8 ]
 */
     public static void main(String[] args) {
-        main1();
+        /*main1();
         main2();
         main3();
         main4();
         main5();
+        */
         main6();
-        main7();
+        /*main7();
         main8();
         main9();
         main10();
+        */
     }
 }

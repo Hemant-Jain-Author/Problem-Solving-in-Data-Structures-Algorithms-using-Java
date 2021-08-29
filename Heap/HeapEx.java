@@ -1,7 +1,7 @@
 import java.util.PriorityQueue;
 import java.util.Arrays;
 import java.util.Collections;
-
+import java.util.Random;
 public class HeapEx {
 
 	public static void demo(String[] args) {
@@ -27,20 +27,39 @@ public class HeapEx {
 	}
 	
 	public static int kthSmallest2(int[] arr, int size, int k) {
-		int i = 0;
-		int value = 0;
 		PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
-		for (i = 0; i < size; i++) {
+		for (int i = 0; i < size; i++) 
 			pq.add(arr[i]);
-		}
-		i = 0;
-		while (i < size && i < k) {
-			value = pq.remove();
-			i += 1;
-		}
-		return value;
+		for (int i = 0; i < k-1; i++)
+			pq.remove();
+		return pq.peek();
 	}
 	
+	public static int kthSmallest3(int[] arr, int size, int k) {
+		PriorityQueue<Integer> pq = new PriorityQueue<Integer>(Collections.reverseOrder());
+		for (int i = 0; i < size; i++) {
+			if(i < k)
+				pq.add(arr[i]);
+			else {
+				if (pq.peek() > arr[i]) {
+					pq.add(arr[i]);
+					pq.remove();
+				}
+			}
+		}	
+		return pq.peek();
+	}
+
+	public static int kthLargest(int[] arr, int size, int k) {
+		int value = 0;
+		PriorityQueue<Integer> pq = new PriorityQueue<Integer>(Collections.reverseOrder());
+		for (int i = 0; i < size; i++) 
+			pq.add(arr[i]);
+		for (int i = 0; i < k; i++)
+			value = pq.remove();
+		return value;
+	}
+
 	public static boolean isMinHeap(int[] arr, int size) {
 		int lchild, rchild;
 		// last element index size - 1
@@ -78,7 +97,7 @@ public class HeapEx {
 	Kth Smallest :: 5
 	*/
 	
-	public static void main1(String[] args) {	
+	public static void main1() {	
 		int arr3[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
 		System.out.println("isMaxHeap :: " + isMaxHeap(arr3, arr3.length));
 		int arr4[] = { 1, 2, 3, 4, 5, 6, 7, 8 };
@@ -154,17 +173,39 @@ public class HeapEx {
 		return product;
 	}
 	
-	public static void main2(String[] args) {
+	public static int kSmallestProduct4(int[] arr, int size, int k) {
+		PriorityQueue<Integer> pq = new PriorityQueue<Integer>(Collections.reverseOrder());		
+		for (int i = 0; i < size; i++) {
+			if(i < k)
+				pq.add(arr[i]);
+			else {
+				if (pq.peek() > arr[i]) {
+					pq.add(arr[i]);
+					pq.remove();
+				}
+			}
+		}	
+		int product = 1;
+		for (int i = 0; i < k; i++) {
+			product *= pq.remove();
+		}
+		return product;
+	}
+
+	public static void main2() {
 		int arr[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
 		System.out.println("Kth Smallest product:: " + kSmallestProduct(arr, 8, 3));
 		int arr2[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
 		System.out.println("Kth Smallest product:: " + kSmallestProduct2(arr2, 8, 3));
 		int arr3[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
 		System.out.println("Kth Smallest product:: " + kSmallestProduct3(arr3, 8, 3));
+		int arr4[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
+		System.out.println("Kth Smallest product:: " + kSmallestProduct4(arr4, 8, 3));
 	}
 	/*
 	 * Kth Smallest product:: 10 
 	 * Kth Smallest product:: 10 
+	 * Kth Smallest product:: 10
 	 * Kth Smallest product:: 10
 	 */
 	
@@ -193,7 +234,7 @@ public class HeapEx {
 		System.out.println();
 	}
 	
-	public static void main3(String[] args) {
+	public static void main3() {
 		int arr[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
 		printLargerHalf(arr, 8);
 		int arr2[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
@@ -230,7 +271,7 @@ public class HeapEx {
 	}
 	
 	// Testing Code
-	public static void main4(String[] args) {
+	public static void main4() {
 		int k = 3;
 		int[] arr = { 1, 5, 4, 10, 50, 9 };
 		int size = arr.length;
@@ -241,171 +282,10 @@ public class HeapEx {
 	/*
 	 * 1 5 4 9 10 50
 	 */
-	
-	public static int chotaBhim(int cups[], int size) {
-		int time = 60;
-		Arrays.sort(cups);
-		int total = 0;
-		int index, temp;
-		while (time > 0) {
-			total += cups[0];
-			cups[0] = (int) Math.ceil(cups[0] / 2.0);
-			index = 0;
-			temp = cups[0];
-			while (index < size - 1 && temp < cups[index + 1]) {
-				cups[index] = cups[index + 1];
-				index += 1;
-			}
-			cups[index] = temp;
-			time -= 1;
-		}
-		System.out.println("Total : " + total);
-		return total;
+	public static void main(String[] args) {
+		main2();
 	}
-	
-	public static int chotaBhim2(int cups[], int size) {
-		int time = 60;
-		Arrays.sort(cups);
-		int total = 0;
-		int i, temp;
-		while (time > 0) {
-			total += cups[0];
-			cups[0] = (int) Math.ceil(cups[0] / 2.0);
-			i = 0;
-			// Insert into proper location.
-			while (i < size - 1) {
-				if (cups[i] > cups[i + 1])
-					break;
-				temp = cups[i];
-				cups[i] = cups[i + 1];
-				cups[i + 1] = temp;
-				i += 1;
-			}
-			time -= 1;
-		}
-		System.out.println("Total : " + total);
-		return total;
-	}
-	
-	public static int chotaBhim3(int cups[], int size) {
-		int time = 60;
-		PriorityQueue<Integer> pq = new PriorityQueue<Integer>(Collections.reverseOrder());
-		int i = 0;
-		for (i = 0; i < size; i++) {
-			pq.add(cups[i]);
-		}
-	
-		int total = 0;
-		int value;
-		while (time > 0) {
-			value = pq.remove();
-			total += value;
-			value = (int) Math.ceil(value / 2.0);
-			pq.add(value);
-			time -= 1;
-		}
-		System.out.println("Total : " + total);
-		return total;
-	}
-	
-	public static void main5(String[] args) {
-		int cups[] = { 2, 1, 7, 4, 2 };
-		chotaBhim(cups, cups.length);
-		int cups2[] = { 2, 1, 7, 4, 2 };
-		chotaBhim2(cups2, cups.length);
-		int cups3[] = { 2, 1, 7, 4, 2 };
-		chotaBhim3(cups3, cups.length);
-	}
-	
-	/*
-	 * Total : 76 
-	 * Total : 76 
-	 * Total : 76 
-	 */
-	
-	public static int joinRopes(int ropes[], int size) {
-		Arrays.sort(ropes);
-		for (int i = 0, j = size - 1; i < j; i++, j--) {
-			int temp = ropes[i];
-			ropes[i] = ropes[j];
-			ropes[j] = temp;
-		}
-		int total = 0;
-		int value = 0;
-		int index;
-		int length = size;
-	
-		while (length >= 2) {
-			value = ropes[length - 1] + ropes[length - 2];
-			total += value;
-			index = length - 2;
-			while (index > 0 && ropes[index - 1] < value) {
-				ropes[index] = ropes[index - 1];
-				index -= 1;
-			}
-			ropes[index] = value;
-			length--;
-		}
-		System.out.println("Total : " + total);
-		return total;
-	}
-	
-	public static int joinRopes2(int ropes[], int size) {
-		PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
-		int i = 0;
-		for (i = 0; i < size; i++) {
-			pq.add(ropes[i]);
-		}
-	
-		int total = 0;
-		int value = 0;
-		while (pq.size() > 1) {
-			value = pq.remove();
-			value += pq.remove();
-			pq.add(value);
-			total += value;
-		}
-		System.out.println("Total : " + total);
-		return total;
-	}
-	
-	public static void main6(String[] args) {
-		int ropes[] = { 4, 3, 2, 6 };
-		joinRopes(ropes, ropes.length);
-		int rope2[] = { 4, 3, 2, 6 };
-		joinRopes2(rope2, rope2.length);
-	}
-	
-	/*
-	 * Total : 29 
-	 * Total : 29
-	 */
-	
-	
-	public static int kthLargestStream(int k) {
-		PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
-		int size = 0;
-		int data = 0;
-		while (true) {
-			System.out.println("Enter data: ");
-			data = System.in.read();
-	
-			if (size < k - 1)
-				pq.add(data);
-			else {
-				if (size == k - 1)
-					pq.add(data);
-				else if (pq.peek() < data) {
-					pq.add(data);
-					pq.remove();
-				}
-				System.out.println("Kth larges element is :: " + pq.peek());
-			}
-			size += 1;
-		}
-	}
-	
-	public static void main7(String[] args) {
-		kthLargestStream(3);
-	}
+
+
 }
+

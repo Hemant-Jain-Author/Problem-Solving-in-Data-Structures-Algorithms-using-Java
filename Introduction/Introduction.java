@@ -436,8 +436,8 @@ public static int arrayIndexMaxDiff(int[] arr, int size) {
     int j;
     for (int i = 0; i < size; i++) {
         j = size - 1;
-        while (j > i) {
-            if (arr[j] > arr[i]) {
+        while (i < j) {
+            if (arr[i] <= arr[j]) {
                 maxDiff = Math.max(maxDiff, j - i);
                 break;
             }
@@ -447,33 +447,17 @@ public static int arrayIndexMaxDiff(int[] arr, int size) {
     return maxDiff;
 }
 
-public static int arrayIndexMaxDiff2(int[] arr, int size) {
-    int[] leftMin = new int[size];
+public static int arrayIndexMaxDiff2(int arr[], int size) {      
     int[] rightMax = new int[size];
-    leftMin[0] = arr[0];
-    int i, j;
-    int maxDiff;
-    for (i = 1; i < size; i++) {
-        if (leftMin[i - 1] < arr[i]) {
-            leftMin[i] = leftMin[i - 1];
-        } else {
-            leftMin[i] = arr[i];
-        }
-    }
     rightMax[size - 1] = arr[size - 1];
-    for (i = size - 2; i >= 0; i--) {
-        if (rightMax[i + 1] > arr[i]) {
-            rightMax[i] = rightMax[i + 1];
-        } else {
-            rightMax[i] = arr[i];
-        }
-    }
-    i = 0;
-    j = 0;
-    maxDiff = -1;
-    while (j < size && i < size) {
-        if (leftMin[i] < rightMax[j]) {
-            maxDiff = Math.max(maxDiff, j - i);
+    for (int i = size - 2; i >= 0; i--)
+        rightMax[i] = Math.max(rightMax[i + 1], arr[i]);
+        
+    int maxDiff = -1;
+    for(int i=0, j=1; i < size && j < size;) {
+        if (arr[i] <= rightMax[j]) {
+            if(i < j)
+                maxDiff = Math.max(maxDiff, j - i);
             j = j + 1;
         } else {
             i = i + 1;
@@ -482,47 +466,10 @@ public static int arrayIndexMaxDiff2(int[] arr, int size) {
     return maxDiff;
 }
 
-/*
-public static int arrayIndexMaxDiff3(int arr[], int size) { 
-    int[] leftMin = new int[size]; 
-    int[] rightMax = new int[size]; 
-    int minIndex = 0, maxIndex = 0; 
-    int i, j; 
-    int maxDiff; 
-    leftMin[minIndex++] = 0;
-    for (i = 1; i < size; i++)
-    {
-     if (arr[leftMin[minIndex]] > arr[i]) { 
-         leftMin[minIndex++] = i; 
-        } 
-    }
- 
-    rightMax[maxIndex++] = size - 1; 
-    for (i = size - 2; i >= 0; i--) { 
-        if (arr[rightMax[maxIndex]] < arr[i]) { 
-            rightMax[maxIndex++] = i; 
-        } 
-    }
- 
-    i = 0; 
-    j = maxIndex - 1; 
-    maxDiff = -1;
- 
-    while (i < minIndex && j >= 0) { 
-        if (arr[leftMin[i]] < arr[rightMax[j]]) {
-            maxDiff = Math.max(maxDiff, rightMax[j] - leftMin[i]); 
-            j -= 1; 
-        } else { 
-            i += 1; 
-        } 
-    } 
-    return maxDiff; 
-}
-*/
-
 /* Testing code */
 public static void main12() {
-    int[] arr = { 33, 9, 10, 3, 2, 60, 30, 33, 1 };
+    int[] arr = {10,9,8,7,6,5,4,3,2,1};
+    //{ 33, 9, 10, 3, 2, 60, 30, 33, 1 };
     System.out.println("arrayIndexMaxDiff : " + arrayIndexMaxDiff(arr, arr.length));
     System.out.println("arrayIndexMaxDiff : " + arrayIndexMaxDiff2(arr, arr.length));
 }
@@ -739,7 +686,7 @@ public static void main16() {
 -1
 */
     public static void main(String[] args){
-        main1();
+        /*main1();
         Introduction i = new Introduction();
         i.main2();
         main3();
@@ -751,8 +698,9 @@ public static void main16() {
         main9();
         main10();
         main11();
+        */
         main12();
-        main13();
+        /*main13();
         main14();
         main15();
         main16();
@@ -760,5 +708,6 @@ public static void main16() {
         main115();
         main125();
         main126();
+        */
     }
 }

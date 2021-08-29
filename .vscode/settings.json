@@ -8,5 +8,9 @@
         "plepa",
         "pottergo",
         "stack"
+    ],
+    "java.project.sourcePaths": [
+        "AlgorithmsChapters/BT",
+        "AlgorithmsChapters/DAC"
     ]
 }

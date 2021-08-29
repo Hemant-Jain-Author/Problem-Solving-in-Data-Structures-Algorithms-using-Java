@@ -1,3 +1,5 @@
+import java.util.HashSet;
+
 public class LinkedList {
     private static class Node {
         private int value;
@@ -428,6 +430,21 @@ public class LinkedList {
 	}
 	
 	public boolean loopDetect() {
+	    Node curr = head;
+		HashSet<Node> hs = new HashSet<Node>();
+	    while (curr != null) {
+			if(hs.contains(curr)){
+				System.out.println("loop found");
+				return true;
+			}
+			hs.add(curr);
+			curr = curr.next;
+		}
+		System.out.println("loop not found");
+		return false;
+	}
+
+	public boolean loopDetect2() {
 	    Node slowPtr;
 	    Node fastPtr;
 	    slowPtr = fastPtr = head;
@@ -676,9 +693,10 @@ public class LinkedList {
 	    ll.print();
 	    ll.makeLoop();
 	    ll.loopDetect();
+		ll.loopDetect2();
 	    ll.loopTypeDetect();
 	    ll.removeLoop();
-	    ll.loopDetect();   
+	    ll.loopDetect2();   
 	}
 	
 	/*
@@ -736,9 +754,10 @@ ll.insertionSort();
         main4();
         main5();
         main6();
-        main7(); 
+        main7();
+		*/ 
         main8(); 
-        main9();
-*/		main10();
+      /*  main9();
+		main10();*/
     }
 }

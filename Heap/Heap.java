@@ -94,6 +94,19 @@ public class Heap {
 		}
 	}
 
+public boolean delete(int value) {
+	for (int i = 0; i < size; i++) {
+		if(arr[i] == value){
+			arr[i] = arr[size-1];
+			size -= 1;
+			percolateDown(i);
+			return true;
+		}
+	}
+	return false;
+}
+
+
 	public boolean isEmpty() {
 		return (size == 0);
 	}
@@ -114,11 +127,14 @@ public class Heap {
 		Heap hp = new Heap(a, true);
 		hp.print();
 		System.out.println();
-	
-		while (!hp.isEmpty()) {
+	hp.delete(5);
+	hp.print();
+	System.out.println();
+
+	/*	while (!hp.isEmpty()) {
 			System.out.print(hp.remove() + " ");
 		}
-		System.out.println();
+		System.out.println();*/
 	}
 	
 	/*

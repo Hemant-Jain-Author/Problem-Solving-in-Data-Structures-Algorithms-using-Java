@@ -1,6 +1,7 @@
 import java.util.Stack;
 import java.util.Scanner;
 import java.util.ArrayDeque;
+import java.util.Arrays;
 
 public class StackExercise {
 
@@ -342,7 +343,22 @@ public class StackExercise {
 	getMaxArea :: 20
 	getMaxArea :: 20
 	*/
-	
+
+
+public static void stockAnalystAdd(Stack<Integer> stk, int value){
+	while(!stk.isEmpty() && stk.peek() <= value)
+		stk.pop();
+	stk.push(value);
+}
+
+public static void main7a() {
+    int[] arr = { 20, 19, 10, 21, 40, 35, 39, 50, 45, 42 };
+	Stack<Integer> stk = new Stack<Integer>();
+    for(int i = arr.length -1;i>=0;i--)
+		stockAnalystAdd(stk, arr[i]);
+	System.out.println(stk);
+}
+
 	public static void sortedInsert(Stack<Integer> stk, int element) {
 	    int temp;
 	    if (stk.isEmpty() || element > stk.peek())
@@ -620,11 +636,9 @@ public class StackExercise {
 	    int length = 0;
 	
 	    for (int i = 0; i < size; i++) {
-	
 	        if (string.charAt(i) == '(')
 	            stk.push(i);
-	        else // string[i] == ')'
-	        {
+	        else {
 	            stk.pop();
 	            if (stk.size() != 0)
 	                length = Math.max(length, i - stk.peek());
@@ -634,11 +648,31 @@ public class StackExercise {
 	    }
 	    return length;
 	}
-	
+
+	public static int longestContBalParen2(String string, int size) {
+	    Stack<Integer> stk = new Stack<Integer>();
+	    int length = 0;
+		int previous=-1;
+		int oldLength=0;
+	    for (int i = 0; i < size; i++) {
+	        if (string.charAt(i) == '(')
+	            stk.push(i);
+	        else // string[i] == ')'
+	        {
+				if (stk.size() != 0)
+				{
+					length = Math.max(length, i - stk.peek() + 1);
+					stk.pop();
+				}	
+	        }
+	    }
+	    return length;
+	}
 	public static void main15() {
 	    String expn = "())((()))(())()(()";
 	    int size = expn.length();
 	    System.out.println("longestContBalParen " + longestContBalParen(expn, size));
+	    System.out.println("longestContBalParen " + longestContBalParen2(expn, size));
 	}
 	
 	// longestContBalParen 12
@@ -791,6 +825,23 @@ public class StackExercise {
 	}
 	
 	public static void nextSmallerElement(int[] arr, int size) {
+	    int[] output = new int[size];
+		Arrays.fill(output, -1);
+		for (int i = 0; i < size; i++) {
+			for(int j = i+1;j<size;j++){
+				if(arr[j] < arr[i]){
+					output[i] = arr[j];
+					break;
+				}
+			}
+		}
+		
+	    for (int val : output)
+	        System.out.print(val + " ");
+	    System.out.println();
+	}
+	
+	public static void nextSmallerElement2(int[] arr, int size) {
 	    Stack<Integer> stk = new Stack<Integer>();
 	    int[] output = new int[size];
 	    int curr, index;
@@ -819,6 +870,7 @@ public class StackExercise {
 	    nextLargerElement(arr, size);
 	    nextLargerElement2(arr, size);
 	    nextSmallerElement(arr, size);
+		nextSmallerElement2(arr, size);
 	}
 	
 	/*
@@ -826,8 +878,26 @@ public class StackExercise {
 	21 -1 6 20 -1 -1 
 	3 3 -1 3 3 -1 
 	*/
-	
+
 	public static void nextLargerElementCircular(int[] arr, int size) {
+	    int[] output = new int[size];
+		Arrays.fill(output, -1);
+		for (int i = 0; i < size; i++) {
+			for(int j = 1;j<size;j++){
+				if(arr[i] < arr[(i+j)%size]){
+					output[i] = arr[(i+j)%size];
+					break;
+				}
+			}
+		}
+		
+	    for (int val : output)
+	        System.out.print(val + " ");
+	    System.out.println();
+	}
+
+
+	public static void nextLargerElementCircular2(int[] arr, int size) {
 	    Stack<Integer> stk = new Stack<Integer>();
 	    int curr, index;
 	    int[] output = new int[size];
@@ -853,221 +923,37 @@ public class StackExercise {
 	public static void main20() {
 	    int arr[] = { 6, 3, 9, 8, 10, 2, 1, 15, 7 };
 	    nextLargerElementCircular(arr, arr.length);
+		nextLargerElementCircular2(arr, arr.length);
 	}
 	
 	// 9 9 10 10 15 15 15 -1 9
 	
-	public static void rottenFruitUtil(int[][] arr, int maxCol, int maxRow, int currCol, int currRow, int[][] traversed,
-	        int day) { // Range check
-	    if (currCol < 0 || currCol >= maxCol || currRow < 0 || currRow >= maxRow)
-	        return;
-	    // Traversable and rot if not already rotten.
-	    if (traversed[currCol][currRow] <= day || arr[currCol][currRow] == 0)
-	        return;
-	    // Update rot time.
-	    traversed[currCol][currRow] = day;
-	    // each line corresponding to 4 direction.
-	    rottenFruitUtil(arr, maxCol, maxRow, currCol - 1, currRow, traversed, day + 1);
-	    rottenFruitUtil(arr, maxCol, maxRow, currCol + 1, currRow, traversed, day + 1);
-	    rottenFruitUtil(arr, maxCol, maxRow, currCol, currRow + 1, traversed, day + 1);
-	    rottenFruitUtil(arr, maxCol, maxRow, currCol, currRow - 1, traversed, day + 1);
-	}
-	
-	public static int rottenFruit(int[][] arr, int maxCol, int maxRow) {
-	    int[][] traversed = new int[maxCol][maxRow];
-	    for (int i = 0; i < maxCol; i++) {
-	        for (int j = 0; j < maxRow; j++) {
-	            traversed[i][j] = Integer.MAX_VALUE;
-	        }
-	    }
-	
-	    for (int i = 0; i < maxCol - 1; i++) {
-	        for (int j = 0; j < maxRow - 1; j++) {
-	            if (arr[i][j] == 2)
-	                rottenFruitUtil(arr, maxCol, maxRow, i, j, traversed, 0);
-	        }
-	    }
-	
-	    int maxDay = 0;
-	    for (int i = 0; i < maxCol - 1; i++) {
-	        for (int j = 0; j < maxRow - 1; j++) {
-	            if (arr[i][j] == 1) {
-	                if (traversed[i][j] == Integer.MAX_VALUE)
-	                    return -1;
-	                if (maxDay < traversed[i][j])
-	                    maxDay = traversed[i][j];
-	            }
-	        }
-	    }
-	    return maxDay;
-	}
-	
-	public static void main21() {
-	    int arr[][] = { 
-	        { 1, 0, 1, 1, 0 }, 
-	        { 2, 1, 0, 1, 0 }, 
-	        { 0, 0, 0, 2, 1 }, 
-	        { 0, 2, 0, 0, 1 }, 
-	        { 1, 1, 0, 0, 1 } };
-	    System.out.println(rottenFruit(arr, 5, 5));
-	}
-	
-	// 3
-	
-	public static void stepsOfKnightUtil(int size, int currCol, int currRow, int[][] traversed, int dist) {
-	    // Range check
-	    if (currCol < 0 || currCol >= size || currRow < 0 || currRow >= size)
-	        return;
-	
-	    // Traversable and rot if not already rotten.
-	    if (traversed[currCol][currRow] <= dist)
-	        return;
-	
-	    // Update rot time.
-	    traversed[currCol][currRow] = dist;
-	    // each line corresponding to 4 direction.
-	    stepsOfKnightUtil(size, currCol - 2, currRow - 1, traversed, dist + 1);
-	    stepsOfKnightUtil(size, currCol - 2, currRow + 1, traversed, dist + 1);
-	    stepsOfKnightUtil(size, currCol + 2, currRow - 1, traversed, dist + 1);
-	    stepsOfKnightUtil(size, currCol + 2, currRow + 1, traversed, dist + 1);
-	    stepsOfKnightUtil(size, currCol - 1, currRow - 2, traversed, dist + 1);
-	    stepsOfKnightUtil(size, currCol + 1, currRow - 2, traversed, dist + 1);
-	    stepsOfKnightUtil(size, currCol - 1, currRow + 2, traversed, dist + 1);
-	    stepsOfKnightUtil(size, currCol + 1, currRow + 2, traversed, dist + 1);
-	}
-	
-	public static int stepsOfKnight(int size, int srcX, int srcY, int dstX, int dstY) {
-	    int[][] traversed = new int[size][size];
-	    for (int i = 0; i < size; i++) {
-	        for (int j = 0; j < size; j++) {
-	            traversed[i][j] = Integer.MAX_VALUE;
-	        }
-	    }
-	
-	    stepsOfKnightUtil(size, srcX - 1, srcY - 1, traversed, 0);
-	    return traversed[dstX - 1][dstY - 1];
-	}
-	
-	public static void main22() {
-	    System.out.println(stepsOfKnight(20, 10, 10, 20, 20));
-	}
-	
-	// 8
-	
-	public static void distNearestFillUtil(int[][] arr, int maxCol, int maxRow, int currCol, int currRow,
-	        int[][] traversed, int dist) { // Range check
-	    if (currCol < 0 || currCol >= maxCol || currRow < 0 || currRow >= maxRow)
-	        return;
-	    // Traversable if their is a better distance.
-	    if (traversed[currCol][currRow] <= dist)
-	        return;
-	    // Update distance.
-	    traversed[currCol][currRow] = dist;
-	    // each line corresponding to 4 direction.
-	    distNearestFillUtil(arr, maxCol, maxRow, currCol - 1, currRow, traversed, dist + 1);
-	    distNearestFillUtil(arr, maxCol, maxRow, currCol + 1, currRow, traversed, dist + 1);
-	    distNearestFillUtil(arr, maxCol, maxRow, currCol, currRow + 1, traversed, dist + 1);
-	    distNearestFillUtil(arr, maxCol, maxRow, currCol, currRow - 1, traversed, dist + 1);
-	}
-	
-	public static void distNearestFill(int[][] arr, int maxCol, int maxRow) {
-	    int[][] traversed = new int[maxCol][maxRow];
-	    for (int i = 0; i < maxCol; i++) {
-	        for (int j = 0; j < maxRow; j++) {
-	            traversed[i][j] = Integer.MAX_VALUE;
-	        }
-	    }
-	    for (int i = 0; i < maxCol; i++) {
-	        for (int j = 0; j < maxRow; j++) {
-	            if (arr[i][j] == 1)
-	                distNearestFillUtil(arr, maxCol, maxRow, i, j, traversed, 0);
-	        }
-	    }
-	
-	    for (int i = 0; i < maxCol; i++) {
-	        for (int j = 0; j < maxRow; j++) {
-	            System.out.print(traversed[i][j] + " ");
-	        }
-	        System.out.println();
-	    }
-	}
-	
-	public static void main23() {
-	    int arr[][] = { 
-	        { 1, 0, 1, 1, 0 }, 
-	        { 1, 1, 0, 1, 0 }, 
-	        { 0, 0, 0, 0, 1 }, 
-	        { 0, 0, 0, 0, 1 }, 
-	        { 0, 0, 0, 0, 1 } };
-	    distNearestFill(arr, 5, 5);
-	}
-	
-	/*
-	0 1 0 0 1 
-	0 0 1 0 1 
-	1 1 2 1 0 
-	2 2 2 1 0 
-	3 3 2 1 0 
-	*/
-	
-	public static int findLargestIslandUtil(int[][] arr, int maxCol, int maxRow, int currCol, int currRow, int value,
-	        int[][] traversed) {
-	    if (currCol < 0 || currCol >= maxCol || currRow < 0 || currRow >= maxRow)
-	        return 0;
-	    if (traversed[currCol][currRow] == 1 || arr[currCol][currRow] != value)
-	        return 0;
-	    traversed[currCol][currRow] = 1;
-	    // each call corresponding to 8 direction.
-	    return 1 + findLargestIslandUtil(arr, maxCol, maxRow, currCol - 1, currRow - 1, value, traversed)
-	            + findLargestIslandUtil(arr, maxCol, maxRow, currCol - 1, currRow, value, traversed)
-	            + findLargestIslandUtil(arr, maxCol, maxRow, currCol - 1, currRow + 1, value, traversed)
-	            + findLargestIslandUtil(arr, maxCol, maxRow, currCol, currRow - 1, value, traversed)
-	            + findLargestIslandUtil(arr, maxCol, maxRow, currCol, currRow + 1, value, traversed)
-	            + findLargestIslandUtil(arr, maxCol, maxRow, currCol + 1, currRow - 1, value, traversed)
-	            + findLargestIslandUtil(arr, maxCol, maxRow, currCol + 1, currRow, value, traversed)
-	            + findLargestIslandUtil(arr, maxCol, maxRow, currCol + 1, currRow + 1, value, traversed);
-	}
-	
-	public static int findLargestIsland(int[][] arr, int maxCol, int maxRow) {
-	    int maxVal = 0;
-	    int currVal = 0;
-	    int[][] traversed = new int[maxCol][maxRow];
-	    for (int i = 0; i < maxCol; i++) {
-	        for (int j = 0; j < maxRow; j++) {
-	            traversed[i][j] = Integer.MAX_VALUE;
-	        }
-	    }
-	    for (int i = 0; i < maxCol; i++) {
-	        for (int j = 0; j < maxRow; j++) {
-	            {
-	                currVal = findLargestIslandUtil(arr, maxCol, maxRow, i, j, arr[i][j], traversed);
-	                if (currVal > maxVal)
-	                    maxVal = currVal;
-	            }
-	        }
-	    }
-	    return maxVal;
-	}
-	
-	public static void main24() {
-	    int arr[][] = { 
-	        { 1, 0, 1, 1, 0 }, 
-	        { 1, 0, 0, 1, 0 }, 
-	        { 0, 1, 1, 1, 1 }, 
-	        { 0, 1, 0, 0, 0 }, 
-	        { 1, 1, 0, 0, 1 } };
-	    System.out.println("Largest Island : " + findLargestIsland(arr, 5, 5));
-	}
-	
-	// Largest Island : 12
 	
 	public static boolean isKnown(int relation[][], int a, int b) {
 	    if (relation[a][b] == 1)
 	        return true;
 	    return false;
 	}
-	
+
 	public static int findCelebrity(int relation[][], int count) {
+	    int i, j;
+		boolean cel = true;
+		for (i = 0; i < count; i++) {
+			cel = true;
+	        for (j = 0; j < count; j++) {
+				if (i != j &&  (!isKnown(relation, j, i) || isKnown(relation, i, j))) {
+					cel = false;
+					break;
+				}
+			}
+			if(cel == true)
+				return i;
+		}
+	    return -1;
+	}
+
+
+	public static int findCelebrity2(int relation[][], int count) {
 	    Stack<Integer> stk = new Stack<Integer>();
 	    int first = 0, second = 0;
 	    for (int i = 0; i < count; i++) {
@@ -1088,7 +974,7 @@ public class StackExercise {
 	    return first;
 	}
 	
-	public static int findCelebrity2(int relation[][], int count) {
+	public static int findCelebrity3(int relation[][], int count) {
 	    int first = 0;
 	    int second = 1;
 	
@@ -1114,7 +1000,8 @@ public class StackExercise {
 	        { 0, 0, 0, 0, 0 }, 
 	        { 1, 1, 0, 1, 1 } };
 	
-	    System.out.println("Celebrity : " + findCelebrity(arr, 5));
+		System.out.println("Celebrity : " + findCelebrity3(arr, 5));
+		System.out.println("Celebrity : " + findCelebrity(arr, 5));
 	    System.out.println("Celebrity : " + findCelebrity2(arr, 5));
 	}
 	
@@ -1152,13 +1039,14 @@ public class StackExercise {
 	}
 	
 	public static void main(String[] args) {
-	    main1();
+	 /* main1();
 	    main2();
 	    main3();
 	    main4();
 	    main5();
 	    main6();
 	    main7();
+		main7a();
 	    main8();
 	    main9();
 	    main10();
@@ -1176,6 +1064,6 @@ public class StackExercise {
 	    main22();
 	    main23();
 	    main24();
-	    main25();
-	}
+	    */main25();
+		}
 }

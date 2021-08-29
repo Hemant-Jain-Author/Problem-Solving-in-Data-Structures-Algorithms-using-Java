@@ -1,4 +1,3 @@
-package BT;
 
 public class NQueen {
     public static void print(int[] Q, int n) {
@@ -29,7 +28,7 @@ public class NQueen {
             }
         }
     }
-
+T(n) = n (  n + T(n-1)   )
     public static void main(String[] args) {
         int[] Q = new int[8];
         nQueens(Q, 0, 8);
