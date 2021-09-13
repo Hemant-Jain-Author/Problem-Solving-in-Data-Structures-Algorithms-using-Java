@@ -208,7 +208,7 @@ public static void main4() {
 public static void main(String[] args) {
     //main1();
     //main2();
-	main3();
-	main4();
+    main3();
+    main4();
 }
 }

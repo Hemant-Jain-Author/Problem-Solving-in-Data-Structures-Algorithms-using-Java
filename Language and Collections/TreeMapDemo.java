@@ -1,20 +1,20 @@
 import java.util.TreeMap;
 
 public class TreeMapDemo {
-	public static void main(String[] args) {
-		// create a tree map.
-		TreeMap<String, Integer> tm = new TreeMap<String, Integer>();
-		// Put elements into the map
-		tm.put("Apple", 40);
-		tm.put("Banana", 10);
-		tm.put("Mango", 20);
+    public static void main(String[] args) {
+        // create a tree map.
+        TreeMap<String, Integer> tm = new TreeMap<String, Integer>();
+        // Put elements into the map
+        tm.put("Apple", 40);
+        tm.put("Banana", 10);
+        tm.put("Mango", 20);
 
-		System.out.println("Size :: " + tm.size());
-		for(String key : tm.keySet())
-			System.out.println(key + " cost :" + tm.get(key));
-		System.out.println("Apple present ::" + tm.containsKey("Apple"));
-		System.out.println("Grapes present :: " + tm.containsKey("Grapes"));
-	}
+        System.out.println("Size :: " + tm.size());
+        for(String key : tm.keySet())
+            System.out.println(key + " cost :" + tm.get(key));
+        System.out.println("Apple present ::" + tm.containsKey("Apple"));
+        System.out.println("Grapes present :: " + tm.containsKey("Grapes"));
+    }
 }
 
 /*

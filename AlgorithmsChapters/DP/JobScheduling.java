@@ -1,9 +1,8 @@
-package DP;
 import java.util.Arrays;
 import java.util.Comparator;
 // Also known as Activity Selection Weighted.
 public class JobScheduling {
-    class Job{
+    public static class Job implements Comparable<Job>  {
         int start, stop, value;
 
         Job(int s, int f, int v){
@@ -11,15 +10,13 @@ public class JobScheduling {
             stop = f;
             value = v;
         }
-    }
 
-    class cmp implements Comparator<Job>{
-        public int compare(Job s1, Job s2){
-            return (s1.stop - s2.stop);
+        public int compareTo(Job j2) {
+            return this.stop - j2.stop;
         }
     }
 
-    int maxValueJobUtil(Job[] arr, int n) {
+    public static int maxValueJobUtil(Job[] arr, int n) {
         // Base case
         if (n == 1) 
             return arr[0].value;
@@ -40,15 +37,15 @@ public class JobScheduling {
     }
 
 
-	public int maxValueJobs(int s[], int f[], int[] v, int n) {
+    public static int maxValueJobs(int s[], int f[], int[] v, int n) {
         Job[] act = new Job[n];
         for(int i =0;i< n;i++)
             act[i] = new Job(s[i], f[i], v[i]);
-        Arrays.sort(act, new cmp()); // sort according to finish time.
+        Arrays.sort(act); // sort according to finish time.
         return maxValueJobUtil(act, n);
-	}
-	
-    int maxValueJobUtilTD(int[] dp, Job[] arr, int n) {
+    }
+    
+    public static int maxValueJobUtilTD(int[] dp, Job[] arr, int n) {
         // Base case
         if (n == 0) 
             return 0;
@@ -73,20 +70,20 @@ public class JobScheduling {
     }
 
 
-	public int maxValueJobsTD(int s[], int f[], int[] v, int n) {
+    public static int maxValueJobsTD(int s[], int f[], int[] v, int n) {
         Job[] act = new Job[n];
         for(int i =0;i< n;i++)
             act[i] = new Job(s[i], f[i], v[i]);
-        Arrays.sort(act, new cmp()); // sort according to finish time.
+        Arrays.sort(act); // sort according to finish time.
         int[] dp = new int[n];
         return maxValueJobUtilTD(dp, act, n);
-	}
+    }
 
-    int maxValueJobsBU(int s[], int f[], int[] v, int n) {
+    public static int maxValueJobsBU(int s[], int f[], int[] v, int n) {
         Job[] act = new Job[n];
         for(int i =0;i< n;i++)
             act[i] = new Job(s[i], f[i], v[i]);
-        Arrays.sort(act, new cmp()); // sort according to finish time.
+        Arrays.sort(act); // sort according to finish time.
         int[] dp = new int[n];
         dp[0] = act[0].value;;
         
@@ -103,14 +100,13 @@ public class JobScheduling {
         return dp[n-1];
     }
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         int start[] =  {1, 5, 0, 3, 5, 6, 8};
         int finish[] = {2, 6, 5, 4, 9, 7, 9};
         int value[] =  {2, 2, 4, 3, 10, 2, 8};  
         int n = start.length;
-        JobScheduling as = new JobScheduling();
-        System.out.println(as.maxValueJobs(start, finish, value, n));
-        System.out.println(as.maxValueJobsTD(start, finish, value, n));
-        System.out.println(as.maxValueJobsBU(start, finish, value, n));
-	}	   
+        System.out.println(maxValueJobs(start, finish, value, n));
+        System.out.println(maxValueJobsTD(start, finish, value, n));
+        System.out.println(maxValueJobsBU(start, finish, value, n));
+    }       
 }

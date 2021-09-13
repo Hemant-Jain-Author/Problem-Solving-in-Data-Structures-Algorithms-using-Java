@@ -1,7 +1,4 @@
-package DP;
-
 public class Knapsack {
-	
     int getMaxCost01(int[] wt, int[] cost, int capacity) {
         int n = wt.length;
         return getMaxCost01Util(wt, cost, n, capacity);

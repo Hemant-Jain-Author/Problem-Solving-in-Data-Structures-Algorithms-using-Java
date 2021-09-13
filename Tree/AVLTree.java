@@ -31,14 +31,14 @@ public class AVLTree {
         return (node == null) ? 0 : height(node.left) - height(node.right);
     }
     
-	public void insert(int data) {
-	    root = insert(root, data);
-	}
-	
-	private Node insert(Node node, int data) {
-	    if (node == null)
-	        return new Node(data, null, null);
-	   
+    public void insert(int data) {
+        root = insert(root, data);
+    }
+    
+    private Node insert(Node node, int data) {
+        if (node == null)
+            return new Node(data, null, null);
+        
         if (node.data > data) {
             node.left = insert(node.left, data);
         } 
@@ -74,7 +74,7 @@ public class AVLTree {
             }
         }
         return node;
-	}
+    }
 
     // Function to right rotate subtree rooted with x
     Node rightRotate(Node x) {
@@ -123,11 +123,11 @@ public class AVLTree {
     } 
 
     public void delete(int data) {
-	    root = delete(root, data);
-	}
-	
-	private Node delete(Node node, int data) {
-	    if (node == null) 
+        root = delete(root, data);
+    }
+    
+    private Node delete(Node node, int data) {
+        if (node == null)
             return null;
 
         if (node.data == data) {
@@ -175,49 +175,49 @@ public class AVLTree {
             }
         }
         return node;
-	}
+    }
 
     public Node findMin(Node curr) {
-	    Node node = curr;
-	    if (node == null) {
-	        return null;
-	    }
-	
-	    while (node.left != null) {
-	        node = node.left;
-	    }
-	    return node;
-	}
+        Node node = curr;
+        if (node == null) {
+            return null;
+        }
+    
+        while (node.left != null) {
+            node = node.left;
+        }
+        return node;
+    }
 
 
 
-	public void printTree() {
-		printTree(root, "", false);
-		System.out.println();
-	}
+    public void printTree() {
+        printTree(root, "", false);
+        System.out.println();
+    }
 
-	private void printTree(Node node, String indent, boolean isLeft) {
-		if (node == null)
-			return;
-		if (isLeft) {
-			System.out.print(indent + "L:");
-			indent += "|  ";
-		} else {
-			System.out.print(indent + "R:");
-			indent += "   ";
-		}
+    private void printTree(Node node, String indent, boolean isLeft) {
+        if (node == null)
+            return;
+        if (isLeft) {
+            System.out.print(indent + "L:");
+            indent += "|  ";
+        } else {
+            System.out.print(indent + "R:");
+            indent += "   ";
+        }
 
-		System.out.println(node.data + "(" + node.height + ")");
-		printTree(node.left, indent, true);
-		printTree(node.right, indent, false);
-	}
+        System.out.println(node.data + "(" + node.height + ")");
+        printTree(node.left, indent, true);
+        printTree(node.right, indent, false);
+    }
 
     int max(int a, int b) {
         return (a > b) ? a : b;
     }
 
     public static void main(String[] arg) {
-	    AVLTree t = new AVLTree();  
+        AVLTree t = new AVLTree();
         t.insert(1); 
         t.insert(2); 
         t.insert(3); 
@@ -277,5 +277,5 @@ R:4(2)
       L:6(0)
       R:8(0) 
         */
-	}
+    }
 }

@@ -25,20 +25,20 @@ public class BTree {
     }
 
     public void printTree() {
-		printTree(root, "");
-		System.out.println();
-	}
+        printTree(root, "");
+        System.out.println();
+    }
 
-	private void printTree(Node node, String indent) {
-		if (node == null)
-			return;
+    private void printTree(Node node, String indent) {
+        if (node == null)
+            return;
         int i;
         for (i = 0; i < node.n; i++) {
             printTree(node.arr[i], indent + "    ");
             System.out.println(indent + "key[" + i + "]:" + node.keys[i]);
         }
         printTree(node.arr[i], indent + "    ");
-	}
+    }
 
     public void printInOrder(Node node){
         int i;

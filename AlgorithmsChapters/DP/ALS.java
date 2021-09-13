@@ -45,25 +45,25 @@ public class ALS {
         f2[i] = Math.min(f2[i-1] + a[1][i], f1[i-1] + t[0][i-1] + a[1][i]);
     }
 */
-	static int fastestWayBU(int a[][], int t[][], int e[], int x[], int n) {
-	    int[][] f= new int[2][n];
-	 
-	    // Time taken to leave first station.
-	    f[0][0] = e[0] + a[0][0];
-	    f[1][0] = e[1] + a[1][0];
-	 
-	    // Fill the tables f1[] and f2[] using
-	    // bottom up approach.
-	    for (int i = 1; i < n; ++i) {
-	        f[0][i] = Math.min(f[0][i-1] + a[0][i],
-	                f[1][i-1] + t[1][i-1] + a[0][i]);
-	        f[1][i] = Math.min(f[1][i-1] + a[1][i],
-	                f[0][i-1] + t[0][i-1] + a[1][i]);
-	    }
-	 
-	    // Consider exit times and return minimum.
-	    return Math.min(f[0][n-1] + x[0], f[1][n-1] + x[1]);
-	}
+    static int fastestWayBU(int a[][], int t[][], int e[], int x[], int n) {
+        int[][] f= new int[2][n];
+     
+        // Time taken to leave first station.
+        f[0][0] = e[0] + a[0][0];
+        f[1][0] = e[1] + a[1][0];
+     
+        // Fill the tables f1[] and f2[] using
+        // bottom up approach.
+        for (int i = 1; i < n; ++i) {
+            f[0][i] = Math.min(f[0][i-1] + a[0][i],
+                    f[1][i-1] + t[1][i-1] + a[0][i]);
+            f[1][i] = Math.min(f[1][i-1] + a[1][i],
+                    f[0][i-1] + t[0][i-1] + a[1][i]);
+        }
+     
+        // Consider exit times and return minimum.
+        return Math.min(f[0][n-1] + x[0], f[1][n-1] + x[1]);
+    }
 
     
     static int fastestWayTD(int a[][], int t[][], int e[], int x[], int n) {

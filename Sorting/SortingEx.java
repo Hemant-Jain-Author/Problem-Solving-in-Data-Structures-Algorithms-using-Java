@@ -163,14 +163,14 @@ public static void separateEvenAndOdd(int data[], int size) {
     for (int i=0;i< size;i++) {
         if (data[i] % 2 == 0) {
             aux[left] = data[i];
-        	left++;
+            left++;
         } else if (data[i] % 2 == 1) {
-        	aux[right] = data[i];
-        	right--;
+            aux[right] = data[i];
+            right--;
         }
     }
     for (int i=0;i< size;i++)
-    	data[i] = aux[i];
+        data[i] = aux[i];
 }
 
 public static void separateEvenAndOdd2(int data[], int size) {

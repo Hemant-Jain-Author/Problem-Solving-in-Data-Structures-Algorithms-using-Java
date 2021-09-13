@@ -34,27 +34,27 @@ public class JobSequencing {
 
     void print(){
         Arrays.sort(this.jobs, (a, b) -> b.profit - a.profit);
-		boolean result[] = new boolean[this.maxDL];
+        boolean result[] = new boolean[this.maxDL];
         char job[] = new char[this.maxDL];
         int profit = 0;
 
-		// Iterate through all given jobs
-		for (int i = 0; i < n; i++) {
-			for (int j = this.jobs[i].deadline  - 1; j >= 0; j--) {
-				if (result[j] == false) {
-					result[j] = true;
-					job[j] = this.jobs[i].id;
+        // Iterate through all given jobs
+        for (int i = 0; i < n; i++) {
+            for (int j = this.jobs[i].deadline  - 1; j >= 0; j--) {
+                if (result[j] == false) {
+                    result[j] = true;
+                    job[j] = this.jobs[i].id;
                     profit += this.jobs[i].profit;
-					break;
-				}
-			}
-		}
+                    break;
+                }
+            }
+        }
         System.out.println("Profit is :: " + profit);
         System.out.print("Jobs selected are::");
         for(int i=0;i< this.maxDL;i++)
             if(job[i] != '\u0000')
                 System.out.print(" " + job[i]);
-	}
+    }
 
 
     public static void main(String args[]) {
@@ -63,7 +63,7 @@ public class JobSequencing {
         int profit[] = {50, 40, 27, 31, 30};
         JobSequencing js = new JobSequencing(id, deadline, profit, 5);
         js.print();
-	}
+    }
 }
 
 /*

@@ -39,15 +39,15 @@ public class KthLargestStream {
         size += 1;
     }
 
-	public static void main(String[] args) {
-		KthLargestStream kt = new KthLargestStream(10);
+    public static void main(String[] args) {
+        KthLargestStream kt = new KthLargestStream(10);
         int value;
         Random rand = new Random(); 
-		for(int i=0;i<100;i++){
+        for(int i=0;i<100;i++){
             value = rand.nextInt(1000);
             //System.out.print(value + " ");
             kt.add2(value);
         }
         kt.print();
-	}
+    }
 }

@@ -24,41 +24,41 @@ public class Stack2 {
         return (top == -1);
     }
 
-	public void push(int value) {
-	    if (size() == capacity) {
-	        System.out.println("size doubled");
-	        int[] newData = new int[capacity * 2];
-	        System.arraycopy(data, 0, newData, 0, capacity);
-	        data = newData;
-	        capacity = capacity * 2;
-	    }
-	    top++;
-	    data[top] = value;
-	}
-	
-	public int top() throws IllegalStateException {
-	    if (isEmpty()) {
-	        throw new IllegalStateException("StackEmptyException");
-	    }
-	    return data[top];
-	}
-	
-	public int pop() {
-	    if (isEmpty()) {
-	        throw new IllegalStateException("StackEmptyException");
-	    }
-	
-	    int topVal = data[top];
-	    top--;
-	    if (size() == capacity / 2 && capacity > minCapacity) {
-	        System.out.println("size halved");
-	        capacity = capacity / 2;
-	        int[] newData = new int[capacity];
-	        System.arraycopy(data, 0, newData, 0, capacity);
-	        data = newData;
-	    }
-	    return topVal;
-	}
+    public void push(int value) {
+        if (size() == capacity) {
+            System.out.println("size doubled");
+            int[] newData = new int[capacity * 2];
+            System.arraycopy(data, 0, newData, 0, capacity);
+            data = newData;
+            capacity = capacity * 2;
+        }
+        top++;
+        data[top] = value;
+    }
+    
+    public int top() throws IllegalStateException {
+        if (isEmpty()) {
+            throw new IllegalStateException("StackEmptyException");
+        }
+        return data[top];
+    }
+    
+    public int pop() {
+        if (isEmpty()) {
+            throw new IllegalStateException("StackEmptyException");
+        }
+    
+        int topVal = data[top];
+        top--;
+        if (size() == capacity / 2 && capacity > minCapacity) {
+            System.out.println("size halved");
+            capacity = capacity / 2;
+            int[] newData = new int[capacity];
+            System.arraycopy(data, 0, newData, 0, capacity);
+            data = newData;
+        }
+        return topVal;
+    }
 
     public void print() {
         for (int i = top; i > -1; i--) {

@@ -53,7 +53,7 @@ public class GraphColouring {
         int V = 5; // Number of vertices
         int m = 4; // Number of colours
         if (!graphColouring2(graph, V, m))
-            System.out.println("Solution does not exist");	
+            System.out.println("Solution does not exist");
         if (!graphColouring(graph, V, m))
             System.out.println("Solution does not exist");
     }

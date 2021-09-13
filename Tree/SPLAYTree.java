@@ -18,26 +18,26 @@ public class SPLAYTree {
         root = null;
     }
     
-	public void printTree() {
-		printTree(root, "", false);
-		System.out.println();
-	}
+    public void printTree() {
+        printTree(root, "", false);
+        System.out.println();
+    }
 
-	private void printTree(Node node, String indent, boolean isLeft) {
-		if (node == null)
-			return;
-		if (isLeft) {
-			System.out.print(indent + "L:");
-			indent += "|  ";
-		} else {
-			System.out.print(indent + "R:");
-			indent += "   ";
-		}
+    private void printTree(Node node, String indent, boolean isLeft) {
+        if (node == null)
+            return;
+        if (isLeft) {
+            System.out.print(indent + "L:");
+            indent += "|  ";
+        } else {
+            System.out.print(indent + "R:");
+            indent += "   ";
+        }
 
-		System.out.println(node.data );
-		printTree(node.left, indent, true);
-		printTree(node.right, indent, false);
-	}  
+        System.out.println(node.data );
+        printTree(node.left, indent, true);
+        printTree(node.right, indent, false);
+    }
 
 
     // Function to right rotate subtree rooted with x
@@ -89,7 +89,7 @@ public class SPLAYTree {
         return node.parent;
     }
 
-	public void splay(Node node){
+    public void splay(Node node){
         Node parent, grand;
         while(node != root){
             parent = parent(node);
@@ -120,35 +120,35 @@ public class SPLAYTree {
 
     public boolean find(int data) {   
         Node curr = root;
-	    while (curr != null) {
-	        if (curr.data == data) {
+        while (curr != null) {
+            if (curr.data == data) {
                 splay(curr);
-	            return true;
-	        } else if (curr.data > data) {
-	            curr = curr.left;
-	        } else {
-	            curr = curr.right;
-	        }
-	    }
-	    return false;
-	}
+                return true;
+            } else if (curr.data > data) {
+                curr = curr.left;
+            } else {
+                curr = curr.right;
+            }
+        }
+        return false;
+    }
 
     public void insert(int data) {
         Node newNode = new Node(data, null, null);
-	    if (root == null) {
-	        root = newNode;
+        if (root == null) {
+            root = newNode;
             return;
-	    }    
+        }
         
         Node node = root;
-        Node parent = null;	    
+        Node parent = null;
         while(node != null){
             parent = node;
             if (node.data > data) {
                 node = node.left;
-	        } else if(node.data < data) {
+            } else if(node.data < data) {
                 node = node.right;
-	        } else {
+            } else {
                 splay(node); // duplicate insertion not allowed but splaying for it.
                 return;
             }
@@ -161,18 +161,18 @@ public class SPLAYTree {
             parent.right = newNode;
         }
         splay(newNode); 
-	}
+    }
 
-	public Node findMinNode(Node curr) {
-	    Node node = curr;
-	    if (node == null) {
-	        return null;
-	    }	
-	    while (node.left != null) {
-	        node = node.left;
-	    }
-	    return node;
-	}
+    public Node findMinNode(Node curr) {
+        Node node = curr;
+        if (node == null) {
+            return null;
+        }
+        while (node.left != null) {
+            node = node.left;
+        }
+        return node;
+    }
     
     public void delete(int data) {
         Node node = root;
@@ -221,21 +221,21 @@ public class SPLAYTree {
     }
     
     public void printInOrder() {
-	    printInOrder(root);
-	    System.out.println();
-	}
-	
-	private void printInOrder(Node node)/* In order */
-	{
-	    if (node != null) {
-	        printInOrder(node.left);
-	        System.out.print(node.data + " ");
-	        printInOrder(node.right);
-	    }
-	}
+        printInOrder(root);
+        System.out.println();
+    }
+    
+    private void printInOrder(Node node)/* In order */
+    {
+        if (node != null) {
+            printInOrder(node.left);
+            System.out.print(node.data + " ");
+            printInOrder(node.right);
+        }
+    }
     
     public static void main(String[] arg) {
-	    SPLAYTree tree = new SPLAYTree();  
+        SPLAYTree tree = new SPLAYTree();
         tree.insert(5);
         tree.insert(4);
         tree.insert(6);

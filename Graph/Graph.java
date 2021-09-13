@@ -1,4 +1,4 @@
-import java.util.Comparator;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Stack;
@@ -8,13 +8,17 @@ public class Graph {
     int count;
     private LinkedList<LinkedList<Edge>> Adj;
 
-    private static class Edge {
-        private int dest;
-        private int cost;
+    private static class Edge implements Comparable<Edge> {
+        int src, dest, cost;
 
-        public Edge(int dst, int cst) {
-            dest = dst;
-            cost = cst;
+        public Edge(int s, int d, int c) {
+            src = s;
+            dest = d;
+            cost = c;
+        }
+
+        public int compareTo(Edge compareEdge) {
+            return this.cost - compareEdge.cost;
         }
     }
 
@@ -27,7 +31,7 @@ public class Graph {
     }
 
     private void addDirectedEdge(int source, int dest, int cost) {
-        Edge edge = new Edge(dest, cost);
+        Edge edge = new Edge(source, dest, cost);
         Adj.get(source).add(edge);
     }
 
@@ -51,9 +55,8 @@ public class Graph {
             for (Edge adn : ad) {
                 System.out.print("(" + adn.dest + ", " + adn.cost + ") ");
             }
-            System.out.println("");
+            System.out.println();
         }
-        
     }
 
     public static boolean dfsStack(Graph gph, int source, int target) {
@@ -92,16 +95,15 @@ public class Graph {
         }
     }
 
-    public static void dfsUtil2(Graph gph, int index, boolean[] visited, Stack<Integer> stk) {
-        visited[index] = true;
-        LinkedList<Edge> adl = gph.Adj.get(index);
-        for (Edge adn : adl) {
-            if (visited[adn.dest] == false) {
-                dfsUtil2(gph, adn.dest, visited, stk);
+        public static void dfsUtil2(Graph gph, int index, boolean[] visited, Stack<Integer> stk) {
+            visited[index] = true;
+            LinkedList<Edge> adl = gph.Adj.get(index);
+            for (Edge adn : adl) {
+                if (visited[adn.dest] == false)
+                    dfsUtil2(gph, adn.dest, visited, stk);
             }
+            stk.push(index);
         }
-        stk.push(index);
-    }
 
     public static boolean bfs(Graph gph, int source, int target) {
         int count = gph.count;
@@ -123,6 +125,7 @@ public class Graph {
         return visited[target];
     }
 
+    // Testing Code
     public static void main1() {
         Graph gph = new Graph(5);
         gph.addDirectedEdge(0, 1, 3);
@@ -137,6 +140,7 @@ public class Graph {
         System.out.println(Graph.bfs(gph, 0, 2));
         System.out.println(Graph.dfsStack(gph, 0, 2));
     }
+
     /*
     Vertex 0 is connected to : (1, 3) (4, 2) 
     Vertex 1 is connected to : (2, 1) 
@@ -147,6 +151,7 @@ public class Graph {
     true
     true
     */
+    
     public static void topologicalSort(Graph gph) {
         Stack<Integer> stk = new Stack<Integer>();
         int count = gph.count;
@@ -157,32 +162,33 @@ public class Graph {
                 dfsUtil2(gph, i, visited, stk);
             }
         }
-        System.out.print("topologicalSort :: ");
+        System.out.print("Topological Sort::");
         while (stk.isEmpty() != true) {
             System.out.print(" " + stk.pop());
         }
     }
 
+    // Testing Code
     public static void main2() {
-        Graph gph = new Graph(6);
-        gph.addDirectedEdge(5, 2, 1);
-        gph.addDirectedEdge(5, 0, 1);
-        gph.addDirectedEdge(4, 0, 1);
-        gph.addDirectedEdge(4, 1, 1);
-        gph.addDirectedEdge(2, 3, 1);
-        gph.addDirectedEdge(3, 1, 1);
-        gph.print();
+        Graph gph = new Graph(9);
+        gph.addDirectedEdge(0, 2);
+        gph.addDirectedEdge(1, 2);
+        gph.addDirectedEdge(1, 3);
+        gph.addDirectedEdge(1, 4);
+        gph.addDirectedEdge(3, 2);
+        gph.addDirectedEdge(3, 5);
+        gph.addDirectedEdge(4, 5);
+        gph.addDirectedEdge(4, 6);
+        gph.addDirectedEdge(5, 7);
+        gph.addDirectedEdge(6, 7);
+        gph.addDirectedEdge(7, 8);
         topologicalSort(gph);
     }
+
     /*
-    Vertex 0 is connected to : 
-    Vertex 1 is connected to : 
-    Vertex 2 is connected to : (3, 1) 
-    Vertex 3 is connected to : (1, 1) 
-    Vertex 4 is connected to : (0, 1) (1, 1) 
-    Vertex 5 is connected to : (2, 1) (0, 1) 
-    topologicalSort ::  5 4 2 3 1 0
+        topologicalSort ::  1 4 6 3 5 7 8 0 2
     */
+    
     public static boolean pathExist(Graph gph, int source, int dest) {
         int count = gph.count;
         boolean[] visited = new boolean[count];
@@ -201,8 +207,8 @@ public class Graph {
             if (visited[adn.dest] == false) {
                 count += countAllPathDFS(gph, visited, adn.dest, dest);
             }
-            visited[source] = false;
         }
+        visited[source] = false;
         return count;
     }
 
@@ -214,7 +220,6 @@ public class Graph {
 
     public static void printAllPathDFS(Graph gph, boolean[] visited, int source, int dest, Stack<Integer> path) {
         path.push(source);
-
         if (source == dest) {
             System.out.println(path);
             path.pop();
@@ -223,9 +228,8 @@ public class Graph {
         visited[source] = true;
         LinkedList<Edge> adl = gph.Adj.get(source);
         for (Edge adn : adl) {
-            if (visited[adn.dest] == false) {
+            if (visited[adn.dest] == false)
                 printAllPathDFS(gph, visited, adn.dest, dest, path);
-            }
         }
         visited[source] = false;
         path.pop();
@@ -237,14 +241,15 @@ public class Graph {
         printAllPathDFS(gph, visited, src, dest, path);
     }
 
+        // Testing Code
     public static void main3() {
         Graph gph = new Graph(5);
-        gph.addDirectedEdge(0, 1, 1);
-        gph.addDirectedEdge(0, 2, 1);
-        gph.addDirectedEdge(2, 3, 1);
-        gph.addDirectedEdge(1, 3, 1);
-        gph.addDirectedEdge(3, 4, 1);
-        gph.addDirectedEdge(1, 4, 1);
+        gph.addDirectedEdge(0, 1);
+        gph.addDirectedEdge(0, 2);
+        gph.addDirectedEdge(2, 3);
+        gph.addDirectedEdge(1, 3);
+        gph.addDirectedEdge(3, 4);
+        gph.addDirectedEdge(1, 4);
         gph.print();
         System.out.println("PathExist :: " + pathExist(gph, 0, 4));
 
@@ -252,6 +257,7 @@ public class Graph {
         System.out.println(countAllPath(gph, 0, 4));
         printAllPath(gph, 0, 4);
     }
+
     /*
     Vertex 0 is connected to : (1, 1) (2, 1) 
     Vertex 1 is connected to : (3, 1) (4, 1) 
@@ -265,6 +271,7 @@ public class Graph {
     [0, 1, 4]
     [0, 2, 3, 4]
     */
+    
     public static int rootVertex(Graph gph) {
         int count = gph.count;
         boolean[] visited = new boolean[count];
@@ -279,19 +286,21 @@ public class Graph {
         return retVal;
     }
 
+    // Testing Code
     public static void main4() {
         Graph gph = new Graph(7);
-        gph.addDirectedEdge(0, 1, 1);
-        gph.addDirectedEdge(0, 2, 1);
-        gph.addDirectedEdge(1, 3, 1);
-        gph.addDirectedEdge(4, 1, 1);
-        gph.addDirectedEdge(6, 4, 1);
-        gph.addDirectedEdge(5, 6, 1);
-        gph.addDirectedEdge(5, 2, 1);
-        gph.addDirectedEdge(6, 0, 1);
+        gph.addDirectedEdge(0, 1);
+        gph.addDirectedEdge(0, 2);
+        gph.addDirectedEdge(1, 3);
+        gph.addDirectedEdge(4, 1);
+        gph.addDirectedEdge(6, 4);
+        gph.addDirectedEdge(5, 6);
+        gph.addDirectedEdge(5, 2);
+        gph.addDirectedEdge(6, 0);
         gph.print();
         rootVertex(gph);
     }
+    
     /*
     Vertex 0 is connected to : (1, 1) (2, 1) 
     Vertex 1 is connected to : (3, 1) 
@@ -302,6 +311,7 @@ public class Graph {
     Vertex 6 is connected to : (4, 1) (0, 1) 
     Root vertex is :: 5
     */
+    
     /*
     * Given a directed graph, find transitive closure matrix or reach ability
     * matrix vertex v is reachable form vertex u if their is a path from u to v.
@@ -325,14 +335,15 @@ public class Graph {
         return tc;
     }
 
+    // Testing Code
     public static void main5() {
         Graph gph = new Graph(4);
-        gph.addDirectedEdge(0, 1, 1);
-        gph.addDirectedEdge(0, 2, 1);
-        gph.addDirectedEdge(1, 2, 1);
-        gph.addDirectedEdge(2, 0, 1);
-        gph.addDirectedEdge(2, 3, 1);
-        gph.addDirectedEdge(3, 3, 1);
+        gph.addDirectedEdge(0, 1);
+        gph.addDirectedEdge(0, 2);
+        gph.addDirectedEdge(1, 2);
+        gph.addDirectedEdge(2, 0);
+        gph.addDirectedEdge(2, 3);
+        gph.addDirectedEdge(3, 3);
         int[][] tc = transitiveClosure(gph);
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -341,6 +352,7 @@ public class Graph {
             System.out.println();
         }
     }
+    
     /*
     1 1 1 1 
     1 1 1 1 
@@ -353,11 +365,10 @@ public class Graph {
         boolean[] visited = new boolean[count];
         int[] level = new int[count];
         visited[source] = true;
-
         LinkedList<Integer> que = new LinkedList<Integer>();
         que.add(source);
         level[source] = 0;
-        System.out.println("\nNode  - Level");
+        System.out.println("Node  - Level");
 
         while (que.isEmpty() == false) {
             int curr = que.remove();
@@ -401,16 +412,17 @@ public class Graph {
         return -1;
     }
 
+        // Testing Code
     public static void main6() {
         Graph gph = new Graph(7);
-        gph.addUndirectedEdge(0, 1, 1);
-        gph.addUndirectedEdge(0, 2, 1);
-        gph.addUndirectedEdge(0, 4, 1);
-        gph.addUndirectedEdge(1, 2, 1);
-        gph.addUndirectedEdge(2, 5, 1);
-        gph.addUndirectedEdge(3, 4, 1);
-        gph.addUndirectedEdge(4, 5, 1);
-        gph.addUndirectedEdge(4, 6, 1);
+        gph.addUndirectedEdge(0, 1);
+        gph.addUndirectedEdge(0, 2);
+        gph.addUndirectedEdge(0, 4);
+        gph.addUndirectedEdge(1, 2);
+        gph.addUndirectedEdge(2, 5);
+        gph.addUndirectedEdge(3, 4);
+        gph.addUndirectedEdge(4, 5);
+        gph.addUndirectedEdge(4, 6);
         gph.print();
         bfsLevelNode(gph, 1);
         System.out.println(bfsDistance(gph, 1, 6));
@@ -434,6 +446,7 @@ public class Graph {
     6 - 3
     3
     */
+    
     public static boolean isCyclePresentUndirectedDFS(Graph graph, int index, int parentIndex, boolean[] visited) {
         visited[index] = true;
         int dest;
@@ -452,26 +465,107 @@ public class Graph {
     public static boolean isCyclePresentUndirected(Graph graph) {
         int count = graph.count;
         boolean[] visited = new boolean[count];
-        for (int i = 0; i < count; i++)
-            if (visited[i] == false)
-                if (isCyclePresentUndirectedDFS(graph, i, -1, visited))
+        for (int i = 0; i < count; i++) {
+            if (visited[i] == false && isCyclePresentUndirectedDFS(graph, i, -1, visited))
                     return true;
+        }
         return false;
     }
 
+    public static int find(int[] parent, int index) {
+        int p = parent[index]; 
+        while(p != -1) {
+            index = p;
+            p = parent[index];
+        }
+        return index;
+    }
+
+    public static void union(int[] parent, int x, int y) {
+        parent[y] = x;
+    }
+        
+    public static boolean isCyclePresentUndirected2(Graph gph) {
+        int count = gph.count;
+        int[] parent = new int[count];
+        Arrays.fill(parent, -1);
+        LinkedList<Edge> edge = new LinkedList<Edge>();
+        
+        boolean[][] flags = new boolean[count][count]; 
+        for (int i = 0; i < count; i++) {
+            LinkedList<Edge> ad = gph.Adj.get(i);
+            for (Edge adn : ad) {
+                // Using flags[][] array, if considered edge x to y, 
+                // then ignore edge y to x.
+                if(flags[adn.dest][adn.src] == false) {
+                    edge.add(adn);
+                    flags[adn.src][adn.dest] = true;
+                }
+            }
+        }
+        
+        for (Edge e : edge) {
+            int x = find(parent, e.src);
+            int y = find(parent, e.dest);
+            if(x == y) {
+                return true;
+            }
+            union(parent, x, y);
+        }
+        return false;
+    }
+
+    public static boolean isCyclePresentUndirected3(Graph gph) {
+        int count = gph.count;
+        //Different subsets are created.
+        Sets[] sets = new Sets[count];
+        for (int i = 0; i < count; i++)
+            sets[i] = new Sets(-1, 0);
+
+        LinkedList<Edge> edge = new LinkedList<Edge>();
+        boolean[][] flags = new boolean[count][count]; 
+        for (int i = 0; i < count; i++) {
+            LinkedList<Edge> ad = gph.Adj.get(i);
+            for (Edge adn : ad) {
+                // Using flags[][] array, if considered edge x to y, 
+                // then ignore edge y to x.
+                if(flags[adn.dest][adn.src] == false) {
+                    edge.add(adn);
+                    flags[adn.src][adn.dest] = true;
+                }
+            }
+        }
+        
+        for (Edge e : edge) {
+            int x = find(sets, e.src);
+            int y = find(sets, e.dest);
+            if(x == y) {
+                return true;
+            }
+            union(sets, x, y);
+        }
+        return false;
+    }
+
+
+    // Testing Code
     public static void main7() {
         Graph gph = new Graph(6);
-        gph.addUndirectedEdge(0, 1, 1);
-        gph.addUndirectedEdge(1, 2, 1);
-        gph.addUndirectedEdge(3, 4, 1);
-        gph.addUndirectedEdge(4, 2, 1);
-        gph.addUndirectedEdge(2, 5, 1);
-        // gph.addUndirectedEdge(4, 1, 1);
+        gph.addUndirectedEdge(0, 1);
+        gph.addUndirectedEdge(1, 2);
+        gph.addUndirectedEdge(3, 4);
+        gph.addUndirectedEdge(4, 2);
+        gph.addUndirectedEdge(2, 5);
+        gph.addUndirectedEdge(4, 1);
         System.out.println(isCyclePresentUndirected(gph));
+        System.out.println(isCyclePresentUndirected2(gph));
+        System.out.println(isCyclePresentUndirected3(gph));
     }
+
     /*
     false
     */
+    
     /*
     * Given a directed graph find if there is a cycle in it.
     */
@@ -497,14 +591,14 @@ public class Graph {
         boolean[] visited = new boolean[count];
         int[] marked = new int[count];
         for (int index = 0; index < count; index++) {
-            if (visited[index] == false)
+            if (!visited[index])
                 if (isCyclePresentDFS(graph, index, visited, marked))
                     return true;
         }
         return false;
     }
 
-    public static boolean isCyclePresentDFSColor(Graph graph, int index, int[] visited) {
+    public static boolean isCyclePresentDFSColour(Graph graph, int index, int[] visited) {
         visited[index] = 1; // 1 = grey
         int dest;
         LinkedList<Edge> adl = graph.Adj.get(index);
@@ -514,37 +608,41 @@ public class Graph {
                 return true;
 
             if (visited[dest] == 0) // "White":
-                if (isCyclePresentDFSColor(graph, dest, visited))
+                if (isCyclePresentDFSColour(graph, dest, visited))
                     return true;
         }
         visited[index] = 2; // "Black"
         return false;
     }
 
-    public static boolean isCyclePresentColor(Graph graph) {
+    public static boolean isCyclePresentColour(Graph graph) {
         int count = graph.count;
         int[] visited = new int[count];
         for (int i = 0; i < count; i++) {
             if (visited[i] == 0) // "White"
-                if (isCyclePresentDFSColor(graph, i, visited))
+                if (isCyclePresentDFSColour(graph, i, visited))
                     return true;
         }
         return false;
     }
-
+    
+    // Testing Code
     public static void main8() {
         Graph gph = new Graph(5);
-        gph.addDirectedEdge(0, 1, 1);
-        gph.addDirectedEdge(0, 2, 1);
-        gph.addDirectedEdge(2, 3, 1);
-        gph.addDirectedEdge(1, 3, 1);
-        gph.addDirectedEdge(3, 4, 1);
-        gph.addDirectedEdge(4, 1, 1);
-        System.out.println(isCyclePresentColor(gph));
+        gph.addDirectedEdge(0, 1);
+        gph.addDirectedEdge(0, 2);
+        gph.addDirectedEdge(2, 3);
+        gph.addDirectedEdge(1, 3);
+        gph.addDirectedEdge(3, 4);
+        //gph.addDirectedEdge(4, 1);
+        System.out.println(isCyclePresent(gph));
+        System.out.println(isCyclePresentColour(gph));
     }
+    
     /*
     true
     */
+    
     public static Graph transposeGraph(Graph gph) {
         int count = gph.count;
         Graph g = new Graph(count);
@@ -584,6 +682,7 @@ public class Graph {
     * 5) Repeat step 1, 2 and 3 for the reversed graph. 
     * 6) If DFS traversal mark all the count as 1, then return 1.
     */
+    
     public static boolean isStronglyConnected(Graph gph) {
         int count = gph.count;
         boolean visited[] = new boolean[count];
@@ -607,34 +706,35 @@ public class Graph {
         return true;
     }
 
+    // Testing Code
     public static void main9() {
         Graph gph = new Graph(5);
-        gph.addDirectedEdge(0, 1, 1);
-        gph.addDirectedEdge(1, 2, 1);
-        gph.addDirectedEdge(2, 3, 1);
-        gph.addDirectedEdge(3, 0, 1);
-        gph.addDirectedEdge(2, 4, 1);
-        gph.addDirectedEdge(4, 2, 1);
+        gph.addDirectedEdge(0, 1);
+        gph.addDirectedEdge(1, 2);
+        gph.addDirectedEdge(2, 3);
+        gph.addDirectedEdge(3, 0);
+        gph.addDirectedEdge(2, 4);
+        gph.addDirectedEdge(4, 2);
         System.out.println("IsStronglyConnected:: " + isStronglyConnected(gph));
     }
+    
     /*
     IsStronglyConnected:: true
     */
+    
     public static void stronglyConnectedComponent(Graph gph) {
         int count = gph.count;
         boolean[] visited = new boolean[count];
-
+        
         Stack<Integer> stk = new Stack<Integer>();
         for (int i = 0; i < count; i++) {
-            if (visited[i] == false) {
+            if (visited[i] == false)
                 dfsUtil2(gph, i, visited, stk);
-            }
         }
+        
         Graph gReversed = transposeGraph(gph);
-        for (int i = 0; i < count; i++) {
-            visited[i] = false;
-        }
-
+        Arrays.fill(visited, false);
+        
         Stack<Integer> stk2 = new Stack<Integer>();
         while (stk.isEmpty() == false) {
             int index = stk.pop();
@@ -646,42 +746,45 @@ public class Graph {
         }
     }
 
+    // Testing Code
     public static void main10() {
         Graph gph = new Graph(7);
-        gph.addDirectedEdge(0, 1, 1);
-        gph.addDirectedEdge(1, 2, 1);
-        gph.addDirectedEdge(2, 0, 1);
-        gph.addDirectedEdge(2, 3, 1);
-        gph.addDirectedEdge(3, 4, 1);
-        gph.addDirectedEdge(4, 5, 1);
-        gph.addDirectedEdge(5, 3, 1);
-        gph.addDirectedEdge(5, 6, 1);
+        gph.addDirectedEdge(0, 1);
+        gph.addDirectedEdge(1, 2);
+        gph.addDirectedEdge(2, 0);
+        gph.addDirectedEdge(2, 3);
+        gph.addDirectedEdge(3, 4);
+        gph.addDirectedEdge(4, 5);
+        gph.addDirectedEdge(5, 3);
+        gph.addDirectedEdge(5, 6);
         stronglyConnectedComponent(gph);
         
         Graph gReversed = transposeGraph(gph);
         gReversed.print();
     }
+    
     /*
     [1, 2, 0]
     [4, 5, 3]
     [6]
     */
-    public static void prims(Graph gph) {
-        int[] previous = new int[gph.count];
-        int[] dist = new int[gph.count];
-        boolean[] visited = new boolean[gph.count];
+    
+    public static void primsMST(Graph gph) {
+        int count = gph.count;
+        int[] previous = new int[count];
+        int[] dist = new int[count];
+        boolean[] visited = new boolean[count];
         int source = 1;
 
-        for (int i = 0; i < gph.count; i++) {
+        for (int i = 0; i <count; i++) {
             previous[i] = -1;
-            dist[i] = 999999; // infinite
+            dist[i] = Integer.MAX_VALUE; // infinite
         }
 
         dist[source] = 0;
         previous[source] = -1;
-        EdgeComparator comp = new EdgeComparator();
-        PriorityQueue<Edge> queue = new PriorityQueue<Edge>(100, comp);
-        Edge node = new Edge(source, 0);
+        PriorityQueue<Edge> queue = new PriorityQueue<Edge>(100);
+        Edge node = new Edge(source, source, 0);
         queue.add(node);
 
         while (queue.isEmpty() != true) {
@@ -696,23 +799,128 @@ public class Graph {
                 if (dist[dest] > alt && visited[dest] == false) {
                     dist[dest] = alt;
                     previous[dest] = source;
-                    node = new Edge(dest, alt);
+                    node = new Edge(source, dest, alt);
                     queue.add(node);
                 }
             }
         }
         // printing result.
-        int count = gph.count;
+        int sum = 0;
+        boolean isMst = true;;
         for (int i = 0; i < count; i++) {
             if (dist[i] == Integer.MAX_VALUE) {
-                System.out.println(" node id " + i + "  prev " + previous[i] + " distance : Unreachable");
+                System.out.println("Node id " + i + "  prev " + previous[i] + " distance : Unreachable");
+                isMst = false;
             } else {
-                System.out.println(" node id " + i + "  prev " + previous[i] + " distance : " + dist[i]);
-
+                System.out.println("Node id " + i + "  prev " + previous[i] + " distance : " + dist[i]);
+                sum += dist[i];
             }
         }
+
+        if(isMst)
+            System.out.print("Total MST cost: " + sum);
+        else 
+            System.out.print("Not a mst");
+        
+    }
+    /*
+    public static void kruskalMST((Graph gph) {
+        int count = gph.count;
+        int[] parent = new int[count];
+        Arrays.fill(parent, -1);
+        Edge edge[] = new Edge[100];
+        LinkedList<Edge> output = new LinkedList<Edge>();
+        
+        int E = 0;
+        for (int i = 0; i < count; i++) {
+            LinkedList<Edge> ad = gph.Adj.get(i);
+            for (Edge adn : ad) {
+                edge[E++] = adn;
+            }
+        }
+
+        int sum=0;
+        Arrays.sort(edge, 0, E-1);
+        for (int i = 0; i < E; i++) {
+            int x = find(parent, edge[i].src);
+            int y = find(parent, edge[i].dest);            
+            if(x != y) {
+                System.out.print("(" + edge[i].src + ", " + edge[i].dest + ", " + edge[i].cost + ") ");
+                sum += edge[i].cost;
+                output.add(edge[i]);
+                union(parent, x, y);
+            }
+        }
+
+        System.out.print("\nTotal MST cost: " + sum);
+    }
+    */
+    public static class Sets{
+        int parent;
+        int rank;
+        Sets(int p, int r){
+            parent = p;
+            rank = r;
+        }
+    }
+    
+    public static int find(Sets[] sets, int index) {
+        int p = sets[index].parent; 
+        while(p != index) {
+            index = p;
+            p = sets[index].parent;
+        }
+        return index;
     }
 
+    // consider x and y are roots of sets.
+    public static void union(Sets[] sets, int x, int y) {
+        if (sets[x].rank < sets[y].rank)
+            sets[x].parent = y;
+        else if (sets[y].rank < sets[x].rank)
+            sets[y].parent = x;
+        else {
+            sets[x].parent = y;
+            sets[y].rank++;
+        }
+    }
+        
+    public static void kruskalMST(Graph gph) {
+        int count = gph.count;
+        
+        //Different subsets are created.
+        Sets[] sets = new Sets[count];
+        for (int i = 0; i < count; i++)
+            sets[i] = new Sets(i, 0);
+
+        // Edges are added to array and sorted.
+        int E=0;
+        Edge edge[] = new Edge[100];
+        for (int i = 0; i < count; i++) {
+            LinkedList<Edge> ad = gph.Adj.get(i);
+            for (Edge adn : ad) {
+                edge[E++] = adn;
+            }
+        }
+        Arrays.sort(edge, 0, E-1);
+        
+        int sum=0;
+        LinkedList<Edge> output = new LinkedList<Edge>();
+        for (int i = 0; i < E; i++) {
+            int x = find(sets, edge[i].src);
+            int y = find(sets, edge[i].dest);            
+            if(x != y) {
+                System.out.print("(" + edge[i].src + ", " + edge[i].dest + ", " + edge[i].cost + ") ");
+                sum += edge[i].cost;
+                output.add(edge[i]);
+                union(sets, x, y);
+            }
+        }
+        System.out.print("\nTotal MST cost: " + sum);
+    }
+
+
+    // Testing Code
     public static void main11() {
         Graph gph = new Graph(9);
         gph.addUndirectedEdge(0, 1, 4);
@@ -729,12 +937,15 @@ public class Graph {
         gph.addUndirectedEdge(6, 7, 1);
         gph.addUndirectedEdge(6, 8, 6);
         gph.addUndirectedEdge(7, 8, 7);
-        gph.print();
-        System.out.println();
-        prims(gph);
-        System.out.println();
+        //gph.print();
+        //gph.out.println();
+        //primsMST(gph);
+        //System.out.println();
+        //kruskalMST(gph);
         dijkstra(gph, 0);
+        //floydWarshall(gph);
     }
+    
     /*
     Vertex 0 is connected to : (1, 4) (7, 8) 
     Vertex 1 is connected to : (0, 4) (2, 8) (7, 11) 
@@ -766,8 +977,9 @@ public class Graph {
     node id 7  prev 0 distance : 8
     node id 8  prev 2 distance : 14
     */
-    public static void shortestPath(Graph gph, int source)// unweighted graph
-    {
+
+    // Unweighed graph
+    public static void shortestPath(Graph gph, int source) {
         int curr;
         int count = gph.count;
         int[] distance = new int[count];
@@ -794,6 +1006,7 @@ public class Graph {
         }
     }
 
+    // Testing Code
     public static void main12() {
         Graph gph = new Graph(9);
         gph.addUndirectedEdge(0, 2, 1);
@@ -809,9 +1022,12 @@ public class Graph {
         gph.addUndirectedEdge(7, 8, 17);
         bellmanFordShortestPath(gph, 1);
         // dijkstra(gph, 1);
-        // prims(gph);
-        System.out.println("isConnectedUndirected :: " + isConnectedUndirected(gph));
+        primsMST(gph);
+        //System.out.println("isConnectedUndirected :: " + isConnectedUndirected(gph));
+        System.out.println();
+        kruskalMST(gph);
     }
+    
     /*
     2 to 0 weight 6
     -1 to 1 weight 0
@@ -824,35 +1040,31 @@ public class Graph {
     7 to 8 weight 29
     isConnectedUndirected :: true
     */
-    static class EdgeComparator implements Comparator<Edge> {
-        public int compare(Edge x, Edge y) {
-            if (x.cost < y.cost) {
-                return -1;
-            }
-            if (x.cost > y.cost) {
-                return 1;
-            }
-            return 0;
-        }
-    }
+
+/*
+0   2   4   3   7   8   7   
+2   0   3   1   5   7   5   
+4   3   0   2   6   4   6   
+3   1   2   0   4   6   4   
+7   5   6   4   0   4   2   
+8   7   4   6   4   0   3   
+7   5   6   4   2   3   0   
+*/
 
     public static void dijkstra(Graph gph, int source) {
         int[] previous = new int[gph.count];
+        Arrays.fill(previous, -1);
         int[] dist = new int[gph.count];
+        Arrays.fill(dist, Integer.MAX_VALUE); // infinite
         boolean[] visited = new boolean[gph.count];
-
-        for (int i = 0; i < gph.count; i++) {
-            previous[i] = -1;
-            dist[i] = 999999; // infinite
-        }
 
         dist[source] = 0;
         previous[source] = -1;
-        EdgeComparator comp = new EdgeComparator();
-        PriorityQueue<Edge> queue = new PriorityQueue<Edge>(100, comp);
-        Edge node = new Edge(source, 0);
-        queue.add(node);
 
+        PriorityQueue<Edge> queue = new PriorityQueue<Edge>(100);
+        Edge node = new Edge(source, source, 0);
+        queue.add(node);
+        
         while (queue.isEmpty() != true) {
             node = queue.peek();
             queue.remove();
@@ -866,7 +1078,7 @@ public class Graph {
 
                     dist[dest] = alt;
                     previous[dest] = source;
-                    node = new Edge(dest, alt);
+                    node = new Edge(source, dest, alt);
                     queue.add(node);
                 }
             }
@@ -889,7 +1101,7 @@ public class Graph {
         int[] path = new int[count];
 
         for (int i = 0; i < count; i++) {
-            distance[i] = 999999; // infinite
+            distance[i] = Integer.MAX_VALUE; // infinite
             path[i] = -1;
         }
         distance[source] = 0;
@@ -916,6 +1128,7 @@ public class Graph {
         }
     }
 
+    // Testing Code
     public static void main13() {
         Graph gph = new Graph(5);
         gph.addDirectedEdge(0, 1, 3);
@@ -928,6 +1141,7 @@ public class Graph {
         System.out.println();
         bellmanFordShortestPath(gph, 0);
     }
+    
     /*
     Vertex 0 is connected to : (1, 3) (4, 2) 
     Vertex 1 is connected to : (2, 1) 
@@ -941,6 +1155,7 @@ public class Graph {
     2 to 3 weight 2
     0 to 4 weight 2
     */
+
     public static int heightTreeParentArr(int[] arr) {
         int count = arr.length;
         int[] heightArr = new int[count];
@@ -996,11 +1211,13 @@ public class Graph {
         return maxHeight;
     }
 
+    // Testing Code
     public static void main14() {
         int parentArray[] = { -1, 0, 1, 2, 3 };
         System.out.println(heightTreeParentArr(parentArray));
         System.out.println(heightTreeParentArr2(parentArray));
     }
+    
     /*
     4
     4
@@ -1012,13 +1229,12 @@ public class Graph {
         boolean[] visited = new boolean[gph.count];
         for (int i = 0; i < gph.count; i++) {
             previous[i] = -1;
-            dist[i] = 999999; // infinite
+            dist[i] = Integer.MAX_VALUE; // infinite
         }
-        EdgeComparator comp = new EdgeComparator();
-        PriorityQueue<Edge> pq = new PriorityQueue<Edge>(100, comp);
+        PriorityQueue<Edge> pq = new PriorityQueue<Edge>(100);
         dist[source] = 0;
         previous[source] = -1;
-        Edge node = new Edge(source, 0);
+        Edge node = new Edge(source, source, 0);
         pq.add(node);
 
         while (pq.isEmpty() != true) {
@@ -1038,7 +1254,7 @@ public class Graph {
                 if (dist[curr] > alt && visited[curr] == false) {
                     dist[curr] = alt;
                     previous[curr] = source;
-                    node = new Edge(curr, alt);
+                    node = new Edge(source, curr, alt);
                     pq.add(node);
                 }
             }
@@ -1117,19 +1333,22 @@ public class Graph {
         }
     }
 
+    // Testing Code
     public static void main15() {
         Graph gph = new Graph(5);
-        gph.addDirectedEdge(1, 0, 1);
-        gph.addDirectedEdge(0, 2, 1);
-        gph.addDirectedEdge(2, 1, 1);
-        gph.addDirectedEdge(0, 3, 1);
-        gph.addDirectedEdge(3, 4, 1);
+        gph.addDirectedEdge(1, 0);
+        gph.addDirectedEdge(0, 2);
+        gph.addDirectedEdge(2, 1);
+        gph.addDirectedEdge(0, 3);
+        gph.addDirectedEdge(3, 4);
         System.out.println(isEulerian(gph));
     }
+    
     /*
     graph is Semi-Eulerian
     1
     */
+    
     public static boolean isStronglyConnected2(Graph graph) {
         int count = graph.count;
         boolean[] visited = new boolean[count];
@@ -1185,30 +1404,33 @@ public class Graph {
         return true;
     }
 
+    // Testing Code
     public static void main16() {
         Graph gph = new Graph(5);
-        gph.addDirectedEdge(0, 1, 1);
-        gph.addDirectedEdge(1, 2, 1);
-        gph.addDirectedEdge(2, 0, 1);
-        gph.addDirectedEdge(0, 4, 1);
-        gph.addDirectedEdge(4, 3, 1);
-        gph.addDirectedEdge(3, 0, 1);
+        gph.addDirectedEdge(0, 1);
+        gph.addDirectedEdge(1, 2);
+        gph.addDirectedEdge(2, 0);
+        gph.addDirectedEdge(0, 4);
+        gph.addDirectedEdge(4, 3);
+        gph.addDirectedEdge(3, 0);
         System.out.println(isEulerianCycle(gph));
     }
+    
     /*
     true
     */
 
+    // Testing Code
     public static void main17() {
         Graph gph = new Graph(7);
-        gph.addDirectedEdge(0, 1, 1);
-        gph.addDirectedEdge(1, 2, 1);
-        gph.addDirectedEdge(2, 0, 1);
-        gph.addDirectedEdge(2, 3, 1);
-        gph.addDirectedEdge(3, 4, 1);
-        gph.addDirectedEdge(4, 5, 1);
-        gph.addDirectedEdge(5, 3, 1);
-        gph.addDirectedEdge(5, 6, 1);
+        gph.addDirectedEdge(0, 1);
+        gph.addDirectedEdge(1, 2);
+        gph.addDirectedEdge(2, 0);
+        gph.addDirectedEdge(2, 3);
+        gph.addDirectedEdge(3, 4);
+        gph.addDirectedEdge(4, 5);
+        gph.addDirectedEdge(5, 3);
+        gph.addDirectedEdge(5, 6);
         
         Graph gReversed = transposeGraph(gph);
         gReversed.print();
@@ -1224,6 +1446,7 @@ public class Graph {
     Vertex 6 is connected to : (5, 1) 
     */
 
+    // Testing Code
     public static void main18() {
         Graph gph = new Graph(9);
         gph.addUndirectedEdge(0, 1);
@@ -1242,6 +1465,7 @@ public class Graph {
         gph.addUndirectedEdge(7, 8);
         shortestPath(gph, 0);
     }
+    
     /*
     0 to 0 weight 0
     0 to 1 weight 1
@@ -1253,24 +1477,131 @@ public class Graph {
     0 to 7 weight 1
     7 to 8 weight 2
     */
+
+    static void floydWarshall(Graph gph) {
+        int V = gph.count;
+        int dist[][] = new int[V][V];
+        int path[][] = new int[V][V];
+        final int INF = 99999;
+        
+        for (int i = 0; i < V; i++) {
+            for (int j = 0; j < V; j++) {
+                dist[i][j] = INF;
+                if(i == j)
+                    path[i][j] = 0;
+                else
+                    path[i][j] = -1;
+            }
+        }
+        
+        for (int i = 0; i < V; i++) {
+            LinkedList<Edge> adl = gph.Adj.get(i);
+            for (Edge adn : adl) {
+                path[adn.src][adn.dest] = adn.src;
+                dist[adn.src][adn.dest] = adn.cost;
+            }
+        }
+        
+        // Pick intermediate vertices.
+        for (int k = 0; k < V; k++) {
+            // Pick source vertices one by one.
+            for (int i = 0; i < V; i++) {
+                // Pick destination vertices.
+                for (int j = 0; j < V; j++) {
+                    // If we have a shorter path from i to j via k.
+                    // then update dist[i][j] and  and path[i][j]
+                    if(  dist[i][k] + dist[k][j] < dist[i][j]) {
+                        dist[i][j] = dist[i][k] + dist[k][j];
+                        path[i][j] = path[k][j];
+                    }
+                }
+                // dist[i][i] is 0 in the start.
+                // If there is a better path from i to i and is better path then we have -ve cycle.                //
+                if (dist[i][i] < 0) {
+                    System.out.println("Negative-weight cycle found.");
+                        return;
+                    }
+                }
+            }
+    
+            printSolution(dist, path, V);
+        }
+
+        private static void printSolution(int[][] cost, int[][] path, int V) {
+            for (int u = 0; u < V; u++) {
+                for (int v = 0; v < V; v++) {
+                    if (u != v && path[u][v] != -1) {
+                        System.out.printf("Shortest Path from %d —> %d ", u , v);
+                    System.out.printf("Cost:" + cost[u][v] + " Path:");
+                    printPath(path, u, v);
+                    System.out.println();
+                }
+            }
+        }
+    } 
+
+    private static void printPath(int[][] path, int u, int v) {
+        if (path[u][v] == u) {
+            System.out.print(u + " " + v + " ");
+            return;
+        }
+        printPath(path, u, path[u][v]);
+        System.out.print(v + " ");
+    }
+    
+    public static void main19() {
+        Graph gph = new Graph(4);
+        gph.addDirectedEdge(0, 0, 0);
+        gph.addDirectedEdge(1, 1, 0);
+        gph.addDirectedEdge(2, 2, 0);
+        gph.addDirectedEdge(3, 3, 0);
+        
+        gph.addDirectedEdge(0, 1, 5);
+        gph.addDirectedEdge(0, 3, 10);
+        gph.addDirectedEdge(1, 2, 3);
+        gph.addDirectedEdge(2, 3, 1);
+        floydWarshall(gph);
+    }
+
+/*
+Shortest Path from 0 —> 1 Cost:5 Path:0 1 
+Shortest Path from 0 —> 2 Cost:8 Path:0 1 2 
+Shortest Path from 0 —> 3 Cost:9 Path:0 1 2 3 
+Shortest Path from 1 —> 2 Cost:3 Path:1 2 
+Shortest Path from 1 —> 3 Cost:4 Path:1 2 3 
+Shortest Path from 2 —> 3 Cost:1 Path:2 3
+*/
+
+    static void printSolution(int dist[][], int V) {
+        for (int i=0; i<V; i++) {
+            for (int j=0; j<V; j++) {
+                if (dist[i][j] == INF)
+                    System.out.print("INF ");
+                else
+                    System.out.print(dist[i][j] + "   ");
+            }
+            System.out.println();
+        }
+    }
+    
+    
     public static void main(String[] args) {
-    /*    main1();
-        main2(); 
-        main3(); 
-        main4(); 
-        main5(); 
-        main6(); 
-        main7(); 
-        main8(); 
-        main9();
-        main10(); 
-        main11(); 
-        main12(); 
-        main13(); 
-        main14(); 
-        main15(); 
-        main16();
-        main17();*/
-    	main18();
+        //main1();
+        //main2(); 
+        //main3(); 
+        //main4(); 
+        //main5(); 
+        //main6(); 
+        //main7(); 
+        //main8();
+        //main10(); 
+        //main11(); 
+        //main12();
+        //main13(); 
+        //main15(); 
+        //main16();
+        //main17();
+        //main18();
+        main19();
     }
 }

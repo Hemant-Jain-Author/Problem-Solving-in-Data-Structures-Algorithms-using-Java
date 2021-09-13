@@ -1,5 +1,3 @@
-package CA;
-
 public class IsPrime {
     public static boolean isPrime(int n) {
         boolean answer = (n > 1) ? true : false;

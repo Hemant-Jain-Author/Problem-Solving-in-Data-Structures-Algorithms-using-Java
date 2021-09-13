@@ -207,7 +207,7 @@ public class QueueEx {
     -2 -2 -6 -14 -14 NAN
     */
     
-	public static void rottenFruitUtil(int[][] arr, int maxCol, int maxRow, 
+    public static void rottenFruitUtil(int[][] arr, int maxCol, int maxRow, 
     int currCol, int currRow, int[][] traversed, int day) { 
         int[][] dir = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
         int x, y;
@@ -220,39 +220,39 @@ public class QueueEx {
                 rottenFruitUtil(arr, maxCol, maxRow, x, y, traversed, day+1);
             }
         }
-	}
-	
-	public static int rottenFruit(int[][] arr, int maxCol, int maxRow) {
-	    int[][] traversed = new int[maxCol][maxRow];
-	    for (int i = 0; i < maxCol; i++) {
-	        for (int j = 0; j < maxRow; j++) {
-	            traversed[i][j] = Integer.MAX_VALUE;
-	        }
-	    }
-	
-	    for (int i = 0; i < maxCol; i++) {
-	        for (int j = 0; j < maxRow; j++) {
-	            if (arr[i][j] == 2) {
+    }
+    
+    public static int rottenFruit(int[][] arr, int maxCol, int maxRow) {
+        int[][] traversed = new int[maxCol][maxRow];
+        for (int i = 0; i < maxCol; i++) {
+            for (int j = 0; j < maxRow; j++) {
+                traversed[i][j] = Integer.MAX_VALUE;
+            }
+        }
+    
+        for (int i = 0; i < maxCol; i++) {
+            for (int j = 0; j < maxRow; j++) {
+                if (arr[i][j] == 2) {
                     traversed[i][j] = 0;
                     rottenFruitUtil(arr, maxCol, maxRow, i, j, traversed, 0);
                 }
-	        }
-	    }
-	
-	    int maxDay = 0;
-	    for (int i = 0; i < maxCol; i++) {
-	        for (int j = 0; j < maxRow; j++) {
-	            if (arr[i][j] == 1) {
-	                if (traversed[i][j] == Integer.MAX_VALUE)
-	                    return -1;
-	                if (maxDay < traversed[i][j])
-	                    maxDay = traversed[i][j];
-	            }
-	        }
-	    }
-	    return maxDay;
-	}
-	
+            }
+        }
+    
+        int maxDay = 0;
+        for (int i = 0; i < maxCol; i++) {
+            for (int j = 0; j < maxRow; j++) {
+                if (arr[i][j] == 1) {
+                    if (traversed[i][j] == Integer.MAX_VALUE)
+                        return -1;
+                    if (maxDay < traversed[i][j])
+                        maxDay = traversed[i][j];
+                }
+            }
+        }
+        return maxDay;
+    }
+    
     public static class Fruit{
         int x, y;
         int day;
@@ -264,19 +264,19 @@ public class QueueEx {
     }
     
     public static int rottenFruit2(int[][] arr, int maxCol, int maxRow) {
-	    boolean[][] traversed = new boolean[maxCol][maxRow];
+        boolean[][] traversed = new boolean[maxCol][maxRow];
         int[][] dir = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
         ArrayDeque<Fruit> que = new ArrayDeque<Fruit>();
 
         for (int i = 0; i < maxCol; i++) {
-	        for (int j = 0; j < maxRow; j++) {
-	            traversed[i][j] = false;
+            for (int j = 0; j < maxRow; j++) {
+                traversed[i][j] = false;
                 if (arr[i][j] == 2) {    
                     que.add(new Fruit(i,j, 0));
                     traversed[i][j] = true;
                 }
-	        }
-	    }
+            }
+        }
         int max = 0, x, y, day;
         Fruit temp;
         while(!que.isEmpty()){
@@ -295,8 +295,8 @@ public class QueueEx {
             }
         }
         for (int i = 0; i < maxCol; i++) {
-	        for (int j = 0; j < maxRow; j++) {
-	            if (arr[i][j] == 1 && traversed[i][j] == false){
+            for (int j = 0; j < maxRow; j++) {
+                if (arr[i][j] == 1 && traversed[i][j] == false){
                     return -1;
                 }
             }
@@ -304,21 +304,21 @@ public class QueueEx {
         return max;
     }
     
-	public static void main21() {
-	    int arr[][] = { 
-	        { 1, 0, 1, 1, 0 }, 
-	        { 2, 1, 0, 1, 0 }, 
-	        { 0, 0, 0, 2, 1 }, 
-	        { 0, 2, 0, 0, 1 }, 
-	        { 1, 1, 0, 0, 1 } };
+    public static void main21() {
+        int arr[][] = { 
+            { 1, 0, 1, 1, 0 }, 
+            { 2, 1, 0, 1, 0 }, 
+            { 0, 0, 0, 2, 1 }, 
+            { 0, 2, 0, 0, 1 }, 
+            { 1, 1, 0, 0, 1 } };
         System.out.println(rottenFruit(arr, 5, 5));
-	    System.out.println(rottenFruit2(arr, 5, 5));
-	}
-	
-	// 3
-	
-	public static void stepsOfKnightUtil(int size, int currCol, int currRow, int[][] traversed, int dist) {
-	    int[][] dir = {{-2, -1}, {-2, 1}, {2, -1}, {2, 1}, {-1, -2}, {1, -2}, {-1, 2}, {1, 2}};
+        System.out.println(rottenFruit2(arr, 5, 5));
+    }
+    
+    // 3
+    
+    public static void stepsOfKnightUtil(int size, int currCol, int currRow, int[][] traversed, int dist) {
+        int[][] dir = {{-2, -1}, {-2, 1}, {2, -1}, {2, 1}, {-1, -2}, {1, -2}, {-1, 2}, {1, 2}};
         int x, y;
         for(int i=0;i<8;i++){
             x = currCol + dir[i][0];
@@ -329,19 +329,19 @@ public class QueueEx {
                 stepsOfKnightUtil(size, x, y, traversed, dist + 1);
             }
         }
-	}
-	
-	public static int stepsOfKnight(int size, int srcX, int srcY, int dstX, int dstY) {
-	    int[][] traversed = new int[size][size];
-	    for (int i = 0; i < size; i++) {
-	        for (int j = 0; j < size; j++) {
-	            traversed[i][j] = Integer.MAX_VALUE;
-	        }
-	    }
+    }
+    
+    public static int stepsOfKnight(int size, int srcX, int srcY, int dstX, int dstY) {
+        int[][] traversed = new int[size][size];
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                traversed[i][j] = Integer.MAX_VALUE;
+            }
+        }
         traversed[srcX - 1][srcY - 1] = 0;
-	    stepsOfKnightUtil(size, srcX - 1, srcY - 1, traversed, 0);
-	    return traversed[dstX - 1][dstY - 1];
-	}
+        stepsOfKnightUtil(size, srcX - 1, srcY - 1, traversed, 0);
+        return traversed[dstX - 1][dstY - 1];
+    }
 
     public static class Knight{
         int x, y;
@@ -355,15 +355,15 @@ public class QueueEx {
     
     public static int stepsOfKnight2(int size, int srcX, int srcY, 
     int dstX, int dstY) {
-	    int[][] traversed = new int[size][size];
+        int[][] traversed = new int[size][size];
         int[][] dir = {{-2, -1}, {-2, 1}, {2, -1}, {2, 1}, {-1, -2}, {1, -2}, {-1, 2}, {1, 2}};
         ArrayDeque<Knight> que = new ArrayDeque<Knight>();
 
         for (int i = 0; i < size; i++) {
-	        for (int j = 0; j < size; j++) {
-	            traversed[i][j] = Integer.MAX_VALUE;
-	        }
-	    }
+            for (int j = 0; j < size; j++) {
+                traversed[i][j] = Integer.MAX_VALUE;
+            }
+        }
         que.add(new Knight(srcX-1,srcY-1, 0));
         traversed[srcX-1][srcY-1] = 0;
 
@@ -386,16 +386,16 @@ public class QueueEx {
         return traversed[dstX-1][dstY-1];
     }
 
-	public static void main22() {
-	    System.out.println(stepsOfKnight(20, 10, 10, 20, 20));
-	    System.out.println(stepsOfKnight2(20, 10, 10, 20, 20));
-	}
-	
-	// 8
-	
-	public static void distNearestFillUtil(int[][] arr, int maxCol, int maxRow, int currCol, int currRow,
-	    int[][] traversed, int dist) { // Range check
-	    int x, y;
+    public static void main22() {
+        System.out.println(stepsOfKnight(20, 10, 10, 20, 20));
+        System.out.println(stepsOfKnight2(20, 10, 10, 20, 20));
+    }
+    
+    // 8
+    
+    public static void distNearestFillUtil(int[][] arr, int maxCol, int maxRow, int currCol, int currRow,
+        int[][] traversed, int dist) { // Range check
+        int x, y;
         int[][] dir = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
         for(int i=0;i<4;i++){
             x = currCol + dir[i][0];
@@ -406,33 +406,33 @@ public class QueueEx {
                 distNearestFillUtil(arr, maxCol, maxRow, x, y, traversed, dist+1);
             }
         }
-	}
-	
-	public static void distNearestFill(int[][] arr, int maxCol, int maxRow) {
-	    int[][] traversed = new int[maxCol][maxRow];
+    }
+    
+    public static void distNearestFill(int[][] arr, int maxCol, int maxRow) {
+        int[][] traversed = new int[maxCol][maxRow];
         for (int i = 0; i < maxCol; i++) {
-	        for (int j = 0; j < maxRow; j++) {
-	            traversed[i][j] = Integer.MAX_VALUE;
-	        }
-	    }
+            for (int j = 0; j < maxRow; j++) {
+                traversed[i][j] = Integer.MAX_VALUE;
+            }
+        }
 
         for (int i = 0; i < maxCol; i++) {
-	        for (int j = 0; j < maxRow; j++) {
-	            if (arr[i][j] == 1){
+            for (int j = 0; j < maxRow; j++) {
+                if (arr[i][j] == 1){
                     traversed[i][j] = 0;
-	                distNearestFillUtil(arr, maxCol, maxRow, i, j, traversed, 0);
+                    distNearestFillUtil(arr, maxCol, maxRow, i, j, traversed, 0);
                 }
-	        }
-	    }
-	
-	    for (int i = 0; i < maxCol; i++) {
-	        for (int j = 0; j < maxRow; j++) {
-	            System.out.print(traversed[i][j] + " ");
-	        }
-	        System.out.println();
-	    }
-	}
-	
+            }
+        }
+    
+        for (int i = 0; i < maxCol; i++) {
+            for (int j = 0; j < maxRow; j++) {
+                System.out.print(traversed[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+    
     public static class Node{
         int x, y;
         int dist;
@@ -444,19 +444,19 @@ public class QueueEx {
     }
     
     public static void distNearestFill2(int[][] arr, int maxCol, int maxRow) {
-	    int[][] traversed = new int[maxCol][maxRow];
+        int[][] traversed = new int[maxCol][maxRow];
         int[][] dir = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
         ArrayDeque<Node> que = new ArrayDeque<Node>();
 
         for (int i = 0; i < maxCol; i++) {
-	        for (int j = 0; j < maxRow; j++) {
-	            traversed[i][j] = Integer.MAX_VALUE;
+            for (int j = 0; j < maxRow; j++) {
+                traversed[i][j] = Integer.MAX_VALUE;
                 if (arr[i][j] == 1) {    
                     que.add(new Node(i,j, 0));
                     traversed[i][j] = 0;
                 }
-	        }
-	    }
+            }
+        }
         int x, y, dist;
         Node temp;
         while(!que.isEmpty()){
@@ -474,33 +474,33 @@ public class QueueEx {
             }
         }
         for (int i = 0; i < maxCol; i++) {
-	        for (int j = 0; j < maxRow; j++) {
-	            System.out.print(traversed[i][j] + " ");
-	        }
-	        System.out.println();
-	    }
+            for (int j = 0; j < maxRow; j++) {
+                System.out.print(traversed[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 
-	public static void main23() {
-	    int arr[][] = { 
-	        { 1, 0, 1, 1, 0 }, 
-	        { 1, 1, 0, 1, 0 }, 
-	        { 0, 0, 0, 0, 1 }, 
-	        { 0, 0, 0, 0, 1 }, 
-	        { 0, 0, 0, 0, 1 } };
-	    distNearestFill(arr, 5, 5);
-	    distNearestFill2(arr, 5, 5);
-	}
-	
-	/*
-	0 1 0 0 1 
-	0 0 1 0 1 
-	1 1 2 1 0 
-	2 2 2 1 0 
-	3 3 2 1 0 
-	*/
-	
-	public static int findLargestIslandUtil(int[][] arr, int maxCol, int maxRow, int currCol, int currRow, boolean[][] traversed) {
+    public static void main23() {
+        int arr[][] = { 
+            { 1, 0, 1, 1, 0 }, 
+            { 1, 1, 0, 1, 0 }, 
+            { 0, 0, 0, 0, 1 }, 
+            { 0, 0, 0, 0, 1 }, 
+            { 0, 0, 0, 0, 1 } };
+        distNearestFill(arr, 5, 5);
+        distNearestFill2(arr, 5, 5);
+    }
+    
+    /*
+    0 1 0 0 1 
+    0 0 1 0 1 
+    1 1 2 1 0 
+    2 2 2 1 0 
+    3 3 2 1 0 
+    */
+    
+    public static int findLargestIslandUtil(int[][] arr, int maxCol, int maxRow, int currCol, int currRow, boolean[][] traversed) {
         int[][] dir = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
         int x, y, sum = 1;
         for(int i=0; i<8; i++) {
@@ -514,42 +514,42 @@ public class QueueEx {
         }
         return sum;
     }
-	
-	public static int findLargestIsland(int[][] arr, int maxCol, int maxRow) {
-	    int maxVal = 0;
-	    int currVal = 0;
-	    boolean[][] traversed = new boolean[maxCol][maxRow];
-	    for (int i = 0; i < maxCol; i++) {
-	        for (int j = 0; j < maxRow; j++) {
-	            traversed[i][j] = false;
-	        }
-	    }
+    
+    public static int findLargestIsland(int[][] arr, int maxCol, int maxRow) {
+        int maxVal = 0;
+        int currVal = 0;
+        boolean[][] traversed = new boolean[maxCol][maxRow];
+        for (int i = 0; i < maxCol; i++) {
+            for (int j = 0; j < maxRow; j++) {
+                traversed[i][j] = false;
+            }
+        }
 
-	    for (int i = 0; i < maxCol; i++) {
-	        for (int j = 0; j < maxRow; j++) {
+        for (int i = 0; i < maxCol; i++) {
+            for (int j = 0; j < maxRow; j++) {
                 if(arr[i][j] ==  1){
                     traversed[i][j] = true;
                     currVal = findLargestIslandUtil(arr, maxCol, maxRow, i, j, traversed);
                     if (currVal > maxVal)
                         maxVal = currVal;
                 }
-	        }
-	    }
+            }
+        }
         
-	    return maxVal;
-	}
-	
-	public static void main24() {
-	    int arr[][] = { 
-	        { 1, 0, 1, 1, 0 }, 
-	        { 1, 0, 0, 1, 0 }, 
-	        { 0, 1, 1, 1, 1 }, 
-	        { 0, 1, 0, 0, 0 }, 
-	        { 1, 1, 0, 0, 1 } };
-	    System.out.println("Largest Island : " + findLargestIsland(arr, 5, 5));
-	}
-	
-	// Largest Island : 12
+        return maxVal;
+    }
+    
+    public static void main24() {
+        int arr[][] = { 
+            { 1, 0, 1, 1, 0 }, 
+            { 1, 0, 0, 1, 0 }, 
+            { 0, 1, 1, 1, 1 }, 
+            { 0, 1, 0, 0, 0 }, 
+            { 1, 1, 0, 0, 1 } };
+        System.out.println("Largest Island : " + findLargestIsland(arr, 5, 5));
+    }
+    
+    // Largest Island : 12
 
     static void reverseStack(Stack<Integer> stk){
         ArrayDeque<Integer> que = new ArrayDeque<Integer>(); 

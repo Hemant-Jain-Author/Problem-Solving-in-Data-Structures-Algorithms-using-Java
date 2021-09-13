@@ -1,8 +1,8 @@
 import java.util.Arrays;
 
 public class MinCostBinaryTree {
-	
-    static int maxVal(int[][] max, int i, int j){   	
+    
+    static int maxVal(int[][] max, int i, int j){
         if(max[i][j] != Integer.MIN_VALUE)
             return max[i][j];
         

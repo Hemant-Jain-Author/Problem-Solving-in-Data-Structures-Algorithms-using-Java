@@ -1,5 +1,3 @@
-package CA;
-
 public class Fibo {
     public static int fibonacci(int n) {
         if (n <= 2) {
@@ -67,8 +65,7 @@ public class Fibo {
         return dp[n];
     }
 
-
-    public static void main(String[] args) {   	
+    public static void main(String[] args) {       
         for(int i=6;i<7;i++) {
             fibonacciSeries(i);
                 System.out.println();
@@ -80,7 +77,7 @@ public class Fibo {
                 System.out.println();
 
         }
-    	System.out.println(fibonacci(6));
+        System.out.println(fibonacci(6));
         System.out.println(fibonacciBU(6));
     }
 }

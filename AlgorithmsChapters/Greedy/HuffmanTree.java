@@ -1,11 +1,10 @@
 import java.util.PriorityQueue;
 import java.util.Comparator;
 
-
 public class HuffmanTree {
     Node root = null;
 
-    class Node {
+    class Node implements Comparable<Node> {
         char c;
         int freq;
         Node left;
@@ -17,18 +16,15 @@ public class HuffmanTree {
             left = l;
             right = r;
         }
-    }
-      
-    // For comparing the nodes
-    class ImplementComparator implements Comparator<Node> {
-        public int compare(Node x, Node y) {
-            return x.freq - y.freq;
+
+        public int compareTo(Node n2) {
+            return this.freq - n2.freq;
         }
     }
 
     HuffmanTree(char[] arr, int[] freq){
         int n = arr.length;
-        PriorityQueue<Node> que = new PriorityQueue<Node>(n, new ImplementComparator());
+        PriorityQueue<Node> que = new PriorityQueue<Node>(n);
 
         for (int i = 0; i < n; i++) {
             Node node = new Node(arr[i], freq[i], null, null);

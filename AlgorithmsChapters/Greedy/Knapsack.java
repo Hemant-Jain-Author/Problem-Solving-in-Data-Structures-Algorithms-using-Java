@@ -40,15 +40,15 @@ public class Knapsack {
         return totalCost;
     }
 
-	public static void main(String[] args) {
-		int[] wt = { 10, 40, 20, 30 };
-		int[] cost = { 60, 40, 90, 120 };
-		int capacity = 50;
+    public static void main(String[] args) {
+        int[] wt = { 10, 40, 20, 30 };
+        int[] cost = { 60, 40, 90, 120 };
+        int capacity = 50;
 
         Knapsack kp = new Knapsack();
         int maxCost = kp.getMaxCostGreedy(wt, cost, capacity);
-		System.out.println("Maximum cost obtained = " + maxCost);
-	}
+        System.out.println("Maximum cost obtained = " + maxCost);
+    }
 }
 
 /*
