@@ -174,7 +174,7 @@ public class Tree {
     }
     
     public void printDepthFirst() {
-        ArrayDeque<Node> stk = new ArrayDeque<Node>();
+        Stack<Node> stk = new Stack<Node>();
         Node temp;
     
         if (root != null)

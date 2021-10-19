@@ -238,7 +238,7 @@ public static void arrayReduction(int[] arr, int size) {
         if (arr[i] - reduction > 0) {
             reduction = arr[i];
             count += 1;
-            System.out.println(size - i);
+            System.out.println(size - i); // after all the reduction the array will be empty.
         }
     }
     System.out.println(0);

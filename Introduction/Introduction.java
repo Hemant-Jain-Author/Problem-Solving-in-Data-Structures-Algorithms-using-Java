@@ -468,14 +468,14 @@ public static int arrayIndexMaxDiff2(int arr[], int size) {
 
 /* Testing code */
 public static void main12() {
-    int[] arr = {10,9,8,7,6,5,4,3,2,1};
-    //{ 33, 9, 10, 3, 2, 60, 30, 33, 1 };
+    int[] arr = {33, 9, 10, 3, 2, 60, 30, 33, 1};
     System.out.println("arrayIndexMaxDiff : " + arrayIndexMaxDiff(arr, arr.length));
     System.out.println("arrayIndexMaxDiff : " + arrayIndexMaxDiff2(arr, arr.length));
 }
+
 /*
-arrayIndexMaxDiff : 6
-arrayIndexMaxDiff : 6
+arrayIndexMaxDiff : 7
+arrayIndexMaxDiff : 7
 */
 public static int maxPathSum(int[] arr1, int size1, int[] arr2, int size2) {
     int i = 0, j = 0, result = 0, sum1 = 0, sum2 = 0;

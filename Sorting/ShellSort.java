@@ -23,28 +23,19 @@ public class ShellSort {
                 // Put current value in its correct location
                 arr[j] = curr;
             }
-            printArray(arr);
         }
-    }
-
-    public void printArray(int[] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println();
     }
 
     public static void main(String[] args) {
         int[] array = { 36, 32, 11, 6, 19, 31, 17, 3 };
-        
         ShellSort b = new ShellSort();
-        b.printArray(array);
         b.sort(array);
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " ");
         }
     }
 }
+
 /*
-1 2 3 4 5 6 7 8 9 
+3 6 11 17 19 31 32 36 
 */
