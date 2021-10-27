@@ -24,7 +24,7 @@ public class JobSequencing {
         this.maxDL = deadlines[0];
         for(int i = 1;i <n;i++){
             if(deadlines[i] > this.maxDL)
-            this.maxDL = deadlines[i];
+                this.maxDL = deadlines[i];
         }
 
         for(int i=0;i<n;i++){

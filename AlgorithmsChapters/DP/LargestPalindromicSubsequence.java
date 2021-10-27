@@ -1,5 +1,3 @@
-package DP;
-
 // Palindromic Subsequence
 public class LargestPalindromicSubsequence {
     static int palindromicSubsequence(String str) {
@@ -10,7 +8,7 @@ public class LargestPalindromicSubsequence {
             dp[i][i] = 1;
 
         for (int l = 1; l < n; l++) {
-            for (int i = 0, j = i+l; j < n; i++, j++) {
+            for (int i = 0, j = l; j < n; i++, j++) {
                 if (str.charAt(i) == str.charAt(j))
                     dp[i][j] = dp[i+1][j-1] + 2;
                 else 

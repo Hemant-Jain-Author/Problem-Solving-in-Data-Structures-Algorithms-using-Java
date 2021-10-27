@@ -7,7 +7,7 @@ import java.util.Queue;
 public class Graph {
     int count;
     private LinkedList<LinkedList<Edge>> Adj;
-
+    int INF = 9999;
     private static class Edge implements Comparable<Edge> {
         int src, dest, cost;
 
@@ -899,7 +899,7 @@ public class Graph {
         for (int i = 0; i < count; i++) {
             LinkedList<Edge> ad = gph.Adj.get(i);
             for (Edge adn : ad) {
-                edge[E++] = adn;
+                edge[E++] = adn; 
             }
         }
         Arrays.sort(edge, 0, E-1);
@@ -941,8 +941,8 @@ public class Graph {
         //gph.out.println();
         //primsMST(gph);
         //System.out.println();
-        //kruskalMST(gph);
-        dijkstra(gph, 0);
+        kruskalMST(gph);
+        //dijkstra(gph, 0);
         //floydWarshall(gph);
     }
     
@@ -1482,7 +1482,7 @@ public class Graph {
         int V = gph.count;
         int dist[][] = new int[V][V];
         int path[][] = new int[V][V];
-        final int INF = 99999;
+        final int INF = Integer.MAX_VALUE;
         
         for (int i = 0; i < V; i++) {
             for (int j = 0; j < V; j++) {
@@ -1575,7 +1575,7 @@ Shortest Path from 2 —> 3 Cost:1 Path:2 3
     static void printSolution(int dist[][], int V) {
         for (int i=0; i<V; i++) {
             for (int j=0; j<V; j++) {
-                if (dist[i][j] == INF)
+                if (dist[i][j] == Integer.MAX_VALUE)
                     System.out.print("INF ");
                 else
                     System.out.print(dist[i][j] + "   ");
@@ -1595,13 +1595,13 @@ Shortest Path from 2 —> 3 Cost:1 Path:2 3
         //main7(); 
         //main8();
         //main10(); 
-        //main11(); 
+        main11(); 
         //main12();
         //main13(); 
         //main15(); 
         //main16();
         //main17();
         //main18();
-        main19();
+        //main19();
     }
 }

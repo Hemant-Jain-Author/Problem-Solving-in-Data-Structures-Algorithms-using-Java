@@ -3,9 +3,19 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class ChotaBhim {
-    public static int chotaBhim(int cups[], int size) {
+    public static void reverse(int cups[], int size){
+        int temp = 0;
+        for(int i = 0, j = size -1; i < j; i++, j--){
+            temp = cups[i];
+            cups[i] = cups[j];
+            cups[j] = temp;
+        }
+    }
+    public static int chotaBhim(int cups[]) {
+        int size = cups.length;
         int time = 60;
         Arrays.sort(cups);
+        reverse(cups, size);
         int total = 0;
         int index, temp;
         while (time > 0) {
@@ -24,7 +34,8 @@ public class ChotaBhim {
         return total;
     }
     
-    public static int chotaBhim2(int cups[], int size) {
+    public static int chotaBhim2(int cups[]) {
+        int size = cups.length;
         int time = 60;
         PriorityQueue<Integer> pq = new PriorityQueue<Integer>(Collections.reverseOrder());
         int i = 0;
@@ -47,9 +58,9 @@ public class ChotaBhim {
     
     public static void main(String[] args) {
         int cups[] = { 2, 1, 7, 4, 2 };
-        chotaBhim(cups, cups.length);
+        chotaBhim(cups);
         int cups2[] = { 2, 1, 7, 4, 2 };
-        chotaBhim2(cups2, cups.length);
+        chotaBhim2(cups2);
     }
     
     /*

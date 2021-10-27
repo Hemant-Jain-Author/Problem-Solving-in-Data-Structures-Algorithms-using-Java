@@ -1,5 +1,3 @@
-package DP;
-
 public class StockBuySell {
     public static int maxProfit(int[] arr){
         int buyProfit = -arr[0]; // Buy stock profit
