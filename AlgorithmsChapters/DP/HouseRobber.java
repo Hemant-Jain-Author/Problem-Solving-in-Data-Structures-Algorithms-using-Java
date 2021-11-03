@@ -1,5 +1,3 @@
-package DP;
-
 public class HouseRobber {
     public static int maxRobbery(int[] house) {
         int n = house.length;

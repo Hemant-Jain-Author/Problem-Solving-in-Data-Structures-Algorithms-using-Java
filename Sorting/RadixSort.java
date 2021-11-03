@@ -25,11 +25,12 @@ public class RadixSort {
         // number of elements till index i in output.
         for (int i = 1; i < 10; i++)
             count[i] += count[i - 1];
- 
         // Copy content to input arr.
         for (int i = n - 1; i >= 0; i--) {
-            arr[count[(temp[i] / dividend) % 10] - 1] = temp[i];
-            count[(temp[i] / dividend) % 10]--;
+            int index = (temp[i] / dividend) % 10;
+            arr[count[index]-1] = temp[i];
+            count[index]--;
+            printArray(count);
         }
     }
 
@@ -46,7 +47,7 @@ public class RadixSort {
     }
 
     
-    public void printArray(int[] arr) {
+    public static void printArray(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }

@@ -363,7 +363,7 @@ public class Searching {
 
     public static int findMissingNumber6(int[] arr, int size) {
         for (int i = 0; i < size; i++)
-            arr[(arr[i])%(size) - 1] += size+1;
+            arr[(arr[i]-1)%size] += size;
         
         for(int i = 0; i< size; i++)
             if(arr[i] < size+1)
@@ -2649,11 +2649,11 @@ true    */
     */
 
     public static void main(String[] args) {
-        main1();
+        //main1();
         //main2();
         //main3();
         //main4();
-        //main5();
+        main5();
         //main6();
         //main7();
         //main8();

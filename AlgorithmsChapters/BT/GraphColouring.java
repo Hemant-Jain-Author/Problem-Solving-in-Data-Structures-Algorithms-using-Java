@@ -90,3 +90,8 @@ public class GraphColouring {
         return false;
     }
 }
+
+/*
+Assigned colours are:: 1 2 1 2 3
+Assigned colours are:: 1 2 1 2 3
+*/

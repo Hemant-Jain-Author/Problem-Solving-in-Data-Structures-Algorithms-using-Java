@@ -99,28 +99,15 @@ public class Knapsack {
     }
 
     public static void main(String[] args) {
-        int[] wt = { 5, 10, 15 };
-        int[] cost = { 10, 30, 20 };
-        int capacity = 20;
-
-        Knapsack kp = new Knapsack();
-
-        double maxCost = kp.KS01UnboundBU(wt, cost, capacity);
-        System.out.println("Maximum cost obtained = " + maxCost);
-        maxCost = kp.getMaxCost01BU(wt, cost, capacity);
-        System.out.println("Maximum cost obtained = " + maxCost);
-        maxCost = kp.getMaxCost01TD(wt, cost, capacity);
-        System.out.println("Maximum cost obtained = " + maxCost);
-    }
-
-    public static void main2(String[] args) {
         int[] wt = { 10, 40, 20, 30 };
         int[] cost = { 60, 40, 90, 120 };
         int capacity = 50;
 
         Knapsack kp = new Knapsack();
 
-        double maxCost = kp.getMaxCost01(wt, cost, capacity);
+        double maxCost = kp.KS01UnboundBU(wt, cost, capacity);
+        System.out.println("Maximum cost obtained = " + maxCost);
+        maxCost = kp.getMaxCost01(wt, cost, capacity);
         System.out.println("Maximum cost obtained = " + maxCost);
         maxCost = kp.getMaxCost01BU(wt, cost, capacity);
         System.out.println("Maximum cost obtained = " + maxCost);
@@ -130,6 +117,7 @@ public class Knapsack {
 }
 
 /*
+Maximum cost obtained = 300.0
 Maximum cost obtained = 210.0
 Maximum cost obtained = 210.0
 Maximum cost obtained = 210.0

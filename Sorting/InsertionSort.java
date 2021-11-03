@@ -18,7 +18,7 @@ public class InsertionSort {
 
     public static void main(String[] args) {
         int[] array = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
-        BubbleSort srt = new BubbleSort();
+        InsertionSort srt = new InsertionSort();
         srt.sort(array);
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " ");

@@ -265,7 +265,7 @@ public class HeapEx {
         while (pq.size() > 0)
             output[index++] = pq.remove();
     
-        for (i = k; i < size; i++) {
+        for (i = 0; i < size; i++) {
             arr[i] = output[i];
         }
     }

@@ -83,6 +83,10 @@ class Permutations {
         for (int i = 0; i < 4; i++) {
             arr[i] = i+1;
         }
+        permutation(arr, 0, 4);
+        System.out.println();
+        permutation2(arr, 0, 4);
+        System.out.println();
         permutation3(arr, 0, 4);
     }
 }
