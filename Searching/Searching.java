@@ -362,11 +362,16 @@ public class Searching {
     }
 
     public static int findMissingNumber6(int[] arr, int size) {
-        for (int i = 0; i < size; i++)
-            arr[(arr[i]-1)%size] += size;
+        for (int i = 0; i < size; i++) {
+            // len(arr)+1 value should be ignored.
+            if(arr[i] != size+1 && arr[i] != size*3 +1){
+                // 1 should not become (len(arr)+1) so multiplied by 2
+                arr[(arr[i]-1)%size] += size*2;
+            } 
+        }
         
         for(int i = 0; i< size; i++)
-            if(arr[i] < size+1)
+            if(arr[i] < (size*2))
                 return i+1;
         return Integer.MAX_VALUE;
     }
