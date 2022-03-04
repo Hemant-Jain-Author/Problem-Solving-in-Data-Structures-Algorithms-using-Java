@@ -3,7 +3,7 @@ public class BubbleSort {
         return value1 < value2;
     }
 
-    private boolean more(int value1, int value2) {
+    private boolean greater(int value1, int value2) {
         return value1 > value2;
     }
 
@@ -12,7 +12,7 @@ public class BubbleSort {
         int i, j, temp;
         for (i = 0; i < (size - 1); i++) {
             for (j = 0; j < size - i - 1; j++) {
-                if (more(arr[j], arr[j + 1])) {
+                if (greater(arr[j], arr[j + 1])) {
                     /* Swapping */
                     temp = arr[j];
                     arr[j] = arr[j + 1];
@@ -28,7 +28,7 @@ public class BubbleSort {
         for (i = 0; i < (size - 1) && swapped == 1; i++) {
             swapped = 0;
             for (j = 0; j < size - i - 1; j++) {
-                if (more(arr[j], arr[j + 1])) {
+                if (greater(arr[j], arr[j + 1])) {
                     temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;

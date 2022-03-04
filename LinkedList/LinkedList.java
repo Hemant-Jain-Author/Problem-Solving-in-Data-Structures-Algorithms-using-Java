@@ -652,6 +652,7 @@ public class LinkedList {
         ll.addHead(1);
         ll.addHead(2);
         ll.addHead(3);
+        ll.addHead(4);
         ll.print();
         System.out.println(ll.nthNodeFromBeginning(2));
         System.out.println(ll.nthNodeFromEnd(2));
@@ -753,9 +754,10 @@ ll.insertionSort();
         main3();
         main4();
         main5();
+        */
         main6();
         main7();
-        */ 
+         
         main8(); 
       /*  main9();
         main10();*/

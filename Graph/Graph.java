@@ -254,7 +254,7 @@ public class Graph {
         System.out.println("PathExist :: " + pathExist(gph, 0, 4));
 
         System.out.println();
-        System.out.println(countAllPath(gph, 0, 4));
+        System.out.println("Path Count :: " + countAllPath(gph, 0, 4));
         printAllPath(gph, 0, 4);
     }
 
@@ -266,7 +266,7 @@ public class Graph {
     Vertex 4 is connected to : 
     PathExist :: true
 
-    3
+    Path Count :: 3
     [0, 1, 3, 4]
     [0, 1, 4]
     [0, 2, 3, 4]
@@ -425,7 +425,7 @@ public class Graph {
         gph.addUndirectedEdge(4, 6);
         gph.print();
         bfsLevelNode(gph, 1);
-        System.out.println(bfsDistance(gph, 1, 6));
+        System.out.println("BfsDistance :: " + bfsDistance(gph, 1, 6));
     }
     /*
     Vertex 0 is connected to : (1, 1) (2, 1) (4, 1) 
@@ -444,7 +444,7 @@ public class Graph {
     5 - 2
     3 - 3
     6 - 3
-    3
+    BfsDistance :: 3
     */
     
     public static boolean isCyclePresentUndirectedDFS(Graph graph, int index, int parentIndex, boolean[] visited) {
@@ -520,7 +520,7 @@ public class Graph {
         //Different subsets are created.
         Sets[] sets = new Sets[count];
         for (int i = 0; i < count; i++)
-            sets[i] = new Sets(-1, 0);
+            sets[i] = new Sets(i, 0);
 
         LinkedList<Edge> edge = new LinkedList<Edge>();
         boolean[][] flags = new boolean[count][count]; 
@@ -774,15 +774,13 @@ public class Graph {
         int[] previous = new int[count];
         int[] dist = new int[count];
         boolean[] visited = new boolean[count];
-        int source = 1;
+        Arrays.fill(previous, -1);
+        Arrays.fill(dist, Integer.MAX_VALUE);// infinite
 
-        for (int i = 0; i <count; i++) {
-            previous[i] = -1;
-            dist[i] = Integer.MAX_VALUE; // infinite
-        }
-
+        int source = 0;
         dist[source] = 0;
         previous[source] = -1;
+
         PriorityQueue<Edge> queue = new PriorityQueue<Edge>(100);
         Edge node = new Edge(source, source, 0);
         queue.add(node);
@@ -804,57 +802,30 @@ public class Graph {
                 }
             }
         }
+
         // printing result.
         int sum = 0;
-        boolean isMst = true;;
+        boolean isMst = true;
+        String output = "Edges are ";
         for (int i = 0; i < count; i++) {
             if (dist[i] == Integer.MAX_VALUE) {
-                System.out.println("Node id " + i + "  prev " + previous[i] + " distance : Unreachable");
+                output += ("(" + i  + ", Unreachable) ");
                 isMst = false;
-            } else {
-                System.out.println("Node id " + i + "  prev " + previous[i] + " distance : " + dist[i]);
+            } else if (previous[i] != -1) {
+                output += ("(" + previous[i] + ", "  + i + ", " + dist[i] + ") ");
                 sum += dist[i];
             }
         }
 
-        if(isMst)
-            System.out.print("Total MST cost: " + sum);
+        if(isMst){
+            System.out.println(output);
+            System.out.println("Total MST cost: " + sum);
+        }
         else 
-            System.out.print("Not a mst");
+            System.out.println("Cant get a Segment Tree");
         
     }
-    /*
-    public static void kruskalMST((Graph gph) {
-        int count = gph.count;
-        int[] parent = new int[count];
-        Arrays.fill(parent, -1);
-        Edge edge[] = new Edge[100];
-        LinkedList<Edge> output = new LinkedList<Edge>();
-        
-        int E = 0;
-        for (int i = 0; i < count; i++) {
-            LinkedList<Edge> ad = gph.Adj.get(i);
-            for (Edge adn : ad) {
-                edge[E++] = adn;
-            }
-        }
-
-        int sum=0;
-        Arrays.sort(edge, 0, E-1);
-        for (int i = 0; i < E; i++) {
-            int x = find(parent, edge[i].src);
-            int y = find(parent, edge[i].dest);            
-            if(x != y) {
-                System.out.print("(" + edge[i].src + ", " + edge[i].dest + ", " + edge[i].cost + ") ");
-                sum += edge[i].cost;
-                output.add(edge[i]);
-                union(parent, x, y);
-            }
-        }
-
-        System.out.print("\nTotal MST cost: " + sum);
-    }
-    */
+   
     public static class Sets{
         int parent;
         int rank;
@@ -864,6 +835,7 @@ public class Graph {
         }
     }
     
+    // root element of set
     public static int find(Sets[] sets, int index) {
         int p = sets[index].parent; 
         while(p != index) {
@@ -905,18 +877,18 @@ public class Graph {
         Arrays.sort(edge, 0, E-1);
         
         int sum=0;
-        LinkedList<Edge> output = new LinkedList<Edge>();
+        String output = "Edges are ";
         for (int i = 0; i < E; i++) {
             int x = find(sets, edge[i].src);
             int y = find(sets, edge[i].dest);            
             if(x != y) {
-                System.out.print("(" + edge[i].src + ", " + edge[i].dest + ", " + edge[i].cost + ") ");
+                output += ("(" + edge[i].src + ", " + edge[i].dest + ", " + edge[i].cost + ") ");
                 sum += edge[i].cost;
-                output.add(edge[i]);
                 union(sets, x, y);
             }
         }
-        System.out.print("\nTotal MST cost: " + sum);
+        System.out.println(output);
+        System.out.println("Total MST cost: " + sum);
     }
 
 
@@ -937,45 +909,33 @@ public class Graph {
         gph.addUndirectedEdge(6, 7, 1);
         gph.addUndirectedEdge(6, 8, 6);
         gph.addUndirectedEdge(7, 8, 7);
-        //gph.print();
-        //gph.out.println();
-        //primsMST(gph);
-        //System.out.println();
+        System.out.println();
+        primsMST(gph);
+        System.out.println();
         kruskalMST(gph);
-        //dijkstra(gph, 0);
+        System.out.println();
+        dijkstra(gph, 0);
         //floydWarshall(gph);
     }
     
     /*
-    Vertex 0 is connected to : (1, 4) (7, 8) 
-    Vertex 1 is connected to : (0, 4) (2, 8) (7, 11) 
-    Vertex 2 is connected to : (1, 8) (3, 7) (8, 2) (5, 4) 
-    Vertex 3 is connected to : (2, 7) (4, 9) (5, 14) 
-    Vertex 4 is connected to : (3, 9) (5, 10) 
-    Vertex 5 is connected to : (2, 4) (3, 14) (4, 10) (6, 2) 
-    Vertex 6 is connected to : (5, 2) (7, 1) (8, 6) 
-    Vertex 7 is connected to : (0, 8) (1, 11) (6, 1) (8, 7) 
-    Vertex 8 is connected to : (2, 2) (6, 6) (7, 7) 
+Edges are (1, 0, 4) (1, 2, 8) (2, 3, 7) (3, 4, 9) (2, 5, 4) (5, 6, 2) (6, 7, 1) (2, 8, 2) 
+Total MST cost: 37
 
-    node id 0  prev 1 distance : 4
-    node id 1  prev -1 distance : 0
-    node id 2  prev 1 distance : 8
-    node id 3  prev 2 distance : 7
-    node id 4  prev 3 distance : 9
-    node id 5  prev 2 distance : 4
-    node id 6  prev 5 distance : 2
-    node id 7  prev 6 distance : 1
-    node id 8  prev 2 distance : 2
+Edges are (6, 7, 1) (2, 8, 2) (5, 6, 2) (0, 1, 4) (2, 5, 4) (2, 3, 7) (0, 7, 8) (3, 4, 9) 
+Total MST cost: 37
 
-    node id 0  prev -1 distance : 0
-    node id 1  prev 0 distance : 4
-    node id 2  prev 1 distance : 12
-    node id 3  prev 2 distance : 19
-    node id 4  prev 5 distance : 21
-    node id 5  prev 6 distance : 11
-    node id 6  prev 7 distance : 9
-    node id 7  prev 0 distance : 8
-    node id 8  prev 2 distance : 14
+node id 0  prev -1 distance : 0
+node id 1  prev 0 distance : 4
+node id 2  prev 1 distance : 12
+node id 3  prev 2 distance : 19
+node id 4  prev 5 distance : 21
+node id 5  prev 6 distance : 11
+node id 6  prev 7 distance : 9
+node id 7  prev 0 distance : 8
+node id 8  prev 2 distance : 14
+
+
     */
 
     // Unweighed graph
@@ -1021,11 +981,7 @@ public class Graph {
         gph.addUndirectedEdge(6, 7, 7);
         gph.addUndirectedEdge(7, 8, 17);
         bellmanFordShortestPath(gph, 1);
-        // dijkstra(gph, 1);
-        primsMST(gph);
-        //System.out.println("isConnectedUndirected :: " + isConnectedUndirected(gph));
-        System.out.println();
-        kruskalMST(gph);
+        System.out.println("isConnectedUndirected :: " + isConnectedUndirected(gph));
     }
     
     /*
@@ -1482,7 +1438,7 @@ public class Graph {
         int V = gph.count;
         int dist[][] = new int[V][V];
         int path[][] = new int[V][V];
-        final int INF = Integer.MAX_VALUE;
+        final int INF = 99999;
         
         for (int i = 0; i < V; i++) {
             for (int j = 0; j < V; j++) {
@@ -1519,13 +1475,12 @@ public class Graph {
                 // If there is a better path from i to i and is better path then we have -ve cycle.                //
                 if (dist[i][i] < 0) {
                     System.out.println("Negative-weight cycle found.");
-                        return;
-                    }
+                    return;
                 }
             }
-    
-            printSolution(dist, path, V);
         }
+        printSolution(dist, path, V);
+    }
 
         private static void printSolution(int[][] cost, int[][] path, int V) {
             for (int u = 0; u < V; u++) {

@@ -1,5 +1,5 @@
 public class SelectionSort {
-     private boolean more(int value1, int value2) {
+     private boolean greater(int value1, int value2) {
         return value1 > value2;
     }
 

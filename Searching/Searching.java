@@ -2131,12 +2131,12 @@ true    */
     
         for (int i = 0; i < size; i++) {
             if (first == second) {
-                System.out.println(i);
                 return i;
             }
-            if (i < size - 1)
+            if (i < size - 1){
                 first += arr[i];
-            second -= arr[i + 1];
+                second -= arr[i + 1];
+            }
         }
         return -1;
     }
@@ -2658,7 +2658,7 @@ true    */
         //main2();
         //main3();
         //main4();
-        main5();
+        //main5();
         //main6();
         //main7();
         //main8();
@@ -2685,7 +2685,9 @@ true    */
         main29();
         main30();
         main31();
+        
         main32();
+        
         main33();
         main34();
         main35();
@@ -2693,10 +2695,13 @@ true    */
         main37();
         main38();
         main39();
+        */
         main40();
+        /*
         main41();
         main42();
         main43();
+        */
         main44();
         main45();
         main46();
@@ -2704,6 +2709,5 @@ true    */
         main48();
         main49();
         main50();
-        */
     }
 }

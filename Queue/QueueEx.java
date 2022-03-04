@@ -324,7 +324,7 @@ public class QueueEx {
             x = currCol + dir[i][0];
             y = currRow + dir[i][1];
             if(x >= 0 && x < size && y >= 0 && y < size && 
-            traversed[x][y] > dist+1){
+            traversed[x][y] > dist+1) {
                 traversed[x][y] = dist+1;
                 stepsOfKnightUtil(size, x, y, traversed, dist + 1);
             }

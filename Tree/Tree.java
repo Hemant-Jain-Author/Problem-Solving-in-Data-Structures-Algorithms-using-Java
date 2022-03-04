@@ -980,16 +980,11 @@ public class Tree {
         if (curr == null)
             return false;
     
-        if (curr.value == value)
+        if ((curr.value == value) || 
+            searchBTUtil(curr.lChild, value) || 
+            searchBTUtil(curr.rChild, value))
             return true;
     
-        left = searchBTUtil(curr.lChild, value);
-        if (left)
-            return true;
-    
-        right = searchBTUtil(curr.rChild, value);
-        if (right)
-            return true;
         return false;
     }
     

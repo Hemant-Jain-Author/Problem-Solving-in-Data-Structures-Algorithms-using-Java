@@ -43,7 +43,7 @@ public class StringMatching {
             PatternHash = ((PatternHash << 1) + pattern[i]) % prime;
             TextHash = ((TextHash << 1) + text[i]) % prime;
         }
-    
+
         for (i = 0; i <= (n - m); i++) {
             if (TextHash == PatternHash) {
                 for (j = 0; j < m; j++) {
@@ -54,7 +54,10 @@ public class StringMatching {
                 if (j == m)
                     return i;
             }
-            TextHash = (((TextHash - text[i] * powm) << 1) + text[i + m]) % prime;
+            
+            if(i < n - m) 
+                TextHash = (((TextHash - text[i] * powm) << 1) + text[i + m]) % prime;
+            
             if (TextHash < 0) {
                 TextHash = (TextHash + prime);
             }

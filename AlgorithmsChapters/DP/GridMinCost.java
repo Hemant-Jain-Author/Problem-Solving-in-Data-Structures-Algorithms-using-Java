@@ -1,5 +1,3 @@
-package DP;
-
 public class GridMinCost{
     static int min(int x, int y, int z) {
         x = Math.min(x, y);
@@ -7,19 +5,15 @@ public class GridMinCost{
     }
     
     static int minCost(int cost[][], int m, int n){
-        if (m == 0 && n == 0)
-            return 0;
+        if (m == 0 || n == 0)
+            return 99999;
 
-        if(m == 0)
-            return cost[0][n-1] + minCost(cost, 0, n-1);
+        if(m == 1 && n == 1)
+            return cost[0][0];
         
-        if(n == 0)
-            return cost[m-1][0] + minCost(cost, m-1, 0);
-        
-        return cost[m-1][n-1] +
-            min(minCost(cost, m-1, n-1),
-                minCost(cost, m-1, n),
-                minCost(cost, m, n-1));
+        return cost[m-1][n-1] + min(minCost(cost, m-1, n-1),
+                                    minCost(cost, m-1, n),
+                                    minCost(cost, m, n-1));
     }
 
     private static int minCostBU(int cost[][], int m, int n) {
