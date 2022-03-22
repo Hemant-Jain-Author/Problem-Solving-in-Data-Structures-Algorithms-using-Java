@@ -47,22 +47,23 @@ public class Fibo {
         if(n < 1)
             return;
         int[] dp = new int[n];
-
         fibonacciSeriesTD(n-1, dp);
 
         for(int i=0;i<n;i++)
             System.out.print(dp[i] + " ");
     }
 
-    public static int fibonacciSeriesTD(int n, int[] dp) {
-        if (n <= 1)
-            return dp[n] = n;
+    public static void fibonacciSeriesTD(int n, int[] dp) {
+        if (n <= 1) {
+            dp[n] = n;
+            return;
+        } 
         
         if(dp[n] != 0)
-            return dp[n];
+            return;
 
-        dp[n] = fibonacciSeriesTD(n-1, dp) + fibonacciSeriesTD(n-2, dp); 
-        return dp[n];
+        dp[n] = fibonacciSeriesTD(n-1, dp) + 
+        fibonacciSeriesTD(n-2, dp); 
     }
 
     public static void main(String[] args) {       

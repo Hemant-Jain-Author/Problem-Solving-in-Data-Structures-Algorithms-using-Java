@@ -835,7 +835,6 @@ public static void main7a() {
 				}
 			}
 		}
-		
 	    for (int val : output)
 	        System.out.print(val + " ");
 	    System.out.println();

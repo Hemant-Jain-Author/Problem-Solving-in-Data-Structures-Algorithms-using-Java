@@ -99,6 +99,7 @@ public boolean delete(int value) {
         if(arr[i] == value){
             arr[i] = arr[size-1];
             size -= 1;
+            percolateUp(i);
             percolateDown(i);
             return true;
         }

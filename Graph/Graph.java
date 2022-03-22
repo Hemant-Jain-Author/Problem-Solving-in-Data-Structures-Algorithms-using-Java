@@ -282,6 +282,15 @@ public class Graph {
                 retVal = i;
             }
         }
+        for (int i = 0; i < count; i++)
+            visited[i] = 0;
+        dfsUtil(gph, retVal, visited);
+        for (int i = 0; i < count; i++){
+            if (visited[i] == 0) {
+                printf("Disconnected graph!");
+                return -1;
+            }
+        }
         System.out.print("Root vertex is :: " + retVal);
         return retVal;
     }

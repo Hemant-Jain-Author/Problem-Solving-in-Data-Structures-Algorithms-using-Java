@@ -138,7 +138,7 @@ public class DoublyLinkedList {
             return;
         }
     
-        if (head.value > value)// at the beginning
+        if (head.value >= value)// at the beginning
         {
             temp.next = head;
             head.prev = temp;
@@ -188,7 +188,6 @@ public class DoublyLinkedList {
         return;
     }
     
-    /* Remove Duplicate */
     public void removeDuplicate() {
         Node curr = head;
         while (curr != null) {
@@ -196,9 +195,8 @@ public class DoublyLinkedList {
                 curr.next = curr.next.next;
                 if(curr.next != null)
                     curr.next.prev = curr;
-                if (curr.next == null) {
+                else 
                     tail = curr;
-                }
             } else {
                 curr = curr.next;
             }
