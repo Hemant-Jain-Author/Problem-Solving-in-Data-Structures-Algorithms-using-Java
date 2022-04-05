@@ -99,7 +99,8 @@ public class Heap {
 			if (arr[i] == value) {
 				arr[i] = arr[size - 1];
 				size -= 1;
-				percolateDown(i);
+				percolateUp(i);
+            	percolateDown(i);
 				return true;
 			}
 		}

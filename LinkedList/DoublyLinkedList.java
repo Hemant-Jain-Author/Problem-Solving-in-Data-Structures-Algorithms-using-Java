@@ -156,7 +156,7 @@ public class DoublyLinkedList {
 			tail = temp;
 			temp.prev = curr;
 			curr.next = temp;
-		} else/// all other
+		} else /// all other
 		{
 			temp.next = curr.next;
 			temp.prev = curr;
@@ -188,22 +188,20 @@ public class DoublyLinkedList {
 		return;
 	}
 
-	/* Remove Duplicate */
-	public void removeDuplicate() {
-		Node curr = head;
-		while (curr != null) {
-			if ((curr.next != null) && curr.value == curr.next.value) {
-				curr.next = curr.next.next;
-				if (curr.next != null)
-					curr.next.prev = curr;
-				if (curr.next == null) {
-					tail = curr;
-				}
-			} else {
-				curr = curr.next;
-			}
-		}
-	}
+    public void removeDuplicate() {
+        Node curr = head;
+        while (curr != null) {
+            if ((curr.next != null) && curr.value == curr.next.value) {
+                curr.next = curr.next.next;
+                if(curr.next != null)
+                    curr.next.prev = curr;
+                else 
+                    tail = curr;
+            } else {
+                curr = curr.next;
+            }
+        }
+    }
 
 	public DoublyLinkedList copyListReversed() {
 		DoublyLinkedList dll = new DoublyLinkedList();

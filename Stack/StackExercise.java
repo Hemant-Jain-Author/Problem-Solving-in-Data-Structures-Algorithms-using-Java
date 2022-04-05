@@ -650,8 +650,6 @@ public class StackExercise {
 	public static int longestContBalParen2(String string, int size) {
 		Stack<Integer> stk = new Stack<Integer>();
 		int length = 0;
-		int previous = -1;
-		int oldLength = 0;
 		for (int i = 0; i < size; i++) {
 			if (string.charAt(i) == '(')
 				stk.push(i);
@@ -837,6 +835,7 @@ public class StackExercise {
 		for (int val : output)
 			System.out.print(val + " ");
 		System.out.println();
+
 	}
 
 	public static void nextSmallerElement2(int[] arr, int size) {
