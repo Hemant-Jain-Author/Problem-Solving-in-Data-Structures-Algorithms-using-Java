@@ -70,7 +70,7 @@ public class BitManipulation {
     public static void main(String[] args) {
         int a = 4; 
         int b = 8;
-        /*
+        
         System.out.println(andEx(a, b));
         System.out.println(orEx(a, b));
         System.out.println(xorEx(a, b));
@@ -85,7 +85,7 @@ public class BitManipulation {
         System.out.println(rightMostBit(a));
         System.out.println(resetRightMostBit(a));
         System.out.println(isPowerOf2(a));
-        */
+        
         for(int i=0;i<10;i++)
             System.out.println(i + " bit count : " + countBits(i));
     }

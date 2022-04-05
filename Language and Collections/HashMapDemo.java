@@ -7,20 +7,20 @@ the values may be duplicated.
 import java.util.HashMap;
 
 public class HashMapDemo {
-    public static void main(String[] args) {
-        // Create a hash map.
-        HashMap<String, Integer> hm = new HashMap<String, Integer>();    
-        // Put elements into the map
-        hm.put("Apple", 40);
-        hm.put("Banana", 10);
-        hm.put("Mango", 20);
+	public static void main(String[] args) {
+		// Create a hash map.
+		HashMap<String, Integer> hm = new HashMap<String, Integer>();
+		// Put elements into the map
+		hm.put("Apple", 40);
+		hm.put("Banana", 10);
+		hm.put("Mango", 20);
 
-        System.out.println("Size :: " + hm.size());
-        for(String key : hm.keySet())
-            System.out.println(key + " cost :" + hm.get(key));
-        System.out.println("Apple present ::" + hm.containsKey("Apple"));
-        System.out.println("Grapes present :: " + hm.containsKey("Grapes"));
-    }
+		System.out.println("Size :: " + hm.size());
+		for (String key : hm.keySet())
+			System.out.println(key + " cost :" + hm.get(key));
+		System.out.println("Apple present ::" + hm.containsKey("Apple"));
+		System.out.println("Grapes present :: " + hm.containsKey("Grapes"));
+	}
 }
 
 /*

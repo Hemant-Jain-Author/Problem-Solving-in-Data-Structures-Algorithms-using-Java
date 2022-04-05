@@ -2,74 +2,74 @@ import java.util.PriorityQueue;
 import java.util.Comparator;
 
 public class HuffmanTree {
-    Node root = null;
+	Node root = null;
 
-    class Node implements Comparable<Node> {
-        char c;
-        int freq;
-        Node left;
-        Node right;
-    
-        Node(char ch, int fr, Node l, Node r) {
-            c = ch; 
-            freq = fr;
-            left = l;
-            right = r;
-        }
+	class Node implements Comparable<Node> {
+		char c;
+		int freq;
+		Node left;
+		Node right;
 
-        public int compareTo(Node n2) {
-            return this.freq - n2.freq;
-        }
-    }
+		Node(char ch, int fr, Node l, Node r) {
+			c = ch;
+			freq = fr;
+			left = l;
+			right = r;
+		}
 
-    HuffmanTree(char[] arr, int[] freq){
-        int n = arr.length;
-        PriorityQueue<Node> que = new PriorityQueue<Node>(n);
+		public int compareTo(Node n2) {
+			return this.freq - n2.freq;
+		}
+	}
 
-        for (int i = 0; i < n; i++) {
-            Node node = new Node(arr[i], freq[i], null, null);
-            que.add(node);
-        }
+	HuffmanTree(char[] arr, int[] freq) {
+		int n = arr.length;
+		PriorityQueue<Node> que = new PriorityQueue<Node>(n);
 
-        while (que.size() > 1) {
-            Node lt= que.peek();
-            que.poll();
-            Node rt = que.peek();
-            que.poll();
-      
-            Node nd = new Node('+', lt.freq + rt.freq, lt, rt);      
-            que.add(nd);
-        }
-        root = que.peek();      
-    }
+		for (int i = 0; i < n; i++) {
+			Node node = new Node(arr[i], freq[i], null, null);
+			que.add(node);
+		}
 
-    private void print(Node root, String s) {
-        if (root.left == null && root.right == null && root.c != '+') {
-            System.out.println(root.c + " = " + s);
-            return;
-        }
-        print(root.left, s + "0");
-        print(root.right, s + "1");
-    }
+		while (que.size() > 1) {
+			Node lt = que.peek();
+			que.poll();
+			Node rt = que.peek();
+			que.poll();
 
-    public void print(){
-        System.out.println("Char = Huffman code");
-        print(root, "");
-    }
+			Node nd = new Node('+', lt.freq + rt.freq, lt, rt);
+			que.add(nd);
+		}
+		root = que.peek();
+	}
 
-    public static void main(String[] args) {
-        char[] ar = { 'A', 'B', 'C', 'D', 'E' };
-        int[] fr = { 30, 25, 21, 14, 10};
-        HuffmanTree hf = new HuffmanTree(ar, fr);
-        hf.print();    
-    }
+	private void print(Node root, String s) {
+		if (root.left == null && root.right == null && root.c != '+') {
+			System.out.println(root.c + " = " + s);
+			return;
+		}
+		print(root.left, s + "0");
+		print(root.right, s + "1");
+	}
+
+	public void print() {
+		System.out.println("Char = Huffman code");
+		print(root, "");
+	}
+
+	public static void main(String[] args) {
+		char[] ar = { 'A', 'B', 'C', 'D', 'E' };
+		int[] fr = { 30, 25, 21, 14, 10 };
+		HuffmanTree hf = new HuffmanTree(ar, fr);
+		hf.print();
+	}
 }
 
 /*
-Char = Huffman code
-C = 00
-E = 010
-D = 011
-B = 10
-A = 11
-*/
+ * Char = Huffman code 
+ * C = 00 
+ * E = 010 
+ * D = 011 
+ * B = 10 
+ * A = 11
+ */

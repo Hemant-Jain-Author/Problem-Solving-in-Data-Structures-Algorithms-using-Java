@@ -1,5 +1,5 @@
 public class parkingLot {
-    private Map<int,Space> unreservedMap;
+	private Map<int,Space> unreservedMap;
     private Map<int,Space> reservedMap;
 
     public boolean reserveSpace(Space)
@@ -10,7 +10,7 @@ public class parkingLot {
         //put into the reserved map with the current time value.
     }
 
-    public int unreserveSpace(Space)
+	public int unreserveSpace(Space)
     {
         // It will find the entry in reserve map 
         // if yes then we will pick that 

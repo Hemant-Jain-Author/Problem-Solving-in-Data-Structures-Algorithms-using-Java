@@ -7,8 +7,8 @@ for file in "$1"/*
 do
     if [ ! -d "${file}" ] ; then
 	if [[ ${file} == *.java ]] ; then
-		echo "${file} is java file"
-		echo "${file} ########  "  >> error.log
+		#echo "${file} is java file"
+		#echo "${file} ########  "  >> error.log
 		javac "${file}" >> error.log 2>> error.log
 #	else
 #        	# echo "${file} is a file"

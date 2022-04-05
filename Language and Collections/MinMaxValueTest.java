@@ -11,7 +11,7 @@ public class MinMaxValueTest {
         int minInteger = Integer.MIN_VALUE;
 
         long maxLong = Long.MAX_VALUE;
-        long minLong = Long.MIN_VALUE;
+		long minLong = Long.MIN_VALUE;
 
         float maxFloat = Float.MAX_VALUE;
         float minFloat = Float.MIN_VALUE;

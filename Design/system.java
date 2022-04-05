@@ -7,6 +7,6 @@ public class system {
     Person getPerson(int personId) {
         int machineId = personIdToMachineIdMap[personId];
         Machine m = machineIdToMachineMap[machineId];
-        return m.getPersonWithId(personId);
+		return m.getPersonWithId(personId);
     }
 }

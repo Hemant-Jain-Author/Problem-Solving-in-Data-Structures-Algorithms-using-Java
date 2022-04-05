@@ -12,7 +12,7 @@ public class MergeSort1 {
         int upperStart = middleIndex + 1;
         int upperStop = upperIndex;
         int count = lowerIndex;
-        while (lowerStart <= lowerStop && upperStart <= upperStop) {
+		while (lowerStart <= lowerStop && upperStart <= upperStop) {
             if (arr[lowerStart] < arr[upperStart]) {
                 tempArray[count++] = arr[lowerStart++];
             } else {

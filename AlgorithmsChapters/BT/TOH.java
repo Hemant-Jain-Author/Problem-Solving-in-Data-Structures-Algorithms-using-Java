@@ -1,23 +1,23 @@
 // Towers Of Hanoi problem.
 public class TOH {
-    public static void tohUtil(int num, char from, char to, char temp) {
-        if (num < 1) {
-            return;
-        }
+	public static void tohUtil(int num, char from, char to, char temp) {
+		if (num < 1) {
+			return;
+		}
 
-        tohUtil(num - 1, from, temp, to);
-        System.out.println("Move disk " + num + " from peg " + from + " to peg " + to);
-        tohUtil(num - 1, temp, to, from);
-    }
+		tohUtil(num - 1, from, temp, to);
+		System.out.println("Move disk " + num + " from peg " + from + " to peg " + to);
+		tohUtil(num - 1, temp, to, from);
+	}
 
-    public static void toh(int num) {
-        System.out.println("The sequence of moves involved in the Tower of Hanoi are :");
-        tohUtil(num, 'A', 'C', 'B');
-    }
+	public static void toh(int num) {
+		System.out.println("The sequence of moves involved in the Tower of Hanoi are :");
+		tohUtil(num, 'A', 'C', 'B');
+	}
 
-    public static void main(String[] args) {
-        toh(3);
-    }
+	public static void main(String[] args) {
+		toh(3);
+	}
 }
 /*
 The sequence of moves involved in the Tower of Hanoi are :

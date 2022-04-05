@@ -12,7 +12,7 @@ public class Queue {
         data = new int[n];
     }
 
-    public boolean add(int value) {
+	public boolean add(int value) {
         if (size >= capacity) {
             System.out.println("Queue is full.");
             return false;

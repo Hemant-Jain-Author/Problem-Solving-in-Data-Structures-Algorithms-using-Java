@@ -10,7 +10,7 @@ public class LinkedListDemo {
         System.out.println("Linked List: " + ll);
         ll.removeFirst();
         ll.removeLast();
-        System.out.println("Linked List: " + ll);
+		System.out.println("Linked List: " + ll);
     }
 }
 
