@@ -70,5 +70,6 @@ public class MinCostBinaryTree {
 }
 
 /*
- * Total cost: 32 Total cost: 32
+ * Total cost: 32 
+ * Total cost: 32
  */

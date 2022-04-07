@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class Vacation {
 	// days are must travel days, costs are cost of tickets.
 	public static int minCost(int[] days, int[] costs) {

@@ -12,5 +12,11 @@ public class IsPrime {
 
 	public static void main(String[] args) {
 		System.out.println(IsPrime.isPrime(8));
+		System.out.println(IsPrime.isPrime(11));
 	}
 }
+
+/*
+false
+true
+*/

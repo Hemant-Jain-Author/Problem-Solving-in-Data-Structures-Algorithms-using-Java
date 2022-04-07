@@ -63,8 +63,8 @@ public class WildCharMatch {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(matchExp("*llo,?World?", "Hello, World!"));
-		System.out.println(matchExpDP("*llo,?World?", "Hello, World!"));
+		System.out.println("matchExp :: " + matchExp("*llo,?World?", "Hello, World!"));
+		System.out.println("matchExp :: " + matchExpDP("*llo,?World?", "Hello, World!"));
 	}
 
 	public static void main2(String[] args) {
@@ -80,3 +80,8 @@ public class WildCharMatch {
 		}
 	}
 }
+
+/*
+matchExp ::true
+matchExp ::true
+*/

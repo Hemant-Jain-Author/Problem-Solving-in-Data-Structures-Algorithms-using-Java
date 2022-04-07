@@ -52,3 +52,5 @@ public class Stack {
 			System.out.print(s.pop2() + " ");
 	}
 }
+
+// 4 3 2 1 0 

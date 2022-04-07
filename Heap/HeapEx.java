@@ -281,9 +281,9 @@ public class HeapEx {
 			System.out.print(arr[i] + " ");
 	}
 
-	/*
-	 * 1 5 4 9 10 50
-	 */
+/*
+1 4 5 9 10 50 
+*/
 	public static void main(String[] args) {
 		main1();
 		main2();

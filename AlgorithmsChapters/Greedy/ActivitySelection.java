@@ -1,5 +1,3 @@
-package Greedy;
-
 // Activities selection problem.
 import java.util.*;
 

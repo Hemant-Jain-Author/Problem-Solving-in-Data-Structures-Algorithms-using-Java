@@ -32,3 +32,8 @@ public class HouseRobber {
 	}
 
 }
+
+/*
+Total cash: 160
+Total cash: 160
+*/

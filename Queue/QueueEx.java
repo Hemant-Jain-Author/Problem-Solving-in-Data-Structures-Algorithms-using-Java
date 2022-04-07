@@ -53,9 +53,10 @@ public class QueueEx {
 		System.out.println("Circular Tour : " + CircularTour2(tour, 3));
 	}
 
-	/*
-	Circular Tour : 2
-	*/
+/*
+Circular Tour : 2
+Circular Tour : 2
+*/
 	public static int convertXY(int src, int dst) {
 		ArrayDeque<Integer> que = new ArrayDeque<Integer>();
 		int arr[] = new int[100];
@@ -81,10 +82,10 @@ public class QueueEx {
 	}
 
 	public static void main2() {
-		System.out.println("Steps counter :: " + convertXY(2, 7));
+		System.out.println("Steps count :: " + convertXY(2, 7));
 	}
 	/*
-	Steps counter :: 3
+	Steps count :: 3
 	*/
 
 	public static void maxSlidingWindows(int arr[], int size, int k) {
@@ -124,9 +125,10 @@ public class QueueEx {
 
 	}
 
-	/*
-	75 92 92 92 90 
-	*/
+/*
+75 92 92 92 90 
+75 92 92 92 90 	
+*/
 
 	public static int minOfMaxSlidingWindows(int arr[], int size, int k) {
 		ArrayDeque<Integer> que = new ArrayDeque<Integer>();
@@ -152,9 +154,9 @@ public class QueueEx {
 		minOfMaxSlidingWindows(arr, 7, 3);
 	}
 
-	/*
-	Min of max is :: 75
-	*/
+/*
+Min of max is :: 75
+*/
 	public static void maxOfMinSlidingWindows(int arr[], int size, int k) {
 		ArrayDeque<Integer> que = new ArrayDeque<Integer>();
 		int maxVal = -999999;
@@ -179,9 +181,10 @@ public class QueueEx {
 		// Output 59, as minimum values in sliding windows are [2, 2, 59, 59, 55]
 	}
 
-	/*
-	Max of min is :: 59
-	*/
+/*
+Max of min is :: 59
+*/
+
 	public static void firstNegSlidingWindows(int arr[], int size, int k) {
 		ArrayDeque<Integer> que = new ArrayDeque<Integer>();
 
@@ -206,9 +209,9 @@ public class QueueEx {
 		firstNegSlidingWindows(arr, 8, 3);
 	}
 
-	/*
-	-2 -2 -6 -14 -14 NAN
-	*/
+/*
+-2 -2 -6 -14 -14 NAN
+*/
 
 	public static void rottenFruitUtil(int[][] arr, int maxCol, int maxRow, int currCol, int currRow, int[][] traversed,
 			int day) {
@@ -385,9 +388,10 @@ public class QueueEx {
 		System.out.println(stepsOfKnight(20, 10, 10, 20, 20));
 		System.out.println(stepsOfKnight2(20, 10, 10, 20, 20));
 	}
-
-	// 8
-
+/*
+8
+8
+*/
 	public static void distNearestFillUtil(int[][] arr, int maxCol, int maxRow, int currCol, int currRow,
 			int[][] traversed, int dist) { // Range check
 		int x, y;
@@ -533,7 +537,7 @@ public class QueueEx {
 		System.out.println("Largest Island : " + findLargestIsland(arr, 5, 5));
 	}
 
-	// Largest Island : 12
+// Largest Island : 12
 
 	static void reverseStack(Stack<Integer> stk) {
 		ArrayDeque<Integer> que = new ArrayDeque<Integer>();
@@ -575,7 +579,7 @@ public class QueueEx {
 		System.out.println(que);
 	}
 
-	static int Josephus(int n, int k) {
+	static int josephus(int n, int k) {
 		ArrayDeque<Integer> que = new ArrayDeque<Integer>();
 		for (int i = 0; i < n; i++)
 			que.add(i + 1);
@@ -591,12 +595,12 @@ public class QueueEx {
 	}
 
 	public static void main12() {
-		System.out.println("Position : " + Josephus(11, 5));
+		System.out.println("Position : " + josephus(11, 5));
 	}
 
-	/*
-	Position : 8
-	*/
+/*
+Position : 8
+*/
 	public static void main(String[] args) {
 		main1();
 		main2();

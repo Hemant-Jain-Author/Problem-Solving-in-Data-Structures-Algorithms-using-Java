@@ -1,5 +1,3 @@
-package DP;
-
 public class FloydWarshall {
 
 	final static int INF = Integer.MAX_VALUE;
@@ -36,7 +34,7 @@ public class FloydWarshall {
 				if (dist[i][j] == INF)
 					System.out.print("INF ");
 				else
-					System.out.print(dist[i][j] + "   ");
+					System.out.print(dist[i][j] + " ");
 			}
 			System.out.println();
 		}
@@ -52,11 +50,11 @@ public class FloydWarshall {
 }
 
 /*
-0   2   4   3   6   8   7   
-2   0   3   1   4   7   5   
-4   3   0   2   5   4   6   
-3   1   2   0   3   6   4   
-7   5   6   4   0   3   1   
-8   7   4   6   4   0   2   
-7   5   6   4   2   3   0  
+0 2 4 3 6 8 7 
+2 0 3 1 4 7 5 
+4 3 0 2 5 4 6 
+3 1 2 0 3 6 4 
+7 5 6 4 0 3 1 
+8 7 4 6 4 0 2 
+7 5 6 4 2 3 0 
 */

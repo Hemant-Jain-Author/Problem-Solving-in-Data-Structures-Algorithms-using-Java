@@ -34,5 +34,6 @@ public class StairUniqueWays {
 	}
 }
 /*
- * Different way to reach top:: 5
- */
+Unique way to reach top:: 5
+Unique way to reach top:: 5 
+*/

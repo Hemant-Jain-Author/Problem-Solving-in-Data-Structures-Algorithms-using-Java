@@ -51,10 +51,8 @@ public class Heap {
 	private void percolateUp(int child) {
 		int parent = (child - 1) / 2;
 		int temp;
-		if (parent < 0) {
-			return;
-		}
-		if (compare(arr, parent, child)) {
+
+		if (parent >= 0 && compare(arr, parent, child)) {
 			temp = arr[child];
 			arr[child] = arr[parent];
 			arr[parent] = temp;
@@ -131,10 +129,10 @@ public class Heap {
 		hp.print();
 		System.out.println();
 
-		/*    while (!hp.isEmpty()) {
+		while (!hp.isEmpty()) {
 		    System.out.print(hp.remove() + " ");
 		}
-		System.out.println();*/
+		System.out.println();
 	}
 
 	/*

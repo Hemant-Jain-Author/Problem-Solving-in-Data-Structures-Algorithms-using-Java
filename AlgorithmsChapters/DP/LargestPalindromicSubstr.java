@@ -1,5 +1,3 @@
-package DP;
-
 // Palindromic Substrings
 public class LargestPalindromicSubstr {
 	static int palindromicSubstring(String str) {
@@ -34,12 +32,16 @@ public class LargestPalindromicSubstr {
 	}
 }
 /*
- * Max Length Palindromic Substrings : BCxxCB Max Palindromic Substrings len: 6
+ * Max Length Palindromic Substrings : BCxxCB 
+ * Max Palindromic Substrings len: 6
  */
 
 /*
  * If asked to find how many different palindromic substrings are possible.
  * 
- * int count = 0; for(int i=0;i<n;i++) for(int j=0;j<n;j++) if(dp[i][j] > 0)
- * count++; return count;
+ * int count = 0; 
+ * for(int i=0;i<n;i++) 
+ * 	for(int j=0;j<n;j++) 
+ * 		if(dp[i][j] > 0)
+ * 			count++; return count;
  */

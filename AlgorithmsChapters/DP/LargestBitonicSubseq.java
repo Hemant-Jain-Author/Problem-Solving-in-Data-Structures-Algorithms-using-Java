@@ -36,3 +36,7 @@ public class LargestBitonicSubseq {
 		System.out.println("Length of lis is " + lbs(arr));
 	}
 }
+
+/*
+Length of lis is 8
+*/

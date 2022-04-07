@@ -1,7 +1,6 @@
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.ArrayList;;
 
 public class Searching {
 	public static boolean linearSearchUnsorted(int[] arr, int size, int value) {
@@ -130,9 +129,15 @@ public class Searching {
 		System.out.println(fibonacciSearch(first, 7, 25));
 	}
 	/*
-	 * false false false false
+	 * false 
+	 * false 
+	 * false 
+	 * false
 	 * 
-	 * true true true true
+	 * true 
+	 * true 
+	 * true 
+	 * true
 	 */
 
 	public static void swap(int[] arr, int first, int second) {
@@ -242,8 +247,10 @@ public class Searching {
 		printRepeating4(first, first.length, 50);
 	}
 	/*
-	 * Repeating elements are 1 3 Repeating elements are 1 3 Repeating elements are
-	 * 1 3 Repeating elements are 1 3
+	 * Repeating elements are 1 3 
+	 * Repeating elements are 1 3 
+	 * Repeating elements are 1 3 
+	 * Repeating elements are 1 3
 	 */
 
 	public static int[] removeDuplicates(int[] array, int size) {
@@ -485,7 +492,8 @@ public class Searching {
 
 	}
 	/*
-	 * 12 15 16 20 22 12 15 16 20 22
+	 * 12 15 16 20 22 
+	 * 12 15 16 20 22
 	 */
 
 	public static void oddCount(int[] arr, int size) {
@@ -551,7 +559,9 @@ public class Searching {
 		oddCount3(arr2, size2);
 	}
 	/*
-	 * 30 40 Odd count is :: 2 30 40
+	 * 30 40 
+	 * Odd count is :: 2 
+	 * 30 40
 	 */
 
 	public static void sumDistinct(int[] arr, int size) {
@@ -636,7 +646,8 @@ public class Searching {
 
 	}
 	/*
-	 * Minimum sum elements are : -6 , 6 Minimum sum elements are : -6 , 6
+	 * Minimum sum elements are : -6 , 6 
+	 * Minimum sum elements are : -6 , 6
 	 */
 
 	public static boolean findPair(int[] arr, int size, int value) {
@@ -696,14 +707,16 @@ public class Searching {
 
 	public static void main10() {
 		int[] first = { 1, 5, 4, 3, 2, 7, 8, 9, 6 };
-		System.out.println(findPair(first, first.length, 8));
-		System.out.println(findPair2(first, first.length, 8));
-		System.out.println(findPair3(first, first.length, 8));
-		System.out.println(findPair4(first, first.length, 9, 8));
+		findPair(first, first.length, 8);
+		findPair2(first, first.length, 8);
+		findPair3(first, first.length, 8);
+		findPair4(first, first.length, 9, 8);
 	}
 	/*
-	 * The pair is : 1, 7 true The pair is 1, 7 true The pair is : 5, 3 true The
-	 * pair is : 5, 3 true
+	 * The pair is : 1, 7 
+	 * The pair is 1, 7 
+	 * The pair is : 5, 3  
+	 * The pair is : 5, 3
 	 */
 
 	public static boolean findPairTwoLists(int[] arr1, int size1, int[] arr2, int size2, int value) {
@@ -721,9 +734,10 @@ public class Searching {
 	public static boolean findPairTwoLists2(int[] arr1, int size1, int[] arr2, int size2, int value) {
 		Arrays.sort(arr2);
 		for (int i = 0; i < size1; i++) {
-			if (binarySearch(arr2, size2, value - arr1[i]))
+			if (binarySearch(arr2, size2, value - arr1[i])){
 				System.out.println("The pair is " + arr1[i] + ", " + (value - arr1[i]));
-			return true;
+				return true;
+			}
 		}
 		return false;
 	}
@@ -787,8 +801,11 @@ public class Searching {
 	}
 
 	/*
-	 * The pair is : 1, 7 true The pair is 1, 7 true The pair is 1, 7 true The pair
-	 * is : 1, 7 true The pair is : 1, 7 true
+	 * The pair is : 1, 7 true 
+	 * The pair is 1, 7 true 
+	 * The pair is 1, 7 true 
+	 * The pair is : 1, 7 true 
+	 * The pair is : 1, 7 true
 	 */
 
 	public static boolean findDifference(int arr[], int size, int value) {
@@ -827,7 +844,8 @@ public class Searching {
 		System.out.println(findDifference2(first, first.length, 6));
 	}
 	/*
-	 * The pair is:: 1 & 7 true The pair is::1 & 7 true
+	 * The pair is:: 1 & 7 true 
+	 * The pair is::1 & 7 true
 	 */
 
 	public static int findMinDiff(int arr[], int size) {
@@ -913,7 +931,8 @@ public class Searching {
 
 	}
 	/*
-	 * The pair is :: 4 4 Minimum difference is :: 0
+	 * The pair is :: 4 4 
+	 * Minimum difference is :: 0
 	 */
 
 	public static void closestPair(int arr[], int size, int value) {
@@ -967,7 +986,8 @@ public class Searching {
 		closestPair2(first, first.length, 47);
 	}
 	/*
-	 * closest pair is :: 3 50 closest pair is :: 3 50
+	 * closest pair is :: 3 50 
+	 * closest pair is :: 3 50
 	 */
 
 	public static boolean sumPairRestArray(int[] arr, int size) {
@@ -1037,7 +1057,10 @@ public class Searching {
 		zeroSumTriplets2(first, first.length);
 	}
 	/*
-	 * Triplet:: 0 -1 1 Triplet:: 2 -3 1 Triplet :: -3 1 2 Triplet :: -1 0 1
+	 * Triplet:: 0 -1 1 
+	 * Triplet:: 2 -3 1 
+	 * Triplet :: -3 1 2 
+	 * Triplet :: -1 0 1
 	 */
 
 	public static void findTriplet(int arr[], int size, int value) {
@@ -1074,7 +1097,10 @@ public class Searching {
 		findTriplet2(first, first.length, 22);
 	}
 	/*
-	 * Triplet :: 1 15 6 Triplet :: 5 9 8 Triplet ::1 6 15 Triplet ::5 8 9
+	 * Triplet :: 1 15 6 
+	 * Triplet :: 5 9 8 
+	 * Triplet ::1 6 15 
+	 * Triplet ::5 8 9
 	 */
 
 	public static void abcTriplet(int[] arr, int size) {
@@ -1112,7 +1138,9 @@ public class Searching {
 	}
 
 	/*
-	 * abcTriplet:: 1 5 6 abcTriplet:: 1 8 9 abcTriplet:: 6 9 15
+	 * abcTriplet:: 1 5 6 
+	 * abcTriplet:: 1 8 9 
+	 * abcTriplet:: 6 9 15
 	 */
 
 	public static void smallerThenTripletCount(int arr[], int size, int value) {
@@ -1151,7 +1179,8 @@ public class Searching {
 		smallerThenTripletCount(first, first.length, 2);
 	}
 	/*
-	 * 4 4
+	 * 4 
+	 * 4
 	 */
 
 	public static void apTriplets(int[] arr, int size) {
@@ -1177,7 +1206,9 @@ public class Searching {
 		apTriplets(arr, arr.length);
 	}
 	/*
-	 * AP Triplet:: 2 10 18 AP Triplet:: 10 12 14 AP Triplet:: 10 14 18
+	 * AP Triplet:: 2 10 18 
+	 * AP Triplet:: 10 12 14 
+	 * AP Triplet:: 10 14 18
 	 */
 
 	public static void gpTriplets(int[] arr, int size) {
@@ -1203,7 +1234,10 @@ public class Searching {
 		gpTriplets(arr, arr.length);
 	}
 	/*
-	 * GP Triplet:: 1 2 4 GP Triplet:: 2 4 8 GP Triplet:: 1 4 16 GP Triplet:: 4 8 16
+	 * GP Triplet:: 1 2 4 
+	 * GP Triplet:: 2 4 8 
+	 * GP Triplet:: 1 4 16 
+	 * GP Triplet:: 4 8 16
 	 */
 
 	public static int numberOfTriangles(int[] arr, int size) {
@@ -1245,7 +1279,8 @@ public class Searching {
 		System.out.println(numberOfTriangles2(arr, arr.length));
 	}
 	/*
-	 * 3 3
+	 * 3 
+	 * 3
 	 */
 
 	public static int getMax(int[] arr, int size) {
@@ -1304,7 +1339,9 @@ public class Searching {
 		System.out.println(getMax3(first, first.length, 50));
 	}
 	/*
-	 * 5 5 5
+	 * 5 
+	 * 5 
+	 * 5
 	 */
 
 	public static int getMajority(int[] arr, int size) {
@@ -1381,7 +1418,9 @@ public class Searching {
 		System.out.println(getMajority3(first, first.length));
 	}
 	/*
-	 * 5 5 5
+	 * 5 
+	 * 5 
+	 * 5
 	 */
 
 	public static int getMedian(int[] arr, int size) {
@@ -1542,7 +1581,8 @@ public class Searching {
 		System.out.println(findKeyCount2(first, first.length, 6));
 	}
 	/*
-	 * 1 1
+	 * 1 
+	 * 1
 	 */
 
 	/* Using binary search method. */
@@ -1643,7 +1683,9 @@ public class Searching {
 
 	}
 	/*
-	 * Purchase day is- 2 at price 6 Sell day is- 10 at price 150 144
+	 * Purchase day is- 2 at price 6 
+	 * Sell day is- 10 at price 150 
+	 * 144
 	 */
 
 	public static int findMedian(int[] arrFirst, int sizeFirst, int[] arrSecond, int sizeSecond) {
@@ -1745,7 +1787,8 @@ public class Searching {
 		System.out.println(rotationMax2(first, first.length));
 	}
 	/*
-	 * 77
+	 * 7
+	 * 7
 	 */
 
 	public static int findRotationMax(int[] arr, int size) {
@@ -1838,7 +1881,10 @@ public class Searching {
 		System.out.println(first[findRotationMax(first, first.length)]);
 	}
 	/*
-	 * 15 3 77
+	 * 15 
+	 * 3 
+	 * 7
+	 * 7
 	 */
 
 	public static int minAbsDiffAdjCircular(int[] arr, int size) {
@@ -2039,7 +2085,9 @@ public class Searching {
 
 	}
 	/*
-	 * true true true
+	 * true 
+	 * true 
+	 * true
 	 */
 
 	public static int findBalancedPoint(int[] arr, int size) {
@@ -2119,7 +2167,8 @@ public class Searching {
 		System.out.println(findCeil(arr, arr.length, 5));
 	}
 	/*
-	 * 1 2
+	 * 1 
+	 * 2
 	 */
 
 	public static int closestNumber(int arr[], int size, int num) {
@@ -2245,7 +2294,10 @@ public class Searching {
 		frequencyCounts4(arr, arr.length);
 	}
 	/*
-	 * (1 : 2) (2 : 3) (1 : 2) (2 : 3) (1 : 2) (2 : 3) (1 : 2) (2 : 3)
+	 * (1 : 2) (2 : 3) 
+	 * (1 : 2) (2 : 3) 
+	 * (1 : 2) (2 : 3) 
+	 * (1 : 2) (2 : 3)
 	 */
 
 	public static void kLargestElements(int arrIn[], int size, int k) {
@@ -2310,7 +2362,8 @@ public class Searching {
 	}
 
 	/*
-	 * 50 60 50 60
+	 * 50 60 
+	 * 50 60
 	 */
 
 	/*
@@ -2361,7 +2414,8 @@ public class Searching {
 		System.out.println(fixPoint2(arr, arr.length));
 	}
 	/*
-	 * 3 3
+	 * 3 
+	 * 3
 	 */
 
 	public static void subArraySums(int arr[], int size, int value) {
@@ -2453,7 +2507,9 @@ public class Searching {
 		maxConSubArr2(arr2, arr2.length, arr3, arr3.length);
 	}
 	/*
-	 * 13 13 13
+	 * 13 
+	 * 13 
+	 * 13
 	 */
 
 	public static int rainWater(int[] arr, int size) {
@@ -2513,7 +2569,8 @@ public class Searching {
 		rainWater2(arr, arr.length);
 	}
 	/*
-	 * Water : 6 Water : 6
+	 * Water : 6 
+	 * Water : 6
 	 */
 
 	public static void separateEvenAndOdd(int[] arr, int size) {
@@ -2553,6 +2610,7 @@ public class Searching {
 		main7();
 		main8();
 		main9();
+		main10();
 		main10A();
 		main11();
 		main12();

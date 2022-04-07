@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.Comparator;
 
 // Also known as Activity Selection Weighted.
 public class JobScheduling {
@@ -110,3 +109,9 @@ public class JobScheduling {
 		System.out.println(maxValueJobsBU(start, finish, value, n));
 	}
 }
+
+/*
+17
+17
+17
+*/

@@ -193,6 +193,7 @@ public class DoublyCircularLinkedList {
 	3 2 1
 	2 1
 	*/
+
 	public static void main4() {
 		DoublyCircularLinkedList ll = new DoublyCircularLinkedList();
 		ll.addHead(1);
@@ -208,6 +209,7 @@ public class DoublyCircularLinkedList {
 	3 2 1
 	3 2
 	*/
+	
 	public static void main(String[] args) {
 		main1();
 		main2();

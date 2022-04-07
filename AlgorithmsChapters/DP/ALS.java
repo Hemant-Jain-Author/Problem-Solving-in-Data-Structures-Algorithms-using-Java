@@ -1,7 +1,3 @@
-package DP;
-
-import java.util.Arrays;
-
 public class ALS {
 	static int fastestWayBU2(int a[][], int t[][], int e[], int x[], int n) {
 		int[] f1 = new int[n];
@@ -72,3 +68,9 @@ public class ALS {
 		System.out.println(fastestWayTD(a, t, e, x, n));
 	}
 }
+
+/*
+38
+38
+38
+*/

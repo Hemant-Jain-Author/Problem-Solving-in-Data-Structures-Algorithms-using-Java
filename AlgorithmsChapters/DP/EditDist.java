@@ -1,5 +1,3 @@
-package DP;
-
 public class EditDist {
 	static int min(int x, int y, int z) {
 		x = Math.min(x, y);
@@ -21,9 +19,9 @@ public class EditDist {
 			return editDist(str1, str2, m - 1, n - 1);
 
 		// If last characters are not same, consider all three operations:
-		// Insert last char of second into first.
-		// Remove last char of first.
-		// Replace last char of first with second.
+		// (1) Insert last char of second into first.
+		// (2) Remove last char of first.
+		// (3) Replace last char of first with second.
 		return 1 + min(editDist(str1, str2, m, n - 1), // Insert
 				editDist(str1, str2, m - 1, n), // Remove
 				editDist(str1, str2, m - 1, n - 1)); // Replace
@@ -44,9 +42,9 @@ public class EditDist {
 				else if (str1.charAt(i - 1) == str2.charAt(j - 1))
 					dp[i][j] = dp[i - 1][j - 1];
 				// If last characters are not same, consider all three operations:
-				// Insert last char of second into first.
-				// Remove last char of first.
-				// Replace last char of first with second.
+				// (1) Insert last char of second into first.
+				// (2) Remove last char of first.
+				// (3) Replace last char of first with second.
 				else
 					dp[i][j] = 1 + min(dp[i][j - 1], // Insert
 							dp[i - 1][j], // Remove
@@ -63,3 +61,8 @@ public class EditDist {
 		System.out.println(editDistDP(str1, str2));
 	}
 }
+
+/*
+3
+3
+*/

@@ -1,10 +1,10 @@
 public class Knapsack {
-	int getMaxCost01(int[] wt, int[] cost, int capacity) {
+	int maxCost01Knapsack(int[] wt, int[] cost, int capacity) {
 		int n = wt.length;
-		return getMaxCost01Util(wt, cost, n, capacity);
+		return maxCost01KnapsackUtil(wt, cost, n, capacity);
 	}
 
-	int getMaxCost01Util(int[] wt, int[] cost, int n, int capacity) {
+	int maxCost01KnapsackUtil(int[] wt, int[] cost, int n, int capacity) {
 		// Base Case
 		if (n == 0 || capacity == 0)
 			return 0;
@@ -14,19 +14,19 @@ public class Knapsack {
 		// (2) nth item is not included
 		int first = 0;
 		if (wt[n - 1] <= capacity)
-			first = cost[n - 1] + getMaxCost01Util(wt, cost, n - 1, capacity - wt[n - 1]);
+			first = cost[n - 1] + maxCost01KnapsackUtil(wt, cost, n - 1, capacity - wt[n - 1]);
 
-		int second = getMaxCost01Util(wt, cost, n - 1, capacity);
+		int second = maxCost01KnapsackUtil(wt, cost, n - 1, capacity);
 		return Math.max(first, second);
 	}
 
-	int getMaxCost01TD(int[] wt, int[] cost, int capacity) {
+	int maxCost01KnapsackTD(int[] wt, int[] cost, int capacity) {
 		int n = wt.length;
 		int[][] dp = new int[capacity + 1][n + 1];
-		return getMaxCost01TD(dp, wt, cost, n, capacity);
+		return maxCost01KnapsackTD(dp, wt, cost, n, capacity);
 	}
 
-	int getMaxCost01TD(int[][] dp, int[] wt, int[] cost, int i, int w) {
+	int maxCost01KnapsackTD(int[][] dp, int[] wt, int[] cost, int i, int w) {
 		if (w == 0 || i == 0)
 			return 0;
 
@@ -38,13 +38,13 @@ public class Knapsack {
 		// (2) ith item is not included
 		int first = 0;
 		if (wt[i - 1] <= w)
-			first = getMaxCost01TD(dp, wt, cost, i - 1, w - wt[i - 1]) + cost[i - 1];
+			first = maxCost01KnapsackTD(dp, wt, cost, i - 1, w - wt[i - 1]) + cost[i - 1];
 
-		int second = getMaxCost01TD(dp, wt, cost, i - 1, w);
+		int second = maxCost01KnapsackTD(dp, wt, cost, i - 1, w);
 		return dp[w][i] = Math.max(first, second);
 	}
 
-	int getMaxCost01BU(int[] wt, int[] cost, int capacity) {
+	int maxCost01KnapsackBU(int[] wt, int[] cost, int capacity) {
 		int n = wt.length;
 		int[][] dp = new int[capacity + 1][n + 1];
 
@@ -63,7 +63,7 @@ public class Knapsack {
 				dp[w][i] = Math.max(first, second);
 			}
 		}
-		// printItems(dp, wt, cost, n, capacity);
+		printItems(dp, wt, cost, n, capacity);
 		return dp[capacity][n]; // Number of weights considered and final capacity.
 	}
 
@@ -107,11 +107,11 @@ public class Knapsack {
 
 		double maxCost = kp.KS01UnboundBU(wt, cost, capacity);
 		System.out.println("Maximum cost obtained = " + maxCost);
-		maxCost = kp.getMaxCost01(wt, cost, capacity);
+		maxCost = kp.maxCost01Knapsack(wt, cost, capacity);
 		System.out.println("Maximum cost obtained = " + maxCost);
-		maxCost = kp.getMaxCost01BU(wt, cost, capacity);
+		maxCost = kp.maxCost01KnapsackBU(wt, cost, capacity);
 		System.out.println("Maximum cost obtained = " + maxCost);
-		maxCost = kp.getMaxCost01TD(wt, cost, capacity);
+		maxCost = kp.maxCost01KnapsackTD(wt, cost, capacity);
 		System.out.println("Maximum cost obtained = " + maxCost);
 	}
 }

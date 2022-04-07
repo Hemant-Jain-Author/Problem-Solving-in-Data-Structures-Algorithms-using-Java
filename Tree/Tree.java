@@ -976,7 +976,6 @@ public class Tree {
 	}
 
 	public boolean searchBTUtil(Node curr, int value) {
-		boolean left, right;
 		if (curr == null)
 			return false;
 

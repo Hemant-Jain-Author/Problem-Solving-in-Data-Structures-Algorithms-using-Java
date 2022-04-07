@@ -6,27 +6,27 @@
 	"configurations": [
 		{
 			"type": "java",
-			"name": "Launch JobSequencing",
+			"name": "Launch Java Program",
 			"request": "launch",
-			"mainClass": "JobSequencing",
-			"projectName": "Problem-Solving-in-Data-Structures-Algorithms-using-Java_d159273f"
+			"mainClass": ""
 		},
 		{
 			"type": "java",
-			"name": "Launch NutsAndBolts",
+			"name": "Launch Current File",
 			"request": "launch",
-			"mainClass": "NutsAndBolts",
-			"projectName": "Problem-Solving-in-Data-Structures-Algorithms-using-Java_d159273f"
+			"mainClass": "${file}",
+			"classpath": [
+				".",
+				"${fileDirname}",
+				"$cwd"
+			]
 		},
 		{
 			"type": "java",
-			"name": "CodeLens (Launch) - Heap",
-			"request": "launch",
-			"cwd": "${workspaceFolder}",
-			"console": "internalConsole",
-			"stopOnEntry": false,
-			"mainClass": "Heap",
-			"args": ""
+			"name": "Attach",
+			"request": "attach",
+			"hostName": "localhost",
+			"port": "<debug port of the debuggee>"
 		},
 		{
 			"name": "JavaC",
@@ -36,9 +36,11 @@
 			"jdkPath": "${env:JAVA_HOME}/bin",
 			"cwd": "${fileDirname}",
 			"startupClass": "${fileBasenameNoExtension}",
+			"mainClass": "${fileBasenameNoExtension}",
 			"classpath": [
 				".",
-				"${fileDirname}"
+				"${fileDirname}",
+				"$cwd"
 			]
 		},
 		{
@@ -49,6 +51,7 @@
 			"jdkPath": "${env:JAVA_HOME}/bin",
 			"cwd": "${fileDirname}",
 			"startupClass": "${fileBasenameNoExtension}",
+			"mainClass": "${fileBasenameNoExtension}",
 			"classpath": [
 				".",
 				"${fileDirname}"
@@ -62,6 +65,7 @@
 			"jdkPath": "${env:JAVA_HOME}/bin",
 			"cwd": "${fileDirname}",
 			"startupClass": "${fileBasenameNoExtension}",
+			"mainClass": "${fileBasenameNoExtension}",
 			"classpath": [
 				".",
 				"${fileDirname}"
@@ -75,7 +79,12 @@
 			"startupClass": "${fileBasenameNoExtension}",
 			"request": "launch",
 			"cwd": "${workspaceFolder}",
-			"stopOnEntry": false
+			"mainClass": "${fileBasenameNoExtension}",
+			"stopOnEntry": false,
+			"classpath": [
+				".",
+				"${fileDirname}"
+			],
 		}
 	]
 }

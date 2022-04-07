@@ -54,16 +54,17 @@ public class Fibo {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(fibonacci(6));
-		System.out.println(fibonacciBU(6));
-		System.out.println(fibonacciBU2(6));
-		System.out.println(fibonacciTD(6));
+		System.out.println(fibonacci(10));
+		System.out.println(fibonacciBU(10));
+		System.out.println(fibonacciBU2(10));
+		System.out.println(fibonacciTD(10));
 
 	}
 }
 
 /*
-13
-13
-0 1 1 2 3 5 8 13
+55
+55
+55
+55
 */

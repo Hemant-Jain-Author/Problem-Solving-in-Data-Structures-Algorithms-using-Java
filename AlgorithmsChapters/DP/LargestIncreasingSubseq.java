@@ -22,3 +22,5 @@ class LargestIncreasingSubseq {
 		System.out.println("Length of lis is " + lis(arr));
 	}
 }
+
+// Length of lis is 6

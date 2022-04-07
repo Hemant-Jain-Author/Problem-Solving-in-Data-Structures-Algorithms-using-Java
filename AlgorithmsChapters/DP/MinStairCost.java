@@ -1,5 +1,3 @@
-package DP;
-
 public class MinStairCost {
 	static int minCost(int cost[], int n) {
 		// base case
@@ -20,6 +18,9 @@ public class MinStairCost {
 	public static void main(String args[]) {
 		int a[] = { 1, 5, 6, 3, 4, 7, 9, 1, 2, 11 };
 		int n = a.length;
-		System.out.print(minCost(a, n));
+		System.out.print("minStairCost : " + minCost(a, n));
 	}
 }
+/*
+minStairCost : 18
+*/

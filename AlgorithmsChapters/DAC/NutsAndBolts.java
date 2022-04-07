@@ -1,10 +1,4 @@
 public class NutsAndBolts {
-	public static void main(String[] args) {
-		int nuts[] = { 1, 2, 6, 5, 4, 3 };
-		int bolts[] = { 6, 4, 5, 1, 3, 2 };
-		makePairs(nuts, bolts);
-	}
-
 	private static void printArray(int[] arr) {
 		for (int i : arr)
 			System.out.print(i + " ");
@@ -54,4 +48,15 @@ public class NutsAndBolts {
 		swap(arr, i, high);
 		return i;
 	}
+	public static void main(String[] args) {
+		int nuts[] = { 1, 2, 6, 5, 4, 3 };
+		int bolts[] = { 6, 4, 5, 1, 3, 2 };
+		makePairs(nuts, bolts);
+	}
 }
+
+/*
+Matched nuts and bolts are : 
+1 2 3 4 5 6 
+1 2 3 4 5 6 
+*/
