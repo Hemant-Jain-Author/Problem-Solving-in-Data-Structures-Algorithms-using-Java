@@ -10,20 +10,12 @@
         "stack"
     ],
     "java.project.sourcePaths": [
-        "Tree",
-        "String",
-        "Stack",
-        "Sorting",
-        "Queue",
-        "LinkedList",
-        "Language and Collections",
         "Introduction",
         "Heap",
         "HashTable",
-        "Graph",
-        "AlgorithmsChapters/DP",
+        "AlgorithmsChapters/Greedy",
         "AlgorithmsChapters/DAC",
         "AlgorithmsChapters/BT",
-        "AlgorithmsChapters/Greedy"
+        "Tree"
     ]
 }

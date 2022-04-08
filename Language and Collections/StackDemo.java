@@ -9,7 +9,7 @@ public class StackDemo {
 		System.out.println("Stack : " + stack);
 		System.out.println("Stack size : " + stack.size());
 		System.out.println("Stack pop : " + stack.pop());
-		System.out.println("Stack top : " + stack.peek());
+		System.out.println("Stack top : " + stack.top());
 		System.out.println("Stack isEmpty : " + stack.isEmpty());
 	}
 }

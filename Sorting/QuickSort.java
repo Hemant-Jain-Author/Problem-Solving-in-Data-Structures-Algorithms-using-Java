@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 public class QuickSort {
 	private void quickSort(int arr[], int lower, int upper) {

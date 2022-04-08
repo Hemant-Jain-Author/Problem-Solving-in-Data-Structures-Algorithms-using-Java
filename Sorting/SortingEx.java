@@ -1,6 +1,5 @@
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class SortingEx {
 
@@ -202,14 +201,14 @@ public class SortingEx {
 	}
 	// [ 4 6 8 2 7 3 1 9 5 ]
 
-	public static boolean absMore(int value1, int value2, int ref) {
+	public static boolean absGreater(int value1, int value2, int ref) {
 		return (Math.abs(value1 - ref) > Math.abs(value2 - ref));
 	}
 
 	public static void absBubbleSort(int[] arr, int size, int ref) {
 		for (int i = 0; i < (size - 1); i++) {
 			for (int j = 0; j < (size - i - 1); j++) {
-				if (absMore(arr[j], arr[j + 1], ref)) {
+				if (absGreater(arr[j], arr[j + 1], ref)) {
 					swap(arr, j, j + 1);
 				}
 			}
@@ -227,7 +226,7 @@ public class SortingEx {
 	/*
 	[ 5 6 4 7 3 8 2 9 1 ]
 	*/
-	public static boolean eqMore(int value1, int value2, int A) {
+	public static boolean eqGreater(int value1, int value2, int A) {
 		value1 = A * value1 * value1;
 		value2 = A * value2 * value2;
 		return value1 > value2;

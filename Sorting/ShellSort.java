@@ -1,5 +1,5 @@
 public class ShellSort {
-	private boolean more(int value1, int value2) {
+	private boolean greater(int value1, int value2) {
 		return value1 > value2;
 	}
 
@@ -15,7 +15,7 @@ public class ShellSort {
 				// Shift elements of already sorted list
 				// to find right position for curr value.
 				int j;
-				for (j = i; j >= gap && more(arr[j - gap], curr); j -= gap)
+				for (j = i; j >= gap && greater(arr[j - gap], curr); j -= gap)
 					arr[j] = arr[j - gap];
 
 				// Put current value in its correct location
