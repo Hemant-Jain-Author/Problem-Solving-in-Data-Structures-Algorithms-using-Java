@@ -1,13 +1,17 @@
+import java.util.Arrays;
+
 public class HashTableSC {
 
 	private int tableSize;
 	Node[] listArray;
 
 	private class Node {
+		private int key;
 		private int value;
 		private Node next;
 
-		public Node(int v, Node n) {
+		public Node(int k, int v, Node n) {
+			key = k;
 			value = v;
 			next = n;
 		}
@@ -16,32 +20,33 @@ public class HashTableSC {
 	public HashTableSC() {
 		tableSize = 512;
 		listArray = new Node[tableSize];
-		for (int i = 0; i < tableSize; i++) {
-			listArray[i] = null;
-		}
+		Arrays.fill(listArray, null);
 	}
 
-	private int computeHash(int key)// division method
-	{
+	private int computeHash(int key) { // division method
 		int hashValue = key;
 		return hashValue % tableSize;
 	}
 
-	public void add(int value) {
-		int index = computeHash(value);
-		listArray[index] = new Node(value, listArray[index]);
+	public void add(int key, int value) {
+		int index = computeHash(key);
+		listArray[index] = new Node(key, value, listArray[index]);
 	}
 
-	public boolean remove(int value) {
-		int index = computeHash(value);
+	public void add(int value) {
+		add(value, value);
+	}
+
+	public boolean remove(int key) {
+		int index = computeHash(key);
 		Node nextNode, head = listArray[index];
-		if (head != null && head.value == value) {
+		if (head != null && head.key == key) {
 			listArray[index] = head.next;
 			return true;
 		}
 		while (head != null) {
 			nextNode = head.next;
-			if (nextNode != null && nextNode.value == value) {
+			if (nextNode != null && nextNode.key == key) {
 				head.next = nextNode.next;
 				return true;
 			} else {
@@ -56,18 +61,18 @@ public class HashTableSC {
 		for (int i = 0; i < tableSize; i++) {
 			Node head = listArray[i];
 			while (head != null) {
-				System.out.print(head.value + " ");
+				System.out.print("(" + head.key + "=>" +head.value + ") ");
 				head = head.next;
 			}
 		}
 		System.out.println();
 	}
 
-	public boolean find(int value) {
-		int index = computeHash(value);
+	public boolean find(int key) {
+		int index = computeHash(key);
 		Node head = listArray[index];
 		while (head != null) {
-			if (head.value == value) {
+			if (head.key == key) {
 				return true;
 			}
 			head = head.next;
@@ -75,19 +80,33 @@ public class HashTableSC {
 		return false;
 	}
 
+	public int get(int key) {
+		int index = computeHash(key);
+		Node head = listArray[index];
+		while (head != null) {
+			if (head.key == key) {
+				return head.value;
+			}
+			head = head.next;
+		}
+		return -1;
+	}
+
 	public static void main(String[] args) {
 		HashTableSC ht = new HashTableSC();
-		ht.add(1);
-		ht.add(2);
-		ht.add(3);
+		ht.add(1, 10);
+		ht.add(2, 20);
+		ht.add(3, 30);
 		ht.print();
 		System.out.println("Find key 2 : " + ht.find(2));
+		System.out.println("Value at  key 2 : " + ht.get(2));
 		ht.remove(2);
 		System.out.println("Find key 2 : " + ht.find(2));
 	}
 }
 /*
-Hash Table contains ::1 2 3 
+Hash Table contains ::(1=>10) (2=>20) (3=>30) 
 Find key 2 : true
+Value at  key 2 : 20
 Find key 2 : false
 */

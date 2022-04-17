@@ -1,6 +1,6 @@
 // Palindromic Substrings
 public class LargestPalindromicSubstr {
-	static int palindromicSubstring(String str) {
+	static int largestPalinSubstr(String str) {
 		int n = str.length();
 		int[][] dp = new int[n][n];
 		for (int i = 0; i < n; i++)
@@ -28,13 +28,13 @@ public class LargestPalindromicSubstr {
 
 	public static void main(String args[]) {
 		String str = "ABCAUCBCxxCBA";
-		System.out.println("Max Palindromic Substrings len: " + palindromicSubstring(str));
+		System.out.println("Max Palindromic Substrings len: " + largestPalinSubstr(str));
 	}
 }
 /*
- * Max Length Palindromic Substrings : BCxxCB 
- * Max Palindromic Substrings len: 6
- */
+Max Length Palindromic Substrings : BCxxCB
+Max Palindromic Substrings len: 6
+*/
 
 /*
  * If asked to find how many different palindromic substrings are possible.

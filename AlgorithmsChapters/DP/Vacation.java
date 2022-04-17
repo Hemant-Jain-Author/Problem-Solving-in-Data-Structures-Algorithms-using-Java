@@ -1,6 +1,6 @@
 public class Vacation {
 	// days are must travel days, costs are cost of tickets.
-	public static int minCost(int[] days, int[] costs) {
+	public static int minCostTravel(int[] days, int[] costs) {
 		int n = days.length;
 		int max = days[n - 1];
 		int[] dp = new int[max + 1];
@@ -21,8 +21,7 @@ public class Vacation {
 	public static void main(String[] args) {
 		int[] days = { 1, 3, 5, 7, 12, 20, 30 };
 		int[] costs = { 2, 7, 20 };
-		System.out.println("Min cost is:" + minCost(days, costs));
-
+		System.out.println("Min cost is:" + minCostTravel(days, costs));
 	}
 }
 /*

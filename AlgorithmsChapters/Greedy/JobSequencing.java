@@ -54,6 +54,7 @@ public class JobSequencing {
 				System.out.print(" " + job[i]);
 	}
 
+	// Testing code.
 	public static void main(String args[]) {
 		char id[] = { 'a', 'b', 'c', 'd', 'e' };
 		int deadline[] = { 3, 1, 2, 4, 4 };

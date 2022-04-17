@@ -576,23 +576,23 @@ public class Introduction {
 	}
 
 	/*
-	Moves involved in the Tower of Hanoi are:
-	Move 1 disk  from peg A to peg C
-	Move 2 disk  from peg A to peg B
-	Move 1 disk  from peg C to peg B
-	Move 3 disk  from peg A to peg C
-	Move 1 disk  from peg B to peg A
-	Move 2 disk  from peg B to peg C
-	Move 1 disk  from peg A to peg C
+Moves involved in the Tower of Hanoi are:
+Move 1 disk  from peg A to peg C
+Move 2 disk  from peg A to peg B
+Move 1 disk  from peg C to peg B
+Move 3 disk  from peg A to peg C
+Move 1 disk  from peg B to peg A
+Move 2 disk  from peg B to peg C
+Move 1 disk  from peg A to peg C
 	*/
 	public static int gcd(int m, int n) {
-		if (m < n) {
-			return (gcd(n, m));
-		}
-		if (m % n == 0) {
-			return (n);
-		}
-		return (gcd(n, m % n));
+	    if (n == 0)
+	        return m;
+	    
+	    if (m == 0)
+	        return n;
+
+	    return (gcd(n, m % n));
 	}
 
 	/* Testing code */
@@ -605,9 +605,9 @@ public class Introduction {
 	*/
 
 	public static int fibonacci(int n) {
-		if (n < 2) {
+		if (n < 2)
 			return n;
-		}
+
 		return fibonacci(n - 1) + fibonacci(n - 2);
 	}
 
@@ -629,14 +629,11 @@ public class Introduction {
 
 	/* Testing code */
 	public static void main17() {
-		for (int i = 0; i < 10; i++) {
-			System.out.print(fibonacci(i) + " ");
-		}
-		System.out.println();
+		System.out.println(fibonacci(10));
 	}
 
 	/*
-	0 1 1 2 3 5 8 13 21 34 
+	55 
 	*/
 
 	public static void permutation(int[] arr, int i, int length) {

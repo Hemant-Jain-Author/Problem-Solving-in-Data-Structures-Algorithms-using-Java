@@ -1,5 +1,40 @@
 public class StringEx {
-	public static boolean match(String src, String ptn) {
+
+	public static int myStrcmp(String a, String b) {
+		int index = 0;
+		int len1 = a.length();
+		int len2 = b.length();
+		int minlen = (len1 < len2) ? len1 : len2;
+
+		while (index < minlen && a.charAt(index) == b.charAt(index)) {
+			index++;
+		}
+
+		if (index == len1 && index == len2) {
+			return 0;
+		} else if (len1 == index) {
+			return -1;
+		} else if (len2 == index) {
+			return 1;
+		} else {
+			return a.charAt(index) - b.charAt(index);
+		}
+	}
+
+	// Testing Code
+	public static void main1() {
+		System.out.println(myStrcmp("apple", "appke"));
+		System.out.println(myStrcmp("apple", "apple"));
+		System.out.println(myStrcmp("apple", "appme"));
+	}
+
+	/*
+	1
+	0
+	-1
+	*/
+
+	public static boolean matchPattern(String src, String ptn) {
 		char[] source = src.toCharArray();
 		char[] pattern = ptn.toCharArray();
 		int iSource = 0;
@@ -17,8 +52,9 @@ public class StringEx {
 		return false;
 	}
 
+	//Testing Code
 	public static void main2() {
-		System.out.println(match("harrypottermustnotgotoschool", "pottergo"));
+		System.out.println(matchPattern("harrypottermustnotgotoschool", "potterschool"));
 	}
 	// true
 
@@ -209,32 +245,6 @@ public class StringEx {
 	}
 	// 25
 
-	public static int myStrcmp(String a, String b) {
-		int index = 0;
-		int len1 = a.length();
-		int len2 = b.length();
-		int minlen = (len1 < len2) ? len1 : len2;
-
-		while (index < minlen && a.charAt(index) == b.charAt(index)) {
-			index++;
-		}
-
-		if (index == len1 && index == len2) {
-			return 0;
-		} else if (len1 == index) {
-			return -1;
-		} else if (len2 == index) {
-			return 1;
-		} else {
-			return a.charAt(index) - b.charAt(index);
-		}
-	}
-
-	public static void main10() {
-		System.out.println(myStrcmp("abs", "abs"));
-	}
-	// 0
-
 	public static String reverseString(String str) {
 		char[] a = str.toCharArray();
 		reverseStringUtil(a);
@@ -329,10 +339,10 @@ public class StringEx {
 
 	/*
 	123
-	213
-	321
-	231
 	132
+	213
+	231
+	321
 	312
 	*/
 	public static void shuffle(String str) {
@@ -370,7 +380,6 @@ public class StringEx {
 		int size2 = str2.length;
 		int max = (size1 > size2) ? size1 : size2;
 		char[] total = new char[max + 1];
-		;
 		int first = 0, second = 0, sum = 0, carry = 0;
 		for (int index = max; index > 0; index--, size1--, size2--) {
 			first = (size1 <= 0) ? 0 : str1[size1 - 1] - '0';
@@ -388,8 +397,39 @@ public class StringEx {
 		System.out.println(addBinary("1000", "11111111"));
 	}
 
-	// 100000111 
+	// 100000111
+
+	public static boolean matchExp(String src, String ptn) {
+		char[] source = src.toCharArray();
+		char[] pattern = ptn.toCharArray();
+		return matchExpUtil(source, pattern, 0, 0);
+	}
+
+	public static boolean matchExpUtil(char[] exp, char[] str, int i, int j) {
+		if (i == exp.length && j == str.length)
+			return true;
+
+		if ((i == exp.length && j != str.length) || (i != exp.length && j == str.length))
+			return false;
+
+		if (exp[i] == '?' || exp[i] == str[j])
+			return matchExpUtil(exp, str, i + 1, j + 1);
+
+		if (exp[i] == '*')
+			return matchExpUtil(exp, str, i + 1, j) || matchExpUtil(exp, str, i, j + 1)
+					|| matchExpUtil(exp, str, i + 1, j + 1);
+
+		return false;
+	}
+
+	public static void main10() {
+		System.out.println(matchExp("*llo,?World?", "Hello, World!"));
+	}
+
+	// true
+
 	public static void main(String[] args) {
+		main1();
 		main2();
 		main3();
 		main4();
@@ -398,11 +438,12 @@ public class StringEx {
 		main7();
 		main8();
 		main9();
-		main10();
+
 		main11();
 		main12();
 		main13();
 		main14();
+		main10();
 
 	}
 }

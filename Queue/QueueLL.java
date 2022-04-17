@@ -77,15 +77,19 @@ public class QueueLL {
 
 	public static void main(String[] args) {
 		QueueLL que = new QueueLL();
-		for (int i = 0; i < 5; i++) {
-			que.add(i);
-		}
-		que.print();
-		for (int i = 0; i < 5; i++)
-			System.out.print(que.remove() + " ");
+        que.add(1);
+        que.add(2);
+        que.add(3);
+        System.out.println("isEmpty : " + que.isEmpty());
+        System.out.println("size : " + que.size());
+        System.out.println("Queue remove : " + que.remove());
+        System.out.println("Queue remove : " + que.remove());
 	}
 }
+
 /*
-Queue is : 0 1 2 3 4 
-0 1 2 3 4 
+isEmpty : false
+size : 3
+Queue remove : 1
+Queue remove : 2
 */

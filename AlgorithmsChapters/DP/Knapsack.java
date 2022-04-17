@@ -72,7 +72,7 @@ public class Knapsack {
 		System.out.print("Selected items are:");
 		for (int i = n - 1; i > 0; i--) {
 			if (totalCost != dp[capacity][i - 1]) {
-				System.out.print(" (" + wt[i] + "," + cost[i] + ")");
+				System.out.print(" (wt:" + wt[i] + ", cost:" + cost[i] + ")");
 				capacity -= wt[i];
 				totalCost -= cost[i];
 			}
@@ -119,6 +119,7 @@ public class Knapsack {
 /*
 Maximum cost obtained = 300.0
 Maximum cost obtained = 210.0
+Selected items are: (wt:30, cost:120) (wt:20, cost:90)
 Maximum cost obtained = 210.0
 Maximum cost obtained = 210.0
 */

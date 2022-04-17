@@ -1,6 +1,6 @@
 // Palindromic Subsequence
 public class LargestPalindromicSubsequence {
-	static int palindromicSubsequence(String str) {
+	static int largestPalindromicSubseq(String str) {
 		int n = str.length();
 		int[][] dp = new int[n][n];
 
@@ -20,10 +20,10 @@ public class LargestPalindromicSubsequence {
 
 	public static void main(String args[]) {
 		String str = "ABCAUCBCxxCBA";
-		System.out.println("Max Palindromic Subsequence length: " + palindromicSubsequence(str));
+		System.out.println("Largest Palindromic Subseq: " + largestPalindromicSubseq(str));
 
 	}
 }
 /*
- * Max Palindromic Subsequence length: 9
- */
+Largest Palindromic Subseq: 9 
+*/

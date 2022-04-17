@@ -54,7 +54,7 @@ public class Graph {
 			LinkedList<Edge> ad = Adj.get(i);
 			System.out.print("Vertex " + i + " is connected to : ");
 			for (Edge adn : ad) {
-				System.out.print(adn.dest + "(" + adn.cost + ") ");
+				System.out.print(adn.dest + "(cost: " + adn.cost + ") ");
 			}
 			System.out.println();
 		}
@@ -123,31 +123,37 @@ public class Graph {
 		return visited[target];
 	}
 
+	public static void main0() {
+		Graph gph = new Graph(4);
+		gph.addUndirectedEdge(0, 1);
+		gph.addUndirectedEdge(0, 2);
+		gph.addUndirectedEdge(1, 2);
+		gph.addUndirectedEdge(2, 3);
+		gph.print();
+	}
+
 	// Testing Code
 	public static void main1() {
-		Graph gph = new Graph(5);
-		gph.addDirectedEdge(0, 1, 3);
-		gph.addDirectedEdge(0, 4, 2);
-		gph.addDirectedEdge(1, 2, 1);
-		gph.addDirectedEdge(2, 3, 1);
-		gph.addDirectedEdge(4, 1, 2);
-		gph.addDirectedEdge(4, 3, 1);
-		gph.print();
+		Graph gph = new Graph(8);
+		gph.addUndirectedEdge(0, 3);
+		gph.addUndirectedEdge(0, 2);
+		gph.addUndirectedEdge(0, 1);
+		gph.addUndirectedEdge(1, 4);
+		gph.addUndirectedEdge(2, 5);
+		gph.addUndirectedEdge(3, 6);
+		gph.addUndirectedEdge(6, 7);
+		gph.addUndirectedEdge(5, 7);
+		gph.addUndirectedEdge(4, 7);
 
-		System.out.println("Path between 0 & 2 : " + gph.dfs(0, 2));
-		System.out.println("Path between 0 & 2 : " + gph.bfs(0, 2));
-		System.out.println("Path between 0 & 2 : " + gph.dfsStack(0, 2));
+		System.out.println("Path between 0 & 6 : " + gph.dfs(0, 6));
+		System.out.println("Path between 0 & 6 : " + gph.bfs(0, 6));
+		System.out.println("Path between 0 & 6 : " + gph.dfsStack(0, 6));
 	}
 
 	/*
-	Vertex 0 is connected to : 1(3) 4(2) 
-	Vertex 1 is connected to : 2(1) 
-	Vertex 2 is connected to : 3(1) 
-	Vertex 3 is connected to : 
-	Vertex 4 is connected to : 1(2) 3(1) 
-	true
-	true
-	true
+	Path between 0 & 6 : true
+	Path between 0 & 6 : true
+	Path between 0 & 6 : true
 	*/
 
 	public void topologicalSort() {
@@ -183,8 +189,8 @@ public class Graph {
 	}
 
 	/*
-	topologicalSort ::  1 4 6 3 5 7 8 0 2
-	*/
+	Topological Sort:: 1 4 6 3 5 7 8 0 2
+		*/
 
 	public boolean pathExist(int source, int dest) {
 		boolean[] visited = new boolean[count];
@@ -252,18 +258,20 @@ public class Graph {
 	}
 
 	/*
-	Vertex 0 is connected to : 1(1) 2(1) 
-	Vertex 1 is connected to : 3(1) 4(1) 
-	Vertex 2 is connected to : 3(1) 
-	Vertex 3 is connected to : 4(1) 
+	Vertex 0 is connected to : 1(cost: 1) 2(cost: 1) 
+	Vertex 1 is connected to : 3(cost: 1) 4(cost: 1) 
+	Vertex 2 is connected to : 3(cost: 1) 
+	Vertex 3 is connected to : 4(cost: 1) 
 	Vertex 4 is connected to : 
+	
 	PathExist :: true
 	
 	Path Count :: 3
+	
 	[0, 1, 3, 4]
 	[0, 1, 4]
 	[0, 2, 3, 4]
-	*/
+		*/
 
 	public int rootVertex() {
 		boolean[] visited = new boolean[count];
@@ -289,20 +297,13 @@ public class Graph {
 		gph.addDirectedEdge(5, 6);
 		gph.addDirectedEdge(5, 2);
 		gph.addDirectedEdge(6, 0);
-		gph.print();
 		gph.rootVertex();
 	}
 
 	/*
-	Vertex 0 is connected to : 1(1) 2(1) 
-	Vertex 1 is connected to : 3(1) 
-	Vertex 2 is connected to : 
-	Vertex 3 is connected to : 
-	Vertex 4 is connected to : 1(1) 
-	Vertex 5 is connected to : 6(1) 2(1) 
-	Vertex 6 is connected to : 4(1) 0(1) 
+	
 	Root vertex is :: 5
-	*/
+		*/
 
 	public void transitiveClosureUtil(int source, int dest, int[][] tc) {
 		tc[source][dest] = 1;
@@ -344,7 +345,7 @@ public class Graph {
 	1 1 1 1 
 	1 1 1 1 
 	0 0 0 1 
-	*/
+		*/
 
 	public void bfsLevelNode(int source) {
 		boolean[] visited = new boolean[count];
@@ -407,18 +408,11 @@ public class Graph {
 		gph.addUndirectedEdge(3, 4);
 		gph.addUndirectedEdge(4, 5);
 		gph.addUndirectedEdge(4, 6);
-		gph.print();
 		gph.bfsLevelNode(1);
-		System.out.println("BfsDistance :: " + gph.bfsDistance(1, 6));
+		System.out.println("BfsDistance(1, 6) : " + gph.bfsDistance(1, 6));
 	}
 	/*
-	Vertex 0 is connected to : 1(1) 2(1) 4(1) 
-	Vertex 1 is connected to : 0(1) 2(1) 
-	Vertex 2 is connected to : 0(1) 1(1) 5(1) 
-	Vertex 3 is connected to : 4(1) 
-	Vertex 4 is connected to : 0(1) 3(1) 5(1) 6(1) 
-	Vertex 5 is connected to : 2(1) 4(1) 
-	Vertex 6 is connected to : 4(1) 
+	
 	Node  - Level
 	1 - 0
 	0 - 1
@@ -427,8 +421,9 @@ public class Graph {
 	5 - 2
 	3 - 3
 	6 - 3
+	
 	BfsDistance :: 3
-	*/
+		*/
 
 	public boolean isCyclePresentUndirectedDFS(int index, int parentIndex, boolean[] visited) {
 		visited[index] = true;
@@ -535,24 +530,24 @@ public class Graph {
 		gph.addUndirectedEdge(3, 4);
 		gph.addUndirectedEdge(4, 2);
 		gph.addUndirectedEdge(2, 5);
-		System.out.println("isCyclePresentUndirected : " + gph.isCyclePresentUndirected());
-		System.out.println("isCyclePresentUndirected : " + gph.isCyclePresentUndirected2());
-		System.out.println("isCyclePresentUndirected : " + gph.isCyclePresentUndirected3());
+		System.out.println("Cycle Presen : " + gph.isCyclePresentUndirected());
+		System.out.println("Cycle Presen : " + gph.isCyclePresentUndirected2());
+		System.out.println("Cycle Presen : " + gph.isCyclePresentUndirected3());
 		gph.addUndirectedEdge(4, 1);
-		System.out.println("isCyclePresentUndirected : " + gph.isCyclePresentUndirected());
-		System.out.println("isCyclePresentUndirected : " + gph.isCyclePresentUndirected2());
-		System.out.println("isCyclePresentUndirected : " + gph.isCyclePresentUndirected3());
+		System.out.println("Cycle Presen : " + gph.isCyclePresentUndirected());
+		System.out.println("Cycle Presen : " + gph.isCyclePresentUndirected2());
+		System.out.println("Cycle Presen : " + gph.isCyclePresentUndirected3());
 
 	}
 
 	/*
-	isCyclePresentUndirected : false
-	isCyclePresentUndirected : false
-	isCyclePresentUndirected : false
-	isCyclePresentUndirected : true
-	isCyclePresentUndirected : true
-	isCyclePresentUndirected : true
-	*/
+	Cycle Presen : false
+	Cycle Presen : false
+	Cycle Presen : false
+	Cycle Presen : true
+	Cycle Presen : true
+	Cycle Presen : true
+		*/
 
 	public boolean isCyclePresentDFS(int index, boolean[] visited, int[] marked) {
 		visited[index] = true;
@@ -657,11 +652,11 @@ public class Graph {
 	}
 	/*
 	Vertex 0 is connected to : 
-	Vertex 1 is connected to : 0(1) 4(1) 
-	Vertex 2 is connected to : 0(1) 
-	Vertex 3 is connected to : 1(1) 2(1) 
-	Vertex 4 is connected to : 3(1) 
-	*/
+	Vertex 1 is connected to : 0(cost: 1) 4(cost: 1) 
+	Vertex 2 is connected to : 0(cost: 1) 
+	Vertex 3 is connected to : 1(cost: 1) 2(cost: 1) 
+	Vertex 4 is connected to : 3(cost: 1) 
+		*/
 
 	public boolean isConnectedUndirected() {
 		boolean[] visited = new boolean[count];
@@ -674,6 +669,21 @@ public class Graph {
 		}
 		return true;
 	}
+
+	//Testing Code
+	public static void main10A() {
+		Graph gph = new Graph(6);
+		gph.addUndirectedEdge(0, 1);
+		gph.addUndirectedEdge(1, 2);
+		gph.addUndirectedEdge(3, 4);
+		gph.addUndirectedEdge(4, 2);
+		gph.addUndirectedEdge(2, 5);
+		System.out.println("isConnectedUndirected:: " + gph.isConnectedUndirected());
+	}
+
+	/*
+	isConnectedUndirected:: true
+	*/
 
 	public boolean isStronglyConnected() {
 		boolean visited[] = new boolean[count];
@@ -710,7 +720,7 @@ public class Graph {
 
 	/*
 	IsStronglyConnected:: true
-	*/
+		*/
 
 	public void stronglyConnectedComponent() {
 		boolean[] visited = new boolean[count];
@@ -755,7 +765,15 @@ public class Graph {
 	[1, 2, 0]
 	[4, 5, 3]
 	[6]
-	*/
+	
+	Vertex 0 is connected to : 2(cost: 1) 
+	Vertex 1 is connected to : 0(cost: 1) 
+	Vertex 2 is connected to : 1(cost: 1) 
+	Vertex 3 is connected to : 2(cost: 1) 5(cost: 1) 
+	Vertex 4 is connected to : 3(cost: 1) 
+	Vertex 5 is connected to : 4(cost: 1) 
+	Vertex 6 is connected to : 5(cost: 1) 
+		*/
 
 	public void primsMST() {
 		int[] previous = new int[count];
@@ -903,17 +921,17 @@ public class Graph {
 		//floydWarshall(gph);
 	}
 
-/*
-
-Edges are (0->1 @ 4) (5->2 @ 4) (2->3 @ 7) (3->4 @ 9) (6->5 @ 2) (7->6 @ 1) (0->7 @ 8) (2->8 @ 2) 
-Total MST cost: 37
-
-Edges are (6->7 @ 1) (2->8 @ 2) (5->6 @ 2) (0->1 @ 4) (2->5 @ 4) (2->3 @ 7) (0->7 @ 8) (3->4 @ 9) 
-Total MST cost: 37
-
-Shortest Paths: (0->1 @ 4 )(0->1->2 @ 12 )(0->1->2->3 @ 19 )(0->7->6->5->4 @ 21 )(0->7->6->5 @ 11 )(0->7->6 @ 9 )(0->7 @ 8 )(0->1->2->8 @ 14 )
-
-*/
+	/*
+	
+	Edges are (0->1 @ 4) (5->2 @ 4) (2->3 @ 7) (3->4 @ 9) (6->5 @ 2) (7->6 @ 1) (0->7 @ 8) (2->8 @ 2) 
+	Total MST cost: 37
+	
+	Edges are (6->7 @ 1) (2->8 @ 2) (5->6 @ 2) (0->1 @ 4) (2->5 @ 4) (2->3 @ 7) (0->7 @ 8) (3->4 @ 9) 
+	Total MST cost: 37
+	
+	Shortest Paths: (0->1 @ 4) (0->1->2 @ 12) (0->1->2->3 @ 19) (0->7->6->5->4 @ 21) (0->7->6->5 @ 11) (0->7->6 @ 9) (0->7 @ 8) (0->1->2->8 @ 14) 
+	
+	*/
 
 	// Unweighed graph
 	public void shortestPath(int source) {
@@ -959,11 +977,11 @@ Shortest Paths: (0->1 @ 4 )(0->1->2 @ 12 )(0->1->2->3 @ 19 )(0->7->6->5->4 @ 21 
 		String output = "Shortest Paths: ";
 		for (int i = 0; i < count; i++) {
 			if (dist[i] == 99999)
-				output += ("(" + source + "->" + i + " @ Unreachable)");
+				output += ("(" + source + "->" + i + " @ Unreachable) ");
 			else if (i != previous[i]) {
 				output += "(";
 				output += printPathUtil(previous, source, i);
-				output += (" @ " + dist[i] + ")");
+				output += (" @ " + dist[i] + ") ");
 			}
 		}
 		System.out.println(output);
@@ -976,7 +994,7 @@ Shortest Paths: (0->1 @ 4 )(0->1->2 @ 12 )(0->1->2->3 @ 19 )(0->7->6->5->4 @ 21 
 
 		Arrays.fill(previous, -1);
 		Arrays.fill(dist, 99999); // infinite
-		
+
 		dist[source] = 0;
 		previous[source] = source;
 
@@ -1009,14 +1027,9 @@ Shortest Paths: (0->1 @ 4 )(0->1->2 @ 12 )(0->1->2->3 @ 19 )(0->7->6->5->4 @ 21 
 
 	public void bellmanFordShortestPath(int source) {
 		int[] distance = new int[count];
+		Arrays.fill(distance, 99999); // infinite
 		int[] path = new int[count];
-		boolean[] visited = new boolean[count];
-
-		for (int i = 0; i < count; i++) {
-			distance[i] = 99999; // infinite
-			path[i] = -1;
-			visited[i] = false;
-		}
+		Arrays.fill(path, -1);
 
 		distance[source] = 0;
 		path[source] = source;
@@ -1054,9 +1067,9 @@ Shortest Paths: (0->1 @ 4 )(0->1->2 @ 12 )(0->1->2->3 @ 19 )(0->7->6->5->4 @ 21 
 		gph.bellmanFordShortestPath(0);
 	}
 
-/*
-Shortest Paths: (0->4->1 @ 0)(0->4->1->2 @ 1)(0->4->1->2->3 @ 2)(0->4 @ 2)
-*/
+	/*
+	Shortest Paths: (0->4->1 @ 0) (0->4->1->2 @ 1) (0->4->1->2->3 @ 2) (0->4 @ 2) 
+	*/
 
 	public static int heightTreeParentArr(int[] arr) {
 		int count = arr.length;
@@ -1123,7 +1136,7 @@ Shortest Paths: (0->4->1 @ 0)(0->4->1->2 @ 1)(0->4->1->2->3 @ 2)(0->4 @ 2)
 	/*
 	4
 	4
-	*/
+		*/
 
 	public boolean isConnected() {
 		boolean[] visited = new boolean[count];
@@ -1148,37 +1161,29 @@ Shortest Paths: (0->4->1 @ 0)(0->4->1->2 @ 1)(0->4->1->2->3 @ 2)(0->4 @ 2)
 		return true;
 	}
 
-	/*
-	* The function returns one of the following values Return 0 if graph is not
-	* Eulerian Return 1 if graph has an Euler path (Semi-Eulerian) Return 2 if
-	* graph has an Euler Circuit (Eulerian)
-	*/
 	public int isEulerian() {
-		int odd;
-		int[] inDegree;
-		int[] outDegree;
-		LinkedList<Edge> adl;
 		// Check if all non - zero degree nodes are connected
 		if (isConnected() == false) {
 			System.out.println("graph is not Eulerian");
 			return 0;
-		} else {
-			// Count odd degree
-			odd = 0;
-			inDegree = new int[count];
-			outDegree = new int[count];
+		}
 
-			for (int i = 0; i < count; i++) {
-				adl = Adj.get(i);
-				for (Edge adn : adl) {
-					outDegree[i] += 1;
-					inDegree[adn.dest] += 1;
-				}
+		// Count odd degree
+		int odd = 0;
+		int[] inDegree = new int[count];
+		int[] outDegree = new int[count];
+		LinkedList<Edge> adl;
+
+		for (int i = 0; i < count; i++) {
+			adl = Adj.get(i);
+			for (Edge adn : adl) {
+				outDegree[i] += 1;
+				inDegree[adn.dest] += 1;
 			}
-			for (int i = 0; i < count; i++) {
-				if ((inDegree[i] + outDegree[i]) % 2 != 0) {
-					odd += 1;
-				}
+		}
+		for (int i = 0; i < count; i++) {
+			if ((inDegree[i] + outDegree[i]) % 2 != 0) {
+				odd += 1;
 			}
 		}
 
@@ -1202,13 +1207,15 @@ Shortest Paths: (0->4->1 @ 0)(0->4->1->2 @ 1)(0->4->1->2->3 @ 2)(0->4 @ 2)
 		gph.addDirectedEdge(2, 1);
 		gph.addDirectedEdge(0, 3);
 		gph.addDirectedEdge(3, 4);
-		System.out.println(gph.isEulerian());
+		gph.isEulerian();
+		gph.addDirectedEdge(4, 0);
+		gph.isEulerian();
 	}
 
 	/*
 	graph is Semi-Eulerian
-	1
-	*/
+	graph is Eulerian
+		*/
 
 	public boolean isStronglyConnected2() {
 		boolean[] visited = new boolean[count];
@@ -1276,7 +1283,7 @@ Shortest Paths: (0->4->1 @ 0)(0->4->1->2 @ 1)(0->4->1->2->3 @ 2)(0->4 @ 2)
 
 	/*
 	true
-	*/
+		*/
 
 	// Testing Code
 	public static void main17() {
@@ -1294,15 +1301,15 @@ Shortest Paths: (0->4->1 @ 0)(0->4->1->2 @ 1)(0->4->1->2->3 @ 2)(0->4 @ 2)
 		gReversed.print();
 	}
 
-/*
-Vertex 0 is connected to : 2(1) 
-Vertex 1 is connected to : 0(1) 
-Vertex 2 is connected to : 1(1) 
-Vertex 3 is connected to : 2(1) 5(1) 
-Vertex 4 is connected to : 3(1) 
-Vertex 5 is connected to : 4(1) 
-Vertex 6 is connected to : 5(1)
-*/
+	/*
+	Vertex 0 is connected to : 2(cost: 1) 
+	Vertex 1 is connected to : 0(cost: 1) 
+	Vertex 2 is connected to : 1(cost: 1) 
+	Vertex 3 is connected to : 2(cost: 1) 5(cost: 1) 
+	Vertex 4 is connected to : 3(cost: 1) 
+	Vertex 5 is connected to : 4(cost: 1) 
+	Vertex 6 is connected to : 5(cost: 1) 
+	*/
 
 	// Testing Code
 	public static void main18() {
@@ -1324,9 +1331,9 @@ Vertex 6 is connected to : 5(1)
 		gph.shortestPath(0);
 	}
 
-/*
-Shortest Paths: (0->1 @ 1)(0->1->2 @ 2)(0->1->2->3 @ 3)(0->1->2->3->4 @ 4)(0->1->2->5 @ 3)(0->7->6 @ 2)(0->7 @ 1)(0->7->8 @ 2)
-*/
+	/*
+	Shortest Paths: (0->1 @ 1)(0->1->2 @ 2)(0->1->2->3 @ 3)(0->1->2->3->4 @ 4)(0->1->2->5 @ 3)(0->7->6 @ 2)(0->7 @ 1)(0->7->8 @ 2)
+	*/
 
 	void floydWarshall() {
 		int V = count;
@@ -1399,6 +1406,7 @@ Shortest Paths: (0->1 @ 1)(0->1->2 @ 2)(0->1->2->3 @ 3)(0->1->2->3->4 @ 4)(0->1-
 		System.out.print("->" + v);
 	}
 
+	// Testing code.
 	public static void main19() {
 		Graph gph = new Graph(4);
 		gph.addDirectedEdge(0, 0, 0);
@@ -1413,11 +1421,12 @@ Shortest Paths: (0->1 @ 1)(0->1->2 @ 2)(0->1->2->3 @ 3)(0->1->2->3->4 @ 4)(0->1-
 		gph.floydWarshall();
 	}
 
-/*
-Shortest Paths : (0->1 @ 5) (0->1->2 @ 8) (0->1->2->3 @ 9) (1->2 @ 3) (1->2->3 @ 4) (2->3 @ 1) 
-*/
+	/*
+	Shortest Paths : (0->1 @ 5) (0->1->2 @ 8) (0->1->2->3 @ 9) (1->2 @ 3) (1->2->3 @ 4) (2->3 @ 1) 
+	*/
 
 	public static void main(String[] args) {
+		/*main0();
 		main1();
 		main2(); 
 		main3(); 
@@ -1427,10 +1436,13 @@ Shortest Paths : (0->1 @ 5) (0->1->2 @ 8) (0->1->2->3 @ 9) (1->2 @ 3) (1->2->3 @
 		main7(); 
 		main8();
 		main9();
-		main10(); 		
+		*/
+		main10A();
+		main10();
 		main11();
-		main12(); 
+		main12();
 		main13();
+		main14();
 		main15();
 		main16();
 		main17();

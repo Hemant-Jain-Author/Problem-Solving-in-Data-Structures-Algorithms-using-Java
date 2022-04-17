@@ -38,18 +38,14 @@ public class MultipleStageGraph {
 		return dist[n - 1];
 	}
 
-	// Driver code
+	// Testing code.
 	public static void main(String[] args) {
 		// Graph stored in the form of an
 		// adjacency Matrix
-		int[][] graph = new int[][] { { INF, 1,   2,   5,   INF, INF, INF, INF }, 
-									  { INF, INF, INF, INF, 4,   11,  INF, INF },
-									  { INF, INF, INF, INF, 9,   5,   16,  INF }, 
-									  { INF, INF, INF, INF, INF, INF, 2,   INF },
-									  { INF, INF, INF, INF, INF, INF, INF, 18  }, 
-									  { INF, INF, INF, INF, INF, INF, INF, 13  },
-									  { INF, INF, INF, INF, INF, INF, INF, 2   }, 
-									  { INF, INF, INF, INF, INF, INF, INF, INF }};
+		int[][] graph = new int[][] { { INF, 1, 2, 5, INF, INF, INF, INF }, { INF, INF, INF, INF, 4, 11, INF, INF },
+				{ INF, INF, INF, INF, 9, 5, 16, INF }, { INF, INF, INF, INF, INF, INF, 2, INF },
+				{ INF, INF, INF, INF, INF, INF, INF, 18 }, { INF, INF, INF, INF, INF, INF, INF, 13 },
+				{ INF, INF, INF, INF, INF, INF, INF, 2 }, { INF, INF, INF, INF, INF, INF, INF, INF } };
 
 		System.out.println(shortestDist(graph, 8));
 	}

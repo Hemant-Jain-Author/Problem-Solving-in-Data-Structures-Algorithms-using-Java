@@ -8,7 +8,6 @@ public class StringTree {
 		Node rChild;
 	};
 
-	// Other Methods.
 	public void print() {
 		print(root);
 	}

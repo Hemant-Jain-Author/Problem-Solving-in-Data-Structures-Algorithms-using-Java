@@ -1,6 +1,6 @@
 public class StackLL {
 	private Node head = null;
-	private int size = 0;
+	private int length = 0;
 
 	private static class Node {
 		private int value;
@@ -13,11 +13,11 @@ public class StackLL {
 	}
 
 	public int size() {
-		return size;
+		return length;
 	}
 
 	public boolean isEmpty() {
-		return size == 0;
+		return length == 0;
 	}
 
 	public int peek() throws IllegalStateException {
@@ -29,7 +29,7 @@ public class StackLL {
 
 	public void push(int value) {
 		head = new Node(value, head);
-		size++;
+		length++;
 	}
 
 	public int pop() throws IllegalStateException {
@@ -38,7 +38,7 @@ public class StackLL {
 		}
 		int value = head.value;
 		head = head.next;
-		size--;
+		length--;
 		return value;
 	}
 

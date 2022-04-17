@@ -1,5 +1,5 @@
 public class MinStairCost {
-	static int minCost(int cost[], int n) {
+	static int minStairCost(int cost[], int n) {
 		// base case
 		if (n == 1)
 			return cost[0];
@@ -18,7 +18,7 @@ public class MinStairCost {
 	public static void main(String args[]) {
 		int a[] = { 1, 5, 6, 3, 4, 7, 9, 1, 2, 11 };
 		int n = a.length;
-		System.out.print("minStairCost : " + minCost(a, n));
+		System.out.print("minStairCost : " + minStairCost(a, n));
 	}
 }
 /*

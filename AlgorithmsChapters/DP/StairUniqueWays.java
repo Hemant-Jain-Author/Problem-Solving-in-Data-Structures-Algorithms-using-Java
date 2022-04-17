@@ -1,5 +1,5 @@
 public class StairUniqueWays {
-	public static int diffWaysBU(int n) {
+	public static int stairUniqueWaysBU(int n) {
 		if (n <= 2)
 			return n;
 
@@ -14,7 +14,7 @@ public class StairUniqueWays {
 		return temp;
 	}
 
-	public static int diffWaysBU2(int n) {
+	public static int stairUniqueWaysBU2(int n) {
 		if (n < 2)
 			return n;
 
@@ -29,8 +29,8 @@ public class StairUniqueWays {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Unique way to reach top:: " + diffWaysBU(4));
-		System.out.println("Unique way to reach top:: " + diffWaysBU2(4));
+		System.out.println("Unique way to reach top:: " + stairUniqueWaysBU(4));
+		System.out.println("Unique way to reach top:: " + stairUniqueWaysBU2(4));
 	}
 }
 /*

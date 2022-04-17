@@ -40,10 +40,8 @@ public class WildCharMatch {
 		for (int i = 1; i <= m; i++) {
 			for (int j = 1; j <= n; j++) {
 				// If we see a '*' in pattern:
-				// 1) We ignore '*' character and consider
-				// next character in the pattern.
-				// 2) We ignore one character in the input str
-				// and consider next character.
+				// 1) We ignore '*' character and consider next character in the pattern.
+				// 2) We ignore one character in the input str and consider next character.
 				if (exp[i - 1] == '*') {
 					lookup[i][j] = lookup[i - 1][j] || lookup[i][j - 1];
 				}
@@ -62,12 +60,12 @@ public class WildCharMatch {
 		return lookup[m][n];
 	}
 
-	public static void main(String[] args) {
+	public static void main1() {
 		System.out.println("matchExp :: " + matchExp("*llo,?World?", "Hello, World!"));
 		System.out.println("matchExp :: " + matchExpDP("*llo,?World?", "Hello, World!"));
 	}
 
-	public static void main2(String[] args) {
+	public static void main2() {
 		String str = "baaabab";
 		String[] pattern = { "*****ba*****ab", "ba*****ab", "ba*ab", "a*ab", "a*****ab", "*a*****ab", "ba*ab****",
 				"****", "*", "aa?ab", "b*b", "a*a", "baaabab", "?baaabab", "*baaaba*" };
@@ -78,6 +76,11 @@ public class WildCharMatch {
 				System.out.println(p + " == " + str);
 			}
 		}
+	}
+
+	public static void main(String[] args) {
+		main1();
+		main2();
 	}
 }
 

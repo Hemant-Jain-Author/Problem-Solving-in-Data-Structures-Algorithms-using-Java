@@ -20,6 +20,7 @@ public class OptimalMergePattern {
 		return total;
 	}
 
+	// Testing code.
 	public static void main(String[] args) {
 		int lists[] = { 4, 3, 2, 6 };
 		merge(lists, lists.length);

@@ -45,12 +45,16 @@ public class Stack {
 	}
 
 	public static void main(String[] args) {
-		Stack s = new Stack();
-		for (int i = 0; i < 5; i++)
-			s.push(i);
-		for (int i = 0; i < 5; i++)
-			System.out.print(s.pop2() + " ");
+		Stack stk = new Stack();
+		stk.push(1);
+		stk.push(2);
+		stk.push(3);
+		System.out.println("Stack pop : " + stk.pop());
+		System.out.println("Stack pop : " + stk.pop());
 	}
 }
 
-// 4 3 2 1 0 
+/*
+Stack pop : 3
+Stack pop : 2
+*/

@@ -29,18 +29,28 @@ public class RBTree {
 		return (node == null) ? false : (node.colour == true);
 	}
 
-	private Node uncle(Node node) {
-		// If no parent or grandparent, then no uncle
-		if (node.parent == NullNode || node.parent.parent == NullNode)
-			return null;
-
-		if (node.parent == node.parent.parent.left)
-			// uncle on right
-			return node.parent.parent.right;
-		else
-			// uncle on left
-			return node.parent.parent.left;
+	public void printTree() {
+		printTree(root, "", false);
+		System.out.println();
 	}
+
+	private void printTree(Node node, String indent, boolean isLeft) {
+		if (node == NullNode)
+			return;
+		if (isLeft) {
+			System.out.print(indent + "L:");
+			indent += "|  ";
+		} else {
+			System.out.print(indent + "R:");
+			indent += "   ";
+		}
+
+		System.out.println(node.data + "(" + node.colour + ")");
+		printTree(node.left, indent, true);
+		printTree(node.right, indent, false);
+	}
+
+	/* Other methods */
 
 	// Function to right rotate subtree rooted with x
 	Node rightRotate(Node x) {
@@ -120,27 +130,6 @@ public class RBTree {
 		return null;
 	}
 
-	public void printTree() {
-		printTree(root, "", false);
-		System.out.println();
-	}
-
-	private void printTree(Node node, String indent, boolean isLeft) {
-		if (node == NullNode)
-			return;
-		if (isLeft) {
-			System.out.print(indent + "L:");
-			indent += "|  ";
-		} else {
-			System.out.print(indent + "R:");
-			indent += "   ";
-		}
-
-		System.out.println(node.data + "(" + node.colour + ")");
-		printTree(node.left, indent, true);
-		printTree(node.right, indent, false);
-	}
-
 	public void insert(int data) {
 		root = insert(root, data);
 		Node temp = find(data);
@@ -207,6 +196,19 @@ public class RBTree {
 		mid.colour = false;
 		mid.left.colour = true;
 		mid.right.colour = true;
+	}
+
+	private Node uncle(Node node) {
+		// If no parent or grandparent, then no uncle
+		if (node.parent == NullNode || node.parent.parent == NullNode)
+			return null;
+
+		if (node.parent == node.parent.parent.left)
+			// uncle on right
+			return node.parent.parent.right;
+		else
+			// uncle on left
+			return node.parent.parent.left;
 	}
 
 	public void delete(int data) {

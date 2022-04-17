@@ -2,6 +2,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class HashTableExercise {
+
 	public static boolean isAnagram(char[] str1, char[] str2) {
 		int size1 = str1.length;
 		int size2 = str2.length;
@@ -25,6 +26,7 @@ public class HashTableExercise {
 		return true;
 	}
 
+	//Testing code.
 	public static void main1() {
 		char[] first = "hello".toCharArray();
 		char[] second = "elloh".toCharArray();
@@ -51,6 +53,7 @@ public class HashTableExercise {
 		return out;
 	}
 
+	//Testing code.
 	public static void main2() {
 		char[] first = "hello".toCharArray();
 		System.out.println(removeDuplicate(first));
@@ -72,6 +75,7 @@ public class HashTableExercise {
 		return Integer.MAX_VALUE;
 	}
 
+	//Testing code.
 	public static void main3() {
 		int arr[] = { 1, 2, 3, 5, 6, 7, 8, 9, 10 };
 		System.out.println(findMissing(arr, 1, 10));
@@ -92,6 +96,7 @@ public class HashTableExercise {
 		}
 	}
 
+	//Testing code.
 	public static void main4() {
 		int arr1[] = { 1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1 };
 		printRepeating(arr1);
@@ -115,6 +120,7 @@ public class HashTableExercise {
 		System.out.println("First Repeating number is:" + firstRepeating);
 	}
 
+	//Testing code.
 	public static void main5() {
 		int arr1[] = { 1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1 };
 		printFirstRepeating(arr1);

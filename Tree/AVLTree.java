@@ -30,6 +30,27 @@ public class AVLTree {
 		return (node == null) ? 0 : height(node.left) - height(node.right);
 	}
 
+	public void printTree() {
+		printTree(root, "", false);
+		System.out.println();
+	}
+
+	private void printTree(Node node, String indent, boolean isLeft) {
+		if (node == null)
+			return;
+		if (isLeft) {
+			System.out.print(indent + "L:");
+			indent += "|  ";
+		} else {
+			System.out.print(indent + "R:");
+			indent += "   ";
+		}
+
+		System.out.println(node.data + "(" + node.height + ")");
+		printTree(node.left, indent, true);
+		printTree(node.right, indent, false);
+	}
+
 	public void insert(int data) {
 		root = insert(root, data);
 	}
@@ -151,12 +172,10 @@ public class AVLTree {
 		int balance = getBalance(node);
 
 		if (balance > 1) {
-			if (data >= node.left.data) // Left Left Case 
-			{
+			if (data >= node.left.data) { // Left Left Case 
 				return rightRotate(node);
 			}
-			if (data < node.left.data) // Left Right Case
-			{
+			if (data < node.left.data) { // Left Right Case
 				return leftRightRotate(node);
 			}
 		}
@@ -184,27 +203,6 @@ public class AVLTree {
 			node = node.left;
 		}
 		return node;
-	}
-
-	public void printTree() {
-		printTree(root, "", false);
-		System.out.println();
-	}
-
-	private void printTree(Node node, String indent, boolean isLeft) {
-		if (node == null)
-			return;
-		if (isLeft) {
-			System.out.print(indent + "L:");
-			indent += "|  ";
-		} else {
-			System.out.print(indent + "R:");
-			indent += "   ";
-		}
-
-		System.out.println(node.data + "(" + node.height + ")");
-		printTree(node.left, indent, true);
-		printTree(node.right, indent, false);
 	}
 
 	int max(int a, int b) {

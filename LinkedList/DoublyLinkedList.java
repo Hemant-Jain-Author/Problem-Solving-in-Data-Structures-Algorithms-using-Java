@@ -14,7 +14,6 @@ public class DoublyLinkedList {
 			prev = prv;
 		}
 	}
-
 	/* Other methods */
 
 	public int size() {
@@ -23,6 +22,15 @@ public class DoublyLinkedList {
 
 	public boolean isEmpty() {
 		return size == 0;
+	}
+
+	public void print() {
+		Node temp = head;
+		while (temp != null) {
+			System.out.print(temp.value + " ");
+			temp = temp.next;
+		}
+		System.out.println("");
 	}
 
 	public int peek() {
@@ -117,14 +125,7 @@ public class DoublyLinkedList {
 		size = 0;
 	}
 
-	public void print() {
-		Node temp = head;
-		while (temp != null) {
-			System.out.print(temp.value + " ");
-			temp = temp.next;
-		}
-		System.out.println("");
-	}
+
 
 	// Sorted insert increasing
 	public void sortedInsert(int value) {
@@ -225,20 +226,26 @@ public class DoublyLinkedList {
 		return dll;
 	}
 
-	public static void main1() {
-		DoublyLinkedList ll = new DoublyLinkedList();
-		ll.addHead(1);
-		ll.addHead(2);
-		ll.addHead(3);
-		ll.print();
-		ll.removeHead();
-		ll.print();
-		System.out.println(ll.search(2));
-	}
+// Testing code.
+public static void main1() {
+	DoublyLinkedList ll = new DoublyLinkedList();
+	ll.addHead(1);
+	ll.addHead(2);
+	ll.addHead(3);
+	ll.print();
+	System.out.println("size : " + ll.size());
+	System.out.println("isEmpty : " + ll.isEmpty());
+	
+	ll.removeHead();
+	ll.print();
+	System.out.println(ll.search(2));
+}
 	/*
-	3 2 1 
-	2 1 
-	true
+3 2 1 
+size : 3
+isEmpty : false
+2 1 
+true
 	*/
 
 	public static void main2() {
@@ -284,6 +291,7 @@ public class DoublyLinkedList {
 		ll.addHead(2);
 		ll.addHead(3);
 		ll.print();
+
 		ll.removeNode(2);
 		ll.print();
 	}

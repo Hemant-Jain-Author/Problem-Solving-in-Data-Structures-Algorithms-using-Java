@@ -37,6 +37,7 @@ public class FractionalKnapsack {
 		return totalCost;
 	}
 
+	// Testing code.
 	public static void main(String[] args) {
 		int[] wt = { 10, 40, 20, 30 };
 		int[] cost = { 60, 40, 90, 120 };

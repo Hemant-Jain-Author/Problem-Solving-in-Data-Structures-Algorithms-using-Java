@@ -1,5 +1,5 @@
 public class TST {
-	Node root;
+	Node root  = null;
 
 	private class Node {
 		char data;

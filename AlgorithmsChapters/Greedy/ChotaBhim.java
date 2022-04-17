@@ -57,6 +57,7 @@ public class ChotaBhim {
 		return total;
 	}
 
+	// Testing code.
 	public static void main(String[] args) {
 		int cups[] = { 2, 1, 7, 4, 2 };
 		chotaBhim(cups);

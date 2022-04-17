@@ -1,3 +1,4 @@
+
 // Activities selection problem.
 import java.util.*;
 
@@ -39,6 +40,7 @@ class ActivitySelection {
 		}
 	}
 
+	// Testing code.
 	public static void main(String[] args) {
 		int s[] = { 1, 5, 0, 3, 5, 6, 8 };
 		int f[] = { 2, 6, 5, 4, 9, 7, 9 };

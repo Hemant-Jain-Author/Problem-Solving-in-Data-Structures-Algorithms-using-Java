@@ -33,10 +33,10 @@ public class LargestBitonicSubseq {
 
 	public static void main(String args[]) {
 		int arr[] = { 1, 6, 3, 11, 1, 9, 5, 12, 3, 14, 6, 17, 3, 19, 2, 19 };
-		System.out.println("Length of lis is " + lbs(arr));
+		System.out.println("Length of lbs is " + lbs(arr));
 	}
 }
 
 /*
-Length of lis is 8
+Length of lbs is 8
 */

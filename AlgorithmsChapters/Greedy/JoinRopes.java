@@ -49,6 +49,7 @@ public class JoinRopes {
 		return total;
 	}
 
+	// Testing code.
 	public static void main(String[] args) {
 		int ropes[] = { 4, 3, 2, 6 };
 		joinRopes(ropes, ropes.length);

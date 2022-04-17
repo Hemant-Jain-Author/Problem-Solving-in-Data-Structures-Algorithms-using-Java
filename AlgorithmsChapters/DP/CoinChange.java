@@ -48,7 +48,7 @@ public class CoinChange {
 		}
 
 		// Recursion
-		for (int i = 0; i < n; i++) {  // For all possible coins
+		for (int i = 0; i < n; i++) { // For all possible coins
 			if (coins[i] <= val) { // check validity of a sub-problem
 				int subCount = minCoinsTD(count, coins, n, val - coins[i]);
 				if (subCount != Integer.MAX_VALUE && count[val] > (subCount + 1))
@@ -66,15 +66,11 @@ public class CoinChange {
 		for (int i = 1; i <= val; i++) {
 			for (int j = 0; j < n; j++) {
 				// For all coins smaller than or equal to i.
-				if (coins[j] <= i && 
-					count[i - coins[j]] != Integer.MAX_VALUE &&
-					count[i] > count[i - coins[j]] + 1) 
-				{
+				if (coins[j] <= i && count[i - coins[j]] != Integer.MAX_VALUE && count[i] > count[i - coins[j]] + 1) {
 					count[i] = count[i - coins[j]] + 1;
 				}
 			}
 		}
-
 		return (count[val] != Integer.MAX_VALUE) ? count[val] : -1;
 	}
 
@@ -84,7 +80,7 @@ public class CoinChange {
 			System.out.print(cvalue[val] + " ");
 		}
 	}
-	
+
 	static void printCoins(int cvalue[], int val) {
 		System.out.print("Coins are : ");
 		printCoinsUtil(cvalue, val);
@@ -102,20 +98,17 @@ public class CoinChange {
 		for (int i = 1; i <= val; i++) {
 			for (int j = 0; j < n; j++) {
 				// For all coins smaller than or equal to i.
-				if (coins[j] <= i && 
-					count[i - coins[j]] != Integer.MAX_VALUE &&
-					count[i] > count[i - coins[j]] + 1) 
-				{	
+				if (coins[j] <= i && count[i - coins[j]] != Integer.MAX_VALUE && count[i] > count[i - coins[j]] + 1) {
 					count[i] = count[i - coins[j]] + 1;
 					cvalue[i] = coins[j];
 				}
 			}
 		}
-		if (count[val] == Integer.MAX_VALUE) 
+		if (count[val] == Integer.MAX_VALUE)
 			return -1;
 
 		printCoins(cvalue, val);
-		return  count[val];
+		return count[val];
 	}
 
 	public static void main(String[] args) {
@@ -128,14 +121,14 @@ public class CoinChange {
 		System.out.println("Count is : " + minCoinsBU(coins, n, value));
 		System.out.println("Count is : " + minCoinsBU2(coins, n, value));
 	}
-/*
-Count is : -1
-Count is : 3
-Count is : 3
-Count is : 3
-Coins are : 6 5 5 
-Count is : 3
-*/
+	/*
+	Count is : -1
+	Count is : 3
+	Count is : 3
+	Count is : 3
+	Coins are : 6 5 5 
+	Count is : 3
+	*/
 
 	public static void main1(String[] args) {
 		int[] coins = { 1, 5, 6, 9, 12 };

@@ -12,7 +12,7 @@ public class MinCostBinaryTree {
 		return max[i][j];
 	}
 
-	static int findSumTD(int[][] dp, int[][] max, int i, int j, int[] arr) {
+	static int minCostBstTD(int[][] dp, int[][] max, int i, int j, int[] arr) {
 		if (j <= i)
 			return 0;
 
@@ -20,13 +20,13 @@ public class MinCostBinaryTree {
 			return dp[i][j];
 
 		for (int k = i; k < j; k++) {
-			dp[i][j] = Math.min(dp[i][j], findSumTD(dp, max, i, k, arr) + findSumTD(dp, max, k + 1, j, arr)
+			dp[i][j] = Math.min(dp[i][j], minCostBstTD(dp, max, i, k, arr) + minCostBstTD(dp, max, k + 1, j, arr)
 					+ maxVal(max, i, k) * maxVal(max, k + 1, j));
 		}
 		return dp[i][j];
 	}
 
-	static int findSumTD(int[] arr) {
+	static int minCostBstTD(int[] arr) {
 		int n = arr.length;
 		int[][] dp = new int[n][n];
 		for (int[] row : dp)
@@ -39,10 +39,10 @@ public class MinCostBinaryTree {
 		for (int i = 0; i < n; i++)
 			max[i][i] = arr[i];
 
-		return findSumTD(dp, max, 0, n - 1, arr);
+		return minCostBstTD(dp, max, 0, n - 1, arr);
 	}
 
-	static int findSumBU(int[] arr) {
+	static int minCostBstBU(int[] arr) {
 		int n = arr.length;
 		int[][] dp = new int[n][n];
 
@@ -64,8 +64,8 @@ public class MinCostBinaryTree {
 
 	public static void main(String args[]) {
 		int arr[] = { 6, 2, 4 };
-		System.out.println("Total cost: " + findSumTD(arr));
-		System.out.println("Total cost: " + findSumBU(arr));
+		System.out.println("Total cost: " + minCostBstTD(arr));
+		System.out.println("Total cost: " + minCostBstBU(arr));
 	}
 }
 

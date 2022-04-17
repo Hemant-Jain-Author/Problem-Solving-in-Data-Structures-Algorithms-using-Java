@@ -20,13 +20,13 @@ public class Heap {
 		}
 	}
 
-	// Other Methods.
 	boolean compare(int[] arr, int first, int second) {
 		if (isMinHeap)
 			return (arr[first] - arr[second]) > 0; // Min heap compare
 		else
 			return (arr[first] - arr[second]) < 0; // Max heap compare
 	}
+	// Other Methods.
 
 	private void percolateDown(int parent) {
 		int lChild = 2 * parent + 1;
@@ -60,6 +60,21 @@ public class Heap {
 		}
 	}
 
+	public boolean isEmpty() {
+		return (size == 0);
+	}
+
+	public int length() {
+		return size;
+	}
+
+	public int peek() {
+		if (isEmpty()) {
+			throw new IllegalStateException();
+		}
+		return arr[0];
+	}
+
 	public void add(int value) {
 		if (size == arr.length) {
 			doubleSize();
@@ -87,9 +102,11 @@ public class Heap {
 	}
 
 	public void print() {
+		System.out.print("Heap : ");
 		for (int i = 0; i < size; i++) {
 			System.out.print(arr[i] + " ");
 		}
+		System.out.println();
 	}
 
 	public boolean delete(int value) {
@@ -98,46 +115,31 @@ public class Heap {
 				arr[i] = arr[size - 1];
 				size -= 1;
 				percolateUp(i);
-            	percolateDown(i);
+				percolateDown(i);
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public boolean isEmpty() {
-		return (size == 0);
-	}
-
-	public int length() {
-		return size;
-	}
-
-	public int peek() {
-		if (isEmpty()) {
-			throw new IllegalStateException();
-		}
-		return arr[0];
-	}
-
 	public static void main1() {
-		int[] a = { 1, 9, 6, 7, 8, 2, 4, 5, 3 };
-		Heap hp = new Heap(a, true);
+		Heap hp = new Heap(true);
+		hp.add(1);
+		hp.add(6);
+		hp.add(5);
+		hp.add(7);
+		hp.add(3);
+		hp.add(4);
+		hp.add(2);
 		hp.print();
-		System.out.println();
-		hp.delete(5);
-		hp.print();
-		System.out.println();
 
-		while (!hp.isEmpty()) {
-		    System.out.print(hp.remove() + " ");
-		}
-		System.out.println();
+		while (!hp.isEmpty())
+			System.out.print(hp.remove() + " ");
 	}
 
 	/*
-	1 3 2 5 8 6 4 9 7 
-	1 2 3 4 5 6 7 8 9 
+	1 3 2 7 6 5 4 
+	1 2 3 4 5 6 7 
 	*/
 
 	public static void heapSort(int[] array, boolean inc) {
@@ -170,6 +172,6 @@ public class Heap {
 
 	public static void main(String[] args) {
 		main1();
-		main2();
+		//main2();
 	}
 }

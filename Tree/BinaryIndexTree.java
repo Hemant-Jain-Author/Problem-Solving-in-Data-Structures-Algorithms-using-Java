@@ -81,6 +81,6 @@ public class BinaryIndexTree {
 
 /*
 Sum of elements in range(0, 5): 21
-Sum of elements in range(2, 5): 15
+Sum of elements in range(2, 5): 18
 Sum of elements in range(0, 5): 27
 */

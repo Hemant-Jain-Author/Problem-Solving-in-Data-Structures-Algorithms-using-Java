@@ -1,7 +1,6 @@
 import java.util.Stack;
 
 public class QueueUsingStack {
-
 	private Stack<Integer> stk1;
 	private Stack<Integer> stk2;
 
@@ -29,15 +28,15 @@ public class QueueUsingStack {
 
 	public static void main(String[] args) {
 		QueueUsingStack que = new QueueUsingStack();
-		que.add(1);
-		que.add(2);
-		que.add(3);
-		for (int i = 0; i < 3; i++)
-			System.out.println(que.remove());
+        que.add(1);
+        que.add(2);
+        que.add(3);
+        System.out.println("Queue remove : " + que.remove());
+        System.out.println("Queue remove : " + que.remove());
 	}
 }
+
 /*
-1
-2
-3
+Queue remove : 1
+Queue remove : 2
 */

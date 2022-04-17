@@ -1,7 +1,7 @@
 public class GridUniqueWays {
 
-	private static int uniqueWays(int m, int n) {
-		int dp[][] = new int[m][n];
+	private static int gridUniqueWays(int m, int n) {
+		int[][] dp = new int[m][n];
 		dp[0][0] = 1;
 
 		// Initialize first column.
@@ -21,8 +21,8 @@ public class GridUniqueWays {
 	}
 
 	// Diagonal movement allowed.
-	private static int unique3Ways(int m, int n) {
-		int dp[][] = new int[m][n];
+	private static int gridUnique3Ways(int m, int n) {
+		int[][] dp = new int[m][n];
 		dp[0][0] = 1;
 
 		// Initialize first column.
@@ -42,9 +42,8 @@ public class GridUniqueWays {
 	}
 
 	public static void main(String args[]) {
-		System.out.println(uniqueWays(3, 3));
-		System.out.println(unique3Ways(3, 3));
-
+		System.out.println(gridUniqueWays(3, 3));
+		System.out.println(gridUnique3Ways(3, 3));
 	}
 }
 

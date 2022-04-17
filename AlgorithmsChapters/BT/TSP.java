@@ -8,8 +8,8 @@ public class TSP {
 		if (pSize == n) {
 			if (graph[curr][0] > 0 && ans > pCost + graph[curr][0]) {
 				ans = pCost + graph[curr][0];
-				for(int i = 0; i<=n; i++)
-					ansPath[i] = path[i%n];
+				for (int i = 0; i <= n; i++)
+					ansPath[i] = path[i % n];
 			}
 			return ans;
 		}
@@ -28,14 +28,14 @@ public class TSP {
 	static int tsp(int[][] graph, int n) {
 		boolean[] visited = new boolean[n];
 		int[] path = new int[n];
-		int[] ansPath = new int[n+1];
+		int[] ansPath = new int[n + 1];
 		path[0] = 0;
 		visited[0] = true;
 		int ans = Integer.MAX_VALUE;
 		ans = tsp(graph, n, path, 1, 0, visited, ans, ansPath);
 		System.out.println("Path length : " + ans);
 		System.out.print("Path : ");
-		for(int i = 0; i<=n; i++)
+		for (int i = 0; i <= n; i++)
 			System.out.print(ansPath[i] + " ");
 		return ans;
 	}

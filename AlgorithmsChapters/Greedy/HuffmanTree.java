@@ -56,6 +56,7 @@ public class HuffmanTree {
 		print(root, "");
 	}
 
+	// Testing code.
 	public static void main(String[] args) {
 		char[] ar = { 'A', 'B', 'C', 'D', 'E' };
 		int[] fr = { 30, 25, 21, 14, 10 };

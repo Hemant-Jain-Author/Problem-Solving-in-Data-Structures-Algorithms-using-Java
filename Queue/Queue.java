@@ -1,7 +1,7 @@
 
 public class Queue {
     private int size;
-    private int capacity = 100;
+    private int capacity;
     private int[] data;
     int front = 0;
     int back = 0;
@@ -12,6 +12,10 @@ public class Queue {
         data = new int[n];
     }
 
+    public Queue() {
+        this(1000);
+    }
+    
 	public boolean add(int value) {
         if (size >= capacity) {
             System.out.println("Queue is full.");
@@ -62,18 +66,20 @@ public class Queue {
     }
 
     public static void main(String[] args) {
-        Queue que = new Queue(5);
-        for(int i=0;i<5;i++){
-            que.add(i);
-        }
-        que.print();
-
-        for (int i = 0; i < 5; i++)
-            System.out.print(que.remove() + " ");
+        Queue que = new Queue();
+        que.add(1);
+        que.add(2);
+        que.add(3);
+        System.out.println("isEmpty : " + que.isEmpty());
+        System.out.println("size : " + que.size());
+        System.out.println("Queue remove : " + que.remove());
+        System.out.println("Queue remove : " + que.remove());
     }
 }
 
 /*
-Queue is : 0 1 2 3 4 
-0 1 2 3 4 
+isEmpty : false
+size : 3
+Queue remove : 1
+Queue remove : 2
 */

@@ -1,10 +1,4 @@
 public class NutsAndBolts {
-	private static void printArray(int[] arr) {
-		for (int i : arr)
-			System.out.print(i + " ");
-		System.out.println();
-	}
-
 	public static void makePairs(int[] nuts, int[] bolts) {
 		makePairs(nuts, bolts, 0, nuts.length - 1);
 		System.out.println("Matched nuts and bolts are : ");
@@ -48,6 +42,13 @@ public class NutsAndBolts {
 		swap(arr, i, high);
 		return i;
 	}
+
+	private static void printArray(int[] arr) {
+		for (int i : arr)
+			System.out.print(i + " ");
+		System.out.println();
+	}
+
 	public static void main(String[] args) {
 		int nuts[] = { 1, 2, 6, 5, 4, 3 };
 		int bolts[] = { 6, 4, 5, 1, 3, 2 };

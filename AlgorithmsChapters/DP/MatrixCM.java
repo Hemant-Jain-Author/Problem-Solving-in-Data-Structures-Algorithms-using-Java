@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class MatrixCM {
 
-	static int MatrixChainMulBruteForce(int p[], int i, int j) {
+	static int MatrixChainMulBruteForce(int[] p, int i, int j) {
 		if (i == j)
 			return 0;
 
@@ -33,7 +33,7 @@ public class MatrixCM {
 		int[][] dp = new int[n][n];
 		for (int[] row : dp)
 			Arrays.fill(row, Integer.MAX_VALUE);
-		
+
 		for (int i = 1; i < n; i++)
 			dp[i][i] = 0;
 
@@ -73,19 +73,19 @@ public class MatrixCM {
 	}
 
 	static void PrintOptPar(int n, int[][] pos, int i, int j) {
-		if (i == j) 
+		if (i == j)
 			System.out.print("M" + pos[i][i] + " ");
 		else {
 			System.out.print("( ");
 			PrintOptPar(n, pos, i, pos[i][j]);
-			PrintOptPar(n, pos, pos[i][j]+1, j);
+			PrintOptPar(n, pos, pos[i][j] + 1, j);
 			System.out.print(") ");
 		}
 	}
-	
+
 	static void PrintOptimalParenthesis(int n, int[][] pos) {
 		System.out.print("OptimalParenthesis : ");
-		PrintOptPar(n, pos, 1, n-1);
+		PrintOptPar(n, pos, 1, n - 1);
 		System.out.println("");
 	}
 
@@ -96,7 +96,7 @@ public class MatrixCM {
 		for (int[] row : dp)
 			Arrays.fill(row, Integer.MAX_VALUE);
 
-		for (int i = 1; i < n; i++){
+		for (int i = 1; i < n; i++) {
 			dp[i][i] = 0;
 			pos[i][i] = i;
 		}
@@ -121,7 +121,6 @@ public class MatrixCM {
 		System.out.println("Matrix Chain Multiplication is: " + MatrixChainMulTD(arr, n));
 		System.out.println("Matrix Chain Multiplication is: " + MatrixChainMulBU(arr, n));
 		System.out.println("Matrix Chain Multiplication is: " + MatrixChainMulBU2(arr, n));
-
 	}
 }
 

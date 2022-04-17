@@ -6,19 +6,19 @@ public class Tree {
 
 	private static class Node {
 		private int value;
-		private Node lChild;
-		private Node rChild;
+		private Node left;
+		private Node right;
 
 		public Node(int v, Node l, Node r) {
 			value = v;
-			lChild = l;
-			rChild = r;
+			left = l;
+			right = r;
 		}
 
 		public Node(int v) {
 			value = v;
-			lChild = null;
-			rChild = null;
+			left = null;
+			right = null;
 		}
 	}
 
@@ -27,37 +27,37 @@ public class Tree {
 	}
 	/* Other methods */
 
-	public void levelOrderBinaryTree(int[] arr) {
-		root = levelOrderBinaryTree(arr, 0);
+	public void createCompleteBinaryTree(int[] arr) {
+		root = createCompleteBinaryTree(arr, 0);
 	}
 
-	public Node levelOrderBinaryTree(int[] arr, int start) {
+	public Node createCompleteBinaryTree(int[] arr, int start) {
 		int size = arr.length;
 		Node curr = new Node(arr[start]);
 
-		int left = 2 * start + 1;
-		int right = 2 * start + 2;
+		int leftIndex = 2 * start + 1;
+		int rightIndex = 2 * start + 2;
 
-		if (left < size)
-			curr.lChild = levelOrderBinaryTree(arr, left);
-		if (right < size)
-			curr.rChild = levelOrderBinaryTree(arr, right);
+		if (leftIndex < size)
+			curr.left = createCompleteBinaryTree(arr, leftIndex);
+		if (rightIndex < size)
+			curr.right = createCompleteBinaryTree(arr, rightIndex);
 
 		return curr;
 	}
 
-	public void insertNode(int value) {
-		root = insertNode(root, value);
+	public void insert(int value) {
+		root = insert(root, value);
 	}
 
-	private Node insertNode(Node node, int value) {
+	private Node insert(Node node, int value) {
 		if (node == null) {
 			node = new Node(value, null, null);
 		} else {
 			if (node.value > value) {
-				node.lChild = insertNode(node.lChild, value);
+				node.left = insert(node.left, value);
 			} else {
-				node.rChild = insertNode(node.rChild, value);
+				node.right = insert(node.right, value);
 			}
 		}
 		return node;
@@ -68,12 +68,11 @@ public class Tree {
 		System.out.println();
 	}
 
-	private void printPreOrder(Node node)/* pre order */
-	{
+	private void printPreOrder(Node node) { /* pre order */
 		if (node != null) {
 			System.out.print(node.value + " ");
-			printPreOrder(node.lChild);
-			printPreOrder(node.rChild);
+			printPreOrder(node.left);
+			printPreOrder(node.right);
 		}
 	}
 
@@ -82,15 +81,14 @@ public class Tree {
 		nthPreOrder(root, index, counter);
 	}
 
-	private void nthPreOrder(Node node, int index, int[] counter)/* pre order */
-	{
+	private void nthPreOrder(Node node, int index, int[] counter) { /* pre order */
 		if (node != null) {
 			counter[0]++;
 			if (counter[0] == index) {
 				System.out.println(node.value);
 			}
-			nthPreOrder(node.lChild, index, counter);
-			nthPreOrder(node.rChild, index, counter);
+			nthPreOrder(node.left, index, counter);
+			nthPreOrder(node.right, index, counter);
 		}
 	}
 
@@ -99,11 +97,10 @@ public class Tree {
 		System.out.println();
 	}
 
-	private void printPostOrder(Node node)/* post order */
-	{
+	private void printPostOrder(Node node) { /* post order */
 		if (node != null) {
-			printPostOrder(node.lChild);
-			printPostOrder(node.rChild);
+			printPostOrder(node.left);
+			printPostOrder(node.right);
 			System.out.print(node.value + " ");
 		}
 	}
@@ -113,11 +110,10 @@ public class Tree {
 		nthPostOrder(root, index, counter);
 	}
 
-	private void nthPostOrder(Node node, int index, int[] counter)/* post order */
-	{
+	private void nthPostOrder(Node node, int index, int[] counter) { /* post order */
 		if (node != null) {
-			nthPostOrder(node.lChild, index, counter);
-			nthPostOrder(node.rChild, index, counter);
+			nthPostOrder(node.left, index, counter);
+			nthPostOrder(node.right, index, counter);
 			counter[0]++;
 			if (counter[0] == index) {
 				System.out.println(node.value);
@@ -130,12 +126,11 @@ public class Tree {
 		System.out.println();
 	}
 
-	private void printInOrder(Node node)/* In order */
-	{
+	private void printInOrder(Node node) { /* In order */
 		if (node != null) {
-			printInOrder(node.lChild);
+			printInOrder(node.left);
 			System.out.print(node.value + " ");
-			printInOrder(node.rChild);
+			printInOrder(node.right);
 		}
 	}
 
@@ -147,12 +142,12 @@ public class Tree {
 	private void nthInOrder(Node node, int index, int[] counter) {
 
 		if (node != null) {
-			nthInOrder(node.lChild, index, counter);
+			nthInOrder(node.left, index, counter);
 			counter[0]++;
 			if (counter[0] == index) {
 				System.out.println(node.value);
 			}
-			nthInOrder(node.rChild, index, counter);
+			nthInOrder(node.right, index, counter);
 		}
 	}
 
@@ -166,10 +161,10 @@ public class Tree {
 			temp = que.remove();
 			System.out.print(temp.value + " ");
 
-			if (temp.lChild != null)
-				que.add(temp.lChild);
-			if (temp.rChild != null)
-				que.add(temp.rChild);
+			if (temp.left != null)
+				que.add(temp.left);
+			if (temp.right != null)
+				que.add(temp.right);
 		}
 	}
 
@@ -184,12 +179,11 @@ public class Tree {
 			temp = stk.pop();
 			System.out.print(temp.value + " ");
 
-			if (temp.lChild != null)
-				stk.push(temp.lChild);
-			if (temp.rChild != null)
-				stk.push(temp.rChild);
+			if (temp.left != null)
+				stk.push(temp.left);
+			if (temp.right != null)
+				stk.push(temp.right);
 		}
-		System.out.println();
 	}
 
 	void printLevelOrderLineByLine() {
@@ -202,22 +196,22 @@ public class Tree {
 			while (que1.size() != 0) {
 				temp = que1.remove();
 				System.out.print(temp.value + " ");
-				if (temp.lChild != null)
-					que2.add(temp.lChild);
-				if (temp.rChild != null)
-					que2.add(temp.rChild);
+				if (temp.left != null)
+					que2.add(temp.left);
+				if (temp.right != null)
+					que2.add(temp.right);
 			}
 			System.out.println("");
 
 			while (que2.size() != 0) {
 				temp = que2.remove();
 				System.out.print(temp.value + " ");
-				if (temp.lChild != null)
-					que1.add(temp.lChild);
-				if (temp.rChild != null)
-					que1.add(temp.rChild);
+				if (temp.left != null)
+					que1.add(temp.left);
+				if (temp.right != null)
+					que1.add(temp.right);
 			}
-			System.out.println("");
+			System.out.println();
 		}
 	}
 
@@ -233,13 +227,13 @@ public class Tree {
 			while (count > 0) {
 				temp = que.remove();
 				System.out.print(temp.value + " ");
-				if (temp.lChild != null)
-					que.add(temp.lChild);
-				if (temp.rChild != null)
-					que.add(temp.rChild);
+				if (temp.left != null)
+					que.add(temp.left);
+				if (temp.right != null)
+					que.add(temp.right);
 				count -= 1;
 			}
-			System.out.println("");
+			System.out.println();
 		}
 	}
 
@@ -254,18 +248,18 @@ public class Tree {
 			while (stk1.size() != 0) {
 				temp = stk1.pop();
 				System.out.print(temp.value + " ");
-				if (temp.rChild != null)
-					stk2.push(temp.rChild);
-				if (temp.lChild != null)
-					stk2.push(temp.lChild);
+				if (temp.right != null)
+					stk2.push(temp.right);
+				if (temp.left != null)
+					stk2.push(temp.left);
 			}
 			while (stk2.size() != 0) {
 				temp = stk2.pop();
 				System.out.print(temp.value + " ");
-				if (temp.lChild != null)
-					stk1.push(temp.lChild);
-				if (temp.rChild != null)
-					stk1.push(temp.rChild);
+				if (temp.left != null)
+					stk1.push(temp.left);
+				if (temp.right != null)
+					stk1.push(temp.right);
 			}
 		}
 		System.out.println();
@@ -278,9 +272,9 @@ public class Tree {
 			if (curr.value == value) {
 				return true;
 			} else if (curr.value > value) {
-				curr = curr.lChild;
+				curr = curr.left;
 			} else {
-				curr = curr.rChild;
+				curr = curr.right;
 			}
 		}
 		return false;
@@ -289,7 +283,7 @@ public class Tree {
 	public boolean find2(int value) {
 		Node curr = root;
 		while (curr != null && curr.value != value)
-			curr = (curr.value > value) ? curr.lChild : curr.rChild;
+			curr = (curr.value > value) ? curr.left : curr.right;
 		return curr != null;
 	}
 
@@ -299,8 +293,8 @@ public class Tree {
 			return Integer.MAX_VALUE;
 		}
 
-		while (node.lChild != null) {
-			node = node.lChild;
+		while (node.left != null) {
+			node = node.left;
 		}
 		return node.value;
 	}
@@ -311,8 +305,8 @@ public class Tree {
 			return Integer.MIN_VALUE;
 		}
 
-		while (node.rChild != null) {
-			node = node.rChild;
+		while (node.right != null) {
+			node = node.right;
 		}
 		return node.value;
 	}
@@ -323,8 +317,8 @@ public class Tree {
 			return null;
 		}
 
-		while (node.rChild != null) {
-			node = node.rChild;
+		while (node.right != null) {
+			node = node.right;
 		}
 		return node;
 	}
@@ -335,8 +329,8 @@ public class Tree {
 			return null;
 		}
 
-		while (node.lChild != null) {
-			node = node.lChild;
+		while (node.left != null) {
+			node = node.left;
 		}
 		return node;
 	}
@@ -352,26 +346,26 @@ public class Tree {
 	private Node deleteNode(Node node, int value) {
 		if (node != null) {
 			if (node.value == value) {
-				if (node.lChild == null && node.rChild == null) {
+				if (node.left == null && node.right == null) {
 					return null;
 				} else {
-					if (node.lChild == null) {
-						return node.rChild;
+					if (node.left == null) {
+						return node.right;
 					}
 
-					if (node.rChild == null) {
-						return node.lChild;
+					if (node.right == null) {
+						return node.left;
 					}
-					Node minNode = findMinNode(node.rChild);
+					Node minNode = findMinNode(node.right);
 					int minValue = minNode.value;
 					node.value = minValue;
-					node.rChild = deleteNode(node.rChild, minValue);
+					node.right = deleteNode(node.right, minValue);
 				}
 			} else {
 				if (node.value > value) {
-					node.lChild = deleteNode(node.lChild, value);
+					node.left = deleteNode(node.left, value);
 				} else {
-					node.rChild = deleteNode(node.rChild, value);
+					node.right = deleteNode(node.right, value);
 				}
 			}
 		}
@@ -386,8 +380,8 @@ public class Tree {
 		if (curr == null)
 			return 0;
 		else {
-			int lDepth = treeDepth(curr.lChild);
-			int rDepth = treeDepth(curr.rChild);
+			int lDepth = treeDepth(curr.left);
+			int rDepth = treeDepth(curr.right);
 
 			if (lDepth > rDepth)
 				return lDepth + 1;
@@ -406,7 +400,7 @@ public class Tree {
 		else if (node1 == null || node2 == null)
 			return false;
 		else
-			return (isEqualUtil(node1.lChild, node2.lChild) && isEqualUtil(node1.rChild, node2.rChild)
+			return (isEqualUtil(node1.left, node2.left) && isEqualUtil(node1.right, node2.right)
 					&& (node1.value == node2.value));
 	}
 
@@ -425,10 +419,10 @@ public class Tree {
 		}
 
 		if (curr.value > first && curr.value > second) {
-			return ancestor(curr.lChild, first, second);
+			return ancestor(curr.left, first, second);
 		}
 		if (curr.value < first && curr.value < second) {
-			return ancestor(curr.rChild, first, second);
+			return ancestor(curr.right, first, second);
 		}
 		return curr;
 	}
@@ -443,8 +437,8 @@ public class Tree {
 		Node temp;
 		if (curr != null) {
 			temp = new Node(curr.value);
-			temp.lChild = copyTree(curr.lChild);
-			temp.rChild = copyTree(curr.rChild);
+			temp.left = copyTree(curr.left);
+			temp.right = copyTree(curr.right);
 			return temp;
 		} else
 			return null;
@@ -460,8 +454,8 @@ public class Tree {
 		Node temp;
 		if (curr != null) {
 			temp = new Node(curr.value);
-			temp.rChild = copyMirrorTree(curr.lChild);
-			temp.lChild = copyMirrorTree(curr.rChild);
+			temp.right = copyMirrorTree(curr.left);
+			temp.left = copyMirrorTree(curr.right);
 			return temp;
 		} else
 			return null;
@@ -475,7 +469,7 @@ public class Tree {
 		if (curr == null)
 			return 0;
 		else
-			return (1 + numNodes(curr.rChild) + numNodes(curr.lChild));
+			return (1 + numNodes(curr.right) + numNodes(curr.left));
 	}
 
 	public int numFullNodesBT() {
@@ -486,8 +480,8 @@ public class Tree {
 		if (curr == null)
 			return 0;
 
-		int count = numFullNodesBT(curr.rChild) + numFullNodesBT(curr.lChild);
-		if (curr.rChild != null && curr.lChild != null)
+		int count = numFullNodesBT(curr.right) + numFullNodesBT(curr.left);
+		if (curr.right != null && curr.left != null)
 			count++;
 		return count;
 	}
@@ -496,8 +490,7 @@ public class Tree {
 		return maxLengthPathBT(root);
 	}
 
-	private int maxLengthPathBT(Node curr) // diameter
-	{
+	private int maxLengthPathBT(Node curr) { // diameter
 		int max;
 		int leftPath, rightPath;
 		int leftMax, rightMax;
@@ -505,13 +498,13 @@ public class Tree {
 		if (curr == null)
 			return 0;
 
-		leftPath = treeDepth(curr.lChild);
-		rightPath = treeDepth(curr.rChild);
+		leftPath = treeDepth(curr.left);
+		rightPath = treeDepth(curr.right);
 
 		max = leftPath + rightPath + 1;
 
-		leftMax = maxLengthPathBT(curr.lChild);
-		rightMax = maxLengthPathBT(curr.rChild);
+		leftMax = maxLengthPathBT(curr.left);
+		rightMax = maxLengthPathBT(curr.right);
 
 		if (leftMax > max)
 			max = leftMax;
@@ -529,10 +522,10 @@ public class Tree {
 	private int numLeafNodes(Node curr) {
 		if (curr == null)
 			return 0;
-		if (curr.lChild == null && curr.rChild == null)
+		if (curr.left == null && curr.right == null)
 			return 1;
 		else
-			return (numLeafNodes(curr.rChild) + numLeafNodes(curr.lChild));
+			return (numLeafNodes(curr.right) + numLeafNodes(curr.left));
 	}
 
 	public int sumAllBT() {
@@ -543,7 +536,7 @@ public class Tree {
 		if (curr == null)
 			return 0;
 
-		return (curr.value + sumAllBT(curr.lChild) + sumAllBT(curr.rChild));
+		return (curr.value + sumAllBT(curr.left) + sumAllBT(curr.right));
 	}
 
 	public void iterativePreOrder() {
@@ -557,11 +550,11 @@ public class Tree {
 			curr = stk.pop();
 			System.out.print(curr.value + " ");
 
-			if (curr.rChild != null)
-				stk.push(curr.rChild);
+			if (curr.right != null)
+				stk.push(curr.right);
 
-			if (curr.lChild != null)
-				stk.push(curr.lChild);
+			if (curr.left != null)
+				stk.push(curr.left);
 		}
 		System.out.println();
 	}
@@ -585,12 +578,12 @@ public class Tree {
 			} else {
 				stk.push(curr);
 				visited.push(1);
-				if (curr.rChild != null) {
-					stk.push(curr.rChild);
+				if (curr.right != null) {
+					stk.push(curr.right);
 					visited.push(0);
 				}
-				if (curr.lChild != null) {
-					stk.push(curr.lChild);
+				if (curr.left != null) {
+					stk.push(curr.left);
 					visited.push(0);
 				}
 			}
@@ -615,14 +608,14 @@ public class Tree {
 			if (vtd == 1) {
 				System.out.print(curr.value + " ");
 			} else {
-				if (curr.rChild != null) {
-					stk.push(curr.rChild);
+				if (curr.right != null) {
+					stk.push(curr.right);
 					visited.push(0);
 				}
 				stk.push(curr);
 				visited.push(1);
-				if (curr.lChild != null) {
-					stk.push(curr.lChild);
+				if (curr.left != null) {
+					stk.push(curr.left);
 					visited.push(0);
 				}
 			}
@@ -630,18 +623,18 @@ public class Tree {
 		System.out.println();
 	}
 
+	public boolean isBST3() {
+		return isBST3(root);
+	}
+
 	private boolean isBST3(Node root) {
 		if (root == null)
 			return true;
-		if (root.lChild != null && findMaxNode(root.lChild).value > root.value)
+		if (root.left != null && findMaxNode(root.left).value > root.value)
 			return false;
-		if (root.rChild != null && findMinNode(root.rChild).value <= root.value)
+		if (root.right != null && findMinNode(root.right).value <= root.value)
 			return false;
-		return (isBST3(root.lChild) && isBST3(root.rChild));
-	}
-
-	public boolean isBST3() {
-		return isBST3(root);
+		return (isBST3(root.left) && isBST3(root.right));
 	}
 
 	public boolean isBST() {
@@ -655,20 +648,18 @@ public class Tree {
 		if (curr.value < min || curr.value > max)
 			return false;
 
-		return isBST(curr.lChild, min, curr.value) && isBST(curr.rChild, curr.value, max);
+		return isBST(curr.left, min, curr.value) && isBST(curr.right, curr.value, max);
 	}
 
 	public boolean isBST2() {
-
 		int[] count = new int[1];
 		return isBST2(root, count);
 	}
 
-	private boolean isBST2(Node root, int[] count)/* in order traversal */
-	{
+	private boolean isBST2(Node root, int[] count) { /* in order traversal */
 		boolean ret;
 		if (root != null) {
-			ret = isBST2(root.lChild, count);
+			ret = isBST2(root.left, count);
 			if (!ret)
 				return false;
 
@@ -676,7 +667,7 @@ public class Tree {
 				return false;
 			count[0] = root.value;
 
-			ret = isBST2(root.rChild, count);
+			ret = isBST2(root.right, count);
 			if (!ret)
 				return false;
 		}
@@ -691,17 +682,17 @@ public class Tree {
 			que.add(root);
 		while (que.size() != 0) {
 			temp = que.remove();
-			if (temp.lChild != null) {
+			if (temp.left != null) {
 				if (noChild == 1)
 					return false;
-				que.add(temp.lChild);
+				que.add(temp.left);
 			} else
 				noChild = 1;
 
-			if (temp.rChild != null) {
+			if (temp.right != null) {
 				if (noChild == 1)
 					return false;
-				que.add(temp.rChild);
+				que.add(temp.right);
 			} else
 				noChild = 1;
 		}
@@ -713,8 +704,8 @@ public class Tree {
 			return true;
 		if (index > count)
 			return false;
-		return isCompleteTreeUtil(curr.lChild, index * 2 + 1, count)
-				&& isCompleteTreeUtil(curr.rChild, index * 2 + 2, count);
+		return isCompleteTreeUtil(curr.left, index * 2 + 1, count)
+				&& isCompleteTreeUtil(curr.right, index * 2 + 2, count);
 	}
 
 	boolean isCompleteTree2() {
@@ -727,7 +718,7 @@ public class Tree {
 			return true;
 		if (curr.value < parentValue)
 			return false;
-		return (isHeapUtil(curr.lChild, curr.value) && isHeapUtil(curr.rChild, curr.value));
+		return (isHeapUtil(curr.left, curr.value) && isHeapUtil(curr.right, curr.value));
 	}
 
 	boolean isHeap() {
@@ -742,8 +733,8 @@ public class Tree {
 			return false;
 		if (curr.value < parentValue)
 			return false;
-		return isHeapUtil2(curr.lChild, index * 2 + 1, count, curr.value)
-				&& isHeapUtil2(curr.rChild, index * 2 + 2, count, curr.value);
+		return isHeapUtil2(curr.left, index * 2 + 1, count, curr.value)
+				&& isHeapUtil2(curr.right, index * 2 + 2, count, curr.value);
 	}
 
 	boolean isHeap2() {
@@ -763,32 +754,32 @@ public class Tree {
 		if (curr == null)
 			return null;
 
-		if (curr.lChild == null && curr.rChild == null) {
-			curr.lChild = curr;
-			curr.rChild = curr;
+		if (curr.left == null && curr.right == null) {
+			curr.left = curr;
+			curr.right = curr;
 			return curr;
 		}
 
-		if (curr.lChild != null) {
-			Head = treeToListRec(curr.lChild);
-			Tail = Head.lChild;
+		if (curr.left != null) {
+			Head = treeToListRec(curr.left);
+			Tail = Head.left;
 
-			curr.lChild = Tail;
-			Tail.rChild = curr;
+			curr.left = Tail;
+			Tail.right = curr;
 		} else
 			Head = curr;
 
-		if (curr.rChild != null) {
-			Node tempHead = treeToListRec(curr.rChild);
-			Tail = tempHead.lChild;
+		if (curr.right != null) {
+			Node tempHead = treeToListRec(curr.right);
+			Tail = tempHead.left;
 
-			curr.rChild = tempHead;
-			tempHead.lChild = curr;
+			curr.right = tempHead;
+			tempHead.left = curr;
 		} else
 			Tail = curr;
 
-		Head.lChild = Tail;
-		Tail.rChild = Head;
+		Head.left = Tail;
+		Tail.right = Head;
 		return Head;
 	}
 
@@ -803,14 +794,14 @@ public class Tree {
 
 		stk.push(curr.value);
 
-		if (curr.lChild == null && curr.rChild == null) {
+		if (curr.left == null && curr.right == null) {
 			System.out.println(stk);
 			stk.pop();
 			return;
 		}
 
-		printAllPathUtil(curr.rChild, stk);
-		printAllPathUtil(curr.lChild, stk);
+		printAllPathUtil(curr.right, stk);
+		printAllPathUtil(curr.left, stk);
 		stk.pop();
 	}
 
@@ -831,8 +822,8 @@ public class Tree {
 		if (curr.value == first || curr.value == second)
 			return curr;
 
-		left = lca(curr.lChild, first, second);
-		right = lca(curr.rChild, first, second);
+		left = lca(curr.left, first, second);
+		right = lca(curr.right, first, second);
 
 		if (left != null && right != null)
 			return curr;
@@ -862,10 +853,10 @@ public class Tree {
 		}
 
 		if (curr.value > second) {
-			return lcaBST(curr.lChild, first, second);
+			return lcaBST(curr.left, first, second);
 		}
 		if (curr.value < first) {
-			return lcaBST(curr.rChild, first, second);
+			return lcaBST(curr.right, first, second);
 		}
 		if (find(first) && find(second))
 			return curr.value;
@@ -880,15 +871,15 @@ public class Tree {
 		if (curr == null)
 			return null;
 
-		curr.lChild = trimOutsideRange(curr.lChild, min, max);
-		curr.rChild = trimOutsideRange(curr.rChild, min, max);
+		curr.left = trimOutsideRange(curr.left, min, max);
+		curr.right = trimOutsideRange(curr.right, min, max);
 
 		if (curr.value < min) {
-			return curr.rChild;
+			return curr.right;
 		}
 
 		if (curr.value > max) {
-			return curr.lChild;
+			return curr.left;
 		}
 
 		return curr;
@@ -903,12 +894,12 @@ public class Tree {
 		if (root == null)
 			return;
 
-		printInRange(root.lChild, min, max);
+		printInRange(root.left, min, max);
 
 		if (root.value >= min && root.value <= max)
 			System.out.print(root.value + " ");
 
-		printInRange(root.rChild, min, max);
+		printInRange(root.right, min, max);
 	}
 
 	public int floorBST(double val) {
@@ -920,10 +911,10 @@ public class Tree {
 				floor = curr.value;
 				break;
 			} else if (curr.value > val) {
-				curr = curr.lChild;
+				curr = curr.left;
 			} else {
 				floor = curr.value;
-				curr = curr.rChild;
+				curr = curr.right;
 			}
 		}
 		return floor;
@@ -939,9 +930,9 @@ public class Tree {
 				break;
 			} else if (curr.value > val) {
 				ceil = curr.value;
-				curr = curr.lChild;
+				curr = curr.left;
 			} else {
-				curr = curr.rChild;
+				curr = curr.right;
 			}
 		}
 		return ceil;
@@ -953,20 +944,20 @@ public class Tree {
 	}
 
 	private int findMaxBT(Node curr) {
-		int left, right;
+		int leftmax, rightmax;
 
 		if (curr == null)
 			return Integer.MIN_VALUE;
 
 		int max = curr.value;
 
-		left = findMaxBT(curr.lChild);
-		right = findMaxBT(curr.rChild);
+		leftmax = findMaxBT(curr.left);
+		rightmax = findMaxBT(curr.right);
 
-		if (left > max)
-			max = left;
-		if (right > max)
-			max = right;
+		if (leftmax > max)
+			max = leftmax;
+		if (rightmax > max)
+			max = rightmax;
 
 		return max;
 	}
@@ -979,7 +970,7 @@ public class Tree {
 		if (curr == null)
 			return false;
 
-		if ((curr.value == value) || searchBTUtil(curr.lChild, value) || searchBTUtil(curr.rChild, value))
+		if ((curr.value == value) || searchBTUtil(curr.left, value) || searchBTUtil(curr.right, value))
 			return true;
 
 		return false;
@@ -996,8 +987,8 @@ public class Tree {
 
 		int mid = (start + end) / 2;
 		curr = new Node(arr[mid]);
-		curr.lChild = createBinarySearchTree(arr, start, mid - 1);
-		curr.rChild = createBinarySearchTree(arr, mid + 1, end);
+		curr.left = createBinarySearchTree(arr, start, mid - 1);
+		curr.right = createBinarySearchTree(arr, mid + 1, end);
 		return curr;
 	}
 
@@ -1016,263 +1007,262 @@ public class Tree {
 			// Last popped value will be the root.
 			while (stk.size() > 0 && stk.peek() < value)
 				root = stk.pop();
+
 			// add current value to the stack.
 			stk.push(value);
 		}
 		return true;
 	}
 
-	public static void main1() {
-		Tree t = new Tree();
-		int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-		t.levelOrderBinaryTree(arr);
-		t.printPreOrder();
-		// 1 2 4 8 9 5 10 3 6 7 
+public static void main1() {
+	Tree t = new Tree();
+	int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	t.createCompleteBinaryTree(arr);
+	t.printPreOrder();
+	// 1 2 4 8 9 5 10 3 6 7 
 
-		t.printPostOrder();
-		// 8 9 4 10 5 2 6 7 3 1 
+	t.printPostOrder();
+	// 8 9 4 10 5 2 6 7 3 1 
 
-		t.printInOrder();
-		// 8 4 9 2 10 5 1 6 3 7 
+	t.printInOrder();
+	// 8 4 9 2 10 5 1 6 3 7 
 
-		t.iterativePreOrder();
-		// 1 2 4 8 9 5 10 3 6 7 
+	t.iterativePreOrder();
+	// 1 2 4 8 9 5 10 3 6 7 
 
-		t.iterativePostOrder();
-		// 8 9 4 10 5 2 6 7 3 1 
+	t.iterativePostOrder();
+	// 8 9 4 10 5 2 6 7 3 1 
 
-		t.iterativeInOrder();
-		// 8 4 9 2 10 5 1 6 3 7 
+	t.iterativeInOrder();
+	// 8 4 9 2 10 5 1 6 3 7 
 
-		t.printBreadthFirst();
-		// 1 2 3 4 5 6 7 8 9 10 
+	t.printBreadthFirst();
+	// 1 2 3 4 5 6 7 8 9 10 
 
-		t.printDepthFirst();
-		// 1 3 7 6 2 5 10 4 9 8
+	t.printDepthFirst();
+	// 1 3 7 6 2 5 10 4 9 8
 
-		t.printLevelOrderLineByLine();
-		/*
-		1 
-		2 3 
-		4 5 6 7 
-		8 9 10 
-		*/
-
-		t.printLevelOrderLineByLine2();
-		/*
-		1 
-		2 3 
-		4 5 6 7 
-		8 9 10 
-		*/
-
-		t.printSpiralTree();
-		// 1 2 3 7 6 5 4 8 9 10 
-
-		t.nthInOrder(2);
-		t.nthPostOrder(2);
-		t.nthPreOrder(2);
-
-		/*
-		4
-		9
-		2
-		*/
-
-		t.printAllPath();
-
-		/*
-		[1, 3, 7]
-		[1, 3, 6]
-		[1, 2, 5, 10]
-		[1, 2, 4, 9]
-		[1, 2, 4, 8]
-		*/
-	}
-
-	public static void main2() {
-		Tree t = new Tree();
-		int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-		t.levelOrderBinaryTree(arr);
-
-		System.out.println(t.numNodes());
-		// 10
-
-		System.out.println(t.sumAllBT());
-		// 55
-
-		System.out.println(t.numLeafNodes());
-		// 5
-
-		System.out.println(t.numFullNodesBT());
-		// 4
-
-		System.out.println(t.searchBT(9));
-		// true
-
-		System.out.println(t.findMaxBT());
-		// 10
-
-		System.out.println(t.treeDepth());
-		// 4
-
-		System.out.println(t.maxLengthPathBT());
-		// 6
-	}
-
-	public static void main3() {
-		Tree t = new Tree();
-		int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-		t.levelOrderBinaryTree(arr);
-
-		Tree t2 = t.copyTree();
-		t2.printLevelOrderLineByLine();
-		/*
-		1 
-		2 3 
-		4 5 6 7 
-		8 9 10 
-		*/
-		Tree t3 = t.copyMirrorTree();
-		t3.printLevelOrderLineByLine();
-		/*
-		1 
-		3 2 
-		7 6 5 4 
-		10 9 8
-		*/
-		System.out.println(t.isEqual(t2));
-		/*
-		true
-		*/
-		System.out.println(t.isHeap());
-		System.out.println(t.isHeap2());
-		System.out.println(t.isCompleteTree());
-		System.out.println(t.isCompleteTree2());
-		/*
-		true
-		true
-		true
-		true
-		*/
-	}
-
-	public static void main4() {
-		Tree t = new Tree();
-		t.insertNode(2);
-		t.insertNode(1);
-		t.insertNode(3);
-		t.insertNode(4);
-
-		t.printInOrder();
-
-		/*
-		1 2 3 4 
-		*/
-		System.out.println(t.find(3));
-		System.out.println(t.find(6));
-		/*
-		true
-		false
-		*/
-		System.out.println(t.isBST());
-		System.out.println(t.isBST2());
-		System.out.println(t.isBST3());
-		/*
-		true
-		true
-		true
-		*/
-
-	}
-
-	public static void main8() {
-		Tree t = new Tree();
-		t.insertNode(2);
-		t.insertNode(1);
-		t.insertNode(3);
-		t.insertNode(4);
-
-		System.out.println("Before delete operation.");
-		t.printInOrder();
-		t.deleteNode(2);
-		System.out.println("After delete operation.");
-		t.printInOrder();
-	}
+	t.printLevelOrderLineByLine();
 	/*
-	Before delete operation.
-	1 2 3 4 
-	After delete operation.
-	1 3 4 
+	1 
+	2 3 
+	4 5 6 7 
+	8 9 10 
 	*/
 
-	public static void main5() {
-		Tree t = new Tree();
-		t.insertNode(2);
-		t.insertNode(1);
-		t.insertNode(3);
-		t.insertNode(4);
-		System.out.println(t.findMin());
-		System.out.println(t.findMax());
-		t.lcaBST(3, 4);
-		t.lcaBST(1, 4);
-		t.lcaBST(10, 4);
-	}
+	t.printLevelOrderLineByLine2();
+	/*
+	1 
+	2 3 
+	4 5 6 7 
+	8 9 10 
+	*/
+
+	t.printSpiralTree();
+	// 1 2 3 7 6 5 4 8 9 10 
+
+	t.nthInOrder(2);
+	t.nthPostOrder(2);
+	t.nthPreOrder(2);
 
 	/*
-	1
 	4
-	lca is :3
-	lca is :2
-	lca does not exist
+	9
+	2
 	*/
 
-	public static void main6() {
-		Tree t = new Tree();
-		int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-		t.createBinarySearchTree(arr);
-		t.printInOrder();
-		t.printInRange(4, 7);
-		t.trimOutsideRange(4, 7);
-		t.printInOrder();
-	}
+	t.printAllPath();
+
+	/*
+[1, 3, 7]
+[1, 3, 6]
+[1, 2, 5, 10]
+[1, 2, 4, 9]
+[1, 2, 4, 8]
+	*/
+}
+
+public static void main2() {
+	Tree t = new Tree();
+	int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	t.createCompleteBinaryTree(arr);
+
+	System.out.println(t.numNodes());
+	// 10
+
+	System.out.println(t.sumAllBT());
+	// 55
+
+	System.out.println(t.numLeafNodes());
+	// 5
+
+	System.out.println(t.numFullNodesBT());
+	// 4
+
+	System.out.println(t.searchBT(9));
+	// true
+
+	System.out.println(t.findMaxBT());
+	// 10
+
+	System.out.println(t.treeDepth());
+	// 4
+
+	System.out.println(t.maxLengthPathBT());
+	// 6
+}
+
+public static void main3() {
+	Tree t = new Tree();
+	int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	t.createCompleteBinaryTree(arr);
+
+	Tree t2 = t.copyTree();
+	t2.printInOrder();
+	/*
+8 4 9 2 10 5 1 6 3 7 
+	*/
+	Tree t3 = t.copyMirrorTree();
+	t3.printInOrder();
+	/*
+7 3 6 1 5 10 2 9 4 8
+	*/
+	System.out.println(t.isEqual(t2));
+	/*
+	true
+	*/
+	System.out.println(t.isHeap());
+	System.out.println(t.isHeap2());
+	System.out.println(t.isCompleteTree());
+	System.out.println(t.isCompleteTree2());
+	/*
+	true
+	true
+	true
+	true
+	*/
+}
+
+public static void main4() {
+	Tree t = new Tree();
+    t.insert(6);
+    t.insert(4);
+    t.insert(2);
+    t.insert(5);
+    t.insert(1);
+    t.insert(3);
+    t.insert(8);
+    t.insert(7);
+    t.insert(9);
+    t.insert(10);
+	t.printInOrder();
 
 	/*
 	1 2 3 4 5 6 7 8 9 10 
-	4 5 6 7 
-	4 5 6 7 
+
+	*/
+	System.out.println(t.find(3));
+	System.out.println(t.find(16));
+	/*
+	true
+	false
+	*/
+	System.out.println(t.isBST());
+	System.out.println(t.isBST2());
+	System.out.println(t.isBST3());
+	/*
+	true
+	true
+	true
 	*/
 
-	public static void main7() {
-		Tree t = new Tree();
-		int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-		t.createBinarySearchTree(arr);
-		System.out.println(t.ancestor(1, 10).value);
-		// 5
+}
 
-		System.out.println(t.ceilBST(5.5));
-		// 6
+public static void main8() {
+	Tree t = new Tree();
+	t.insert(2);
+	t.insert(1);
+	t.insert(3);
+	t.insert(4);
 
-		System.out.println(t.floorBST(8));
-		// 8
+	System.out.println("Before delete operation.");
+	t.printInOrder();
+	t.deleteNode(2);
+	System.out.println("After delete operation.");
+	t.printInOrder();
+}
+/*
+Before delete operation.
+1 2 3 4 
+After delete operation.
+1 3 4 
+*/
 
-		int[] arr1 = { 5, 2, 4, 6, 9, 10 };
-		int[] arr2 = { 5, 2, 6, 4, 7, 9, 10 };
-		System.out.println(t.isBSTArray(arr1));
-		System.out.println(t.isBSTArray(arr2));
-		/*
-		true
-		false
-		*/
-	}
+public static void main5() {
+	Tree t = new Tree();
+	int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	t.createBinarySearchTree(arr);
+	System.out.println(t.findMin());
+	System.out.println(t.findMax());
+	t.lcaBST(3, 4);
+	t.lcaBST(1, 4);
+	t.lcaBST(10, 4);
+}
 
-	public static void main(String[] args) {
-		main1();
-		main2();
-		main3();
-		main4();
-		main5();
-		main6();
-		main7();
-	}
+/*
+1
+10
+lca is :3
+lca is :2
+lca is :5
+*/
+
+public static void main6() {
+	Tree t = new Tree();
+	int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	t.createBinarySearchTree(arr);
+	t.printInOrder();
+	t.printInRange(4, 7);
+	t.trimOutsideRange(4, 7);
+	t.printInOrder();
+}
+
+/*
+1 2 3 4 5 6 7 8 9 10 
+4 5 6 7 
+4 5 6 7 
+*/
+
+public static void main7() {
+	Tree t = new Tree();
+	int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	t.createBinarySearchTree(arr);
+	System.out.println(t.ancestor(1, 10).value);
+	// 5
+
+	System.out.println(t.ceilBST(5.5));
+	// 6
+
+	System.out.println(t.floorBST(5.5));
+	// 5
+
+	int[] arr1 = { 5, 2, 4, 6, 9, 10 };
+	int[] arr2 = { 5, 2, 6, 4, 7, 9, 10 };
+	System.out.println(t.isBSTArray(arr1));
+	System.out.println(t.isBSTArray(arr2));
+	/*
+	true
+	false
+	*/
+}
+
+public static void main(String[] args) {
+	//main1();
+	//main2();
+	//main3();
+	//main4();
+	//main5();
+	//main6();
+	main7();
+}
 }

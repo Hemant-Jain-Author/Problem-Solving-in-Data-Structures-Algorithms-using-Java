@@ -79,10 +79,7 @@ class Permutations {
 
 	/* Testing code */
 	public static void main(String[] args) {
-		int[] arr = new int[4];
-		for (int i = 0; i < 4; i++) {
-			arr[i] = i + 1;
-		}
+		int[] arr = { 1, 2, 3, 4 };
 		permutation(arr, 0, 4);
 		System.out.println();
 		permutation2(arr, 0, 4);
