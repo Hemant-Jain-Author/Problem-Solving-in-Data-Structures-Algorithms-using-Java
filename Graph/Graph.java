@@ -757,22 +757,13 @@ public class Graph {
 		gph.addDirectedEdge(5, 6);
 		gph.stronglyConnectedComponent();
 
-		Graph gReversed = gph.transposeGraph();
-		gReversed.print();
 	}
 
 	/*
 	[1, 2, 0]
 	[4, 5, 3]
 	[6]
-	
-	Vertex 0 is connected to : 2(cost: 1) 
-	Vertex 1 is connected to : 0(cost: 1) 
-	Vertex 2 is connected to : 1(cost: 1) 
-	Vertex 3 is connected to : 2(cost: 1) 5(cost: 1) 
-	Vertex 4 is connected to : 3(cost: 1) 
-	Vertex 5 is connected to : 4(cost: 1) 
-	Vertex 6 is connected to : 5(cost: 1) 
+
 		*/
 
 	public void primsMST() {
@@ -918,7 +909,6 @@ public class Graph {
 		gph.kruskalMST();
 		System.out.println();
 		gph.dijkstra(0);
-		//floydWarshall(gph);
 	}
 
 	/*
