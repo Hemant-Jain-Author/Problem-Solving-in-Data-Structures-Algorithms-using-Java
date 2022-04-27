@@ -101,6 +101,7 @@ public class HashTableSC {
 		System.out.println("Find key 2 : " + ht.find(2));
 		System.out.println("Value at  key 2 : " + ht.get(2));
 		ht.remove(2);
+		ht.print();
 		System.out.println("Find key 2 : " + ht.find(2));
 	}
 }

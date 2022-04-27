@@ -744,9 +744,7 @@ public class Tree {
 	}
 
 	public Node treeToListRec() {
-		Node head = treeToListRec(root);
-		Node temp = head;
-		return temp;
+		return treeToListRec(root);
 	}
 
 	private Node treeToListRec(Node curr) {

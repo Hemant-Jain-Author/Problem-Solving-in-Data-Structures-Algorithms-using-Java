@@ -32,7 +32,6 @@ public class Heap {
 		int lChild = 2 * parent + 1;
 		int rChild = lChild + 1;
 		int child = -1;
-		int temp;
 
 		if (lChild < size) {
 			child = lChild;
@@ -41,7 +40,7 @@ public class Heap {
 			child = rChild;
 		}
 		if (child != -1 && compare(arr, parent, child)) {
-			temp = arr[parent];
+			int temp = arr[parent];
 			arr[parent] = arr[child];
 			arr[child] = temp;
 			percolateDown(child);
@@ -50,10 +49,8 @@ public class Heap {
 
 	private void percolateUp(int child) {
 		int parent = (child - 1) / 2;
-		int temp;
-
 		if (parent >= 0 && compare(arr, parent, child)) {
-			temp = arr[child];
+			int temp = arr[child];
 			arr[child] = arr[parent];
 			arr[parent] = temp;
 			percolateUp(parent);
