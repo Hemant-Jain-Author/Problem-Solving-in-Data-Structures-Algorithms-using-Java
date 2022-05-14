@@ -11,8 +11,33 @@ public class Polynomial {
 		}
 	}
 
-	public static Node add(Node p1, Node p2) {
-		Node head = null, tail = null, temp = null;
+	Node head;
+	Node tail;
+	
+	Polynomial(int[] coeffs, int[] pows, int size) {
+		head = null;
+		tail = null;
+		Node temp = null;
+		for (int i = 0; i < size; i++) {
+			temp = new Node(coeffs[i], pows[i]);
+			if (head == null)
+				head = tail = temp;
+			else {
+				tail.next = temp;
+				tail = tail.next;
+			}
+		}
+	}
+
+	Polynomial() {
+		this(null, null, 0);
+	}
+
+	public Polynomial add(Polynomial poly2) {
+		Node p1 = head;
+        Node p2 = poly2.head;
+		Node temp = null;
+		Polynomial poly = new Polynomial();
 		while (p1 != null || p2 != null) {
 			if (p1 == null || p1.pow < p2.pow) {
 				temp = new Node(p2.coeff, p2.pow);
@@ -26,36 +51,23 @@ public class Polynomial {
 				p2 = p2.next;
 			}
 
-			if (head == null)
-				head = tail = temp;
+			if (poly.head == null)
+				poly.head = poly.tail = temp;
 			else {
-				tail.next = temp;
-				tail = tail.next;
+				poly.tail.next = temp;
+				poly.tail = poly.tail.next;
 			}
 		}
-		return head;
+		return poly;
 	}
 
-	public static Node create(int[] coeffs, int[] pows, int size) {
-		Node head = null, tail = null, temp = null;
-		for (int i = 0; i < size; i++) {
-			temp = new Node(coeffs[i], pows[i]);
-			if (head == null)
-				head = tail = temp;
-			else {
-				tail.next = temp;
-				tail = tail.next;
-			}
-		}
-		return head;
-	}
-
-	public static void print(Node head) {
-		while (head != null) {
-			System.out.print(head.coeff + "x^" + head.pow);
-			if (head.next != null)
+	public void print() {
+		Node curr = head;
+		while (curr != null) {
+			System.out.print(curr.coeff + "x^" + curr.pow);
+			if (curr.next != null)
 				System.out.print(" + ");
-			head = head.next;
+			curr = curr.next;
 		}
 		System.out.println();
 	}
@@ -64,20 +76,22 @@ public class Polynomial {
 		int[] c1 = { 6, 5, 4 };
 		int[] p1 = { 2, 1, 0 };
 		int s1 = c1.length;
-		Node first = create(c1, p1, s1);
-		print(first);
+		Polynomial first = new Polynomial(c1, p1, s1);
+		first.print();
 
 		int[] c2 = { 3, 2, 1 };
 		int[] p2 = { 3, 1, 0 };
 		int s2 = c2.length;
-		Node second = create(c2, p2, s2);
-		print(second);
+		Polynomial second = new Polynomial(c2, p2, s2);
+		second.print();
 
-		Node sum = add(first, second);
-		print(sum);
+		Polynomial sum = first.add(second);
+		sum.print();
 	}
 }
 
 /*
+6x^2 + 5x^1 + 4x^0
+3x^3 + 2x^1 + 1x^0
 3x^3 + 6x^2 + 7x^1 + 5x^0
 */

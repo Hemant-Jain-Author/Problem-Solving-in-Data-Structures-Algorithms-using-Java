@@ -318,8 +318,8 @@ public static int rottenFruit2(int[][] arr, int maxCol, int maxRow) {
 // Testing code
 public static void main7() {
 	int arr[][] = { { 1, 0, 1, 1, 0 }, { 2, 1, 0, 1, 0 }, { 0, 0, 0, 2, 1 }, { 0, 2, 0, 0, 1 }, { 1, 1, 0, 0, 1 } };
-	System.out.println(rottenFruit(arr, 5, 5));
-	System.out.println(rottenFruit2(arr, 5, 5));
+	System.out.println("rottenFruit : " + rottenFruit(arr, 5, 5));
+	System.out.println("rottenFruit : " + rottenFruit2(arr, 5, 5));
 }
 
 // 3
