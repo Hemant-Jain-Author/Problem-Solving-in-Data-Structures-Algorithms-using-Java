@@ -16,7 +16,7 @@ public class DoublyCircularLinkedList {
 	}
 
 	/* Other methods */
-};
+
 	public int size() {
 		return size;
 	}
@@ -28,8 +28,8 @@ public class DoublyCircularLinkedList {
 	public int peekHead() {
 		if (isEmpty())
 			throw new IllegalStateException("EmptyListException");
-	return head.value;
-}
+		return head.value;
+	}
 
 public void addHead(int value) {
 	Node newNode = new Node(value, null, null);

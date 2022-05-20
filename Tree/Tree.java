@@ -500,9 +500,7 @@ public class Tree {
 
 		leftPath = treeDepth(curr.left);
 		rightPath = treeDepth(curr.right);
-
 		max = leftPath + rightPath + 1;
-
 		leftMax = maxLengthPathBT(curr.left);
 		rightMax = maxLengthPathBT(curr.right);
 
@@ -942,21 +940,17 @@ public class Tree {
 	}
 
 	private int findMaxBT(Node curr) {
-		int leftmax, rightmax;
-
 		if (curr == null)
 			return Integer.MIN_VALUE;
 
 		int max = curr.value;
-
-		leftmax = findMaxBT(curr.left);
-		rightmax = findMaxBT(curr.right);
+		int leftmax = findMaxBT(curr.left);
+		int rightmax = findMaxBT(curr.right);
 
 		if (leftmax > max)
 			max = leftmax;
 		if (rightmax > max)
 			max = rightmax;
-
 		return max;
 	}
 
@@ -979,12 +973,11 @@ public class Tree {
 	}
 
 	private Node createBinarySearchTree(int[] arr, int start, int end) {
-		Node curr = null;
 		if (start > end)
 			return null;
 
 		int mid = (start + end) / 2;
-		curr = new Node(arr[mid]);
+		Node curr = new Node(arr[mid]);
 		curr.left = createBinarySearchTree(arr, start, mid - 1);
 		curr.right = createBinarySearchTree(arr, mid + 1, end);
 		return curr;
@@ -1255,12 +1248,12 @@ public static void main7() {
 }
 
 public static void main(String[] args) {
-	//main1();
-	//main2();
-	//main3();
-	//main4();
-	//main5();
-	//main6();
+	main1();
+	main2();
+	main3();
+	main4();
+	main5();
+	main6();
 	main7();
 }
 }
