@@ -35,7 +35,7 @@ public class QuickSelect {
 	}
 
 	public static int get(int arr[], int k) {
-		quickSelect(arr, 0, arr.length - 1, k);
+		quickSelect(arr, 0, arr.length - 1, k-1);
 		return arr[k - 1];
 	}
 
