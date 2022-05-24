@@ -143,7 +143,7 @@ public static int minOfMaxSlidingWindows(int arr[], int size, int k) {
 			que.remove();
 		// Remove smaller values at left.
 		while (que.size() > 0 && arr[que.peekLast()] <= arr[i])
-			que.remove();
+			que.removeLast();
 		que.add(i);
 		// window of size k
 		if (i >= (k - 1) && minVal > arr[que.peek()])
@@ -171,7 +171,7 @@ public static void maxOfMinSlidingWindows(int arr[], int size, int k) {
 			que.remove();
 		// Remove smaller values at left.
 		while (que.size() > 0 && arr[que.peekLast()] >= arr[i])
-			que.remove();
+			que.removeLast();
 		que.add(i);
 		// window of size k
 		if (i >= (k - 1) && maxVal < arr[que.peek()])
