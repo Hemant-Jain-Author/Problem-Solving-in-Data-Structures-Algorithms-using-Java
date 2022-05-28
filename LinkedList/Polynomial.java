@@ -39,7 +39,7 @@ public class Polynomial {
 		Node temp = null;
 		Polynomial poly = new Polynomial();
 		while (p1 != null || p2 != null) {
-			if (p1 == null || p1.pow < p2.pow) {
+			if (p1 == null || (p2 != null && p1.pow < p2.pow)) {
 				temp = new Node(p2.coeff, p2.pow);
 				p2 = p2.next;
 			} else if (p2 == null || p1.pow > p2.pow) {
