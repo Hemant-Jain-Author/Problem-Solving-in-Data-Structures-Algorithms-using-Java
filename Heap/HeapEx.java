@@ -249,24 +249,18 @@ public class HeapEx {
 
 	public static void sortK(int[] arr, int size, int k) {
 		PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
-		int i = 0;
-		for (i = 0; i < k; i++) {
+		for (int i = 0; i < k && i < size; i++) {
 			pq.add(arr[i]);
 		}
 
-		int[] output = new int[size];
 		int index = 0;
-
-		for (i = k; i < size; i++) {
-			output[index++] = pq.remove();
+		for (int i = k; i < size; i++) {
+			arr[index++] = pq.remove();
 			pq.add(arr[i]);
 		}
+		
 		while (pq.size() > 0)
-			output[index++] = pq.remove();
-
-		for (i = 0; i < size; i++) {
-			arr[i] = output[i];
-		}
+			arr[index++] = pq.remove();
 	}
 
 	// Testing Code
