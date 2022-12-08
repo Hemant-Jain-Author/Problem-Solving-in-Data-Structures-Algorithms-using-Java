@@ -656,7 +656,7 @@ public class Graph {
 	Vertex 2 is connected to : 0(cost: 1) 
 	Vertex 3 is connected to : 1(cost: 1) 2(cost: 1) 
 	Vertex 4 is connected to : 3(cost: 1) 
-		*/
+	*/
 
 	public boolean isConnectedUndirected() {
 		boolean[] visited = new boolean[count];
@@ -1272,7 +1272,7 @@ public class Graph {
 
 	/*
 	true
-		*/
+	*/
 
 	// Testing Code
 	public static void main17() {
@@ -1402,7 +1402,6 @@ public class Graph {
 		gph.addDirectedEdge(1, 1, 0);
 		gph.addDirectedEdge(2, 2, 0);
 		gph.addDirectedEdge(3, 3, 0);
-
 		gph.addDirectedEdge(0, 1, 5);
 		gph.addDirectedEdge(0, 3, 10);
 		gph.addDirectedEdge(1, 2, 3);
