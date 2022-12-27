@@ -1,6 +1,9 @@
 # Problem-Solving-in-Data-Structures-Algorithms-using-Java
 
-**This is the code repository for Problem Solving in Data Structures & Algorithms Using Java.**
+**This is the code repository of book "Problem Solving in Data Structures & Algorithms Using Java".**
+
+![alt text](https://m.media-amazon.com/images/I/41eQl-YMyfL.jpg)
+
 
 **About The Book**
 - This textbook provides in depth coverage of various Data Structures and Algorithms.
@@ -35,6 +38,3 @@
 - Chapter 18: Dynamic Programming
 - Chapter 19: Backtracking
 - Chapter 20: Complexity Theory
-
-![alt text](https://m.media-amazon.com/images/I/41eQl-YMyfL.jpg)
-
