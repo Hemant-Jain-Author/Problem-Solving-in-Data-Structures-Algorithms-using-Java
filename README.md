@@ -3,14 +3,19 @@
 **This is the code repository for Problem Solving in Data Structures & Algorithms Using Java.**
 
 **About The Book**
-• This textbook provides in depth coverage of various Data Structures and Algorithms.
-• Concepts are discussed in easy to understand manner.
-• Large number of diagrams are provided to grasp concepts easily.
-• Time and Space complexities of various algorithms are discussed.
-• Helpful for interviews preparation and competitive coding. 
-• Large number of interview questions are solved.
-• Java solutions are provided with input and output.
-• Guide you through how to solve new problems in programming interview of various software companies.
+• 
+- This textbook provides in depth coverage of various Data Structures and Algorithms.
+• 
+- Concepts are discussed in easy to understand manner.
+• 
+- Large number of diagrams are provided to grasp concepts easily.
+• 
+- Time and Space complexities of various algorithms are discussed.
+• 
+- Helpful for interviews preparation and competitive coding. 
+- Large number of interview questions are solved.
+- Java solutions are provided with input and output. 
+- Guide you through how to solve new problems in programming interview of various software companies.
 
 
 **Table of Contents**
