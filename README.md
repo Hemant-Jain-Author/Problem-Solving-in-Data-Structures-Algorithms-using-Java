@@ -36,5 +36,5 @@
 - Chapter 19: Backtracking
 - Chapter 20: Complexity Theory
 
-![alt text](https://m.media-amazon.com/images/I/41eQl-YMyfL._SX384_BO1,204,203,200_.jpg)
+![alt text](https://m.media-amazon.com/images/I/41eQl-YMyfL.jpg)
 
